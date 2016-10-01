@@ -30,7 +30,7 @@
 	type="text/css" />
 <link href="resources/css/settings.css" rel="stylesheet"
 	type="text/css" />
-
+<!-- text has been added -->
 <!-- EXTRA CSS FOR 'dashboard.jsp' TEMPLATE 
 <link href="resources/dashboard_template/styles.css" rel="stylesheet" type="text/css" />
 <link href="resources/dashboard_template/nivo-slider.css" rel="stylesheet" type="text/css" media="screen" /> -->
