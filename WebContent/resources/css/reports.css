@@ -1,0 +1,459 @@
+
+.reports_content_block{
+	
+	//position: relative;
+	//height: 100%;
+	
+	//display: none;
+}
+
+.reports_left_container{
+	
+	position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 0; /* stick to the left */
+    
+    width: 50%;
+    
+    background: #ffffff;
+}
+
+.reports_right_container{
+	
+	position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    right: 0; /* stick to the right */
+    
+    width: 50%;
+	border-left: 1px #00003D solid;
+	
+	background: rgba(56, 56, 56, .7);
+}
+
+
+
+/*-------- 'view report' BUTTON ---------------------------------------------------------------------------------*/
+#view_report_button{
+	
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+	
+	width: 42.5%;
+	color: white;
+	background: #660066;//#8585ad;
+	border-radius: 5px;
+	outline: none;
+	
+	padding: 6px 0px 5px 0px;
+	cursor: pointer;
+	
+	-webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+}
+
+#view_report_button:hover{
+	
+	background: #b366ff;
+}
+
+/*-------- REPORT TYPE SELECTION BLOCK ---------------------------------------------------------------------------------*/
+.report_selection{
+	
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	
+	width: 45%;
+	padding: 9px 0px 9px 7px;
+	cursor: pointer;
+	
+	color: white;
+	
+	//background: #8585ad;
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+}
+
+.report_selection #report_selected_type{
+	
+	font-size: 13px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	font-weight: bold;
+	
+	cursor: pointer;
+	
+	text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+}
+
+.report_selection #reports_drop_down_arrow{/*-- image --*/
+	
+	position: absolute;
+	top: 3px;
+	right: 3px;
+	
+	width: 23px;
+	height: 25px;
+	
+	cursor: pointer;
+}
+
+.report_selection .report_selection_types{ /*pop-up window */
+	
+	position: absolute;
+	top: 32px;
+	left: 0px;
+	
+	width: 100%;
+	
+	
+	border-top: 1px solid #ffffff;
+	border-bottom: 1px solid #ffffff;
+	
+	-webkit-box-shadow: 0 0 8px black;
+    box-shadow: 0 0 8px black;	
+    
+    background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.8) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.8) 50%, #365899 100%);
+    
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+    z-index: 50;
+    
+    display: none;
+}
+
+.report_selection .report_selection_types div{
+	
+	text-align: center;
+	padding: 7px 0px 7px 0px;
+	border-bottom: 1px solid #ffffff;
+	
+	transition: background 0.5s;
+}
+
+.report_selection .report_selection_types div:hover{
+	
+	background: #2e4c84;
+	
+}
+
+/*-------- REPORT NAME BLOCK ------------------------------------------------------------------------------------*/
+.report_name_block{
+	
+	position: absolute;
+	top: 60px;
+	left: 15px;
+	
+	width: 46%;
+	height: 150px;		
+}
+
+.report_name_block #report_name_label{
+	
+	width: calc(100% - 7px);
+
+	color: #ffffff;
+	font-weight: bold;
+		
+	padding: 7px 0px 7px 7px;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+}
+
+.report_name_block #block_scroll_report_table{
+	
+	width: cacl(100% - 4px);
+	height: 112px;
+	
+	margin-left: 2px;
+	margin-right: 2px;
+	overflow: auto;
+	
+	-webkit-box-shadow: 0 0px 8px black;
+    box-shadow: 0px 0px 8px black;	
+}
+
+.report_name_block #report_name_table{
+	
+	width: 100%;
+	
+	background: #ffffff;
+	
+	//border: 1px solid #ffffff;
+}
+
+/*-------- REPORT TYPE NAME TABLE ROW STYLE ---------------------------------------------------------------------*/
+.report_name_block #report_name_table tr{
+	
+	padding-top: 3px;
+	padding-bottom: 3px;
+	
+	text-align: center;
+	border: 1px black solid;
+	
+	transition: background 0.5s;
+}
+
+.report_name_block #report_name_table tr:hover{
+	
+	color: #ffffff;
+	cursor: default;
+	
+	background: #557cc3;
+}
+
+.report_name_block .highlight_row{ /*--- highlight selected row ---*/
+	
+	background: #2e4c84;
+	color: white;
+}
+
+/*-------- REPORT DESCRIPTION AREA ------------------------------------------------------------------------------------*/
+.report_description{
+	
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	
+	width: 45%;
+}
+
+.report_description #report_description_label{
+	
+	padding: 8px 0px 8px 7px;
+	
+	color: white;
+	font-weight: bold;
+	
+	//background: #8585ad;
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+}
+
+.report_description #report_description{
+	
+	position: absolute;
+	top: 32px;
+	left: 2px;
+	
+	font-size: 13px;
+	color: #666666;
+	
+	padding: 10px;
+	width: calc(100% - 24px);
+	
+	-webkit-box-shadow: 0 0px 8px black;
+    box-shadow: 0px 0px 8px black;		
+}
+
+/*-------- REPORT DATES AND STATISTICS FIELDS IN THE LEFT CONTAINER ----------------------------------------------*/
+
+.reports_left_container #report_dates_statistics{
+	
+	position: absolute;
+	top: 220px;
+	left: 15px;
+	right: 15px;
+	
+	height: calc(100vh - 370px);
+	overflow-y: auto;
+}
+.reports_left_container #report_dates_statistics div{
+	
+	line-height: 50px;
+	height: 50px;
+	
+	color: #2e4c84;
+	font-size: 17px;
+	font-weight: bold;
+	
+	border-top: 1px #666666 solid;
+}
+.reports_left_container #report_dates_statistics div label{
+	
+	float: left;
+}
+
+.reports_left_container #report_dates_statistics div input{
+	
+	float: right;
+	
+	margin: 13px 15px 0px 0px;
+	width: 110px;
+	height: 20px;
+	
+	border: 0;
+	background: transparent;
+	
+	color: #73008C;
+	font-size: 17px;
+	font-weight: bold;
+	text-align: right;
+}
+
+.reports_left_container #report_dates_statistics div input:focus{
+	
+	border-bottom: 1px #73008C solid;
+}
+
+/*-------- REPORT TABLE IN THE RIGHT-SIDE CONTAINER IN 'reports.jsp' ---------------------------------------------*/
+
+.reports_right_container .reports_right_container_content{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 100%;
+	height: calc(100vh - 93px);
+	
+	background: #ffffff;
+	
+	display: none;
+}
+
+.reports_right_container .report_table_header{
+	
+	width: 99.1%;
+	height: 40px;
+	line-height: 40px;
+		
+	//background: #8585ad;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+	
+	text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+	
+	display: none;
+}
+
+.report_table_body{
+	
+	width: 99.5%;
+	border-collapse: collapse;
+	margin-left: 3px;
+}
+
+.report_table_body tr{
+	
+	border: 1px #cccccc solid;
+}
+
+.report_table_body tr:nth-child(even){
+	
+    background: #E2E2E6;//#C2C2D1;
+}
+
+.report_table_body tr:hover{
+	
+    background: #B2BFD2;
+    color: white;
+    //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.report_table_body tr{
+	
+    height: 30px;
+    cursor: default;
+}
+
+.report_body_table .days_left{
+	
+    font-size: 10px;
+    margin: 0px 0px -12px 0px;
+}
+.reports_right_container .report_table_header table {
+	
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.reports_right_container #no_results { /*----- if no results returned, display 'No Results' -----------------------------------------------------*/
+	
+	color: #00003D;
+	font-size: 38px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+/*----- REPORT TABLE HEADER ROW (different number of columns, depending on report type and name ----------------------------------*/
+.report_table_header #header_row{
+	
+	color: white;
+	height: 33px;
+	text-align: center;
+	cursor: default;
+	
+}
+.report_table_header #first{
+    width: 30%;
+	border-right: 1px white solid;
+}
+.report_table_header #second{
+	width: 20%;
+	border-right: 1px white solid;
+}
+.report_table_header #third{
+	width: 20%;
+	border-right: 1px white solid;
+}
+.report_table_header #fourth{
+	width: 15%;
+	border-right: 1px white solid;
+}
+.report_table_header #fifth{
+	width: 15%;
+}
+
+.report_column1{
+	
+	width: 30.5%;
+	padding-left: 8px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+.report_column2{
+	
+	width: 20.7%;
+	text-align: center;
+	border-right: 1px white solid;
+}
+.report_column3{
+	
+	width: 20.5%;
+	text-align: center;
+	border-right: 1px white solid;
+}
+.report_column4{
+	
+	width: 15.3%;
+	text-align: center;
+	color: #009900;
+	border-right: 1px white solid;
+	font-size: 12px;
+}
+.report_column5{
+	
+	width: 15.4%;
+	text-align: center;
+}
+
+/*-------- TABLE HEIGHT IN THE REPORTS RIGHT CONTAINER 'reports.jsp' ----------------------------------------------*/
+.report_table_body_height{ 
+	
+    width: 100%;
+        
+    height: calc(100vh - 143px); 
+    overflow-y: scroll;
+}
+

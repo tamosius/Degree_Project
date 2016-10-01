@@ -1,0 +1,24 @@
+.products_top_panel{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 99.7%;
+	height: 50px;
+	
+	border: red 1px solid;
+}
+
+.products_bottom_panel{ 
+	
+	position: absolute;
+	top: 50px;
+	left: 0;
+	
+    width: 100%;
+    height: calc(100vh - 143px); 
+    overflow-y: scroll;
+    
+    border: blue 1px solid;
+}
