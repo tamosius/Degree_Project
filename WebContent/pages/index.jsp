@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- here is a change -->
+
 <link href="resources/css/body.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/bottom_panel_blocks.css" rel="stylesheet"
 	type="text/css" />
