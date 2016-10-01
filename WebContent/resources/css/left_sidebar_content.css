@@ -1,0 +1,313 @@
+/*------------------ BOTTOM PANEL BUTTON 'Main' --------------------------------------------------------------------------------------------- */
+.buttons_block{
+	
+    width: 340px;
+    height: auto;
+    float: left;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 15px 10px 10px 10px;
+    //background: lightgrey;
+    background-color: rgba(211, 211, 211, 0.7);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+    
+    //opacity: .7;
+}
+
+/*.buttons_block::after {
+	
+  content: "";
+  
+  width: 340px;
+    height: auto;
+    float: left;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 15px 10px 10px 10px;
+    background: lightgrey;
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+  opacity: .1;
+  
+  position: absolute;
+  top: 170px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  z-index: -1;   
+}*/
+
+.buttons_block .left_block{
+	width: auto;
+    height: auto;
+    //float: right;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 10px 10px 10px 10px;
+    float: left;
+    -webkit-box-shadow: 0 0 5px #636383;
+    box-shadow: 0 0 5px #636383;
+    //-webkit-box-shadow: 0 0 5px #9999b2;
+    //box-shadow: 0 0 5px #9999b2;
+    background-color: rgba(211, 211, 211, 1);
+}
+
+.buttons_block .right_block{
+	width: auto;
+    height: auto;
+    float: left;
+    display: inline;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 10px 10px 10px 0px;
+    -webkit-box-shadow: 0 0 5px #636383;
+    box-shadow: 0 0 5px #636383;
+    //-webkit-box-shadow: 0 0 5px black;
+    //box-shadow: 0 0 5px black;
+    background-color: rgba(211, 211, 211, 1);
+}
+
+.buttons_block button{
+	
+    width: 133px;
+    height: auto;
+    font-size: 15px;
+    color: white;
+    background: #b6b6c8;//#C2C2D1; //lightgrey;//#7c7c9c;
+    //border-radius: 5px;
+    margin: 7px 10px 7px 10px;
+    padding: 2px;
+    cursor: pointer;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    outline: 0;
+    display: block;
+    font-weight: bold;
+    font-family:  "Helvetica", "Arial", sans-serif;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.buttons_block button:hover{
+	
+    background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+button::-moz-focus-inner{ /* removes dotted outline in mozilla */
+
+    border: 0;
+}
+
+/* ---------------- LAST ATTENDED / RECENTLY EXTENDED / RECENTLY JOINED BLOCKS (bottom left side bar ------------------------------------------------ */
+.last_attended_member, .last_updated_member, .recently_joined_member{ /* main div block */
+
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: 345px;
+    height: 92px;
+    //float: left;
+    margin: 10px 0px 5px 5px;
+    //background: lightgray;
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+    -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    
+    background-color: rgba(211, 211, 211, .95);
+}
+
+.last_attended_member{
+	
+    margin-bottom: 205px;
+}
+
+.last_updated_member{
+	
+	margin-bottom: 105px;
+}
+
+.last_attended_member img, .last_updated_member img, .recently_joined_member img{
+	
+    width: 78px;
+    height: 80px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 3px black;
+    box-shadow: 0 0 3px black;
+    
+    position: absolute; /* make it absolute */
+    top: 6px; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 4px; /* stick to the left */
+    right: 0; /* stick to the right */
+    //width: 21%;
+}
+
+.details_area{
+	
+	width: auto;
+    height: 80px; 
+    //background: blue;
+    display: block;
+    //overflow: hidden;
+}
+
+.last_attended_member #last_visited_today, .last_updated_member #last_updated, .recently_joined_member #recently_joined{ /* first line in the block */
+
+    color: #00003D;
+    font-size: 13px;
+    font-weight: bold;
+    
+    position: absolute; /* make it absolute */
+    top: 6px; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 90px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #name, .last_updated_member #name, .recently_joined_member #name{
+	
+	font-size: 11px;
+    color: #00003D;
+	
+	position: absolute; /* make it absolute */
+    top: 30px; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 90px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #time, .last_updated_member #time, .recently_joined_member #time{
+	
+	font-size: 11px;
+    color: #00003D;
+	
+	position: absolute; /* make it absolute */
+    top: 46px; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 90px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #membership, .last_updated_member #membership, .recently_joined_member #membership{
+	
+	font-size: 11px;
+    color: #00003D;
+	
+	position: absolute; /* make it absolute */
+    top: 61px; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 90px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #full_name, .last_updated_member #full_name, .recently_joined_member #full_name{
+	
+	font-size: 13px;
+    font-weight: bold;
+    color: #00003D;
+    
+    position: absolute; /* make it absolute */
+    top: -3px; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 115px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #date_visited, .last_updated_member #date_updated, .recently_joined_member #date_updated{
+	
+	font-weight: normal;
+    color: #00003D;
+	
+	position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 115px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #at, .last_updated_member #at, .recently_joined_member #at{
+	
+	position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 177px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #time_visited{
+	
+    font-weight: normal;
+    color: #1d581d;
+    
+    position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 191px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_updated_member #paid_membership, .recently_joined_member #paid_membership{
+	
+	font-weight: normal;
+    color: #1d581d;
+    
+    position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 212px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #membership_status, .last_updated_member #membership_status, .recently_joined_member #membership_status{
+	
+	font-weight: normal;
+    color: #00003D;
+	
+	position: absolute; /* make it absolute */
+    top: 0; /* the height of the other element + its margin */
+    bottom: 0; /* stick to the bottom */
+    left: 115px; /* stick to the left */
+    right: 0; /* stick to the right */
+}
+
+.last_attended_member #membership_status_days_left, .last_updated_member #membership_status_days_left, .recently_joined_member #membership_status_days_left{
+	
+	font-weight: normal;
+    color: #00003D;
+	
+	position: absolute; /* make it absolute */
+    bottom: 19px; 
+    left: 177px;
+    
+    font-size: 12px;
+}
+
+.last_attended_member #full_attendance, .last_updated_member #show_all_updated_memberships, .recently_joined_member #show_all_recently_joined{
+	
+    font-size: 11px;
+    color: #00003D;
+    cursor: pointer;
+    
+    position: absolute; /* make it absolute */
+    bottom: 4px; /* stick to the bottom */
+    right: 6px; /* stick to the right */
+    
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    transition: color 0.5s;
+}
+
+.last_attended_member #full_attendance:hover, .last_updated_member #show_all_updated_memberships:hover, .recently_joined_member #show_all_recently_joined:hover{
+	
+    color: #CC0066;//#FF6262;
+}
