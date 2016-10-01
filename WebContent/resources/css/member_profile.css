@@ -1,0 +1,556 @@
+
+/*-------- MEMBER PROFILE CONTENT -------------------------------------------------------------------------------------------------*/
+.member_profile_panel{
+	
+    display: none;
+    width: 950px;
+    height: 560px;
+    position: absolute;
+    top: 5%;
+    right: 3%;
+    //transform: translate(-61%, -72%);
+    background: #555;
+    padding: 20px 30px 20px 30px;
+    font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #D3D3D3;
+    text-shadow: 4px 4px 4px black;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border: 1px solid #D3D3D3;
+    box-shadow : 6px 6px 2px #555;
+    z-index: 80;
+}
+
+/*--------- TOP PANEL IN THE 'MEMBER PROFILE' WINDOW ----------------------------------------------------------------------*/
+.member_profile_top_panel{
+    
+    width: 100%;
+    height: 40px;
+    
+    margin-bottom: 10px;
+    border-bottom: 1px #D3D3D3 solid;
+}
+
+/*--------- MIDDLE BLOCK IN THE 'MEMBER PROFILE PANEL (member_profile_content)' --------------------------------------------------*/
+.member_profile_content{
+	
+	position: relative;
+	width: auto;
+	height: auto;	
+}
+
+/*--------- LEFT SIDEBAR IN THE 'MEMBER PROFILE CONTENT' WINDOW -------------------------------------------------------------------*/
+.member_profile_left_sidebar{
+    
+    width: 266px;
+    height: 460px;
+    border-right: solid 1px #D3D3D3;
+    
+    //border: blue solid 2px;
+}
+
+/*--------- RIGHT SIDEBAR IN THE 'MEMBER PROFILE CONTENT' WINDOW (with '#first_block' and '#second_block')-------------------------*/
+.member_profile_right_sidebar{
+    
+    position: absolute;
+    top: 0;
+    left: 275px;
+    
+    border-radius: 5px;
+    width: 660px;
+    height: 263px;
+    
+    padding: 5px 5px 5px 5px;
+    
+    //border: 2px yellow solid;
+}
+
+.member_profile_right_sidebar #first_block{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 335px;
+	height: auto;
+	
+	border-right: 1px #D3D3D3 solid;
+}
+
+.member_profile_right_sidebar #second_block{
+	
+	position: absolute;
+	top: 0;
+	left: 340px;
+	
+	width: 330px;
+	height: auto;
+}
+
+/*--------- THE PANEL APPEARS WHEN THE 'UPDATE PROFILE' BUTTON IS CLICKED ---------------------------------------------------------*/
+.member_profile_right_sidebar #bottom_update_panel{
+	
+	position: absolute;
+	top: 210px;
+	left: 0;
+	
+    margin: 18px 0px 0px 10px;
+    width: 650px;
+    height: 30px;
+    
+    display: none;
+    border-top: solid #D3D3D3 1px;
+}
+/*--------- END OF THE PANEL APPEARS WHEN THE 'UPDATE PROFILE' BUTTON IS CLICKED -------------------------------------------------*/
+
+/*--------- 'member_data' AND 'member_data_update' FIELDS ------------------------------------------------------------------------*/
+.member_data span, .member_data label, .member_data_update span, .member_data_update label{
+	
+    font-size: 16px;      
+    width: 110px;
+    height: 25px;
+    float: left;
+    
+    padding: 5px 0px 0px 5px;
+    
+    font-weight: bold;
+    
+    //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.member_profile_right_sidebar .member_data, .member_profile_right_sidebar .member_data_update{ /*div block of member details in .right_sidebar */
+        
+    position: relative;    
+        
+    margin: 0px 0px 4px 0px;
+    
+    width: auto;
+    height: 30px;    
+}
+
+
+#paid{
+	
+    width: 60px;
+}
+.member_profile_right_sidebar .member_data input[type="text"]{
+	
+	width: 200px;
+    height: 30px;
+    border: 1px solid #555;
+    
+    float: left;	
+        
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    text-shadow: 4px 4px 4px black;
+     
+    letter-spacing: 1px;
+     padding: 0px 0px 0px 5px;
+     
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    background-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.member_profile_right_sidebar .member_data_update input[type="text"] {
+	
+	width: 200px;
+	height: 30px;
+	border: 1px solid #555;
+	
+	color: #525252;
+	font-weight: bold;
+	font-size: 17px;
+	padding: 0px 0px 0px 5px;
+	border-radius: 3px;
+	letter-spacing: 1px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+	background: #DFDFDF;
+}
+
+.member_data #first_name, .member_data #last_name, .member_data_update #first_name, .member_data_update #last_name{
+	
+    font-size: 22px;
+    text-transform: capitalize;
+}
+
+.member_data_update input:focus{
+	
+    background: white;
+    outline: 0;
+    border: 1px solid #555;
+}
+
+/*-------- drop-down 'image' in 'programme' input ----------------*/
+.member_profile_right_sidebar #second_block #programme_drop_down_arrow{
+	
+	position: absolute;
+	top: 2px;
+	left: 292px;
+	
+	width: 28px;
+	height: 28px;
+	
+	border-radius: 2px;
+	cursor: pointer;
+	
+	display: none;
+}
+
+/*-------- 'drop-down' menu in 'programme' field ---------------*/
+.member_profile_right_sidebar #second_block #programme_type{
+	
+	position: absolute;
+	top: 33px;
+	left: 117px;
+	
+	width: 200px;
+	height: auto;
+	
+	background: linear-gradient(to bottom, #d0d0e1, #8585ad);
+	border: 1px solid #fff;
+	border-radius: 0px 0px 5px 5px;
+	-webkit-box-shadow: 0 0 3px black;
+    box-shadow: 0 4px 8px black;
+    
+    cursor: pointer;
+    z-index: 140;
+    
+    display: none;	
+}
+
+.member_profile_right_sidebar #second_block #programme_type div{
+	
+	height: 20px;
+	color: white;
+	text-align: center;
+	
+	margin: 0;
+	padding: 8px 0px 3px 0px;
+	border-bottom: 1px solid #fff;
+	
+	text-shadow: none;
+}
+
+.member_profile_right_sidebar #second_block #programme_type div:hover{
+	
+	background: #BC33BA;
+}
+/*-------- END OF 'member_data' AND 'member_data_update' FIELDS --------------------------------------------------------------*/
+
+.member_profile_left_sidebar img{
+	
+   width: 214px;
+   height: 240px;
+   border-radius: 5px;
+   border: 1px solid #D3D3D3;
+   box-shadow : 4px 4px 4px black;
+}
+.member_profile_left_sidebar #image{
+    margin: 10px 30px 20px 20px;
+    width: 214px;
+    height: 240px;
+}
+
+
+.member_profile_left_sidebar #photo_camera{
+    margin: 3px 30px 20px 20px;
+    width: 214px;
+    height: 240px;
+    display: none;
+    border-radius: 5px;
+    border: 1px solid #D3D3D3;
+    box-shadow : 4px 4px 4px black;
+}
+
+.member_profile_left_sidebar #photo_button{
+    text-align: center;
+    margin: 0px 0px 20px 50px;
+    width: 155px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow : 4px 4px 4px black;
+    cursor: pointer;
+    visibility: hidden;
+    color: blue;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+
+.member_profile_left_sidebar #shoot_button{
+    text-align: center;
+    margin: 0px 0px 20px 50px;
+    width: 155px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow : 4px 4px 4px black;
+    cursor: pointer;
+    color: green;
+    display: none;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+.member_profile_left_sidebar #generate_button{
+    text-align: center;
+    margin: 0px 0px 35px 50px;
+    width: 155px;
+    height: 30px;
+    border-radius: 5px;
+    box-shadow : 4px 4px 4px black;
+    cursor: pointer;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+#cancel_update{
+    margin: 12px 0px 0px 0px;
+    border-radius: 5px;
+    color: red;
+    width: 100px;
+    height: 25px;
+    cursor: pointer;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+#submit_update{
+    float: right;
+    color: green;
+    border-radius: 5px;
+    margin: 12px 0px 0px 0px;
+    width: 100px;
+    height: 25px;
+    cursor: pointer;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+#update_button:hover, #delete_button:hover, #back_button:hover, #photo_button:hover, #shoot_button:hover, #generate_button:hover, #cancel_update:hover, #submit_update:hover{
+    background: white;
+    //color: #009900;
+}
+#update_button:focus, #delete_button:focus, #back_button:focus, #photo_button:focus, #shoot_button:focus, #generate_button:focus, #cancel_update:focus, #submit_update:focus{
+    outline: 0;
+    //color: #009900;
+}
+
+/*-------- MEMBERHIP DETAILS TABLE BLOCK -----------------------------------------------------------------------------------------*/
+/*-------- table header ----------------------------------------------------------------------------------------------------------*/
+.member_profile_content #membership_details_table_block{
+	
+	position: absolute;
+	bottom: 0;
+	left: 274px;
+	
+	width: auto;
+	height: 170px;
+	
+	background: white;
+	
+	border: white 1px solid;
+}
+
+#membership_details_table_block #table_header{
+	
+	width: 100%;
+	height: 25px;
+	color: white;
+	
+	padding-top: 3px;
+	
+	background: #8585ad;
+	text-shadow: none;
+}
+
+#membership_details_table_block #table_header #first_column{
+	
+	width: 120px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_header #second_column{
+	
+	width: 125px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_header #third_column{
+	
+	width: 125px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_header #fourth_column{
+	
+	width: 80px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_header #fifth_column{
+	
+	width: 80px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_header #sixth_column{
+	
+	width: 108px;
+	text-align: center;
+}
+
+/*--------- table body -----------------------------------------------------------------------------------------------------------*/
+#membership_details_table_block #table_body{
+	
+	width: 100%;
+	height: 140px;
+	
+	color: black;
+	cursor: default;
+	
+	overflow-y: scroll;
+	text-shadow: none;
+	
+	//border: 1px blue solid;
+}
+
+#membership_details_table_block #table_body tr{
+	
+	height: 20px;
+	border: 1px #cccccc solid;
+}
+
+#membership_details_table_block #table_body tr:nth-child(even){
+	
+    background: #E2E2E6;//#C2C2D1;
+}
+
+#membership_details_table_block #table_body #first_column{
+	
+	width: 124px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_body #second_column{
+	
+	width: 129px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_body #third_column{
+	
+	width: 130px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_body #fourth_column{
+	
+	width: 85px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_body #fifth_column{
+	
+	width: 80px;
+	border-right: 1px white solid;
+	text-align: center;
+}
+
+#membership_details_table_block #table_body #sixth_column{
+	
+	width: 97px;
+	text-align: center;
+}
+
+/*--------- BOTTOM PANEL IN THE 'MEMBER PROFILE CONTENT' WINDOW ------------------------------------------------------------------*/
+.member_profile_bottom_panel{
+    
+    clear: left;
+    float: left;
+    margin-top: 10px;
+    
+    width: 100%;
+    height: auto;
+    border-top: 1px #D3D3D3 solid;
+}
+
+#update_button{
+	
+    float: right;
+    color: green;
+    margin: 10px 0px 0px 3px;
+    
+    width: 135px;
+    height: 25px;
+    
+    border-radius: 5px;
+    box-shadow : 4px 4px 4px black;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 13px;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+
+#delete_button{
+	
+    float: right;
+    color: red;
+    margin: 10px 3px 0px 0px;
+    
+    width: 135px;
+    height: 25px;
+    
+    border-radius: 5px;
+    box-shadow : 4px 4px 4px black;
+    cursor: pointer;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+
+#back_button{
+	
+    float: left;
+    color: blue;
+    margin: 10px 0px 0px 0px;
+    
+    width: 135px;
+    height: 25px;
+    
+    border-radius: 5px;
+    box-shadow : 4px 4px 4px black;
+    cursor: pointer;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+

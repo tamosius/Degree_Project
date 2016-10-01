@@ -1,0 +1,168 @@
+
+
+/* --------- REPORT BLOCKS --------------------------------------------------------------------------------------------------------------------------- */
+.reports{
+    border: 1px solid #fff;
+    border-radius: 5px;
+    width: auto;
+    height: auto;
+    float: left;
+    margin: 10px 0px 0px 10px;
+    background: lightgray;
+    color: #00003D;
+    font-size: 13px;
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+    -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+    position: relative;
+}
+.reports label{
+    margin: 1px;
+    //display: block;
+    //float: left;
+    -webkit-transition: color 0.5s;
+    -moz-transition: color 0.5s;
+    transition: color 0.5s;
+}
+
+.reports label:hover{
+    cursor: pointer;
+    color: #CC0066;
+}
+
+/*------ 'reports' BLOCKS IN THE BOTTOM PANEL --------------------------------------------------------------------------*/
+.reports{
+	
+	position: relative;
+}
+
+.reports div{
+	
+   border: solid grey 1px;
+   border-radius: 5px;
+   margin: 2px;
+   padding: 2px;
+   width: 170px;
+}
+
+/*------ 'Today's visits' BLOCK IN THE BOTTOM PANEL --------------------------------------------------------------------*/
+.bottom_panel #num_visits{
+	
+    color: #003300;
+}
+
+/*------- POPUP 'Programme booked', 'Show visitors for last' IN REPORTS BLOCKS ------------------------------------------------------------------*/
+.bottom_panel #programme_booked, .bottom_panel #last_visitors{
+	
+	display: none;
+	
+	position: absolute;
+	bottom: 20px;
+	left: -4px;
+	
+	width: auto;
+	border-radius: 5px 5px 0px 0px;
+	
+	background: #C2C2D1;
+	-webkit-box-shadow: 0 0 8px black;
+    box-shadow: 0 0 8px black; 
+    
+    //z-index: 190;
+}
+
+.bottom_panel #programme_booked div, .bottom_panel #last_visitors div{
+	
+	font-family:  "Helvetica", "Arial", sans-serif;
+	
+	color: #ffffff;
+	text-align: center;
+	margin-bottom: -2px;
+	
+	background: #7c7c9c;//linear-gradient(to bottom, lightblue, #00003D);
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+	
+	border-bottom: 1px #ffffff solid;
+	border-radius: 0px;
+	
+	-webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+    
+    cursor: pointer;
+}
+
+.bottom_panel #programme_booked .programme, .bottom_panel #last_visitors .number_weeks{
+	
+	font-size: 18px;
+	margin-top: 0.3em;
+}
+
+.bottom_panel #programme_booked div:hover, .bottom_panel #last_visitors div:hover{
+	
+	background: #00003D;
+	text-shadow: none;
+}
+
+.bottom_panel #programme_booked p, .bottom_panel #last_visitors p{
+	
+	font-size: 13px;
+	
+	margin-top: -0.5em;
+	margin-bottom: 0.6em;
+}
+
+.bottom_panel #programme_booked span, .bottom_panel #last_visotors span{
+	
+	margin-left: 5px;
+}
+
+
+/*------- POPUPS 'most visited days' and 'last visitors' IN REPORTS BLOCKS ---------------------------------------------*/
+.most_visited_days ul, .last_visitors ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    //border-radius: 5px;
+    border: solid black 1px;
+    position: absolute;
+    -webkit-box-shadow: 0 0 8px black;
+    box-shadow: 0 0 8px black;            
+    top: -205px;
+    left: 2px;
+   
+}
+.last_visitors ul{     
+    top: -245px; 
+}
+.most_visited_days ul li, .last_visitors ul li{
+    background: grey;
+    width: 137px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-bottom: solid white 1px;
+    cursor: pointer;
+    //border-bottom: solid white 1px;
+    //padding: 0px 5px 0px 5px;
+    //border-radius: 5px;
+    //position: absolute;
+}
+.most_visited_days ul li:hover, .last_visitors ul li:hover{
+    background: lightgrey;
+}
+
+
+
+
+.last_visited_date_time, .today_visited_name{
+    height: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 20px;
+}
+
+
+

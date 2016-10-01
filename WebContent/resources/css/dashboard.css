@@ -1,0 +1,919 @@
+
+.dashboard_main_content{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 100%;
+	height: calc(100vh - 93px);
+	
+	//background: rgba(56,56,56, .7);
+	background: rgba(0, 0, 26, .6);
+}
+
+/*--------- DASHBOARD INITIALS-MIDDLE BLOCK ------------------------------------------------------------------*/
+.dashboard_top_block{
+	
+	position: relative;
+	
+	margin: auto;
+	margin-top: 20px;
+	width: 60%;
+	height: 100px;
+	//border: 4px #6633FF solid;
+	
+	//box-shadow: 0 5px 15px black;
+	//background: linear-gradient( to bottom, #6633FF, white);
+}
+
+.dashboard_top_block .picture{
+	
+	width: 10%;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-right: 4px #6633FF solid;
+	
+	overflow: hidden;
+}
+
+.dashboard_top_block .picture img{
+	
+	width: 100%;
+}
+
+.dashboard_top_block .initials_description{
+	
+	width: 100%;
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;	
+}
+
+.dashboard_top_block .initials_description{
+	
+	line-height: 100px;
+	
+	width: 100%;
+	height: 100px;
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	
+	font-family: Arial;
+	
+	font-size: 32px;
+	text-align: center;
+	font-weight: bold;
+	letter-spacing: 2px;
+	
+	background: rgba(0, 0, 26, .7);
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+
+/*----------- END OF TOP DASHBOARD INITIALS-MIDDLE BLOCK ----------------------------------------------------------*/
+
+/*---------- CONTENT MIDDLE BLOCK FOR EVERY BLOCK ('top-left', 'top-middle', etc.)---------------------------------*/
+.dashboard_content{
+	
+	width: auto;
+    height: calc(100% - 20px);
+    border: 1px solid #fff;
+    border-radius: 5px;
+    margin: 10px 10px 10px 10px;
+    -webkit-box-shadow: 0 0 5px #636383;
+    box-shadow: 0 0 5px #636383;
+    //-webkit-box-shadow: 0 0 5px #9999b2;
+    //box-shadow: 0 0 5px #9999b2;
+    background-color: rgba(211, 211, 211, 1);
+}
+
+/*----------- DASHBOARD TOP-LEFT BLOCK ----------------------------------------------------------------------------*/
+.dashboard_top_left{
+	
+	position: relative;
+	
+	width: 30.5%;
+	height: 200px;
+	
+	margin: 30px 0px 0px 20px;
+	float: left;
+	
+	border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, .38);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+}
+
+.dashboard_top_left #member_label{
+	
+	position: absolute;
+	top: -12px;
+	left: 10px;
+	
+	color: #00003D;
+	font-weight: bold;
+	
+	padding: 2px 3px 2px 3px;
+	border-radius: 5px;
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_top_left #add_manage_member_label{
+	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	
+	font-size: 15px;
+	font-style: oblique;
+	font-weight: bold;
+	
+	//text-shadow: 0 2px 2px white;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_top_left #add_button{
+	
+	position: absolute;
+	bottom: 123px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_left #add_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_left #display_button{
+	
+	position: absolute;
+	bottom: 88px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_left #display_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_left #missing_members_button{
+	
+	position: absolute;
+	bottom: 53px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_left #missing_members_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_left #retention_rate_div{
+	
+	position: absolute;
+	bottom: 17px;
+	left: 0;
+	right: 0;
+	
+	width: 88%;
+	margin: auto;
+	height: 27px;
+			
+	 -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+}
+
+.dashboard_top_left #retention_rate_label{
+	
+	position: absolute;
+	top: 2px;
+	//left: 10px;
+	
+	width: 100%;
+	text-align: center;
+	//font-size: 12px;	
+}
+
+/*----------- DASHBOARD TOP-MIDDLE BLOCK --------------------------------------------------------------------------*/
+.dashboard_top_middle{
+	
+	position: relative;
+	
+	width: 30.5%;
+	height: 200px;
+	
+	margin: 30px 0px 0px 20px;
+	float: left;
+	
+	border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.7);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+}
+
+.dashboard_top_middle #tasks_label{
+	
+	position: absolute;
+	top: -12px;
+	left: 10px;
+	
+	color: #00003D;
+	font-weight: bold;
+	
+	padding: 2px 3px 2px 3px;
+	border-radius: 5px;
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_top_middle #actions_tasks_label{
+	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	
+	font-size: 15px;
+	font-style: oblique;
+	font-weight: bold;
+	
+	//text-shadow: 0 2px 2px white;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_top_middle #new_to_do_list_button{
+	
+	position: absolute;
+	bottom: 89px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_middle #new_to_do_list_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_middle #to_do_list_button{
+	
+	position: absolute;
+	bottom: 54px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_middle #to_do_list_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_middle #today_to_do_list_button{
+	
+	position: absolute;
+	bottom: 19px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_middle #today_to_do_list_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+/*----------- DASHBOARD TOP-RIGHT BLOCK ---------------------------------------------------------------------------*/
+.dashboard_top_right{
+	
+	position: relative;
+	
+	width: 30.5%;
+	height: 200px;
+	
+	margin: 30px 0px 0px 20px;
+	float: left;
+	
+	border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.7);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+}
+
+.dashboard_top_right #point_of_sale_label{
+	
+	position: absolute;
+	top: -12px;
+	left: 10px;
+	
+	color: #00003D;
+	font-weight: bold;
+	
+	padding: 2px 3px 2px 3px;
+	border-radius: 5px;
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_top_right #sells_label{
+	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	
+	font-size: 15px;
+	font-style: oblique;
+	font-weight: bold;
+	
+	//text-shadow: 0 2px 2px white;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_top_right #make_sale_button{
+	
+	position: absolute;
+	bottom: 95px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	border-radius: 0px;
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_right #make_sale_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_right #sold_today_button{
+	
+	position: absolute;
+	bottom: 57px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	border-radius: 0px;
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_right #sold_today_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_top_right #popular_products_button{
+	
+	position: absolute;
+	bottom: 19px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	border-radius: 0px;
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_top_right #popular_products_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+/*----------- DASHBOARD BOTTOM-LEFT BLOCK -------------------------------------------------------------------------*/
+.dashboard_bottom_left{
+	
+	position: relative;
+	
+	width: 30.5%;
+	height: 200px;
+	
+	margin: 30px 0px 0px 20px;
+	float: left;
+	
+	border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.38);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px #ffffff;
+}
+
+.dashboard_bottom_left #mshp_bookings_label{
+	
+	position: absolute;
+	top: -12px;
+	left: 10px;
+	
+	color: #00003D;
+	font-weight: bold;
+	
+	padding: 2px 3px 2px 3px;
+	border-radius: 5px;
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_bottom_left #view_manage_mshp_bookings{
+	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	
+	font-size: 15px;
+	font-style: oblique;
+	font-weight: bold;
+	
+	//text-shadow: 0 2px 2px white;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_bottom_left #mshp_booked_extended_button{
+	
+	position: absolute;
+	bottom: 95px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_bottom_left #mshp_booked_extended_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_bottom_left #classes_booked_button{
+	
+	position: absolute;
+	bottom: 57px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_bottom_left #classes_booked_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_bottom_left #valued_members_button{
+	
+	position: absolute;
+	bottom: 19px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_bottom_left #valued_members_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+/*----------- DASHBOARD BOTTOM-MIDDLE BLOCK -----------------------------------------------------------------------*/
+.dashboard_bottom_middle{
+	
+	width: 30.5%;
+	height: 200px;
+	
+	margin: 30px 0px 0px 20px;
+	float: left;
+	
+	border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.7);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+}
+
+/*----------- DASHBOARD BOTTOM-RIGHT BLOCK -------------------------------------------------------------------------*/
+.dashboard_bottom_right{
+	
+	position: relative;
+	
+	width: 30.5%;
+	height: 200px;
+	
+	margin: 30px 0px 0px 20px;
+	float: left;
+	
+	border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: rgba(211, 211, 211, 0.7);
+    -webkit-box-shadow: 0 0 5px black;
+    box-shadow: 0 0 5px black;
+}
+
+.dashboard_bottom_right #products_label{
+	
+	position: absolute;
+	top: -12px;
+	left: 10px;
+	
+	color: #00003D;
+	font-weight: bold;
+	
+	padding: 2px 3px 2px 3px;
+	border-radius: 5px;
+	
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_bottom_right #add_display_products_label{
+	
+	position: absolute;
+	top: 20px;
+	left: 20px;
+	
+	font-size: 15px;
+	font-style: oblique;
+	font-weight: bold;
+	
+	//text-shadow: 0 2px 2px white;
+	text-shadow: -1px 0 #ffffff, 0 1px #ffffff, 1px 0 #ffffff, 0 -1px #ffffff;
+}
+
+.dashboard_bottom_right #add_product_button{
+	
+	position: absolute;
+	bottom: 95px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	border-radius: 0px;
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_bottom_right #add_product_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_bottom_right #display_products_button{
+	
+	position: absolute;
+	bottom: 57px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_bottom_right #display_products_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
+
+.dashboard_bottom_right #last_added_products_button{
+	
+	position: absolute;
+	bottom: 19px;
+	left: 0;
+	right: 0;	
+	
+	width: 88%;
+	margin: auto;
+	height: 30px;
+	
+	font-size: 15px;
+    color: white;
+    background: #b6b6c8;
+	
+	outline: 0;
+	
+	cursor: pointer;
+	
+    -webkit-transition: background 0.5s;
+    -moz-transition: background 0.5s;
+    transition: background 0.5s;
+    -webkit-box-shadow: -1px 1px 3px #424257;
+    box-shadow: -1px 1px 3px #424257;
+    
+    font-weight: bold;
+    text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+.dashboard_bottom_right #last_added_products_button:hover{
+	
+	background: #00003D;
+    text-shadow: none;
+    font-weight: normal;
+}
