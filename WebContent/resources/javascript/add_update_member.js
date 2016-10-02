@@ -1,4 +1,7 @@
-
+window.onload = function(){
+	
+	document.getElementById("loading-mask").style.display = "none";
+}
 // function to assign 'update description' variable
 function getUpdateDescription(programme){
 	

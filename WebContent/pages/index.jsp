@@ -57,6 +57,7 @@
 <title>DashBoard</title>
 </head>
 <body>
+	<div id="loading-mask"></div>
 	<!------------------ WELCOME WINDOW --------------------------------------------------------------------------------------------------------------->
 	<div class="welcome_window">
 		<div class="welcome_block">
