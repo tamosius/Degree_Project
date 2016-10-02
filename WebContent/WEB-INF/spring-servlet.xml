@@ -23,8 +23,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- declare beans -->
-	<bean name="/authentication.htm" class="com.tomas.controller.Authentication" />
+	<!--<bean name="/authenticate" class="com.tomas.controller.Authentication" />-->
+	
 	
 	<bean id="memberDao" class="com.tomas.dao.MemberDaoImplementation" />
 	<bean id="reports" class="com.tomas.dao.ReportsImplementation" />

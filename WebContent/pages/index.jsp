@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+
 <link href="resources/css/body.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/bottom_panel_blocks.css" rel="stylesheet"
 	type="text/css" />
@@ -31,12 +32,14 @@
 <link href="resources/css/settings.css" rel="stylesheet"
 	type="text/css" />
 
+
 <!-- EXTRA CSS FOR 'dashboard.jsp' TEMPLATE 
 <link href="resources/dashboard_template/styles.css" rel="stylesheet" type="text/css" />
 <link href="resources/dashboard_template/nivo-slider.css" rel="stylesheet" type="text/css" media="screen" /> -->
 
 <script type="text/javascript"
 	src="resources/javascript/jquery-1.11.3.js"></script>
+<script src="resources/javascript/loading_mask.js"></script>
 <script src="resources/javascript/add_update_member.js"></script>
 
 <script src="resources/javascript/bottom_panel.js"></script>
@@ -57,7 +60,7 @@
 <title>DashBoard</title>
 </head>
 <body>
-	<div id="loading-mask"></div>
+
 	<!------------------ WELCOME WINDOW --------------------------------------------------------------------------------------------------------------->
 	<div class="welcome_window">
 		<div class="welcome_block">

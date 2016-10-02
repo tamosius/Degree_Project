@@ -1,18 +1,14 @@
 package com.tomas.controller;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 
-public class Authentication implements Controller{
+/*public class Authentication implements Controller{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
 	
@@ -27,4 +23,26 @@ public class Authentication implements Controller{
 	}
 	
 	
+}*/
+@RestController // This annotation eliminates the need of annotating each method with @ResponseBody, and can be considered as combination of @Controller and @ResponseBody.
+//@RequestMapping(value="/authentication")
+public class Authentication{
+	
+	protected final Log logger = LogFactory.getLog(getClass());
+	
+		@RequestMapping(value="/authenticate", method=RequestMethod.POST)
+		public ModelAndView authenticate(){
+			
+			logger.info("Printing something..!");
+			
+			return new ModelAndView("index");
+		}
+	
+	/*@RequestMapping(value="/authenticate", method=RequestMethod.POST)
+	public void authenticate(){
+		
+		logger.info("Printing something..!");
+		
+		authenticat();
+	}*/
 }
