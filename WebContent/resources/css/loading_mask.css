@@ -1,0 +1,23 @@
+/* --------------------LOADING MASK------------------------ */
+#loading-mask {
+    background-color: #333;
+    height:100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999999999;
+	text-align:center;
+	opacity:1;
+}
+.loading-img{
+	background-color: #333;
+    height:100%;
+    left: 0;
+    position: fixed;
+    top: 50%;
+    width: 100%;
+}
+#loading-mask img{
+	text-align:center;
+}

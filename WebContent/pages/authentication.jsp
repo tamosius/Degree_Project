@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 
 <link href="resources/css/authentication.css" rel="stylesheet" type="text/css" />
-        
+        <link href="resources/css/loading_mask.css" rel="stylesheet" type="text/css" />
 <script src="resources/javascript/jquery-1.11.3.js"></script>
+
 <script src="resources/javascript/authentication.js"></script>
 </head>
 <body>
@@ -21,7 +22,7 @@
                     <h3>Please enter your details to login:</h3>
                     
                     <div id="username_password_block">
-                        <form>
+                        <form >
                         <div id="username_block">
                             <label id="authenticate_username_label">Username:</label>
                             <input type="text" name="authenticate_username_field" id="authenticate_username_field" placeholder="Please type in your username..." />
@@ -32,6 +33,7 @@
                         </div>
                         <div id="button_block">
                             <button type="submit" id="submit_authentication">Login</button>
+                            <!--<input type="submit" value="Submit" id=submit_authentication" />-->
                         </div>
                         </form>
                     </div>

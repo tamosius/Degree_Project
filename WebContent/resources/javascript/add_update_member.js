@@ -15,6 +15,7 @@ function getUpdateDescription(programme){
 
 $(document).ready(function(){
 	
+	
 /*---------- REMOVE CLASS 'error' IF CLICKED IN ON THE FIELD ('member_data' in 'member_profile_content' ----------*/
 	$(".add_member_data :input, .member_data :input").click(function(){
 		

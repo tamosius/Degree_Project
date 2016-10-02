@@ -15,7 +15,31 @@ $(document).ready(function(){
     	var username = $(this).find("#username_block #authenticate_username_field").val();
     	var password = $(this).find("#password_block #authenticate_password_field").val();
     	
-    	$.post("/Degree_Project/authentication/authenticate", {username : username, password : password});
+    	$.ajax({
+    		
+    		type : "POST",
+    		url   : "/Degree_Project/authenticate",
+    		data  : {username : username, password : password},
+    		dataType : "html",
+    		processData : true,
+    		success : function(data, status, jxHR){
+    			
+    			if(data.length !== 0){
+    				
+    				$("body").html(data);
+    				
+    			}
+    			else{
+    				
+    				$("#error_message h4").text("Sorry, Username and Password does not match!");
+    			}
+    			
+    		},
+    		error : function(e){
+    			
+    			alert(e);
+    		}
+    	});
     	event.preventDefault();
     });
 });
