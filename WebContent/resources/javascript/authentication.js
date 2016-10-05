@@ -18,8 +18,9 @@ $(document).ready(function(){
     	$.ajax({
     		
     		type : "POST",
-    		url   : "/Degree_Project/authenticate",
-    		data  : {username : username, password : password},
+    		url   : "/Degree_Project/admin/authenticate",
+    		data  : JSON.stringify({username : username, password : password}),
+    		contentType : "application/json; charset=utf-8",
     		dataType : "html",
     		processData : true,
     		success : function(data, status, jxHR){
@@ -27,6 +28,7 @@ $(document).ready(function(){
     			if(data.length !== 0){
     				
     				$("body").html(data);
+    				//$(".content").append(data.mssg.toString());
     				
     			}
     			else{

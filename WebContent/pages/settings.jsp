@@ -17,7 +17,9 @@
 				<div id="admin_user_name">Tomas Mikoliunas</div>
 			</div>
 
-			<div id="admin_account_details">Admin Account Details<input type="hidden" value="1" /></div>
+			<div id="admin_account_details">Admin Account Details<input type="hidden" value="0" /></div>
+			
+			<div id="add_admin">Add Admin<input type="hidden" value="1" /></div>
 			
 			<div id="add_programme">Add Programme<input type="hidden" value="2" /></div>
 
@@ -33,7 +35,53 @@
 		<!-- ADMIN BLOCK ------------------------------------------------------------------->
 		<div id="admin_settings_block">
 		
-		</div><!-- END OF 'admin_settings_block -->
+		</div><!-- END OF 'admin_settings_block' -->
+		
+		<!-- ADD ADMIN BLOCK --------------------------------------------------------------->
+		<div id="add_admin_block">
+				<div>
+					<span>Add New Admin:</span>
+				</div>
+				<form>
+					<div id="add_admin_fields">
+
+						<div>
+							<label>First Name:</label> <input type="text"
+								id="admin_first_name" value="" autocomplete="off"
+								placeholder="Please enter first name..." />
+						</div>
+						<div>
+							<label>Last Name:</label> <input type="text"
+								id="admin_last_name" value="" autocomplete="off"
+								placeholder="Please enter last name..." />
+						</div>
+						<div>
+							<label>Username:</label> <input type="text"
+								id="admin_username" value="" autocomplete="off"
+								placeholder="Please enter username..." />
+						</div>
+						<div>
+							<label>Email:</label> <input type="text"
+								id="admin_email" autocomplete="off" 
+								placeholder="Please enter email..."/>
+						</div>
+						<div>
+							<label>Password:</label> <input type="password"
+								id="admin_password" autocomplete="off"
+								placeholder="Please enter password..." />
+						</div>
+						<div>
+							<label>Re-type Password:</label> <input type="password"
+								id="admin_retype_password" autocomplete="off"
+								placeholder="Re-type password..." />
+						</div>
+
+					</div>
+
+					<input type="submit" id="add_admin_submit_button"
+						value="Add Admin" />
+				</form>
+			</div><!-- END OF 'add_admin_block' -->
 		
 		<!-- ADD PROGRAMME BLOCK ----------------------------------------------------------->
 			<div id="add_programme_block">
@@ -41,6 +89,9 @@
 					 <span>Add New Programme:</span>
 				</div>
 				<form>
+					<div id="add_programme_final_price">
+						<label>Final Price €:</label> <span>0.00</span>
+					</div>
 					<div id="add_programme_settings_fields">
 					
 					<div>
@@ -67,15 +118,23 @@
 					    <label>Promotion End Date:</label>
 						<input type="text" id="promotion_end_date" autocomplete="off" placeholder="Please enter date..."/>
 					</div>
+					<div id="programme_description_block">
+					    <label>Programme Description:</label>
+						<textarea></textarea>
+					</div>
+					<div id="programme_promotion_description_block">
+					    <label>Programme Promotion Description:</label>
+						<textarea></textarea>
+					</div>
 					
 				</div>
 				
 				<input type="submit" id="add_programme_submit_button" value="Add Programme" />
 				</form>
 
-			</div>
+			</div><!-- END OF 'add_programme_block' -->
 
-			<!-- PROGRAMMES SETTINGS BLOCK ----------------------------------------------------->
+		<!-- PROGRAMMES SETTINGS BLOCK ----------------------------------------------------->
 		<div id="programmes_settings_block">
 		
 		<form>
@@ -111,11 +170,19 @@
 					</div>
 					<div>
 					    <label>Promotion Start Date:</label>
-						<input type="text" id="promotion_start_date" autocomplete="off" />
+						<input type="text" id="promotion_start_date" autocomplete="off" placeholder="Please enter date..." />
 					</div>
 					<div>
 					    <label>Promotion End Date:</label>
-						<input type="text" id="promotion_end_date" autocomplete="off" />
+						<input type="text" id="promotion_end_date" autocomplete="off" placeholder="Please enter date..." />
+					</div>
+					<div id="programme_description_block">
+					    <label>Programme Description:</label>
+						<textarea></textarea>
+					</div>
+					<div id="programme_promotion_description_block">
+					    <label>Programme Promotion Description:</label>
+						<textarea></textarea>
 					</div>
 					
 				</div>
