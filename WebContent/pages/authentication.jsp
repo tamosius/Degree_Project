@@ -16,7 +16,10 @@
         <div class="authenticate_window">
             
             <div class="content">
-                <img id="logo" src="resources/images/picture_gym.jpg" alt="logo" />
+            	<div id="logo">
+            	<div id="logo_name">Gym Management System</div>
+            	</div>
+                
                 
                 <div class="authenticate_block">
                     <h3>Please enter your details to login:</h3>

@@ -45,6 +45,25 @@ public class SettingsImplementation implements SettingsInterface{
 			}
 		});
 	}
+	
+/*-------- ADD NEW PROGRAMME TO THE DATABASE --------------------------------------------------------------------------------------------------*/
+	@Override
+	public Settings addProgramme(Settings programme){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " INSERT INTO programmes_prices(programme_name, programme_price, programme_discount, programme_discount_percentage,"
+				   + " programme_promotion_start, programme_promotion_end, programme_promotion_description,"
+				   + " updated_timestamp, final_price, programme_description)"
+				   + " VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		jdbcTemplate.update(sql, programme.getProgrammeName(), programme.getProgrammePrice(), programme.getProgrammeDiscount(),
+				programme.getProgrammeDiscountPercentage(), programme.getProgrammePromotionStart(), programme.getProgrammePromotionEnd(),
+				programme.getProgrammePromotionDescription(), programme.getProgrammeUpdateDate(), programme.getFinalPrice(),
+				programme.getProgrammeDescription());
+		
+		return programme;
+	}
 
 /*-------- GET PROGRAMME SETTINGS DETAILS BY ID -----------------------------------------------------------------------------------------------*/
 	@Override
@@ -52,14 +71,14 @@ public class SettingsImplementation implements SettingsInterface{
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT programme_id, programme_name, programme_price, programme_previous_price,"
+		String sql = " SELECT programmeId, programme_name, programme_price,"
 				   + " programme_discount, programme_discount_percentage, programme_promotion_start,"
-				   + " programme_promotion_end, final_price"
+				   + " programme_promotion_end, programme_promotion_description, final_price, programme_description"
 				   + " FROM programmes_prices"
-				   + " WHERE programme_id = " + id   
+				   + " WHERE programmeId = " + id   
 				   + " AND updated_timestamp ="
 				   + " (SELECT MAX(updated_timestamp) FROM programmes_prices"
-				   + " WHERE programme_id = " + id + ")";
+				   + " WHERE programmeId = " + id + ")";
 		
 		List<Settings> programmeDetails = jdbcTemplate.query(sql, new RowMapper<Settings>(){
 			
@@ -68,15 +87,16 @@ public class SettingsImplementation implements SettingsInterface{
 				
 				Settings programme = new Settings();
 				
-				programme.setProgrammeId(resultSet.getInt("programme_id"));
+				programme.setProgrammeId(resultSet.getInt("programmeId"));
 				programme.setProgrammeName(resultSet.getString("programme_name"));
 				programme.setProgrammePrice(resultSet.getFloat("programme_price"));
-				programme.setProgrammePreviousPrice(resultSet.getFloat("programme_previous_price"));
 				programme.setProgrammeDiscount(resultSet.getFloat("programme_discount"));
 				programme.setProgrammeDiscountPercentage(resultSet.getFloat("programme_discount_percentage"));
 				programme.setProgrammePromotionStart(resultSet.getString("programme_promotion_start"));
 				programme.setProgrammePromotionEnd(resultSet.getString("programme_promotion_end"));
+				programme.setProgrammePromotionDescription(resultSet.getString("programme_promotion_description"));
 				programme.setFinalPrice(resultSet.getFloat("final_price"));
+				programme.setProgrammeDescription(resultSet.getString("programme_description"));
 				
 				return programme;
 			}
@@ -86,23 +106,23 @@ public class SettingsImplementation implements SettingsInterface{
 	
 /*------- UPDATE PARTICULAR PROGRAMME SETTINGS BY PROGRAMME ID (price, discount, etc.) ---------------------------------------------------------*/
 	@Override
-	public Settings updateProgrammeSettings(Settings settings){
+	public Settings updateProgrammeSettings(Settings programme){
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		// actually, will be inserting the new record with programme ID with different price, discount, etc. 
 		// it is for statistical purpose
-		String sql = " INSERT INTO programmes_prices (programme_id, programme_name, programme_price, programme_previous_price,"
+		String sql = " INSERT INTO programmes_prices (programme_id, programme_name, programme_price,"
 				   + " programme_discount, programme_discount_percentage, programme_promotion_start, programme_promotion_end,"
 				   + " programme_promotion_description, updated_timestamp, final_price)"
 				   + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
 		
 		// execute this 'INSERT' query in 'programmes_prices' table
-		jdbcTemplate.update(sql, settings.getProgrammeId(), settings.getProgrammeName(), settings.getProgrammePrice(), settings.getProgrammePreviousPrice(),
-				settings.getProgrammeDiscount(), settings.getProgrammeDiscountPercentage(), settings.getProgrammePromotionStart(), settings.getProgrammePromotionEnd(),
-				settings.getProgrammePromotionDescription(), settings.getFinalPrice());
+		jdbcTemplate.update(sql, programme.getProgrammeId(), programme.getProgrammeName(), programme.getProgrammePrice(),
+				programme.getProgrammeDiscount(), programme.getProgrammeDiscountPercentage(), programme.getProgrammePromotionStart(), programme.getProgrammePromotionEnd(),
+				programme.getProgrammePromotionDescription(), programme.getFinalPrice());
 	
-		return getProgrammeDetails(settings.getProgrammeId());
+		return programme;
 	}
 	
 /*------- GET SALES SETTINGS DETAILS ----------------------------------------------------------*/

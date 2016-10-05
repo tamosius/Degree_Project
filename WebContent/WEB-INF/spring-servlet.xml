@@ -30,6 +30,7 @@
 	<bean id="reports" class="com.tomas.dao.ReportsImplementation" />
 	<bean id="bottomPanelReports" class="com.tomas.dao.BottomPanelReports" />
 	<bean id="settings" class="com.tomas.dao.SettingsImplementation" />
+	<bean id="hashPassword" class="com.tomas.hashPassword.HashPassword" />
 	
 	<!-- declare datasource bean -->
 	<bean id="dataSource"

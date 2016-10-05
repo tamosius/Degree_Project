@@ -26,6 +26,13 @@ public class SettingsController {
 		return settings.getAdminDetails(id);
 	}
 	
+/*------ ADD NEW PROGRAMME TO THE DATABASE ------------------------------------------------------------------------------------------*/
+	@RequestMapping(value="/addProgramme", method=RequestMethod.POST, headers="Accept=application/json")
+	public Settings addProgramme(@RequestBody Settings programme){
+		
+		return settings.addProgramme(programme);
+	}
+	
 /*------ GET PROGRAMMES DETAILS BY ID -----------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="/getProgrammeDetails", method=RequestMethod.POST, headers="Accept=application/json")
 	public Settings getProgrammeDetails(@RequestParam("id")int id){
@@ -35,9 +42,9 @@ public class SettingsController {
 	
 /*------- UPDATE PARTICULAR PROGRAMME SETTINGS BY PROGRAMME ID (price, discount, etc.) ----------------------------------------------*/
 	@RequestMapping(value="/updateProgrammeSettings", method=RequestMethod.POST, headers="Accept=application/json")
-	public Settings updateProgrammeDetails(@RequestBody Settings settings){
+	public Settings updateProgrammeDetails(@RequestBody Settings programme){
 		
-		return this.settings.updateProgrammeSettings(settings);
+		return settings.updateProgrammeSettings(programme);
 	}
 	
 /*------ GET SALES DETAILS BY ID ----------------------------------------------------------------------------------------------------*/

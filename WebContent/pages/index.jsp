@@ -39,7 +39,7 @@
 
 <script type="text/javascript"
 	src="resources/javascript/jquery-1.11.3.js"></script>
-<script src="resources/javascript/loading_mask.js"></script>
+
 <script src="resources/javascript/add_update_member.js"></script>
 
 <script src="resources/javascript/bottom_panel.js"></script>
@@ -53,6 +53,7 @@
 <script src="resources/javascript/tooltips.js"></script>
 <script src="resources/javascript/visits_popup.js"></script>
 <script src="resources/javascript/loading_content.js"></script>
+<script src="resources/javascript/loading_mask.js"></script>
 <script src="resources/javascript/swfobject.js"></script>
 <script src="resources/javascript/scriptcam.js"></script>
 
@@ -89,7 +90,7 @@
 	<div class="confirm_settings_window">
 	    <div class="top_image">
 		    <img src="resources/images/error.jpg" alt="confirm_image" width="50px;" height="50px;"/>
-		    <div id="top_message"> - Are you sure you want to update the following? :</div>
+		    <div id="top_message"></div>
 		</div>
 		
 		<div class="details_message"></div>

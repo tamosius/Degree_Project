@@ -7,7 +7,6 @@ public class Settings {
 	//private String lastName;   // 'Admin' last name
 	private String programmeName;                 // 'Programme' name
 	private float programmePrice;                 // 'Programme' current price
-	private float programmePreviousPrice;         // 'Programme' previous price
 	private float programmeDiscount;              // 'Programme' discount price
 	private float programmeDiscountPercentage;    // 'Programme' discount percentage
 	private String programmePromotionStart;       // 'Programme' promotion start date
@@ -15,6 +14,7 @@ public class Settings {
 	private String programmePromotionDescription; // description of the promotion made
 	private String programmeUpdateDate;           // 'Programme' update date when it has been updated
 	private float finalPrice;                     // 'Programme' final price including promotions, etc.
+	private String programmeDescription;          // 'Programme' description
 	
 	
 	public int getProgrammeId() {
@@ -36,13 +36,6 @@ public class Settings {
 	}
 	public void setProgrammePrice(float programmePrice) {
 		this.programmePrice = programmePrice;
-	}
-	
-	public float getProgrammePreviousPrice() {
-		return programmePreviousPrice;
-	}
-	public void setProgrammePreviousPrice(float programmePreviousPrice) {
-		this.programmePreviousPrice = programmePreviousPrice;
 	}
 	
 	public float getProgrammeDiscount() {
@@ -91,5 +84,12 @@ public class Settings {
 	public void setFinalPrice(float finalPrice) {
 		this.finalPrice = finalPrice;
 	}
+	public String getProgrammeDescription() {
+		return programmeDescription;
+	}
+	public void setProgrammeDescription(String programmeDescription) {
+		this.programmeDescription = programmeDescription;
+	}
+	
 	
 }
