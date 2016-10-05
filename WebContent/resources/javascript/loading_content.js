@@ -174,7 +174,7 @@ function visitedMembersCount(){
 $(document).ready(function(){
 	
 /*------------ LOAD THE 'dashboard.jsp' AND GET TOTAL NUMBER OF MEMBERS WHEN THE PROGRAM STARTS -------------*/
-	//$(".loading_content").load("pages/dashboard.jsp");
+	$(".loading_content").load("pages/dashboard.jsp");
 	
 	$.ajax({
 		

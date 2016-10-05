@@ -1,5 +1,5 @@
 
-var numberOfDays = 9;    // specified number of days, for which any particular
+var numberOfDays = 15;    // specified number of days, for which any particular
                          // members haven't attended the gym
 
 var missingMembers = ""  // store missing members who haven't attended in the specified period of time
