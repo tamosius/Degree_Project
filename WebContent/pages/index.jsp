@@ -61,6 +61,10 @@
 </head>
 <body>
 
+    <div id="loading-mask">
+            <div class="loading-img"><img src="resources/images/loading4.gif" alt="MyPassion" /></div>
+    </div>
+
 	<!------------------ WELCOME WINDOW --------------------------------------------------------------------------------------------------------------->
 	<div class="welcome_window">
 		<div class="welcome_block">
