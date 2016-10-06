@@ -15,8 +15,11 @@ var settings = {
 		
 		admin : [
 		     {
-		    	 uri : "/Degree_Project/settings/getAdminDetails"
+		         uri : "/Degree_Project/admin/addAdmin"
 		     },
+		     {
+		    	 uri : "/Degree_Project/settings/getAdminDetails"
+		     }
 		],  // end of 'Admin' settings type
 		
 		programmes : [
@@ -206,6 +209,48 @@ $(document).ready(function(){
 				startDate = date;
 			}
 		});
+	});
+	
+/*--------- ADD NEW ADMIN USER TO THE DATABASE ----------------------------------------------------------------------------------------*/
+	$("#add_admin_block").delegate("form", "submit", function(event){
+		
+		// get the values from the fields and tags of the form
+		submitSettingsData = {
+				
+				settingsType : settings.admin[0],  // this points to 'settings' object in this file (line 13)
+				firstName    : $(this).find("#admin_first_name").val(),
+				lastName     : $(this).find("#admin_last_name").val(),
+				username     : $(this).find("#admin_username").val(),
+				email        : $(this).find("#admin_email").val(),
+				password     : $(this).find("#admin_password").val()
+		}
+		
+		// clear 'delete_member_confirm_window' before showing new confirmation
+        $(".confirm_settings_window .details_message").empty();
+		
+		$(".confirm_settings_window #top_message").text(" - Are you sure to add the following Programme?:");
+        
+        $(".confirm_settings_window .details_message")
+            .html("<div>Admin Name:<label>" + submitSettingsData.firstName + " " + submitSettingsData.lastName +  "</label></div>" +
+            		
+            	  "<div>Username:<label>" +
+            	  "<span class='update_value'>" + submitSettingsData.username + "</span></label></div>" +
+            	  
+                  "<div>Email:<label><span class='update_value'>" + submitSettingsData.email + 
+                  "</span></label></div>");
+        
+        // show up the 'delete_member_confirm_window' and background overlay also
+        $(".confirm_window_background_overlay").animate({
+            
+        	height: "toggle"
+        });
+        $(".confirm_settings_window").delay(300).animate({
+            
+        	height: "toggle"
+        });
+		
+		
+		event.preventDefault();
 	});
 	
 /*--------- ADD NEW PROGRAMME TO THE DATABASE -----------------------------------------------------------------------------------------*/

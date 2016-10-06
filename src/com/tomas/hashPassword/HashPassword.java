@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 	
 
-public class HashPassword {
+public class HashPassword implements HashPasswordInterface{
 	
 	protected final Log logger = LogFactory.getLog(getClass());	
 
