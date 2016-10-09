@@ -2,6 +2,7 @@ package com.tomas.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -29,15 +30,41 @@ public class AdminImplementation implements com.tomas.dao.interfaces.AdminInterf
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT validations"
+		String sql = " SELECT id, first_name, last_name, email, username, joined_on"
 				   + " FROM admin"
-				   + " WHERE email = '?' and password = '?'";
+				   + " WHERE username = '" + admin.getUsername() + "' AND password = '" 
+				   + admin.getPassword() + "'";
 		
+		Admin adminUser = jdbcTemplate.query(sql, new ResultSetExtractor<Admin>(){
+			
+			@Override
+			public Admin extractData(ResultSet resultSet)throws SQLException, DataAccessException{
+				
+				if(resultSet.next()){
+					
+					Admin admin = new Admin();
+					
+					admin.setId(resultSet.getInt("id"));
+					admin.setFirstName(resultSet.getString("first_name"));
+					admin.setLastName(resultSet.getString("last_name"));
+					admin.setEmail(resultSet.getString("email"));
+					admin.setUsername(resultSet.getString("username"));
+					admin.setJoinedOn(resultSet.getString("joined_on"));
+					
+					return admin;
+				}
+				return null;
+			}
+		});
 		
-		
-		ModelAndView view = new ModelAndView();
-		
-		return null;
+		if(adminUser != null){
+			
+			return new ModelAndView("index", "adminUser", adminUser);
+		}
+		else{
+			
+			return null;
+		}
 	}
 	
 /*------ ADD NEW ADMIN USER TO THE DATABASE ----------------------------------------------------------------------------------*/

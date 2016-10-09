@@ -22,16 +22,18 @@
 		<property name="prefix" value="/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
-	<!--<bean name="/authenticate" class="com.tomas.controller.Authentication" />-->
-	
 	
 	<bean id="memberDao" class="com.tomas.dao.MemberDaoImplementation" />
 	<bean id="reports" class="com.tomas.dao.ReportsImplementation" />
 	<bean id="bottomPanelReports" class="com.tomas.dao.BottomPanelReports" />
 	<bean id="settings" class="com.tomas.dao.SettingsImplementation" />
 	<bean id="hashPassword" class="com.tomas.hashPassword.HashPassword" />
-	<bean id="admin" class="com.tomas.dao.AdminImplementation" />
+	<bean id="adminImplementation" class="com.tomas.dao.AdminImplementation" />
+	
+	<bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		
+	</bean>  
 	
 	<!-- declare datasource bean -->
 	<bean id="dataSource"

@@ -12,7 +12,7 @@ public class HashPassword implements HashPasswordInterface{
 
 	public String getHashPassword(String password){
 		
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(12);
 		
 		String hashedPassword = passwordEncoder.encode(password);
 		

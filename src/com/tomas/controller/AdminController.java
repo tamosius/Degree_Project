@@ -40,8 +40,9 @@ public class AdminController implements com.tomas.dao.interfaces.AdminInterface{
 
 	protected final Log logger = LogFactory.getLog(getClass());
 
+	// wired to 'AdminImplementation' class
 	@Autowired
-	AdminInterface admin;
+	AdminInterface adminImplementation;
 	
 	@Autowired
 	HashPassword hashPassword;
@@ -54,22 +55,24 @@ public class AdminController implements com.tomas.dao.interfaces.AdminInterface{
 				+ admin.getPassword());
 		logger.info("Hashed password received: "
 				+ hashPassword.getHashPassword(admin.getPassword()));
-
-		return new ModelAndView("index", "msg", "working!");
+		
+		return adminImplementation.authenticate(admin);
+		
+		//return new ModelAndView("index", "msg", "working!");
 	}
 	
 /*------ ADD NEW ADMIN USER TO THE DATABASE ------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="/addAdmin", method=RequestMethod.POST, headers="Accept=application/json")
 	public Admin addAdmin(@RequestBody Admin admin){
 		
-		return this.admin.addAdmin(admin);
+		return adminImplementation.addAdmin(admin);
 	}
 	
 /*------ GET ADMIN DETAILS BY ID -----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="/getAdminDetails", method=RequestMethod.POST, headers="Accept=application/json")
 	public Admin getAdminDetails(@RequestParam("id") int id){
 		
-		return admin.getAdminDetails(id);
+		return adminImplementation.getAdminDetails(id);
 	}
 
 }
