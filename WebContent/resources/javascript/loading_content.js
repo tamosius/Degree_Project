@@ -190,7 +190,7 @@ $(document).ready(function(){
 		},
 		error       : function(e){
 			
-			alert("Uppss" + JSON.stringify(e));
+			alert("Error! Could not retrieve all members from the database!");
 		}
 	});
 	
@@ -292,7 +292,10 @@ $(document).ready(function(){
 /*------------ LEFT SIDEBAR, LOAD (communication.jsp) -------------------------------------------------------*/
 	$(".left_sidebar #communication").click(function(){
 		
-		$(".loading_content").load("pages/jsp_webcam.jsp");
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		$(".loading_content").load("pages/communications.jsp");
 	});
 	
 /*------------ LEFT SIDEBAR, LOAD (reports.jsp) -------------------------------------------------------------*/

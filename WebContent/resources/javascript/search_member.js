@@ -1,3 +1,31 @@
+
+/*-------- SEARCH MEMBERS BY NAME OR DISPLAY FULL LIST IF "" EMPTY STRING IS PASSED -------------------------------------------------------*/
+function searchDisplayMembers(requestType, path, name){
+	
+	var retrievedData = "";
+	
+	$.ajax({
+		
+		type : requestType,
+		url : path,
+		data : {name : name},
+		dataType : "json",
+		processData : true,
+		async       : false,
+		success : function(data, status, e){
+			
+			retrievedData = data;
+		},
+		error : function(e){
+			
+			alert("Error! Failed to retrieve by Names");
+		}
+	});
+	
+	return retrievedData;
+}
+
+
 $(document).ready(function(){
 	
 /*--------- SEARCH MEMBER BY NAME, BY TYPING IN 'search_text' BOX (top-right) -------------------------------------------------------------*/

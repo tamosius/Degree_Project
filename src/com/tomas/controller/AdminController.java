@@ -1,5 +1,7 @@
 package com.tomas.controller;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +75,21 @@ public class AdminController implements com.tomas.dao.interfaces.AdminInterface{
 	public Admin getAdminDetails(@RequestParam("id") int id){
 		
 		return adminImplementation.getAdminDetails(id);
+	}
+	
+/*------ GET ALL ADMIN'S --------------------------------------------------------------------------------------------------------------*/
+	@RequestMapping(value="/getAllAdmin", method=RequestMethod.POST, headers="Accept=application/json")
+	public List<Admin> getAllAdmin(@RequestParam ("name") String name){
+		
+		return adminImplementation.getAllAdmin(name);
+	}
+	
+/*------- LEAVE A MESSAGE FOR OTHER ADMINS, ('Leave Message' button) SAVE IN THE DATABASE ---------------------------------*/
+	@RequestMapping(value="/addAdminMessage", method=RequestMethod.POST, headers="Accept=application/json")
+	public Admin addAdminMessage(@RequestParam ("messageTo") int messageTo,
+			@RequestParam ("message") String message, @RequestParam ("messageFrom") int messageFrom){
+		
+		return adminImplementation.addAdminMessage(messageTo, message, messageFrom);
 	}
 
 }

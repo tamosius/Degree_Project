@@ -29,6 +29,7 @@
 	<bean id="settings" class="com.tomas.dao.SettingsImplementation" />
 	<bean id="hashPassword" class="com.tomas.hashPassword.HashPassword" />
 	<bean id="adminImplementation" class="com.tomas.dao.AdminImplementation" />
+	<bean id="communications" class="com.tomas.dao.CommunicationsImplementation" />
 	
 	<bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">

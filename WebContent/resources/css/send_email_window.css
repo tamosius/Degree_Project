@@ -1,0 +1,126 @@
+.send_email_window{
+	
+	position: absolute;
+	top: 50px;
+	right: 50px;
+	
+	width: 60%;
+	height: 70%;
+	background: #ffffff;
+	
+	display: none;
+	z-index: 110;
+} 
+
+.send_email_window #recipients, .send_email_window #subject{
+	
+	position: relative;
+	
+	width: 40%;
+	height: 30px;
+	margin: 15px 0px 0px 15px;
+	//float: left;
+	
+	border: 1px blue solid;
+}
+
+.send_email_window #from_email{
+	
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	
+	width: 40%;
+	height: 30px;
+	
+	border: 1px red solid;
+}
+
+.send_email_window #recipients label, .send_email_window #subject label, .send_email_window #from_email label{
+	
+	
+}
+
+.send_email_window #recipients select, .send_email_window #subject input, .send_email_window #from_email input{
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	
+	width: 70%;
+}
+
+/*==================================================================================================================*/
+/*--------- TEXT AREA ----------------------------------------------------------------------------------------------*/
+
+.send_email_window #text_area_block{
+	
+	width: 97%;
+	height: 47%;
+	
+	margin: 50px auto;
+	
+	border: 1px red solid;
+}
+
+.send_email_window #text_area_block textarea{
+	
+	width: 99%;
+	height: 100%;
+	
+	border: 1px blue solid;
+}
+
+/*====================================================================================================================*/
+/*---------- BOTTOM PANEL --------------------------------------------------------------------------------------------*/
+
+.send_email_window #bottom_panel{
+	
+	position: absolute;
+	left: 15px;
+	right: 15px;
+	bottom: 15px;
+	
+	height: 40px;
+	
+	border: 1px red solid;
+}
+
+.send_email_window #add_attachment_button{
+	
+	width: 120px;
+	height: 30px;
+	float: left;
+	
+	cursor: pointer;
+}
+
+.send_email_window #remove_attachment_button{
+	
+	width: 140px;
+	height: 30px;
+	float: left;
+	
+	margin-left: 8px;
+	cursor: pointer;
+}
+
+.send_email_window #send_email_button{
+	
+	width: 120px;
+	height: 30px;
+	float: right;
+	
+	cursor: pointer;
+}
+
+.send_email_window #cancel_email_button{
+	
+	width: 120px;
+	height: 30px;
+	float: right;
+	
+	margin-right: 8px;
+	cursor: pointer;
+}

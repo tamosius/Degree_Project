@@ -31,6 +31,10 @@
 	type="text/css" />
 <link href="resources/css/settings.css" rel="stylesheet"
 	type="text/css" />
+<link href="resources/css/communications.css" rel="stylesheet"
+	type="text/css" />
+<link href="resources/css/send_email_window.css" rel="stylesheet"
+	type="text/css" />
 
 
 <!-- EXTRA CSS FOR 'dashboard.jsp' TEMPLATE 
@@ -47,6 +51,7 @@
 <script src="resources/javascript/search_member.js"></script>
 <script src="resources/javascript/insert_recently_visited.js"></script>
 <script src="resources/javascript/calendar.js"></script>
+
 
 <script src="resources/javascript/products_sales.js"></script>
 <script src="resources/javascript/delete_member.js"></script>
@@ -115,6 +120,26 @@
 	                                        <td id="week_day">Week Day</td></tr></table></div>
 	<div class="popup_visits_body"><table></table></div>
 	</div>
+	
+	<!-- =========================================================================================================== -->
+	<!------------------ SEND EMAIL WINDOW -------------------------------------------------------------------->
+	<div class="send_email_window">
+	<div id="recipients"><label>Recipients:</label><select></select></div>
+	<div id="subject"><label>Subject:</label><input type="text" id="subject_field" /></div>
+	<div id="from_email"><label>From Email:</label><input type="text" /></div>
+	
+	<div id="text_area_block">
+	<textarea></textarea>
+	</div>
+	<div id="bottom_panel">
+	<button type="button" id="add_attachment_button">Add Attachment</button>
+	<button type="button" id="remove_attachment_button">Remove Attachment</button>
+	
+	<button type="button" id="send_email_button">Send Email</button>
+	<button type="button" id="cancel_email_button">Cancel Email</button>
+	</div>
+	</div>
+	<!-- =========================================================================================================== -->
 	
 	<!----------------------------- MEMBER PROFILE PANEL ------------------------------------------------------>
 	<div class="member_profile_panel">
@@ -402,7 +427,7 @@
 		<!------------------ end of 'member_pfofile_bottom_panel ----------------->
 	</div>
 	<!-------------------------- END OF MEMBER PROFILE PANEL ---------------------------------------------------->
-	
+
 	<!------------------ ADD MEMBER CONTENT ---------------------------------------------------------------------------------------------------------------->
 	<div class="add_member_content">
 		<form>
