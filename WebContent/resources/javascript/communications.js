@@ -66,15 +66,19 @@ function displayAllAdmin(admins){
 	// iterate through the result array returned
 	$.each(admins, function(key, value){
 		
-		$("#leave_message_block #communications_table_body").append(
-				
-			 "<tr class='admin_data'>" +
-                 "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-                 "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.id + "'></td>" +
-                 "<td id='second_column'><span id='check_in'>Check-in</span>" +value.firstName + " " + value.lastName + "</td>" +
-                 "<td id='third_column' style='position: relative;'>" + value.joinedOn.substring(0, 10) + "" +
-						  "<div class='time_popup'>at <span>" + value.joinedOn.substring(11, 19) + "</span></div></td>" + 
-             "</tr>");                                                        
+		// do not display current admin user in the 'Leave Admin Message' table
+		if(parseInt(value.id) !== parseInt($("#admin_user_session #admin_id").val())){
+			
+			$("#leave_message_block #communications_table_body").append(
+					
+					 "<tr class='admin_data'>" +
+		                 "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
+		                 "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.id + "'></td>" +
+		                 "<td id='second_column'><span id='check_in'>Check-in</span>" +value.firstName + " " + value.lastName + "</td>" +
+		                 "<td id='third_column' style='position: relative;'>" + value.joinedOn.substring(0, 10) + "" +
+								  "<div class='time_popup'>at <span>" + value.joinedOn.substring(11, 19) + "</span></div></td>" + 
+		             "</tr>");    
+		}                                                    
 	});
 }
 
@@ -108,6 +112,12 @@ function displayEmailMembers(members){
 /*===================================================================================================================*/
 /*-------- JQUERY 'ready' -------------------------------------------------------------------------------------------*/
 $(document).ready(function(){
+	
+/*-------- DISPLAY CURRENT ADMIN USER NAME IN 'communications.jsp' --------------------------------------------------*/
+	
+	// display admin name in the page ('left_communications_block')
+	$("#left_communications_block #admin_user_name").text($("#admin_user_session #admin_firstName").val() +
+			" " + $("#admin_user_session #admin_lastName").val());
 	
 /*-------- SELECT COMMUNICATIONS IN THE 'left_communications_block' (Show Messages, Leave a Message, Email All Members, etc.) -------------------------------------*/
 	$(".communications_content").delegate("#left_communications_block div", "click", function(){
@@ -209,7 +219,8 @@ $(document).ready(function(){
 			
 			if($(this).prop("checked")){
 				                // path, messageTo (id), message, messageFrom (id)
-				addAdminMessage("/Degree_Project/admin/addAdminMessage", $(this).val(), message, 1);
+				addAdminMessage("/Degree_Project/admin/addAdminMessage", $(this).val(),
+						message, $("#admin_user_session #admin_id").val());
 			}
 		});
 	});

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -70,6 +71,13 @@
     <div id="loading-mask">
             <div class="loading-img"><img src="resources/images/loading4.gif" alt="MyPassion" /></div>
     </div>
+    
+    <!------------------ ADMIN USER FOR CURRENT SESSION ----------------------------------------------------------------------------------------------->
+	<div id="admin_user_session" style="display: none;">
+		<input type="hidden" id="admin_id" value="${ adminUser.id }" /> 
+		<input type="hidden" id="admin_firstName" value="${ adminUser.firstName }" /> 
+		<input type="hidden" id="admin_lastName" value="${ adminUser.lastName }" />
+	</div>
 
 	<!------------------ WELCOME WINDOW --------------------------------------------------------------------------------------------------------------->
 	<div class="welcome_window">

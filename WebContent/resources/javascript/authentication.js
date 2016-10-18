@@ -1,3 +1,6 @@
+
+//var currentAdminUser = "<c:out value='${adminUser}'/>";
+
 $(document).ready(function(){
 	
     if($('#authenticate_username_field').val().length === 0){
@@ -28,8 +31,6 @@ $(document).ready(function(){
     			if(data.length !== 0){
     				
     				$("body").html(data);
-    				//$(".content").append(data.mssg.toString());
-    				
     			}
     			else{
     				

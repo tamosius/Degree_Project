@@ -150,15 +150,16 @@ public class AdminImplementation implements com.tomas.dao.interfaces.AdminInterf
 	
 /*------- LEAVE A MESSAGE FOR OTHER ADMINS, ('Leave Message' button) SAVE IN THE DATABASE ---------------------------------*/
 	@Override
-	public Admin addAdminMessage(int messageTo, String message, int messageFrom){
+	public Admin addAdminMessage(int recipientId, String message, int senderId){
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		String sql = " INSERT INTO admin_messages"
-				   + " (";
+				   + " (recipient_id, message, sender_id, message_timestamp)"
+				   + " VALUES(?, ?, ?, NOW())";
 		
-		//jdbcTemplate.update(sql, new Object[]{});
-		System.out.println("Message: " + messageTo + " " + message + " " + messageFrom + "\n");
-		return getAdminDetails(messageTo);
+		jdbcTemplate.update(sql, new Object[]{recipientId, message, senderId});
+		
+		return getAdminDetails(recipientId);
 	}
 }
