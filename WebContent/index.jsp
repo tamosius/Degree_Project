@@ -69,7 +69,7 @@
 <body>
 
     <div id="loading-mask">
-            <div class="loading-img"><img src="resources/images/loading4.gif" alt="MyPassion" /></div>
+            <div class="loading-img"><img src="resources/images/loading4.gif" alt="MyPassionas" /></div>
     </div>
     
     <!------------------ ADMIN USER FOR CURRENT SESSION ----------------------------------------------------------------------------------------------->
