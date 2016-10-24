@@ -154,6 +154,7 @@
 	background: #ffffff;
 	height: 100%;
 	display: none;
+	
 }
 
 /*==================================================================================================================================*/
@@ -222,7 +223,7 @@
 
 #communications_table_body #first_column{
 	
-	width: 5.5%;
+	width: 5%;
 	text-align: center;
 	
 	border-right: 1px #ffffff solid;
@@ -239,7 +240,7 @@
 
 #communications_table_body #third_column{
 	
-	width: 11.5%;
+	width: 15%;
 	text-align: center;
 }
 

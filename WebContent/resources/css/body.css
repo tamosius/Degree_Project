@@ -39,7 +39,8 @@ body::after{
 }
 
 /*------- BACKGROUND OVERLAY WHEN SHOWING 'Update_member', 'Visited Dates Times' -----------------------------------*/
-.background_overlay{
+.background_overlay{ 
+	
     display: none;
     position: absolute;
     top: 0%;
@@ -54,6 +55,7 @@ body::after{
 }
 
 .background_overlay_visits{
+	
     display: none;
     position: absolute;
     top: 0%;

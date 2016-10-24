@@ -76,7 +76,7 @@ function displayAllAdmin(admins){
 		                 "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.id + "'></td>" +
 		                 "<td id='second_column'><span id='check_in'>Check-in</span>" +value.firstName + " " + value.lastName + "</td>" +
 		                 "<td id='third_column' style='position: relative;'>" + value.joinedOn.substring(0, 10) + "" +
-								  "<div class='time_popup'>at <span>" + value.joinedOn.substring(11, 19) + "</span></div></td>" + 
+								  "<div class='time_popup'>at <span>" + value.joinedOn.substring(11, 19) + "</span></div></td>" + // pop-up time in 'reports_big_table.css'
 		             "</tr>");    
 		}                                                    
 	});
