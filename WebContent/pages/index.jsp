@@ -59,6 +59,7 @@
 <script src="resources/javascript/tooltips.js"></script>
 <script src="resources/javascript/visits_popup.js"></script>
 <script src="resources/javascript/loading_content.js"></script>
+<script src="resources/javascript/send_email.js"></script>
 <script src="resources/javascript/loading_mask.js"></script>
 <script src="resources/javascript/swfobject.js"></script>
 <script src="resources/javascript/scriptcam.js"></script>
@@ -132,20 +133,28 @@
 	<!-- =========================================================================================================== -->
 	<!------------------ SEND EMAIL WINDOW -------------------------------------------------------------------->
 	<div class="send_email_window">
-	<div id="recipients"><label>Recipients:</label><select></select></div>
-	<div id="subject"><label>Subject:</label><input type="text" id="subject_field" /></div>
-	<div id="from_email"><label>From Email:</label><input type="text" /></div>
-	
-	<div id="text_area_block">
-	<textarea></textarea>
-	</div>
-	<div id="bottom_panel">
-	<button type="button" id="add_attachment_button">Add Attachment</button>
-	<button type="button" id="remove_attachment_button">Remove Attachment</button>
-	
-	<button type="button" id="send_email_button">Send Email</button>
-	<button type="button" id="cancel_email_button">Cancel Email</button>
-	</div>
+		<div id="recipients">
+			<label>Recipients:</label><select></select>
+		</div>
+		<div id="subject">
+			<label>Subject:</label><input type="text" id="subject_field" />
+		</div>
+		<div id="from_email">
+			<label>From Email:</label><input type="text" />
+		</div>
+
+		<div id="text_area_block">
+			<textarea></textarea>
+		</div>
+		<div id="bottom_panel">
+			<button type="button" id="add_attachment_button">Add
+				Attachment</button>
+			<button type="button" id="remove_attachment_button">Remove
+				Attachment</button>
+
+			<button type="button" id="send_email_button">Send Email</button>
+			<button type="button" id="cancel_email_button">Cancel Email</button>
+		</div>
 	</div>
 	<!-- =========================================================================================================== -->
 	

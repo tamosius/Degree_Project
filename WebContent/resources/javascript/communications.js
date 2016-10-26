@@ -231,7 +231,7 @@ $(document).ready(function(){
 		$(".send_email_window #recipients select").empty();
 		
 		// iterate through all check boxes and append to 'recipients' drop-down only selected
-		$("#communications_table_body .row_data input:checkbox").each(function(){
+		$("#communications_table_body .row_data input").each(function(){
 			
 			if($(this).prop("checked") && ($(this).val().localeCompare("N / A")) !== 0){
 				

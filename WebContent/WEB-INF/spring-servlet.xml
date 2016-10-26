@@ -12,10 +12,10 @@
 
 	<!-- telling container to take care of annotations stuff -->
 	<context:annotation-config />
-	
+
 	<!-- declaring base package -->
 	<context:component-scan base-package="com.tomas.controller" />
-	
+
 	<!-- adding view resolver to show jsp's on browser -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,6 +23,10 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!-- service beans -->
+	<bean id="emailService" class="com.tomas.service.EmailServiceImplementation" />
+	
+	<!-- dao beans -->
 	<bean id="memberDao" class="com.tomas.dao.MemberDaoImplementation" />
 	<bean id="reports" class="com.tomas.dao.ReportsImplementation" />
 	<bean id="bottomPanelReports" class="com.tomas.dao.BottomPanelReports" />
@@ -30,12 +34,12 @@
 	<bean id="hashPassword" class="com.tomas.hashPassword.HashPassword" />
 	<bean id="adminImplementation" class="com.tomas.dao.AdminImplementation" />
 	<bean id="communications" class="com.tomas.dao.CommunicationsImplementation" />
-	
+
 	<bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		
-	</bean>  
-	
+
+	</bean>
+
 	<!-- declare datasource bean -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -44,7 +48,25 @@
 		<property name="username" value="root" />
 		<property name="password" value="tomas" />
 	</bean>
-	
+
+	<!-- declare e-mail messages -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- SMTP settings -->
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="t.mikoliunas@gmail.com" />
+		<property name="password" value="braliukas" />
+
+		<property name="javaMailProperties">
+			<!-- additional properties specific to JavaMail -->
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
 	<mvc:resources mapping="/resources/**" location="/resources/"
 		cache-period="31556926" />
 
