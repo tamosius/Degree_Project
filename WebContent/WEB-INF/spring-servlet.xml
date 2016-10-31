@@ -24,20 +24,25 @@
 	</bean>
 	
 	<!-- service beans -->
+	<bean id="adminService" class="com.tomas.service.AdminServiceImplementation" />
 	<bean id="emailService" class="com.tomas.service.EmailServiceImplementation" />
+	<bean id="communicationsService" class="com.tomas.service.CommunicationsServiceImplementation" />
+	<bean id="memberService" class="com.tomas.service.MemberServiceImplementation" />
+	<bean id="reportsService" class="com.tomas.service.ReportsServiceImplementation" />
+	<bean id="settingsService" class="com.tomas.service.SettingsServiceImplementation" />
+	<bean id="bottomPanelReportsService" class="com.tomas.service.BottomPanelReportsServiceImplementation" />
+	<bean id="hashPasswordService" class="com.tomas.service.HashPasswordServiceImplementation" />
 	
 	<!-- dao beans -->
-	<bean id="memberDao" class="com.tomas.dao.MemberDaoImplementation" />
-	<bean id="reports" class="com.tomas.dao.ReportsImplementation" />
-	<bean id="bottomPanelReports" class="com.tomas.dao.BottomPanelReports" />
-	<bean id="settings" class="com.tomas.dao.SettingsImplementation" />
-	<bean id="hashPassword" class="com.tomas.hashPassword.HashPassword" />
-	<bean id="adminImplementation" class="com.tomas.dao.AdminImplementation" />
-	<bean id="communications" class="com.tomas.dao.CommunicationsImplementation" />
+	<bean id="memberDAO" class="com.tomas.dao.MemberDAOImplementation" />
+	<bean id="reportsDAO" class="com.tomas.dao.ReportsDAOImplementation" />
+	<bean id="bottomPanelReportsDAO" class="com.tomas.dao.BottomPanelReportsDAOImplementation" />
+	<bean id="settingsDAO" class="com.tomas.dao.SettingsDAOImplementation" />
+	<bean id="adminDAO" class="com.tomas.dao.AdminDAOImplementation" />
+	<bean id="communicationsDAO" class="com.tomas.dao.CommunicationsDAOImplementation" />
 
 	<bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-
 	</bean>
 
 	<!-- declare datasource bean -->

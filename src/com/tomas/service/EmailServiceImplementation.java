@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
-import com.tomas.bean.Email;
+import com.tomas.model.Email;
 
 public class EmailServiceImplementation implements EmailService{
 
 	@Autowired
 	private JavaMailSender mailSender;
 	
+	@Override
 	public String sendEmail(Email composedEmail){
 		
 		// takes input from e-mail form

@@ -64,7 +64,7 @@
 					placeholder="Please select date..." />
 			</div>
 			<div>
-				<label>Discount Price €:</label> <input type="text"
+				<label>Report End Date:</label> <input type="text"
 					id="report_end_date_input" value="" autocomplete="off"
 					placeholder="Please select date..." />
 			</div>

@@ -12,16 +12,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.tomas.bean.Admin;
-import com.tomas.dao.interfaces.AdminInterface;
-import com.tomas.hashPassword.HashPassword;
+import com.tomas.model.Admin;
+import com.tomas.service.AdminService;
 
 @RestController
 // This annotation eliminates the need of annotating each method with
 // @ResponseBody, and can be considered as combination of @Controller and
 // @ResponseBody.
 @RequestMapping(value = "/admin")
-public class AdminController implements com.tomas.dao.interfaces.AdminInterface{
+public class AdminController{
 
 	/*
 	 * public class Authentication implements Controller{
@@ -44,44 +43,35 @@ public class AdminController implements com.tomas.dao.interfaces.AdminInterface{
 
 	// wired to 'AdminImplementation' class
 	@Autowired
-	AdminInterface adminImplementation;
+	AdminService adminService;
 	
-	@Autowired
-	HashPassword hashPassword;
 
 /*------ AUTHENTICATE THE ADMIN USER ON LOGIN PAGE -----------------------------------------------------------------------------------*/
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
 	public ModelAndView authenticate(@RequestBody Admin admin) {
-
-		logger.info("Printing something..!" + admin.getUsername() + " "
-				+ admin.getPassword());
-		logger.info("Hashed password received: "
-				+ hashPassword.getHashPassword(admin.getPassword()));
 		
-		return adminImplementation.authenticate(admin);
-		
-		//return new ModelAndView("index", "msg", "working!");
+		return adminService.authenticate(admin);
 	}
 	
 /*------ ADD NEW ADMIN USER TO THE DATABASE ------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="/addAdmin", method=RequestMethod.POST, headers="Accept=application/json")
 	public Admin addAdmin(@RequestBody Admin admin){
 		
-		return adminImplementation.addAdmin(admin);
+		return adminService.addAdmin(admin);
 	}
 	
 /*------ GET ADMIN DETAILS BY ID -----------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="/getAdminDetails", method=RequestMethod.POST, headers="Accept=application/json")
 	public Admin getAdminDetails(@RequestParam("id") int id){
 		
-		return adminImplementation.getAdminDetails(id);
+		return adminService.getAdminDetails(id);
 	}
 	
 /*------ GET ALL ADMIN'S --------------------------------------------------------------------------------------------------------------*/
 	@RequestMapping(value="/getAllAdmin", method=RequestMethod.POST, headers="Accept=application/json")
 	public List<Admin> getAllAdmin(@RequestParam ("name") String name){
 		
-		return adminImplementation.getAllAdmin(name);
+		return adminService.getAllAdmin(name);
 	}
 	
 /*------- LEAVE A MESSAGE FOR OTHER ADMINS, ('Leave Message' button) SAVE IN THE DATABASE ---------------------------------*/
@@ -89,7 +79,7 @@ public class AdminController implements com.tomas.dao.interfaces.AdminInterface{
 	public Admin addAdminMessage(@RequestParam ("messageTo") int messageTo,
 			@RequestParam ("message") String message, @RequestParam ("messageFrom") int messageFrom){
 		
-		return adminImplementation.addAdminMessage(messageTo, message, messageFrom);
+		return adminService.addAdminMessage(messageTo, message, messageFrom);
 	}
 
 }

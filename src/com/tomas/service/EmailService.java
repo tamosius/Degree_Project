@@ -1,6 +1,6 @@
 package com.tomas.service;
 
-import com.tomas.bean.Email;
+import com.tomas.model.Email;
 
 public interface EmailService {
 

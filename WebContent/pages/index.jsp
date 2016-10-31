@@ -60,6 +60,7 @@
 <script src="resources/javascript/visits_popup.js"></script>
 <script src="resources/javascript/loading_content.js"></script>
 <script src="resources/javascript/send_email.js"></script>
+<script src="resources/javascript/file_upload.js"></script>
 <script src="resources/javascript/loading_mask.js"></script>
 <script src="resources/javascript/swfobject.js"></script>
 <script src="resources/javascript/scriptcam.js"></script>
@@ -457,14 +458,15 @@
 				<div id="image">
 					<img src="resources/images/no_photo.png" alt="foto" />
 				</div>
-				<div id="photo_camera"></div>
+				
 				<div id="take_photo">
 					<button type="button" name="take_photo" id="photo_button">New
 						Photo</button>
 					<button type="button" name="take_photo" id="shoot_button">Take
 						a Snapshot</button>
-
+                    <button type="button" id="upload_picture_button">Upload Picture</button>
 				</div>
+				<input type="file" id="file_upload" accept="image/jpg" />
 				<div id="generate_code">
 					<button type="button" name="generate_code" id="generate_button">Generate
 						Barcode</button>

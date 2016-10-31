@@ -214,15 +214,15 @@ $(document).ready(function(){
                 	
                 	// display total members in top-left corner of the window
             		$(".top_panel .total_members_count").text("Total Members: " + data.length);
-            		
+            		console.log("names: " + JSON.stringify(data));
             		// update 'totalMembers' variable in 'loading_content.js'
             		totalMembers = data.length;
             		
             		$("table.body_table").empty(); // get the table empty
             		
             		// display all members if 'display_members.js' is open (new added profile also)
-               	    // call function 'displayAllMembers' in 'display_members.js' file
-               	    displayAllMembers();
+               	    // call function 'displayAllMembers' in 'loading_content.js' file
+            		displayAllMembers();
             		
             		// assign full name to variable (make first letters Block Capitals)	
                     var fullName = (formData.firstName.substring(0, 1).toUpperCase()) + "" + (formData.firstName.substring(1).toLowerCase()) +

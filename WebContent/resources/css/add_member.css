@@ -37,7 +37,7 @@ h3{
     height: auto;
 }
 .add_member_left_sidebar{
-    //border: blue solid 2px;
+    
     width: auto;
     height: auto;
     border-right: solid 1px #D3D3D3;
@@ -122,28 +122,26 @@ h3{
     clear: left;
     //display: block;
 }
+
+/*============================================================================================================================================*/
+/*------ LEFT SIDEBAR ------------------------------------------------------------------------------------------------------------------------*/
 .add_member_left_sidebar img{
-   width: 214px;
-   height: 240px;
+   width: 100%;
+   height: auto;
    border-radius: 5px;
    border: 1px solid #D3D3D3;
    box-shadow : 4px 4px 4px black;
+   overflow: hidden;
 }
 .add_member_left_sidebar #image{
     margin: 3px 30px 20px 20px;
     width: 214px;
     height: 240px;
     border-radius: 5px;
+    
+    overflow: hidden;
 }
-.add_member_left_sidebar #photo_camera{
-    margin: 3px 30px 20px 20px;
-    width: 214px;
-    height: 240px;
-    display: none;
-    border-radius: 5px;
-    border: 1px solid #D3D3D3;
-    box-shadow : 4px 4px 4px black;
-}
+
 .add_member_left_sidebar #photo_button{
     text-align: center;
     margin: 0px 0px 20px 50px;
@@ -168,8 +166,28 @@ h3{
     border-radius: 5px;
     box-shadow : 4px 4px 4px black;
     cursor: pointer;
-    color: green;
     background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+
+/*----- upload picture button -----------------------------*/
+input[type="file"]{
+	
+	display: none	;
+}
+.add_member_left_sidebar #upload_picture_button{
+	
+	width: 155px;
+    height: 30px;
+    
+    margin: 0px 0px 20px 50px;
+    
+    display: block;
+    background: #C2C2D6;
+    cursor: pointer;
+    
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
@@ -188,6 +206,7 @@ h3{
     -moz-transition: background 1s;
     transition: background 1s;
 }
+/*==================================================================================================================================================*/
 
 #back_button{
     float: left;
@@ -216,13 +235,17 @@ h3{
     -moz-transition: background 1s;
     transition: background 1s;
 }
-#back_button:hover, #add_member_photo_button:hover, #photo_button:hover, #add_member_shoot_button:hover, #shoot_button:hover, #add_member_generate_button:hover, #generate_button:hover, #submit_add_member:hover{
+#back_button:hover, #add_member_photo_button:hover, #photo_button:hover, 
+#add_member_shoot_button:hover, #shoot_button:hover, #add_member_generate_button:hover, 
+#generate_button:hover, #submit_add_member:hover, #upload_picture_button:hover{
     background: white;
     //color: #009900;
 }
-#back_button:focus, #add_member_photo_button:focus, #photo_button:focus, #add_member_shoot_button:focus, #shoot_button:focus, #add_member_generate_button:focus, #generate_button:focus, #submit_add_member:focus{
+#back_button:focus, #add_member_photo_button:focus, #photo_button:focus, 
+#add_member_shoot_button:focus, #shoot_button:focus, #add_member_generate_button:focus, 
+#generate_button:focus, #submit_add_member:focus, #upload_picture_button:focus{
+    
     outline: 0;
-    //color: #009900;
 }
 ::-webkit-input-placeholder{
     padding-top: 4px;
