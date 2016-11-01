@@ -25,9 +25,9 @@ public class MemberServiceImplementation implements MemberService{
 	
 /*------------- ADD A NEW MEMBER TO THE DATABASE -----------------------------------------------------------------------------*/
 	@Override
-	public void addMember(Member member) {
+	public Member addMember(Member member) {
 		
-		memberDAO.addMember(member);
+		return memberDAO.addMember(member);
 	}
 	
 /*------------ INSERT RECENTLY VISITED MEMBER ------------------------------------------------------------*/

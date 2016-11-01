@@ -50,7 +50,7 @@ public class MemberDAOImplementation implements MemberDAO {
 	
 /*------------- ADD A NEW MEMBER TO THE DATABASE -----------------------------------------------------------------------------*/
 	@Override
-	public void addMember(Member member) {
+	public Member addMember(Member member) {
 		
 		String sql = " INSERT INTO members (first_name, last_name, ph_number, address, date_of_birth, email,"
 				   + " date_joined) VALUES (?, ?, ?, ?, ?, ?, NOW())";
@@ -73,7 +73,10 @@ public class MemberDAOImplementation implements MemberDAO {
 		jdbcTemplate.update(sql2, new Object[]{member.getMembershipFrom(), member.getMembershipTo(),member.getProgramme(), member.getPaid(),
 				member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
 		
+		// insert new Member as recently visited
 		insertRecentlyVisited(String.valueOf(lastInsertedId));
+		
+		return member;
 	}
 	
 /*------------ INSERT RECENTLY VISITED MEMBER ------------------------------------------------------------*/

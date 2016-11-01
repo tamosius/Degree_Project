@@ -16,7 +16,7 @@ $(document).ready(function(){
 });
 
 function readPictureURL(input) {
-	console.log("file: " + input.files);
+	
     if (input.files && input.files[0]) {
     	
         var reader = new FileReader();

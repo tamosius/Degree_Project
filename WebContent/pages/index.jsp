@@ -448,7 +448,7 @@
 
 	<!------------------ ADD MEMBER CONTENT ---------------------------------------------------------------------------------------------------------------->
 	<div class="add_member_content">
-		<form>
+		<form >
 			<div class="add_member_top_panel">
 				<h1>New Member</h1>
 				<h3>Please fill out the form:</h3>
@@ -466,7 +466,7 @@
 						a Snapshot</button>
                     <button type="button" id="upload_picture_button">Upload Picture</button>
 				</div>
-				<input type="file" id="file_upload" accept="image/jpg" />
+				<input type="file" id="file_upload" />
 				<div id="generate_code">
 					<button type="button" name="generate_code" id="generate_button">Generate
 						Barcode</button>

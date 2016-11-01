@@ -3,11 +3,14 @@ package com.tomas.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 //@Entity  // tells hibernate that the class is an entity to persist or hold data to or from database
 //@Table(name="MEMBERS")  // specify table name to read/write data
 public class Member {
 
-	// @Id // specifies the primary key
+	private CommonsMultipartFile fileUploadPicture;
+	
 	private int id;
 	private String firstName;
 	private String lastName;
@@ -56,6 +59,15 @@ public class Member {
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		//Date date = new Date();
 		//this.dateJoined = dateFormat.format(date);
+	}
+	
+
+	public CommonsMultipartFile getFileUploadPicture() {
+		return fileUploadPicture;
+	}
+
+	public void setFileUploadPicture(CommonsMultipartFile fileUploadPicture) {
+		this.fileUploadPicture = fileUploadPicture;
 	}
 
 	public int getId() {

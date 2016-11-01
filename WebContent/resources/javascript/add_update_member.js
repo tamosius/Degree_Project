@@ -181,10 +181,17 @@ $(document).ready(function(){
         	updateDescription = (getUpdateDescription(programme)).trim();
         	programmeBooked = 1;
         	
+        	
+        	
+        	var fileUploadPicture = new FormData($(this).find("#file_upload").val());
+        	
         	/* SUBMIT FORM VALIDATED OK, MAKE A JAVASCRIPT OBJECT, STRINGIGY AND SEND TO WEBSERVICE, 
              * INSERT DATA INTO DATABASE  */
             
             var formData = {
+            		
+            		//"fileUploadPicture" : fileUploadPicture,
+            		
             		"firstName"         : firstName,
             		"lastName"          : lastName,
             		"address"           : address,
@@ -200,39 +207,37 @@ $(document).ready(function(){
             		"programmeBooked"   : programmeBooked
             }
             
+            var file = new FormData();
+        	file.append("file", $("input[type=file]")[0].files[0]);
+        	file.append("name", formData);
+            
             $.ajax({
                 type        : "POST",
-                url         : "/Degree_Project/contr/addMember",
-                data        : JSON.stringify(formData),
-                contentType : "application/json; charset=utf-8",
-                dataType    : "json",
-                processData : true,
+                url         : "/Degree_Project/contr/addMemberi",
+                data        :  file,
+                //contentType : "application/json; charset=utf-8",
+                //dataType    : "json",
+                processData : false,
+                contentType : false,
+                
+                //cache       : false,
+                //async       : false,
                 success     : function (data, status, jqXHR) {
                     
                 	// if the data for the new member has been added successfully, display successful message
-                	// and update table view with a new member 
-                	
-                	// display total members in top-left corner of the window
-            		$(".top_panel .total_members_count").text("Total Members: " + data.length);
-            		console.log("names: " + JSON.stringify(data));
-            		// update 'totalMembers' variable in 'loading_content.js'
-            		totalMembers = data.length;
-            		
-            		$("table.body_table").empty(); // get the table empty
-            		
-            		// display all members if 'display_members.js' is open (new added profile also)
-               	    // call function 'displayAllMembers' in 'loading_content.js' file
-            		displayAllMembers();
-            		
             		// assign full name to variable (make first letters Block Capitals)	
-                    var fullName = (formData.firstName.substring(0, 1).toUpperCase()) + "" + (formData.firstName.substring(1).toLowerCase()) +
-                               " " + (formData.lastName.substring(0, 1).toUpperCase()) + "" + (formData.lastName.substring(1).toLowerCase());
+                    var fullName = (data.firstName.substring(0, 1).toUpperCase()) + "" + (data.firstName.substring(1).toLowerCase()) +
+                               " " + (data.lastName.substring(0, 1).toUpperCase()) + "" + (data.lastName.substring(1).toLowerCase());
             		
             		// display successfully added member name in the 'popup_window'
                     $(".popup_window").html("<img id='check_in_image' src='resources/images/loading1.jpg' />" +
         			                       "<div id='popup_window_text'><strong>" + fullName + "</strong><br>" +
         					               "has been successfully added to the database!</div>")
         					               .fadeIn().delay(3000).fadeOut(500);
+            		
+                    // display all members if 'display_members.js' is open (new added profile also)
+               	    // call function 'displayAllMembers' in 'loading_content.js' file
+            		displayAllMembers();
             		
                     // display in 'recently joined member', 'last_attended' bottom-left blocks
             		// functions are in 'loading_content.js' file

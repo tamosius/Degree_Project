@@ -43,7 +43,7 @@ function getTotalMembers(){
 
 /*------------ DISPLAY ALL MEMBERS ------------------------------------------------------------------------------*/
 function displayAllMembers(){
-	
+		
     $.get("/Degree_Project/contr/getAllMembers", function(data){
 		
 		// display total members in top-left corner of the window

@@ -8,7 +8,7 @@ public interface MemberService {
 
 	public int getTotalMembers();                  // get total number of members in the database
 
-	public void addMember(Member member);          // add member to the database
+	public Member addMember(Member member);        // add member to the database
 	
 	public int insertRecentlyVisited(String id);   // insert recently visited member's ID and the time stamp
 

@@ -16,13 +16,18 @@
 	<!-- declaring base package -->
 	<context:component-scan base-package="com.tomas.controller" />
 
+	<mvc:resources mapping="/resources/**" location="/resources/"
+		cache-period="31556926" />
+
+	<mvc:annotation-driven />
+
 	<!-- adding view resolver to show jsp's on browser -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	
+
 	<!-- service beans -->
 	<bean id="adminService" class="com.tomas.service.AdminServiceImplementation" />
 	<bean id="emailService" class="com.tomas.service.EmailServiceImplementation" />
@@ -30,9 +35,11 @@
 	<bean id="memberService" class="com.tomas.service.MemberServiceImplementation" />
 	<bean id="reportsService" class="com.tomas.service.ReportsServiceImplementation" />
 	<bean id="settingsService" class="com.tomas.service.SettingsServiceImplementation" />
-	<bean id="bottomPanelReportsService" class="com.tomas.service.BottomPanelReportsServiceImplementation" />
+	<bean id="bottomPanelReportsService"
+		class="com.tomas.service.BottomPanelReportsServiceImplementation" />
+	<bean id="fileUploadService" class="com.tomas.service.FileUploadServiceImplementation" />
 	<bean id="hashPasswordService" class="com.tomas.service.HashPasswordServiceImplementation" />
-	
+
 	<!-- dao beans -->
 	<bean id="memberDAO" class="com.tomas.dao.MemberDAOImplementation" />
 	<bean id="reportsDAO" class="com.tomas.dao.ReportsDAOImplementation" />
@@ -40,6 +47,7 @@
 	<bean id="settingsDAO" class="com.tomas.dao.SettingsDAOImplementation" />
 	<bean id="adminDAO" class="com.tomas.dao.AdminDAOImplementation" />
 	<bean id="communicationsDAO" class="com.tomas.dao.CommunicationsDAOImplementation" />
+	<bean id="fileUploadDAO" class="com.tomas.dao.FileUploadDAOImplementation" />
 
 	<bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
@@ -72,9 +80,13 @@
 		</property>
 	</bean>
 
-	<mvc:resources mapping="/resources/**" location="/resources/"
-		cache-period="31556926" />
-
-	<mvc:annotation-driven />
+	<!-- to handle file uploads, Spring provides a 'MultipartResolver' bean 
+		which is responsible for resolving multipart request -->
+	<!-- this resolver is working with two file upload libraries -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max file size in bytes -->
+		<property name="maxUploadSize" value="3000000" />
+		<!-- other properties... -->
+	</bean>
 
 </beans>
