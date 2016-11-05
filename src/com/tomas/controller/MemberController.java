@@ -1,14 +1,6 @@
 package com.tomas.controller;
 
-import java.awt.AlphaComposite;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,58 +30,28 @@ public class MemberController {
 
 /*--------------- ADD A NEW MEMBER TO THE DATABASE ---------------------------------------------------------*/
 	@RequestMapping(value="/addMember", method=RequestMethod.POST, headers="Accept=application/json")
-	public Member addMember(@RequestBody Member member) {
+	public Member addMember(@RequestParam("imageFor") String imageFor, @RequestParam ("image") CommonsMultipartFile image, @RequestParam ("firstName") String firstName,
+			@RequestParam("lastName") String lastName, @RequestParam("address") String address, @RequestParam("phNumber") String phNumber,
+			@RequestParam("dateOfBirth") String dateOfBirth, @RequestParam("email") String email, @RequestParam("membershipFrom") String membershipFrom,
+			@RequestParam("membershipTo") String membershipTo, @RequestParam("programme") String programme, @RequestParam("paid") String paid,
+			@RequestParam("programmeState") String programmeState, @RequestParam("updateDescription") String updateDescription,
+			@RequestParam("programmeBooked") String programmeBooked) {
 		
-		return memberService.addMember(member);
+		return memberService.addMember(imageFor, image, firstName, lastName, address, phNumber, dateOfBirth, email, membershipFrom,
+				membershipTo, programme, paid, programmeState, updateDescription, programmeBooked);
 	}
 	
-	@SuppressWarnings("deprecation")
-	@RequestMapping(value="/addMemberi", method=RequestMethod.POST)
-	public void addMemberi(HttpServletRequest request, @RequestParam("file") CommonsMultipartFile file, @RequestParam("name") String name) throws Exception {
+/*-------------- UPDATE A MEMBER ---------------------------------------------------------------------------*/
+	@RequestMapping(value="/updateMember", method=RequestMethod.POST, headers="Accept=application/json")
+	public Member updateMember(@RequestParam("imageFor") String imageFor, @RequestParam ("image") CommonsMultipartFile image, @RequestParam("id") int id, @RequestParam ("firstName") String firstName,
+			@RequestParam("lastName") String lastName, @RequestParam("address") String address, @RequestParam("phNumber") String phNumber,
+			@RequestParam("dateOfBirth") String dateOfBirth, @RequestParam("email") String email, @RequestParam("membershipFrom") String membershipFrom,
+			@RequestParam("membershipTo") String membershipTo, @RequestParam("programme") String programme, @RequestParam("paid") String paid,
+			@RequestParam("programmeState") String programmeState, @RequestParam("updateDescription") String updateDescription,
+			@RequestParam("programmeBooked") String programmeBooked) {
 		
-		
-		String saveDirectory = request.getServletContext().getRealPath("/resources/images/profileImages/");
-		
-		System.out.println("classPath: " + request.getServletContext().getRealPath("/"));
-		
-		System.out.println("system: " + System.getProperty("catalina.home"));
-		
-		System.out.println("saving path: " + request.getRealPath("/profileImages"));
-		
-		if(file != null){
-			
-			BufferedImage image = ImageIO.read(file.getInputStream());
-			
-				image = createResizedCopy(image, 500, 700, true);
-				
-				System.out.println("saving file: " + file.getOriginalFilename());
-				
-				ImageIO.write(image, "jpg", new File("/home/tomas/fi.jpg"));
-				
-				//file.transferTo(new File(saveDirectory + file.getOriginalFilename()));
-			
-		}
-	}
-
-	BufferedImage createResizedCopy(Image originalImage, int scaledWidth, int scaledHeight, boolean preserveAlpha) {
-		
-		System.out.println("resizing...");
-		
-		int imageType = preserveAlpha ? BufferedImage.TYPE_INT_RGB : BufferedImage.TYPE_INT_ARGB;
-		
-		BufferedImage scaledBI = new BufferedImage(scaledWidth, scaledHeight, imageType);
-		
-		Graphics2D g = scaledBI.createGraphics();
-		
-		if (preserveAlpha) {
-			g.setComposite(AlphaComposite.Src);
-		}
-		
-		g.drawImage(originalImage, 0, 0, scaledWidth, scaledHeight, null);
-		
-		g.dispose();
-		
-		return scaledBI;
+		return memberService.updateMember(imageFor, image, id, firstName, lastName, address, phNumber, dateOfBirth, email, membershipFrom,
+				membershipTo, programme, paid, programmeState, updateDescription, programmeBooked);
 	}
 	
 /*--------------- INSERT RECENTLY VISITED MEMBER -----------------------------------------------------------*/
@@ -118,13 +80,6 @@ public class MemberController {
 	public List<Member> searchMember(@RequestBody String name){
 		
 		return memberService.searchMember(name);
-	}
-
-/*-------------- UPDATE A MEMBER ---------------------------------------------------------------------------*/
-	@RequestMapping(value="/updateMember", method=RequestMethod.POST, headers="Accept=application/json")
-	public Member updateMember(@RequestBody Member member) {
-		
-		return memberService.updateMember(member);
 	}
 
 /*-------------- DELETE A MEMBER ---------------------------------------------------------------------------*/

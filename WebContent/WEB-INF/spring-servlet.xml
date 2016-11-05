@@ -35,16 +35,21 @@
 	<bean id="memberService" class="com.tomas.service.MemberServiceImplementation" />
 	<bean id="reportsService" class="com.tomas.service.ReportsServiceImplementation" />
 	<bean id="settingsService" class="com.tomas.service.SettingsServiceImplementation" />
+	<bean id="productsService" class="com.tomas.service.ProductsServiceImplementation" />
 	<bean id="bottomPanelReportsService"
 		class="com.tomas.service.BottomPanelReportsServiceImplementation" />
 	<bean id="fileUploadService" class="com.tomas.service.FileUploadServiceImplementation" />
 	<bean id="hashPasswordService" class="com.tomas.service.HashPasswordServiceImplementation" />
+	<bean id="insertBlobService" class="com.tomas.service.InsertBlobServiceImplementation" />
+	<bean id="saveImageService" class="com.tomas.service.SaveImageServiceImplementation" /> <!-- save image to disk -->
+	<bean id="resizePictureService" class="com.tomas.service.ResizePictureServiceImplementation" />
 
 	<!-- dao beans -->
 	<bean id="memberDAO" class="com.tomas.dao.MemberDAOImplementation" />
 	<bean id="reportsDAO" class="com.tomas.dao.ReportsDAOImplementation" />
 	<bean id="bottomPanelReportsDAO" class="com.tomas.dao.BottomPanelReportsDAOImplementation" />
 	<bean id="settingsDAO" class="com.tomas.dao.SettingsDAOImplementation" />
+	<bean id="productsDAO" class="com.tomas.dao.ProductsDAOImplementation" />
 	<bean id="adminDAO" class="com.tomas.dao.AdminDAOImplementation" />
 	<bean id="communicationsDAO" class="com.tomas.dao.CommunicationsDAOImplementation" />
 	<bean id="fileUploadDAO" class="com.tomas.dao.FileUploadDAOImplementation" />

@@ -153,6 +153,8 @@ $(document).ready(function(){
             	// if user clicks 'cancel' button
             	memberProfile = data;
             	
+            	$(".member_profile_left_sidebar .image img").prop("src", "resources/images/membersImages/" + data.id + ".jpg");
+            	
             	$(".member_data #member_id").val(data.id);
             	$(".member_data label").text(data.id);
             	$(".member_data #first_name").val(data.firstName);
@@ -346,29 +348,7 @@ $(document).ready(function(){
         
         // do not display 'drop-down' arrow in 'programme' field
         $(".member_profile_right_sidebar #second_block #programme_drop_down_arrow").hide();
-        
-        /*$.post('member_profile2.php', {'member_profile_id' : id}, function(data){
-            
-            
-            $('.member_data #first_name').val($(data).find('first_name').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '22px'});  
-            $('.member_data #last_name').val($(data).find('last_name').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '22px'});
-            $('.member_data #address').val($(data).find('address').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});
-            $('.member_data #ph_number').val($(data).find('ph_number').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});
-            $('.member_data #date_of_birth').val($(data).find('date_of_birth').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});  
-            $('.member_data #email').val($(data).find('email').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});
-            $('.member_data #from').val($(data).find('membership_from').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});
-            $('.member_data #to').val($(data).find('membership_to').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});
-            $('.member_data #paid').val($(data).find('paid').text()).css('color', 'white');
-            $('.member_data #date_joined').val($(data).find('date_joined').text()).css({'color' : 'white', 'letter-spacing' : '1px', 'font-size' : '17px'});
-            
-            var photo_path = $(data).find('photo_path').text();
-            $('img').attr('src', photo_path);
-            
-            $('.member_profile_left_sidebar #photo_camera').hide();
-            $('.member_profile_left_sidebar #image').show();    show previous image if user cancels update 
-            
-            set_font_colors();  set values to previous condition if cancels update profile 
-        });*/ 
+         
     });
 
 /* ------------------- TEXTBOXES IN MEMBER PROFILE WINDOW, CHANGE FONT SIZES --------------------------------------------------------------------------------------- */

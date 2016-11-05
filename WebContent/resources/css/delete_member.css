@@ -178,7 +178,7 @@
 }
 
 
-.confirm_settings_window #confirm_button{
+.confirm_settings_window .confirm_button{
 	
     width: 80px;
     height: 25px;
@@ -191,7 +191,7 @@
     transition: background 1s;
     outline: 0;
 }
-.confirm_settings_window #cancel_button{
+.confirm_settings_window .cancel_button{
 	
     width: 80px;
     height: 25px;

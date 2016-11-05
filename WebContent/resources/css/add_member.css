@@ -133,7 +133,7 @@ h3{
    box-shadow : 4px 4px 4px black;
    overflow: hidden;
 }
-.add_member_left_sidebar #image{
+.add_member_left_sidebar .image{
     margin: 3px 30px 20px 20px;
     width: 214px;
     height: 240px;
@@ -142,7 +142,7 @@ h3{
     overflow: hidden;
 }
 
-.add_member_left_sidebar #photo_button{
+.add_member_left_sidebar .photo_button{
     text-align: center;
     margin: 0px 0px 20px 50px;
     width: 155px;
@@ -156,7 +156,7 @@ h3{
     -moz-transition: background 1s;
     transition: background 1s;
 }
-.add_member_left_sidebar #shoot_button{
+.add_member_left_sidebar .shoot_button{
     color: green;
     display: none;
     text-align: center;
@@ -177,7 +177,7 @@ input[type="file"]{
 	
 	display: none	;
 }
-.add_member_left_sidebar #upload_picture_button{
+.add_member_left_sidebar .upload_picture_button{
 	
 	width: 155px;
     height: 30px;
@@ -192,7 +192,7 @@ input[type="file"]{
     -moz-transition: background 1s;
     transition: background 1s;
 }
-.add_member_left_sidebar #generate_button{
+.add_member_left_sidebar .generate_button{
     text-align: center;
     margin: 0px 0px 35px 20px;
     width: 155px;

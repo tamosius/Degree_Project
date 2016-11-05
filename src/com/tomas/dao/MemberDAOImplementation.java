@@ -48,7 +48,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 	
-/*------------- ADD A NEW MEMBER TO THE DATABASE -----------------------------------------------------------------------------*/
+/*------------- ADD A NEW MEMBER TO THE DATABASE (IMAGE'S REFERENCE SAVED) ---------------------------------------------------------------------------*/
 	@Override
 	public Member addMember(Member member) {
 		
@@ -76,7 +76,81 @@ public class MemberDAOImplementation implements MemberDAO {
 		// insert new Member as recently visited
 		insertRecentlyVisited(String.valueOf(lastInsertedId));
 		
+		// assign id value to Member object and use it for the picture to save it in the disk
+		member.setId(lastInsertedId);
+		
 		return member;
+	}
+	
+/*------------- ADD A NEW MEMBER TO THE DATABASE (IMAGE IN BLOB) ------------------------------------------------------------------------
+	@Override
+	public Member addMember(Member member) {
+		
+		String sql = " INSERT INTO members (first_name, last_name, ph_number, address, date_of_birth, email,"
+				   + " image, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		jdbcTemplate.update(sql, new Object[] { member.getFirstName().substring(0, 1).toUpperCase() + member.getFirstName().substring(1).toLowerCase(), 
+				member.getLastName().substring(0, 1).toUpperCase() + member.getLastName().substring(1).toLowerCase(), member.getPhNumber(), member.getAddress(),
+				member.getDateOfBirth(), member.getEmail(), member.getInsertImage()}, 
+				new int[] {Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.VARCHAR, Types.BLOB});
+		
+		// get the ID of the last inserted member into the database 
+		// and use this ID for inserting data into 'membership_status' table
+		int lastInsertedId = jdbcTemplate.queryForObject("select id from  members where date_joined = "
+				+ "(select max(date_joined) from members)", Integer.class);
+		
+		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to, programme, paid,"
+				    + " programme_state, update_description, programme_booked)"
+				    + " VALUES (" + lastInsertedId + ", NOW(), ?, ?, ?, ?, ?, ?, ?)";
+		
+		jdbcTemplate.update(sql2, new Object[]{member.getMembershipFrom(), member.getMembershipTo(),member.getProgramme(), member.getPaid(),
+				member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
+		
+		// insert new Member as recently visited
+		insertRecentlyVisited(String.valueOf(lastInsertedId));
+		
+		return member;
+	}---*/
+	
+/*-------------- UPDATE A MEMBER --------------------------------------------------------------------------*/
+	@Override
+	public Member updateMember(Member member) {
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		// update 'membership_status' table and set 'programme_state' to 'inactive'
+		// if membership programme has been booked
+		if(member.getProgrammeBooked() == 1){
+			
+			String sql = " UPDATE membership_status SET programme_state = 'inactive'"
+					   + " WHERE id = ?";
+			
+			jdbcTemplate.update(sql, new Object[]{member.getId()});
+		}
+		
+		// update query into 'members' table
+		String sql = " UPDATE members SET first_name = ?, last_name = ?, ph_number = ?, address = ?, email = ?,"
+				   + " date_of_birth = ?"
+				   + " WHERE id = ?";
+		
+		// execute this update query in 'members' table
+		jdbcTemplate.update(sql, new Object[] { member.getFirstName().substring(0,  1).toUpperCase() + member.getFirstName().substring(1).toLowerCase(),
+				member.getLastName().substring(0, 1).toUpperCase() + member.getLastName().substring(1).toLowerCase(),
+				member.getPhNumber(), member.getAddress(), member.getEmail(), member.getDateOfBirth(), member.getId()});
+		
+		// insert query into 'membership_status' table
+		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to,"
+				    + " paid, programme, programme_state, update_description, programme_booked)"
+				    + " VALUES (?, NOW(), ?, ?, ?, ?, ?, ?, ?)";
+		
+		// execute this insert query in 'membership_status' table
+		jdbcTemplate.update(sql2, new Object[] {member.getId(), member.getMembershipFrom(), member.getMembershipTo(),
+				member.getPaid(), member.getProgramme(), member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
+		
+		// get updated member profile
+		return getMemberProfile(member.getId());
 	}
 	
 /*------------ INSERT RECENTLY VISITED MEMBER ------------------------------------------------------------*/
@@ -221,45 +295,6 @@ public class MemberDAOImplementation implements MemberDAO {
 		});
 		
 		return searchedMember;
-	}
-	
-/*-------------- UPDATE A MEMBER --------------------------------------------------------------------------*/
-	@Override
-	public Member updateMember(Member member) {
-		
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		
-		// update 'membership_status' table and set 'programme_state' to 'inactive'
-		// if membership programme has been booked
-		if(member.getProgrammeBooked() == 1){
-			
-			String sql = " UPDATE membership_status SET programme_state = 'inactive'"
-					   + " WHERE id = ?";
-			
-			jdbcTemplate.update(sql, new Object[]{member.getId()});
-		}
-		
-		// update query into 'members' table
-		String sql = " UPDATE members SET first_name = ?, last_name = ?, ph_number = ?, address = ?, email = ?,"
-				   + " date_of_birth = ?"
-				   + " WHERE id = ?";
-		
-		// execute this update query in 'members' table
-		jdbcTemplate.update(sql, new Object[] { member.getFirstName().substring(0,  1).toUpperCase() + member.getFirstName().substring(1).toLowerCase(),
-				member.getLastName().substring(0, 1).toUpperCase() + member.getLastName().substring(1).toLowerCase(),
-				member.getPhNumber(), member.getAddress(), member.getEmail(), member.getDateOfBirth(), member.getId()});
-		
-		// insert query into 'membership_status' table
-		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to,"
-				    + " paid, programme, programme_state, update_description, programme_booked)"
-				    + " VALUES (?, NOW(), ?, ?, ?, ?, ?, ?, ?)";
-		
-		// execute this insert query in 'membership_status' table
-		jdbcTemplate.update(sql2, new Object[] {member.getId(), member.getMembershipFrom(), member.getMembershipTo(),
-				member.getPaid(), member.getProgramme(), member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
-		
-		// get updated member profile
-		return getMemberProfile(member.getId());
 	}
 
 /*------------ DELETE A MEMBER ---------------------------------------------------------------------------*/

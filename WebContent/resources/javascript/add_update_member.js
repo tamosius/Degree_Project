@@ -1,5 +1,6 @@
 
 // function to assign 'update description' variable
+// when adding new members to the database
 function getUpdateDescription(programme){
 	
 	if(programme.localeCompare("'Pay as You Go'") === 0){
@@ -60,8 +61,8 @@ $(document).ready(function(){
         var membershipFrom = (assignNoMembership($(this).find("#from").val())).trim();// assign 'no membership' if the field has been left blank in the form
         var membershipTo = (assignNoMembership($(this).find("#to").val())).trim();    // assign 'no membership' if the field has been left blank in the form
         var programme = (assignPayAsYouGo($(this).find("#programme").val())).trim();  // assign 'Pay as You Go' if the field has been left blank in the form
-        var paid = ($(this).find("#paid").val()).trim();                              // functions are in this file
-        
+        var paid = (assignZero($(this).find("#paid").val())).trim();                  // assign Zero if the field has been left blank in the form
+                                                                                      // functions are in this file
         // this will be assigned when executing 'else if' statements
         // in the 'new_member' of 'update_member'
         var programmeState = "";
@@ -182,44 +183,35 @@ $(document).ready(function(){
         	programmeBooked = 1;
         	
         	
-        	
-        	var fileUploadPicture = new FormData($(this).find("#file_upload").val());
-        	
         	/* SUBMIT FORM VALIDATED OK, MAKE A JAVASCRIPT OBJECT, STRINGIGY AND SEND TO WEBSERVICE, 
              * INSERT DATA INTO DATABASE  */
             
-            var formData = {
-            		
-            		//"fileUploadPicture" : fileUploadPicture,
-            		
-            		"firstName"         : firstName,
-            		"lastName"          : lastName,
-            		"address"           : address,
-            		"phNumber"          : phNumber,
-            		"dateOfBirth"       : dateOfBirth,
-            		"email"             : email,
-            		"membershipFrom"    : membershipFrom,
-            		"membershipTo"      : membershipTo,
-            		"programme"         : programme,
-            		"paid"              : paid,
-            		"programmeState"    : programmeState,
-            		"updateDescription" : updateDescription,
-            		"programmeBooked"   : programmeBooked
-            }
             
-            var file = new FormData();
-        	file.append("file", $("input[type=file]")[0].files[0]);
-        	file.append("name", formData);
+            var formData = new FormData();
+            formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
+        	formData.append("image", $("input[type=file]")[1].files[0]); // 'input[type=file][1]' in 'add_member_left_sidebar'
+        	formData.append("firstName", firstName);
+        	formData.append("lastName", lastName);
+        	formData.append("address", address);
+        	formData.append("phNumber", phNumber);
+        	formData.append("dateOfBirth", dateOfBirth);
+        	formData.append("email", email);
+        	formData.append("membershipFrom", membershipFrom);
+        	formData.append("membershipTo", membershipTo);
+        	formData.append("programme", programme);
+        	formData.append("paid", paid);
+        	formData.append("programmeState", programmeState);
+        	formData.append("updateDescription", updateDescription);
+        	formData.append("programmeBooked", programmeBooked);
             
             $.ajax({
                 type        : "POST",
-                url         : "/Degree_Project/contr/addMemberi",
-                data        :  file,
+                url         : "/Degree_Project/contr/addMember",
+                data        :  formData,
                 //contentType : "application/json; charset=utf-8",
                 //dataType    : "json",
-                processData : false,
+                processData : false,  // these has to be done in order upload image to work
                 contentType : false,
-                
                 //cache       : false,
                 //async       : false,
                 success     : function (data, status, jqXHR) {
@@ -309,32 +301,36 @@ $(document).ready(function(){
         	}
         	else{
         		
-        		var formData = {
-            			"id"                : id,
-                		"firstName"         : firstName,
-                		"lastName"          : lastName,
-                		"address"           : address,
-                		"phNumber"          : phNumber,
-                		"dateOfBirth"       : dateOfBirth,
-                		"email"             : email,
-                		"membershipFrom"    : membershipFrom,
-                		"membershipTo"      : membershipTo,
-                		"programme"         : programme,
-                		"paid"              : paid,
-                		"programmeState"    : programmeState,
-                		"updateDescription" : updateDescription,
-                		"programmeBooked"   : programmeBooked
-                }
+        		var formData = new FormData();
+        		
+        		formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
+            	formData.append("image", $("input[type=file]")[0].files[0]); // 'input[type=file][0]' in 'member_profile_left_sidebar'
+            	formData.append("id", id);
+            	formData.append("firstName", firstName);
+            	formData.append("lastName", lastName);
+            	formData.append("address", address);
+            	formData.append("phNumber", phNumber);
+            	formData.append("dateOfBirth", dateOfBirth);
+            	formData.append("email", email);
+            	formData.append("membershipFrom", membershipFrom);
+            	formData.append("membershipTo", membershipTo);
+            	formData.append("programme", programme);
+            	formData.append("paid", paid);
+            	formData.append("programmeState", programmeState);
+            	formData.append("updateDescription", updateDescription);
+            	formData.append("programmeBooked", programmeBooked);
             	
             	$.ajax({
             		
             		type        : "POST",
                     url         : "/Degree_Project/contr/updateMember",
-                    data        : JSON.stringify(formData),
-                    contentType : "application/json; charset=utf-8",
-                    dataType    : "json",
-                    processData : true,
-                    async       : false,	
+                    data        : formData,
+                    //contentType : "application/json; charset=utf-8",
+                    //dataType    : "json",
+                    processData : false,  // these has to be done in order upload image to work
+                    contentType : false,
+                    //cache       : false,
+                    //async       : false,	
                     success     : function (data, status, jqXHR){
                     	
                     	// show member details in 'member_data' class
@@ -486,6 +482,14 @@ function assignNoMembership(value){
 	if(value.length === 0){
 		
 		value = "no membership";
+	}
+	return value;
+}
+function assignZero(value){
+	
+	if(value.length === 0){
+		
+		value = "0.00";
 	}
 	return value;
 }

@@ -247,32 +247,26 @@
 }
 /*-------- END OF 'member_data' AND 'member_data_update' FIELDS --------------------------------------------------------------*/
 
+/*============================================================================================================================================*/
+/*------ LEFT SIDEBAR ------------------------------------------------------------------------------------------------------------------------*/
 .member_profile_left_sidebar img{
-	
-   width: 214px;
-   height: 240px;
+   width: 100%;
+   height: auto;
    border-radius: 5px;
    border: 1px solid #D3D3D3;
    box-shadow : 4px 4px 4px black;
+   overflow: hidden;
 }
-.member_profile_left_sidebar #image{
-    margin: 10px 30px 20px 20px;
-    width: 214px;
-    height: 240px;
-}
-
-
-.member_profile_left_sidebar #photo_camera{
+.member_profile_left_sidebar .image{
     margin: 3px 30px 20px 20px;
     width: 214px;
     height: 240px;
-    display: none;
     border-radius: 5px;
-    border: 1px solid #D3D3D3;
-    box-shadow : 4px 4px 4px black;
+    
+    overflow: hidden;
 }
 
-.member_profile_left_sidebar #photo_button{
+.member_profile_left_sidebar .photo_button{
     text-align: center;
     margin: 0px 0px 20px 50px;
     width: 155px;
@@ -280,15 +274,15 @@
     border-radius: 5px;
     box-shadow : 4px 4px 4px black;
     cursor: pointer;
-    visibility: hidden;
     color: blue;
     background: #C2C2D6;
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
 }
-
-.member_profile_left_sidebar #shoot_button{
+.member_profile_left_sidebar .shoot_button{
+    color: green;
+    display: none;
     text-align: center;
     margin: 0px 0px 20px 50px;
     width: 155px;
@@ -296,26 +290,47 @@
     border-radius: 5px;
     box-shadow : 4px 4px 4px black;
     cursor: pointer;
-    color: green;
-    display: none;
     background: #C2C2D6;
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
 }
-.member_profile_left_sidebar #generate_button{
+
+/*----- upload picture button -----------------------------*/
+input[type="file"]{
+	
+	display: none	;
+}
+.member_profile_left_sidebar .upload_picture_button{
+	
+	width: 155px;
+    height: 30px;
+    
+    margin: 0px 0px 20px 50px;
+    
+    display: block;
+    background: #C2C2D6;
+    cursor: pointer;
+    
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+.member_profile_left_sidebar .generate_button{
     text-align: center;
-    margin: 0px 0px 35px 50px;
+    margin: 0px 0px 35px 20px;
     width: 155px;
     height: 30px;
     border-radius: 5px;
     box-shadow : 4px 4px 4px black;
     cursor: pointer;
+    visibility: hidden;
     background: #C2C2D6;
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
 }
+/*==================================================================================================================================================*/
 #cancel_update{
     margin: 12px 0px 0px 0px;
     border-radius: 5px;

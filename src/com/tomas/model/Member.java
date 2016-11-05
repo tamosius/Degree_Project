@@ -3,13 +3,12 @@ package com.tomas.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.jdbc.core.support.SqlLobValue;
 
-//@Entity  // tells hibernate that the class is an entity to persist or hold data to or from database
-//@Table(name="MEMBERS")  // specify table name to read/write data
+
 public class Member {
 
-	private CommonsMultipartFile fileUploadPicture;
+	private SqlLobValue insertImage; // insert BLOB value into database
 	
 	private int id;
 	private String firstName;
@@ -61,13 +60,14 @@ public class Member {
 		//this.dateJoined = dateFormat.format(date);
 	}
 	
+    
 
-	public CommonsMultipartFile getFileUploadPicture() {
-		return fileUploadPicture;
+	public SqlLobValue getInsertImage() {
+		return insertImage;
 	}
 
-	public void setFileUploadPicture(CommonsMultipartFile fileUploadPicture) {
-		this.fileUploadPicture = fileUploadPicture;
+	public void setInsertImage(SqlLobValue insertImage) {
+		this.insertImage = insertImage;
 	}
 
 	public int getId() {
@@ -239,7 +239,8 @@ public class Member {
 
 	/*----------------- 'MEMBER_ATTENDANCE' TABLE ------------------------------------------*/
 	public String getVisitedTimestamp() {
-		return visitedTimestamp;
+		return visitedTimestamp;//@Entity  // tells hibernate that the class is an entity to persist or hold data to or from database
+		//@Table(name="MEMBERS")  // specify table name to read/write data
 	}
 
 	public void setVisitedTimestamp(String visitedTimestamp) {

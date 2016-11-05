@@ -45,6 +45,7 @@
 <script type="text/javascript"
 	src="resources/javascript/jquery-1.11.3.js"></script>
 
+<script src="resources/javascript/path_for_image.js"></script>
 <script src="resources/javascript/add_update_member.js"></script>
 
 <script src="resources/javascript/bottom_panel.js"></script>
@@ -53,8 +54,6 @@
 <script src="resources/javascript/insert_recently_visited.js"></script>
 <script src="resources/javascript/calendar.js"></script>
 
-
-<script src="resources/javascript/products_sales.js"></script>
 <script src="resources/javascript/delete_member.js"></script>
 <script src="resources/javascript/tooltips.js"></script>
 <script src="resources/javascript/visits_popup.js"></script>
@@ -113,8 +112,8 @@
 		
 		<hr>
 		<div>
-			<button type="button" id="confirm_button">Yes</button>
-			<button type="button" id="cancel_button">No</button>
+			<button type="button" class="confirm_button">Yes</button>
+			<button type="button" class="cancel_button">No</button>
 		</div>
 	</div>
 	<!------------------ BACKGROUND OVERLAY, WHEN SHOWING 'add_member' or 'update_member' ------------------------------------------------------------------>
@@ -172,45 +171,22 @@
 
 				<!-- member profile left sidebar -------------------->
 				<div class="member_profile_left_sidebar">
-					<script language="JavaScript">
-			
-		</script>
 
-	<!--   	<div style="width: 330px; float: left;">
-			<div id="webcam"></div>
-			<div style="margin: 5px;">
-				<img src="webcamlogo.png" style="vertical-align: text-top" /> <select
-					id="cameraNames" size="1" onChange="changeCamera()"
-					style="width: 245px; font-size: 10px; height: 25px;">
-				</select>
-			</div>
-		</div>
-		<div style="width: 135px; float: left;">
-			<p>
-				<button class="btn btn-small" id="btn1" onclick="base64_tofield()">Snapshot
-					to form</button>
-			</p>
-			<p>
-				<button class="btn btn-small" id="btn2" onclick="base64_toimage()">Snapshot
-					to image</button>
-			</p>
-		</div>
-		<div style="width: 200px; float: left;">
-			<p>
-				<textarea id="formfield" style="width: 190px; height: 70px;"></textarea>
-			</p>
-			<p>
-				<img id="image" style="width: 200px; height: 153px;" />
-			</p>
-		</div> -->
-					<div id="take_photo">
-						<button type="button" name="take_photo" id="photo_button">Update
-							Photo</button>
-						<button type="button" name="take_photo" id="shoot_button">Take
-							a Snapshot</button>
+					<div class="image">
+						<img src="resources/images/no_photo.png" alt="foto" />
 					</div>
+
+					<div id="take_photo">
+						<button type="button" name="take_photo" class="photo_button">New
+							Photo</button>
+						<button type="button" name="take_photo" class="shoot_button">Take
+							a Snapshot</button>
+						<button type="button" class="upload_picture_button">Upload
+							Picture</button>
+					</div>
+					<input type="file" id="member_profile_upload" name="member_profile"/>
 					<div id="generate_code">
-						<button type="button" name="generate_code" id="generate_button">Generate
+						<button type="button" name="generate_code" class="generate_button">Generate
 							Barcode</button>
 					</div>
 				</div>
@@ -455,20 +431,20 @@
 			</div>
 			<hr>
 			<div class="add_member_left_sidebar">
-				<div id="image">
+				<div class="image">
 					<img src="resources/images/no_photo.png" alt="foto" />
 				</div>
 				
 				<div id="take_photo">
-					<button type="button" name="take_photo" id="photo_button">New
+					<button type="button" name="take_photo" class="photo_button">New
 						Photo</button>
-					<button type="button" name="take_photo" id="shoot_button">Take
+					<button type="button" name="take_photo" class="shoot_button">Take
 						a Snapshot</button>
-                    <button type="button" id="upload_picture_button">Upload Picture</button>
+                    <button type="button" class="upload_picture_button">Upload Picture</button>
 				</div>
-				<input type="file" id="file_upload" />
+				<input type="file" id="add_member_upload" name="add_member"/>
 				<div id="generate_code">
-					<button type="button" name="generate_code" id="generate_button">Generate
+					<button type="button" name="generate_code" class="generate_button">Generate
 						Barcode</button>
 				</div>
 			</div>
