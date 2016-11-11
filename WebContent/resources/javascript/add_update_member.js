@@ -186,10 +186,16 @@ $(document).ready(function(){
         	/* SUBMIT FORM VALIDATED OK, MAKE A JAVASCRIPT OBJECT, STRINGIGY AND SEND TO WEBSERVICE, 
              * INSERT DATA INTO DATABASE  */
             
+            console.log("file: " + $("input[type=file]")[2].files[0]);
+            console.log("value: " + $("#add_member_upload").val().length);
+            //$("#add_member_upload").val("resources/images/no_photo.png");
+            console.log("updated value: " + $("#add_member_upload").val());
+            console.log("img: " + $(".add_member_left_sidebar img").val());
             
             var formData = new FormData();
             formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
-        	formData.append("image", $("input[type=file]")[1].files[0]); // 'input[type=file][1]' in 'add_member_left_sidebar'
+        	formData.append("image", $("input[type=file]")[2].files[0]); // 'input[type=file][2]' in 'add_member_left_sidebar'
+            //formData.append("image", "");
         	formData.append("firstName", firstName);
         	formData.append("lastName", lastName);
         	formData.append("address", address);
@@ -203,6 +209,8 @@ $(document).ready(function(){
         	formData.append("programmeState", programmeState);
         	formData.append("updateDescription", updateDescription);
         	formData.append("programmeBooked", programmeBooked);
+        	
+        	console.log("get: " + formData.get("image"));
             
             $.ajax({
                 type        : "POST",
@@ -304,7 +312,7 @@ $(document).ready(function(){
         		var formData = new FormData();
         		
         		formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
-            	formData.append("image", $("input[type=file]")[0].files[0]); // 'input[type=file][0]' in 'member_profile_left_sidebar'
+            	formData.append("image", $("input[type=file]")[1].files[0]); // 'input[type=file][1]' in 'member_profile_left_sidebar'
             	formData.append("id", id);
             	formData.append("firstName", firstName);
             	formData.append("lastName", lastName);

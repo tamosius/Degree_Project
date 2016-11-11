@@ -30,15 +30,15 @@ public class MemberController {
 
 /*--------------- ADD A NEW MEMBER TO THE DATABASE ---------------------------------------------------------*/
 	@RequestMapping(value="/addMember", method=RequestMethod.POST, headers="Accept=application/json")
-	public Member addMember(@RequestParam("imageFor") String imageFor, @RequestParam ("image") CommonsMultipartFile image, @RequestParam ("firstName") String firstName,
+	public void addMember(@RequestParam("imageFor") String imageFor, @RequestParam CommonsMultipartFile image, @RequestParam ("firstName") String firstName,
 			@RequestParam("lastName") String lastName, @RequestParam("address") String address, @RequestParam("phNumber") String phNumber,
 			@RequestParam("dateOfBirth") String dateOfBirth, @RequestParam("email") String email, @RequestParam("membershipFrom") String membershipFrom,
 			@RequestParam("membershipTo") String membershipTo, @RequestParam("programme") String programme, @RequestParam("paid") String paid,
 			@RequestParam("programmeState") String programmeState, @RequestParam("updateDescription") String updateDescription,
 			@RequestParam("programmeBooked") String programmeBooked) {
-		
-		return memberService.addMember(imageFor, image, firstName, lastName, address, phNumber, dateOfBirth, email, membershipFrom,
-				membershipTo, programme, paid, programmeState, updateDescription, programmeBooked);
+		System.out.println("file: " + image.getOriginalFilename());
+		//return memberService.addMember(imageFor, image, firstName, lastName, address, phNumber, dateOfBirth, email, membershipFrom,
+				//, programme, paid, programmeState, updateDescription, programmeBooked);
 	}
 	
 /*-------------- UPDATE A MEMBER ---------------------------------------------------------------------------*/

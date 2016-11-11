@@ -7,6 +7,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.tomas.dao.BottomPanelReportsDAO;
 import com.tomas.dao.MemberDAO;
+import com.tomas.model.Email;
 import com.tomas.model.Member;
 
 public class MemberServiceImplementation implements MemberService{
@@ -25,6 +26,12 @@ public class MemberServiceImplementation implements MemberService{
 	
 	@Autowired
 	ResizePictureService resizePictureService;
+	
+	@Autowired
+	PasswordService passwordService;
+	
+	@Autowired
+	EmailService emailService;
 
 	/*------------- GET TOTAL NUMBER OF MEMBERS IN THE DATABASE ------------------------------------------------------------------*/
 	@Override
@@ -47,6 +54,7 @@ public class MemberServiceImplementation implements MemberService{
 		member.setAddress(address);
 		member.setPhNumber(phNumber);
 		member.setDateOfBirth(dateOfBirth);
+		member.setPassword(passwordService.getInitialPassword());  // get initial password when sign in for the first time
 		member.setEmail(email);
 		member.setMembershipFrom(membershipFrom);
 		member.setMembershipTo(membershipTo);
@@ -58,7 +66,18 @@ public class MemberServiceImplementation implements MemberService{
 		
 		member = memberDAO.addMember(member);
 		
-		saveImageService.saveImage(image, member.getId(), imageFor);
+		// compose initial Email
+		Email initialEmail = new Email();
+		initialEmail.setRecipient(member.getEmail());
+		initialEmail.setSubject("Welcome to the 'TM' gym!");
+		initialEmail.setInitialMessage(member.getFirstName(), member.getEmail(), member.getPassword());
+		initialEmail.setEmailMessage(initialEmail.getInitialMessage());
+		
+		// send composed initial email message
+		//emailService.sendEmail(initialEmail);
+		
+		// save picture
+		//saveImageService.saveImage(image, member.getId(), imageFor);
 		
 		return member;
 	}

@@ -52,14 +52,14 @@ public class MemberDAOImplementation implements MemberDAO {
 	@Override
 	public Member addMember(Member member) {
 		
-		String sql = " INSERT INTO members (first_name, last_name, ph_number, address, date_of_birth, email,"
-				   + " date_joined) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+		String sql = " INSERT INTO members (first_name, last_name, ph_number, address, date_of_birth,"
+				   + " password, email, date_joined) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		jdbcTemplate.update(sql, new Object[] { member.getFirstName().substring(0, 1).toUpperCase() + member.getFirstName().substring(1).toLowerCase(), 
 				member.getLastName().substring(0, 1).toUpperCase() + member.getLastName().substring(1).toLowerCase(), member.getPhNumber(), member.getAddress(),
-				member.getDateOfBirth(), member.getEmail()});
+				member.getDateOfBirth(), member.getPassword(), member.getEmail()});
 		
 		// get the ID of the last inserted member into the database 
 		// and use this ID for inserting data into 'membership_status' table

@@ -101,7 +101,7 @@ function displayEmailMembers(members){
 				
 			 "<tr class='row_data'>" +
                  "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-                 "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.email + "'></td>" +
+                 "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.email + "'><input type='hidden' value='" + value.firstName + "' /></td>" +
                  "<td id='second_column'><span id='check_in'>Check-in</span>" +value.firstName + " " + value.lastName + "</td>" +
                  "<td id='third_column'>" + addClass(value.email) + "</td>" + // 'addClass' function in 'add_update_member.js'
              "</tr>");                                                        // 'addClass' add style 'display_members.css' file
@@ -234,9 +234,9 @@ $(document).ready(function(){
 		$("#communications_table_body .row_data input").each(function(){
 			
 			if($(this).prop("checked") && ($(this).val().localeCompare("N / A")) !== 0){
-				
+				                                                                                       // value='" + $(this).next().val() + "'
 				// append only selected email addresses excluding 'N / A' field values
-				$(".send_email_window #recipients select").append("<option>" + $(this).val() + "</option>");
+				$(".send_email_window #recipients select").append("<option selected >" + $(this).val() + "</option>");
 			}
 			
 		});

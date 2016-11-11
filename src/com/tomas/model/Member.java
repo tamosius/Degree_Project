@@ -15,6 +15,7 @@ public class Member {
 	private String lastName;
 	private String phNumber;
 	private String address;
+	private String password;
 	private String email;
 	private String dateOfBirth;
 	private String dateJoined;
@@ -108,6 +109,14 @@ public class Member {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {

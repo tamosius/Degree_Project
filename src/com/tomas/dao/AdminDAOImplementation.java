@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.tomas.model.Admin;
-import com.tomas.service.HashPasswordService;
+import com.tomas.service.PasswordService;
 
 public class AdminDAOImplementation implements AdminDAO{
 
@@ -21,7 +21,7 @@ public class AdminDAOImplementation implements AdminDAO{
 	DataSource dataSource;
 	
 	@Autowired
-	HashPasswordService hashPassword;
+	PasswordService passwordService;
 	
 	
 /*------ RETURN MODELANDVIEW IF AUTHENTICATION IS SUCCESSFUL -----------------------------------------------------------------*/
@@ -70,7 +70,7 @@ public class AdminDAOImplementation implements AdminDAO{
 				   + " VALUES(?, ?, ?, ?, ?, NOW())";
 		
 		jdbcTemplate.update(sql, new Object[]{admin.getFirstName(), admin.getLastName(), admin.getUsername(),
-				admin.getEmail(), hashPassword.getHashPassword(admin.getPassword())});
+				admin.getEmail(), passwordService.getHashPassword(admin.getPassword())});
 		
 		return admin;
 	}

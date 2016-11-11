@@ -133,28 +133,34 @@
 	<!-- =========================================================================================================== -->
 	<!------------------ SEND EMAIL WINDOW -------------------------------------------------------------------->
 	<div class="send_email_window">
+	<form method="post" action="sendEmail/sendo" enctype="multipart/form-data">
 		<div id="recipients">
-			<label>Recipients:</label><select></select>
+			<label>Recipients:</label><select name="recipients" multiple ></select>
 		</div>
 		<div id="subject">
-			<label>Subject:</label><input type="text" id="subject_field" />
+			<label>Subject:</label><input type="text" id="subject_field" name="subject"/>
 		</div>
 		<div id="from_email">
 			<label>From Email:</label><input type="text" />
 		</div>
 
 		<div id="text_area_block">
-			<textarea></textarea>
+			<textarea name="message"></textarea>
+		</div>
+		<div id="attachments_area">
+			
 		</div>
 		<div id="bottom_panel">
 			<button type="button" id="add_attachment_button">Add
 				Attachment</button>
 			<button type="button" id="remove_attachment_button">Remove
 				Attachment</button>
-
-			<button type="button" id="send_email_button">Send Email</button>
+			<input type="file" id="email_attachment_upload" name="emailAttachment" size="60" />
+ 			
+			<button type="submit" id="send_email_button">Send Email</button>
 			<button type="button" id="cancel_email_button">Cancel Email</button>
 		</div>
+	</form>
 	</div>
 	<!-- =========================================================================================================== -->
 	
@@ -424,7 +430,7 @@
 
 	<!------------------ ADD MEMBER CONTENT ---------------------------------------------------------------------------------------------------------------->
 	<div class="add_member_content">
-		<form >
+		<form enctype="multipart/form-data">
 			<div class="add_member_top_panel">
 				<h1>New Member</h1>
 				<h3>Please fill out the form:</h3>

@@ -39,7 +39,7 @@
 	<bean id="bottomPanelReportsService"
 		class="com.tomas.service.BottomPanelReportsServiceImplementation" />
 	<bean id="fileUploadService" class="com.tomas.service.FileUploadServiceImplementation" />
-	<bean id="hashPasswordService" class="com.tomas.service.HashPasswordServiceImplementation" />
+	<bean id="passwordService" class="com.tomas.service.PasswordServiceImplementation" />
 	<bean id="insertBlobService" class="com.tomas.service.InsertBlobServiceImplementation" />
 	<bean id="saveImageService" class="com.tomas.service.SaveImageServiceImplementation" /> <!-- save image to disk -->
 	<bean id="resizePictureService" class="com.tomas.service.ResizePictureServiceImplementation" />
