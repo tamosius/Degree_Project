@@ -4,9 +4,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.tomas.model.Email;
-
 public interface EmailService {
+	
+	public void sendWelcomeEmail(String name, String username, String password);  // send welcome email when person join the club
 
-	public String sendEmail(HttpServletRequest request, CommonsMultipartFile emailAttachment);  // send email with attachments if required
+	public String sendEmail(HttpServletRequest request, CommonsMultipartFile emailAttachment);  // send regular email with attachments if required
 }

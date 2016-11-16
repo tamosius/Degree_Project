@@ -147,13 +147,14 @@ $(document).ready(function(){
             data: {id : id},
             dataType: "json",
             processData: true,
+            cache  : false,
             success: function (data, status, jqXHR) {
             	
             	// assign data to variable to use it later in update profile state
             	// if user clicks 'cancel' button
             	memberProfile = data;
-            	
-            	$(".member_profile_left_sidebar .image img").prop("src", "resources/images/membersImages/" + data.id + ".jpg");
+            	console.log("executed: " + parseInt(Math.random() * 10000000));
+            	$(".member_profile_left_sidebar .image img").attr("src", "resources/images/membersImages/" + data.id + ".jpg?" + parseInt(Math.random() * 1000000));
             	
             	$(".member_data #member_id").val(data.id);
             	$(".member_data label").text(data.id);

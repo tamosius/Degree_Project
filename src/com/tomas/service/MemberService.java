@@ -2,6 +2,8 @@ package com.tomas.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.tomas.model.Member;
@@ -10,9 +12,7 @@ public interface MemberService {
 
 	public int getTotalMembers();                  // get total number of members in the database
 
-	public Member addMember(String imageFor, CommonsMultipartFile image, String firstName, String lastName, String address, String phNumber,
-			String dateOfBirth, String email, String membershipFrom, String membershipTo, String programme, String paid,
-			String programmeState, String updateDescription, String programmeBooked);        // add member to the database
+	public Member addMember(HttpServletRequest request, CommonsMultipartFile image);        // add member to the database
 	
 	public Member updateMember(String imageFor, CommonsMultipartFile image, int id, String firstName, String lastName, String address, String phNumber,
 			String dateOfBirth, String email, String membershipFrom, String membershipTo, String programme, String paid,
@@ -25,6 +25,8 @@ public interface MemberService {
 	public Member getMemberProfile(int id);        // get member details by ID
 	
 	public List<Member> searchMember(String name); // search member(s) by name
+	
+	public List<Member> searchByNameOrId(String nameOrId); // search members by name or id
 
 	public List<Member> deleteMember(String id);   // delete member from the database
 	

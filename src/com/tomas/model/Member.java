@@ -20,6 +20,7 @@ public class Member {
 	private String dateOfBirth;
 	private String dateJoined;
 	private int memberAge;
+	private String imagePath;
 	
 	private String bookedTimestamp;
 	private String membershipFrom;
@@ -151,6 +152,13 @@ public class Member {
 		this.memberAge = memberAge;
 	}
 
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
 
 	/*----------------- PROBABLY SHOULD BE EXTENDED....----------------------------------- */
 	public String getBookedTimestamp() {

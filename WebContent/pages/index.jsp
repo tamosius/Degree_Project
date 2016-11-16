@@ -36,6 +36,8 @@
 	type="text/css" />
 <link href="resources/css/send_email_window.css" rel="stylesheet"
 	type="text/css" />
+<link href="resources/css/sell_reserve.css" rel="stylesheet"
+	type="text/css" />
 
 
 <!-- EXTRA CSS FOR 'dashboard.jsp' TEMPLATE 
@@ -59,6 +61,7 @@
 <script src="resources/javascript/visits_popup.js"></script>
 <script src="resources/javascript/loading_content.js"></script>
 <script src="resources/javascript/send_email.js"></script>
+<script src="resources/javascript/sell_reserve.js"></script>
 <script src="resources/javascript/file_upload.js"></script>
 <script src="resources/javascript/loading_mask.js"></script>
 <script src="resources/javascript/swfobject.js"></script>
@@ -120,6 +123,51 @@
 	<div class="background_overlay"></div>
 	<!------------------ BACKGROUND OVERLAY, WHEN SHOWING 'visited dates times' ---------------------------------------------------------------------------->
 	<div class="background_overlay_visits"></div>
+	
+	<!--================================================================================================================================================= -->
+	<!------------------ WINDOW ('Sell', 'Order', 'sell_reserve.css', 'sell_reserve.js' -------------------------------------------------------------------->
+	<div class="window">
+
+		<form>
+
+			<div class="top_panel"><input type="text" class="search_customer" /></div>
+
+			<div class="middle_panel">
+			<input type="hidden" id="product_id" value="" />
+			<div class="image">
+			<img src="resources/images/productsImages/no_image.jpg"/>
+			</div>
+			<div class="customer_names">
+			<div class="table_header"><table><tr><td class="first">Select</td><td class="second">Customer ID</td><td class="third">Name</td></tr></table></div>
+			<div class="table_body"><table></table></div>
+			
+			</div>
+			
+			
+			</div>
+
+			<div class="bottom_panel">
+
+				<div class="first_top"><div>Available:</div><span>6</span></div>
+				<div class="second_top"><div>Qty:</div><input type="text" id="qty" value="1"/></div>
+				<div class="first_bottom"><div>Unit Price:</div><span>20</span></div>
+				<div class="second_bottom"><div>Total Price:</div><span>20</span></div>
+				
+				<input type="submit" class="sell_button" value="Sell"/>
+				<input type="submit" class="reserve_button" value="Reserve"/>
+				<button type="button" class="cancel_button">Cancel</button>
+				
+
+
+
+			</div>
+
+		</form>
+
+
+	</div>
+	
+	
 	<!------------------ ERROR WINDOW ---------------------------------------------------------------------------------------------------------------------->
 	<div class="error_window"></div>
 	<!------------------ POPUP TO SHOW VISITED DATES AND TIMES WHEN CLICKED ON 'Visits' COLUMN ---------------->
@@ -448,7 +496,7 @@
 						a Snapshot</button>
                     <button type="button" class="upload_picture_button">Upload Picture</button>
 				</div>
-				<input type="file" id="add_member_upload" name="add_member"/>
+				<input type="file" id="add_member_upload" name="newMemberImage"/>
 				<div id="generate_code">
 					<button type="button" name="generate_code" class="generate_button">Generate
 						Barcode</button>
@@ -460,11 +508,11 @@
 				<input type="hidden" id="member_id" value="" />
 				<div class="add_member_data">
 					<span>First Name:<strong style="color: red;"> *</strong></span>  
-					 <input id="first_name" type="text" placeholder="enter First Name here.." autofocus />
+					 <input id="first_name" name="firstName" type="text" placeholder="enter First Name here.." autofocus />
 				</div>
 				<div class="add_member_data">
 					<span>Last Name:<strong style="color: red;"> *</strong></span> <input
-						id="last_name" type="text" name="lastName"
+						id="last_name" name="lastName" type="text" name="lastName"
 						placeholder="enter Last Name here.." />
 				</div>
 				<div class="add_member_data">
@@ -497,7 +545,7 @@
 				</div>
 
 				<div class="add_member_data">
-					<span>Paid €:</span> <input id="paid" type="text" name="paid"
+					<span>Paid €:</span> <input id="paid" type="text" name="paid" value="0"
 						placeholder="Paid.." />
 				</div>
 			</div>

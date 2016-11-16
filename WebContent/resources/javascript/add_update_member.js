@@ -27,6 +27,12 @@ $(document).ready(function(){
 /*----------- POP-UP WINDOW ('Add new Member' button) ------------------------------------------------------------*/
     $("body").delegate(".left_sidebar #add_member, .dashboard_top_left #add_button", "click", function(){
     	
+    	// display 'no_photo' picture
+    	$(".add_member_content .image img").attr("src", "resources/images/membersImages/no_photo.png");
+    	
+    	// clear upload file
+    	$(".add_member_content #add_member_upload").val("");
+    	
     	// clear 'input' fields and remove 'error' classes when loading new window
         $(".add_member_data input").each(function(){
         	
@@ -64,7 +70,7 @@ $(document).ready(function(){
         var paid = (assignZero($(this).find("#paid").val())).trim();                  // assign Zero if the field has been left blank in the form
                                                                                       // functions are in this file
         // this will be assigned when executing 'else if' statements
-        // in the 'new_member' of 'update_member'
+        // in the 'new_member' or 'update_member'
         var programmeState = "";
         var updateDescription = "";    
         
@@ -185,32 +191,10 @@ $(document).ready(function(){
         	
         	/* SUBMIT FORM VALIDATED OK, MAKE A JAVASCRIPT OBJECT, STRINGIGY AND SEND TO WEBSERVICE, 
              * INSERT DATA INTO DATABASE  */
-            
-            console.log("file: " + $("input[type=file]")[2].files[0]);
-            console.log("value: " + $("#add_member_upload").val().length);
-            //$("#add_member_upload").val("resources/images/no_photo.png");
-            console.log("updated value: " + $("#add_member_upload").val());
-            console.log("img: " + $(".add_member_left_sidebar img").val());
-            
-            var formData = new FormData();
-            formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
-        	formData.append("image", $("input[type=file]")[2].files[0]); // 'input[type=file][2]' in 'add_member_left_sidebar'
-            //formData.append("image", "");
-        	formData.append("firstName", firstName);
-        	formData.append("lastName", lastName);
-        	formData.append("address", address);
-        	formData.append("phNumber", phNumber);
-        	formData.append("dateOfBirth", dateOfBirth);
-        	formData.append("email", email);
-        	formData.append("membershipFrom", membershipFrom);
-        	formData.append("membershipTo", membershipTo);
-        	formData.append("programme", programme);
-        	formData.append("paid", paid);
-        	formData.append("programmeState", programmeState);
-        	formData.append("updateDescription", updateDescription);
-        	formData.append("programmeBooked", programmeBooked);
-        	
-        	console.log("get: " + formData.get("image"));
+        	var formData = new FormData($(this)[0]);
+        	formData.set("programmeState", programmeState);
+        	formData.set("updateDescription", updateDescription);
+        	formData.set("programmeBooked", programmeBooked);
             
             $.ajax({
                 type        : "POST",
@@ -505,7 +489,7 @@ function assignZero(value){
 /*--------- ADD CLASSES WITH COLORS FOR 'no membership', 'N / A', 'membership days left' (display_members.css)-----------*/
 function addClass(value){
 	
-    if((value.localeCompare("no membership") === 0) || (value.localeCompare("N / A") === 0)){
+    if((value.localeCompare("no membership") === 0) || (value.localeCompare("N / A") === 0) || (value.localeCompare("'Pay as You Go'") === 0)){
 		
 		value = "<div class='no_membership'>" + value + "</div>";  // css style in 'display_members.css' file
 	}

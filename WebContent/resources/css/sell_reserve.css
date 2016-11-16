@@ -1,0 +1,335 @@
+
+.window{
+	
+	position: absolute;
+	top: 100px;
+	right: 100px;
+	
+	width: 850px;
+	height: 368px;
+	
+	z-index: 110;
+	//box-shadow: 2px 2px 2px #ffffff;
+	
+	display: none;
+	
+	border: 1px #ffffff solid;
+	
+	
+}
+
+/*=================================================================================================================*/
+/*----- TOP PANEL -------------------------------------------------------------------------------------------------*/
+.window .top_panel{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+	width: 100%;
+	height: 40px;
+	
+	border-bottom: 1px #ffffff solid;
+}
+.window .search_customer{
+	
+	float: right;
+	width: 200px;
+	height: 25px;
+	
+	margin: 5px 10px 0px 0px;
+	padding-left: 7px;
+	
+	font-size: 16px;
+}
+
+/*==================================================================================================================*/
+/*---- MIDDLE PANEL ------------------------------------------------------------------------------------------------*/
+.window .image{
+	
+	position: absolute;
+	top: 42px;
+	left: 2px;
+	
+	width: 240px;
+	height: 240px;
+	
+	//border: 1px green solid;
+}
+.window .image img{
+	
+	height: 100%;
+}
+
+.window .customer_names{
+	
+	position: absolute;
+	top: 40px;
+	left: 240px;
+	right: 0;
+	bottom: 85px;
+	
+	background: #ffffff;
+	
+	//border: 1px pink solid;
+}
+
+/*----- table header in the middle_panel ---------*/
+.window .customer_names .table_header{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+	height: 40px;
+	
+	color: #ffffff;
+	background: linear-gradient(to top, lightblue, #00003D);
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+	
+	//border: 1px blue solid;
+}
+.window .customer_names .table_header .first{
+	
+	width: 70px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.window .customer_names .table_header .second{
+	
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.window .customer_names .table_header .third{
+	
+	width: 400px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	//border: 1px #ffffff solid;
+}
+
+/*------ table body in the middle_panel -----------*/
+.window .table_body{
+	
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	overflow-y: auto;
+	
+	//border: 1px green solid;
+}
+.window .customer_names .table_body .first{
+	
+	width: 70px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.window .customer_names .table_body .second{
+	
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.window .customer_names .table_body .third{
+	
+	width: 420px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border: 1px #ffffff solid;
+}
+.window .table_body table{
+	
+	border-collapse: collapse;
+}
+.window .table_body tr:nth-child(even){
+	
+	background: #E2E2E6;
+}
+.window .table_body tr:hover{
+	
+	color: white;
+    background: #B2BFD2;
+}
+.window .table_body table tr, .window .table_body .third{
+	
+	border: 1px #cccccc solid;
+}
+
+/*==================================================================================================================*/
+/*----- BOTTOM PANEL -----------------------------------------------------------------------------------------------*/
+.window .bottom_panel{
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	height: 80px;
+	
+	//border: 1px yellow solid;
+}
+.window .first_top{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	width: 190px;
+	height: 30px;
+	
+	padding: 10px 0px 0px 10px;
+	font-size: 19px;
+	
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+	
+	//border: 1px green solid;
+}
+.window .first_top div, .window .second_top div, .window .second_bottom div{
+	
+	display: inline;
+	margin-right: 30px;
+	
+	color: #ffffff;
+	
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+.window .first_bottom div{
+	
+	display: inline;
+	margin-right: 24px;
+}
+.window .first_top span, .window .first_bottom span, .window .second_bottom span{
+	
+	color: #ffffff;
+	
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.window .second_top{
+	
+	position: absolute;
+	top: 0;
+	left: 200px;
+	
+	padding: 10px 0px 0px 10px;
+	font-size: 19px;
+	
+	width: 190px;
+	height: 30px;
+	
+	//border: 1px blue solid;
+}
+.window .second_top #qty{
+	
+	width: 35px;
+	height: 20px;
+	
+	margin-top: -7px;
+	padding-left: 20px;
+	font-size: 16px;
+}
+.window .first_bottom{
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	
+	padding: 10px 0px 0px 10px;
+	font-size: 19px;
+	
+	width: 190px;
+	height: 30px;
+	
+	color: #ffffff;
+	
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+	
+	//border: 1px red solid;
+}
+.window .second_bottom{
+	
+	position: absolute;
+	bottom: 0;
+	left: 200px;
+	
+	padding: 10px 0px 0px 10px;
+	font-size: 19px;
+	
+	width: 190px;
+	height: 30px;
+	
+	//border: 1px yellow solid;
+}
+
+/*-- buttons in bottom_panel ----*/
+.window .cancel_button{
+	
+	position: absolute;
+	bottom: 5px;
+	right: 110px;
+	
+	width: 100px;
+	
+	cursor: pointer;
+	
+}
+.window .sell_button{
+	
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	
+	width: 100px;
+	
+	cursor: pointer;
+}
+.window .reserve_button{
+	
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	
+	width: 100px;
+	
+	cursor: pointer;
+}
+
+
+
+
+
+

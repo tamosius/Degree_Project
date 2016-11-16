@@ -16,6 +16,8 @@ public interface MemberDAO {
 
 	public Member addMember(Member member);        // add member to the database
 	
+	public void insertImagePath(int id, String path); // insert image path 
+	
 	public int insertRecentlyVisited(String id);   // insert recently visited member's ID and the time stamp
 
 	public List<Member> getMembersList();          // get whole members list
@@ -23,6 +25,8 @@ public interface MemberDAO {
 	public Member getMemberProfile(int id);        // get member details by ID
 	
 	public List<Member> searchMember(String name); // search member(s) by name
+	
+	public List<Member> searchByNameOrId(String nameOrId); // search members by name or id
 
 	public Member updateMember(Member member);     // update member details or status
 

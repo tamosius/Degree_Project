@@ -26,8 +26,11 @@
 				Display Products<input type="hidden" value="1" />
 			</div>
 
-			<div id="update_product">
-				Update Product<input type="hidden" value="2" />
+			<div id="sold_product">
+				Sold Products<input type="hidden" value="2" />
+			</div>
+			<div id="reserved_product">
+				Reserved Products<input type="hidden" value="3" />
 			</div>
 
 			<!--<div id="view_sales">View Sales<input type="hidden" value="3" /></div>
@@ -50,7 +53,7 @@
 
 					<div class="image_block">
 							<div class="image">
-								<img src="resources/images/no_photo.png" alt="foto" />
+								<img src="resources/images/productsImages/no_image.jpg" alt="foto" />
 							</div>
 
 							
@@ -58,34 +61,36 @@
 									Picture</button>
 							
 							<input type="file" id="add_new_product_upload"
-								name="add_new_product" />
+								name="newProductImage" />
 					</div>
 					<div>
-						<label>Category:</label> 
-				
-						<div class="radio_buttons"><input type="radio" name="category" value="gymEquipments" /><div>Gym Equipments</div></div>
-						<div class="radio_buttons"><input type="radio" name="category" value="accessories" /><div>Accessories</div></div>
-						<div class="radio_buttons"><input type="radio" name="category" value="protein" checked/><div>Protein</div></div>
-						
+							<label>Category:</label> 
+							<select name="productCategory" id="productCategory">
+								<option value="protein">Protein</option>
+								<option value="vitamins">Vitamins</option>
+								<option value="food supplement">Food Supplement</option>
+								<option value="accessories">Accessories</option>
+								<option value="gymEquipments">Gym Equipments</option>
+							</select>
 					</div>
 					<div>
 						<label>Product Name:</label> <input type="text"
-							id="product_name" value="" autocomplete="off"
+							id="product_name" name="productName" autocomplete="off"
 							placeholder="Please enter the Name..." />
 					</div>
 					<div>
 						<label>Manufacturer:</label> <input type="text" id=manufacturer
-							value="" autocomplete="off"
+							name="productManufacturer" autocomplete="off"
 							placeholder="Manufacturer..." />
 					</div>
 					<div>
 						<label>Price:</label> <input type="text" id="price"
-							value="" autocomplete="off"
+							name="productPrice" autocomplete="off"
 							placeholder="Please enter the Price..." />
 					</div>
 					<div>
 						<label>Units in Stock:</label> <input type="text" id="stock"
-							autocomplete="off" placeholder="Units in Stock..." />
+							name="unitsStock" autocomplete="off" placeholder="Units in Stock..." />
 					</div>
 					<div>
 						<label>Status:</label> 
@@ -95,7 +100,7 @@
 					
 					<div id="product_description_block">
 						<label>Product Description:</label>
-						<textarea></textarea>
+						<textarea name="productDescription"></textarea>
 					</div>
 
 				</div>
@@ -108,48 +113,44 @@
 		<!-- DISPLAY PRODUCTS BLOCK ------------------------------------------------------------------->
 			<div id="display_products_block">
 				<div id="products_types">
-					<input type="text" autocomplete="off"
-						value="Please select products category...." disabled="disabled" /> <span
-						style="display: none;" id="programme_id"></span> <img
+					<input type="text" autocomplete="off" id="product_category"
+						value="All Categories" disabled="disabled" /> <span
+						style="display: none;" id="product_id"></span> <img
 						id="products_drop_down_arrow"
 						src="resources/images/drop_down.png" alt="photo">
 					<div id="products_dropdown">
 						<div>
-							1 Month Membership
-							<p style="display: none;">1 Month Membership</p>
+							Protein
+							<p style="display: none;">Protein</p>
 							<span style="display: none;">1</span>
 						</div>
 						<div>
-							3 Months Membership
-							<p style="display: none;">3 Months Membership</p>
+							Vitamins
+							<p style="display: none;">Vitamins</p>
 							<span style="display: none;">2</span>
 						</div>
 						<div>
-							6 Months Membership
-							<p style="display: none;">6 Months Membership</p>
+							Food Supplement
+							<p style="display: none;">Food Supplement</p>
 							<span style="display: none;">3</span>
 						</div>
 						<div>
-							12 Months Membership
-							<p style="display: none;">12 Months Membership</p>
+							Accessories
+							<p style="display: none;">Accessories</p>
 							<span style="display: none;">4</span>
 						</div>
 						<div>
-							Pay as You Go
-							<p style="display: none;">Pay as You Go</p>
+							Gym Equipments
+							<p style="display: none;">Gym Equipments</p>
 							<span style="display: none;">5</span>
 						</div>
 					</div>
 				</div>
-				
+
 				<div id="products_displayed">
-				
-				<div class="product_info">
-				
-				
+
 				</div>
 				
-				</div>
 			</div>
 			<!-- END OF 'display_products_block' -->
 

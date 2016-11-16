@@ -11,6 +11,7 @@ public class Product {
 	private String status;
 	private String description;
 	private String addedDate;
+	private String imagePath;
 	
 	
 	// getters and setters
@@ -68,6 +69,12 @@ public class Product {
 	}
 	public void setAddedDate(String addedDate) {
 		this.addedDate = addedDate;
+	}
+	public String getImagePath() {
+		return imagePath;
+	}
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
 	}
 	
 	

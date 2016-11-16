@@ -136,8 +136,7 @@ public class MemberDAOImplementation implements MemberDAO {
 				   + " WHERE id = ?";
 		
 		// execute this update query in 'members' table
-		jdbcTemplate.update(sql, new Object[] { member.getFirstName().substring(0,  1).toUpperCase() + member.getFirstName().substring(1).toLowerCase(),
-				member.getLastName().substring(0, 1).toUpperCase() + member.getLastName().substring(1).toLowerCase(),
+		jdbcTemplate.update(sql, new Object[] { member.getFirstName(), member.getLastName(),
 				member.getPhNumber(), member.getAddress(), member.getEmail(), member.getDateOfBirth(), member.getId()});
 		
 		// insert query into 'membership_status' table
@@ -151,6 +150,19 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		// get updated member profile
 		return getMemberProfile(member.getId());
+	}
+	
+/*------------ INSERT IMAGE PATH INTO MEMBERS TABLE ------------------------------------------------------*/
+	@Override
+	public void insertImagePath(int id, String path){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " UPDATE members"
+				   + " SET image_path = '" + path + "'"
+				   + " WHERE id = " + id;
+		
+		jdbcTemplate.update(sql);
 	}
 	
 /*------------ INSERT RECENTLY VISITED MEMBER ------------------------------------------------------------*/
@@ -294,6 +306,36 @@ public class MemberDAOImplementation implements MemberDAO {
 			}
 		});
 		
+		return searchedMember;
+	}
+	
+/*-------------- SEARCH MEMBER BY NAME OR ID -----------------------------------------------------------------*/
+	@Override
+	public List<Member> searchByNameOrId(String nameOrId){
+		
+		List<Member> searchedMember = new ArrayList<>();
+		
+		String sql = " SELECT id, first_name, last_name"
+				   + " FROM members "
+				   + " WHERE first_name LIKE '" + nameOrId + "%' OR last_name LIKE '" + nameOrId + "%'";
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		searchedMember = jdbcTemplate.query(sql, new RowMapper<Member>(){
+			
+			@Override
+			public Member mapRow(ResultSet resultSet, int rowNumber)throws SQLException{
+				
+				Member member = new Member();
+				
+				member.setId(resultSet.getInt("id"));
+				member.setFirstName(resultSet.getString("first_name"));
+				member.setLastName(resultSet.getString("last_name"));
+				
+				return member;
+			}
+		});
+		System.out.println("searched: " + searchedMember.size());
 		return searchedMember;
 	}
 

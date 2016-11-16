@@ -1,5 +1,5 @@
 
-/*------ WHOLE CONTENT OF 'settings.jsp' ------------------------------------------------------------------------------------------*/
+/*------ WHOLE CONTENT OF 'products_sales.jsp' -------------------------------------------------------------------------------------*/
 .products_content{
 	
 	position: relative;
@@ -7,7 +7,7 @@
 	height: calc(100vh - 93px);
 }
 
-/*------- SETTINGS LEFT BLOCK ------------------------------------------------------------------------------------------------------*/
+/*------- PRODUCTS LEFT BLOCK ------------------------------------------------------------------------------------------------------*/
 #left_products_block{
 	
 	position: absolute;
@@ -88,7 +88,8 @@
 }
 
 /*-------- SELECTION BUTTONS IN THE LEFT ('admin details', 'programmes prices', 'products sales') ----------------------------------*/
-#left_products_block #add_new_product, #left_products_block #display_products, #left_products_block #update_product{
+#left_products_block #add_new_product, #left_products_block #display_products, 
+#left_products_block #sold_product, #left_products_block #reserved_product{
 	
 	line-height: 50px;
 	
@@ -106,7 +107,8 @@
 	border-bottom: 1px #ffffff solid;
 	
 }
-#left_products_block #add_new_product:hover, #left_products_block #display_products:hover, #left_products_block #update_product:hover{
+#left_products_block #add_new_product:hover, #left_products_block #display_products:hover,
+ #left_products_block #update_product:hover, #left_products_block #sold_product:hover, #left_products_block #reserved_product:hover{
 	
 	color: #ffffff;
 	
@@ -252,37 +254,6 @@
 
 
 
-
-/*------- PROGRAMME FINAL PRICE -------------------------------------------------------------------------------------------------------*/
-#add_programme_block #add_programme_final_price, #programmes_settings_block #programme_final_price{
-	
-	position: absolute;
-	top: 40px;
-	right: 20px;
-	
-	width: auto;	
-}
-
-#add_programme_block #add_programme_final_price label, #programmes_settings_block #programme_final_price label{
-	
-	float: left;
-	
-	color: #2e4c84;
-	font-size: 22px;
-	font-weight: bold;
-}
-
-#add_programme_block #add_programme_final_price span, #programmes_settings_block #programme_final_price span{
-	
-	float: right;
-	
-	margin: 0px 15px 0px 15px;
-	
-	color: #73008C;
-	font-size: 22px;
-	font-weight: bold;
-}
-
 /*===================================================================================================================================*/
 
 /*------ IMAGE AND UPLOAD BUTTON ---------------------------------------------------------------------------------*/
@@ -325,16 +296,124 @@ input[type="file"]{
 	top: 80px;
 	left: 20px;
 	right: 20px;
-	border: 1px red solid;
+	
 	height: calc(100vh - 250px);
 	overflow-y: auto;
-}
-#products_displayed .product_info{
 	
-	height: 230px;
-	
-	border: 1px blue solid;
+	border-top: 1px black solid;
+	border-bottom: 1px black solid;
 }
+
+/*==================================================================================================================*/
+/*------- PRODUCT BLOCK (DISPLAYED WHEN 'Display Products' IS CLICKED ----------------------------------------------*/
+#products_displayed .product_block{
+	
+	position: relative;
+	
+	height: 180px;
+	
+	border-bottom: 1px black solid;
+}
+.product_block .image{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 27%;
+	
+	overflow: hidden;
+	
+	
+	//border: 1px black solid;
+}
+.product_block img{
+	
+	height: 100%;
+}
+.product_block .product_info_block{
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 73%;
+	
+	overflow: hidden;
+	//border: 1px green solid;
+}
+.product_info_block .product_info{
+	
+	width: auto;
+	margin: 4px 0px 0px 5px;
+	//border: yellow 1px solid;
+}
+.product_info_block .product_info div{
+	
+	display: inline-block;
+	width: 130px;
+	color: #2e4c84;
+	
+	font-size: 18px;
+	
+	//border: 1px green solid;
+}
+.product_info_block .product_info span{
+	
+	color: #73008C;
+}
+
+/*---- bottom panel with buttons in 'product_block' -------------*/
+.product_block .product_block_bottom{
+	
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	
+	width: 73%;
+	height: 30px;
+	
+	border-top: 1px #cccccc solid;
+}
+.product_block_bottom .order_button{
+	
+	width: 70px;
+	
+	float: left;
+	margin: 5px 0px 0px 5px;
+	
+	cursor: pointer;
+}
+.product_block_bottom .sell_button{
+	
+	width: 70px;
+	
+	float: left;
+	margin: 5px 0px 0px 5px;
+	
+	cursor: pointer;
+}
+.product_block_bottom .remove_button{
+	
+	width: 70px;
+	
+	color: #e60000;
+	float: right;
+	margin: 5px 5px 0px 0px;
+	
+	cursor: pointer;
+}
+.product_block_bottom .update_button{
+	
+	width: 70px;
+	
+	float: right;
+	margin: 5px 5px 0px 0px;
+	
+	cursor: pointer;
+}
+/*====================================================================================================================*/
+
+
 #add_new_product_fields .image_block{
 	
 	height: 260px;
@@ -368,6 +447,18 @@ input[type="file"]{
 	font-weight: bold;
 }
 
+#add_new_product_fields select{
+	
+	float: right;
+	width: 200px;
+	height: 30px;
+	
+	color: #73008C;
+	margin-top: 10px;
+	
+	outline: none;
+}
+
 #add_new_product_fields .radio_buttons{
 	
 	float: right;
@@ -386,7 +477,7 @@ input[type="file"]{
 	border: none;
 }
 
-/*-------- INPUTS IN ADD ADMIN AND PROGRAMMES SETTINGS FIELDS -----------------------------------------------------------------------------------------*/
+/*-------- INPUTS IN ADD PRODUCT AND DISPLAY PRODUCTS SETTINGS FIELDS --------------------------------------------------------------------------*/
 #add_new_product_fields div input{
 	
 	float: right;
@@ -450,7 +541,7 @@ input[type="file"]{
     border-radius: 2px;
     cursor: pointer;
     
-    background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: -webkit-linear-gradient(to#2e4c84;p, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
     background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
     transition: background 0.5s;
     

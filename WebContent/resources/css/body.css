@@ -48,10 +48,9 @@ body::after{
     width: 100%;
     height: 100%;
     background: #000000   ; //#E5E5EE;
+    //background: #ffffff;
     z-index: 79;
-    -moz-opacity: 0.3;
     opacity: .8;
-    filter: alpha(opacity=80);
 }
 
 .background_overlay_visits{

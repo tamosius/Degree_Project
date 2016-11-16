@@ -56,7 +56,7 @@ function readPictureURL(input, action) {  // action: 'add_member', 'member_profi
 
         reader.onload = function (e) {
         	
-        	if(action.localeCompare("add_member") === 0){
+        	if(action.localeCompare("newMemberImage") === 0){
         		
         		$(".add_member_left_sidebar .image img").attr('src', e.target.result);
         		
@@ -64,7 +64,7 @@ function readPictureURL(input, action) {  // action: 'add_member', 'member_profi
         		
         		$(".member_profile_left_sidebar .image img").attr('src', e.target.result);
         		
-        	}else if(action.localeCompare("add_new_product") === 0){
+        	}else if(action.localeCompare("newProductImage") === 0){  // value from 'products_sales.js' file
         		
         		$("#add_new_product_block .image img").attr('src', e.target.result);
         	

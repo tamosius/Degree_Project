@@ -1,71 +1,125 @@
 
+// display all products available
+function getAllProducts(){
+	
+	$.ajax({
+		
+		type: "GET",
+		url  : "/Degree_Project/products/getAllProducts",
+		dataType : "json",
+		success: function(data, status, e){
+			
+			displayProducts(data);
+		},
+		error: function(e){
+			
+			alert("Failed get All Products!");
+		}
+	});
+}
+
+// get products by category
+function getByCategoryProducts(category){
+	
+    $.ajax({
+		
+		type: "POST",
+		url  : "/Degree_Project/products/getByCategoryProducts",
+		data : {category : category},
+		dataType : "json",
+		success: function(data, status, e){
+			
+			displayProducts(data);
+		},
+		error: function(e){
+			
+			alert("Failed get Products by Category!");
+		}
+	});
+}
+
+// display products retrieved (all products or by category)
+function displayProducts(products){
+	
+	$("#display_products_block #products_displayed").empty();
+	
+	$.each(products, function(key, value){
+		
+		$("#display_products_block #products_displayed").append(
+				
+				"<div class='product_block'>"
+				   + "<input type='hidden' id='product_id' value='" + value.id + "' />"
+
+				   + "<div class='image'>"
+					  + "<img src='resources/images/productsImages/" + value.imagePath +"' />"
+				   + "</div>"
+				   
+				   + "<div class='product_info_block'>"
+
+					   + "<div class='product_info'>"
+						    + "<div>Price:</div>"
+						    + "<span id='price'>" + value.price + "</span>"
+					   + "</div>"
+					   
+					   + "<div class='product_info'>"
+						    + "<div>Product:</div>"
+						    + "<span>" + value.name + "</span>"
+					   + "</div>"
+					
+					   + "<div class='product_info'>"
+						    + "<div>Manufacturer:</div>"
+						    + "<span>" + value.manufacturer + "</span>"
+					   + "</div>"
+					
+					   + "<div class='product_info'>"
+						    + "<div>Units in Stock:</div>"
+						    + "<span id='available'>" + value.units + "</span>"
+					   + "</div>"
+					
+				       + "<div class='product_info'>"
+						    + "<div>Status:</div>"
+						    + "<span>" + value.status + "</span>"
+					   + "</div>"
+				   + "</div>"
+				   
+				   + "<div class='product_block_bottom'>"
+				        + "<button class='order_button'>Reserve</button>"
+				        + "<button class='sell_button'>Sell</button>"
+				        + "<button class='remove_button'>Remove</button>"
+				        + "<button class='update_button'>Update</button>"
+				   + "</div>"
+
+			    + "</div>"
+				); // end of 'append'
+		
+	}); // end of 'each' method
+}
+
+// clear all fields in 'Add New Product' section
+function clearAddNewProductFields(){
+	
+	$("#add_new_product_block #add_new_product_upload").val("");
+	$("#add_new_product_block .image img").attr("src", "resources/images/productsImages/no_image.jpg");
+	$("#add_new_product_block #product_name").val("");
+	$("#add_new_product_block #manufacturer").val("");
+	$("#add_new_product_block #price").val("");
+	$("#add_new_product_block #stock").val("");
+	$("#add_new_product_block #product_description_block textarea").val("");
+}
 
 
 /*====================================================================================================================================*/
 /*-------- JQUERY READY --------------------------------------------------------------------------------------------------------------*/
 $(document).ready(function(){
-	
-/*-------- DATE PICKERS FOR THE DATES IN THE SETTINGS PAGE ---------------------------------------------------------------------------*/
-	// start date
-	$(".settings_content").delegate("#add_programme_block #promotion_start_date, #programmes_settings_block #promotion_start_date", "focusin", function(){
 		
-		$(this).datepicker({
-			
-			showAnim : "slide",
-			dateFormat : "dd-mm-yy",
-			firstDay : 1,
-			changeYear : true,
-			yearRange  : "2012:2020",
-			
-			beforeShow: function (textbox, instance) {
-	            instance.dpDiv.css({
-	                    marginTop: 0 + 'px',
-	                    marginLeft: -30 + 'px'
-	            });
-	        },
-			
-			onSelect : function(date){
-				
-				startDate = date;
-			}
-		});
-	});
-	
-	// end date
-	$(".settings_content").delegate("#add_programme_block #promotion_end_date, #programmes_settings_block #promotion_end_date", "focusin", function(){
-		
-        $(this).datepicker({
-			
-			showAnim : "slide",
-			dateFormat : "dd-mm-yy",
-			firstDay : 1,
-			changeYear : true,
-			yearRange  : "2012:2020",
-			
-			beforeShow: function (textbox, instance) {
-	            instance.dpDiv.css({
-	                    marginTop: 0 + 'px',
-	                    marginLeft: -30 + 'px'
-	            });
-	        },
-			
-			onSelect : function(date){
-				
-				startDate = date;
-			}
-		});
-	});
-	
-
-	
 /*===================================================================================================================================*/
 /*--------- ADD NEW PRODUCT TO THE DATABASE -----------------------------------------------------------------------------------------*/
 	$("#add_new_product_block").delegate("form", "submit", function(event){
 		
 		// get the values from the fields and tags of the form
-		var formData = new FormData();
+		var formData = new FormData($(this)[0]);
 		
-		formData.append("imageFor", "products");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
+		/*formData.append("imageFor", "products");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
 		formData.append("image", $("input[type=file]")[2].files[0]); // 'input[type=file][2]' in 'add_new_product_block'
     	formData.append("category", $("input[name=category]:checked").val());
     	formData.append("name", $(this).find("#product_name").val());
@@ -73,7 +127,7 @@ $(document).ready(function(){
     	formData.append("price", $(this).find("#price").val());
     	formData.append("units", $(this).find("#stock").val());
     	formData.append("status", $("input[name=status]:checked").val());
-    	formData.append("description", $(this).find("#product_description_block textarea").val());
+    	formData.append("description", $(this).find("#product_description_block textarea").val());*/
 		
 		// clear 'delete_member_confirm_window' before showing new confirmation
         $(".confirm_settings_window .details_message").empty();
@@ -81,7 +135,7 @@ $(document).ready(function(){
 		$(".confirm_settings_window #top_message").text(" - Are you sure to add the Product?:");
         
         $(".confirm_settings_window .details_message")
-            .html("<div>Category:<label>" + $("input[name=category]:checked").val() + "</label></div>" +
+            .html("<div>Category:<label>" + $(this).find("#productCategory option:selected").text() + "</label></div>" +
             		
             	  "<div>Product Name:<label>" + $(this).find("#product_name").val() + "</label></div>" +
             		
@@ -95,8 +149,13 @@ $(document).ready(function(){
       
         // show up the 'delete_member_confirm_window' and background overlay also
         $(".confirm_window_background_overlay, .confirm_settings_window").slideDown(250);
-        
+        console.log("initial");
         $(".confirm_settings_window .confirm_button").click(function(){
+            console.log("bottom");
+            // remove a previously-attached event handler from the button
+            $(".confirm_settings_window .confirm_button").unbind("click");
+            
+            $(".confirm_window_background_overlay, .confirm_settings_window").slideUp(250);
             
         	$.ajax({
                 type        : "POST",
@@ -107,7 +166,7 @@ $(document).ready(function(){
                 processData : false,  // these has to be done in order upload image to work
                 contentType : false,
                 //cache       : false,
-                //async       : false,
+                async       : false,
                 success     : function (data, status, jqXHR) {
                     
             		// display successfully added product name in the 'popup_window'
@@ -119,8 +178,11 @@ $(document).ready(function(){
                 error: function (xhr) {
                     alert("Failed to add New Product!");
                 }
+                
             });
-        	$(".confirm_window_background_overlay, .confirm_settings_window").slideUp(250);
+        	$(".confirm_settings_window .confirm_button").unbind("click");
+        	
+        	clearAddNewProductFields();  // clear all fields after new product added
          });
         
     	
@@ -210,6 +272,8 @@ $(document).ready(function(){
 			// hide 'add_new_product_block', 'update_product_block', etc.
 			$("#add_new_product_block, #update_product_block").hide();
 			
+			getAllProducts();  // display all products available (function at the top file)
+			
 			$("#display_products_block").slideDown(250);
 			
 			
@@ -238,25 +302,14 @@ $(document).ready(function(){
 /*-------- SELECT PRODUCT CATEGORY FROM DROP-DOWN MENU ('Protein', 'Accessories', etc.) -------------------------------------------*/
 	$("#display_products_block").delegate("#products_dropdown div", "click", function(){
 		
-		// get the programme_id to use in the database
-		//var programmeId = $(this).find("span").text();
+		// get the category of products selected in menu
+		var category = $(this).find("p").text();
 		
-		//$("#programmes_settings_types #programme_id").text(programmeId);
+		// show product category selected (in drop-down menu)
+		$("#products_types #product_category").val(category);
 		
-		// display programme type selected from drop-down menu
-		//$("#right_settings_block #programmes_settings_types input").val($(this).find("p").text() );
-		
-		// retrieve data from the database and display it in the fields
-		//var data = retrieveSettingsData(settings.programmes[0], programmeId);
-		
-		//$("#programmes_settings_block #programme_final_price span").text(data.finalPrice);
-		//$("#programmes_settings_block #programme_price").val(data.programmePrice);
-		//$("#programmes_settings_block #programme_discount").val(data.programmeDiscount);
-		//$("#programmes_settings_block #programme_discount_percentage").val(data.programmeDiscountPercentage);
-		//$("#programmes_settings_block #promotion_start_date").val(data.programmePromotionStart);
-		//$("#programmes_settings_block #promotion_end_date").val(data.programmePromotionEnd);
-		//$("#programmes_settings_block #programme_description_block textarea").val(data.programmeDescription);
-		//$("#programmes_settings_block #programme_promotion_description_block textarea").val(data.programmePromotionDescription);
+		// get and display products by category (functions at the top file)
+		getByCategoryProducts(category.toLowerCase());
 	});
 	
 	
@@ -264,7 +317,6 @@ $(document).ready(function(){
 /*=====================================================================================================================================*/
 /*------- UPLOAD PICTURE --------------------------------------------------------------------------------------------------------------*/
 	$(".products_content").delegate("#add_new_product_block .upload_picture_button", "click", function(){
-		console.log("is clicked");
 		
 		$("#add_new_product_block #add_new_product_upload").trigger("click");
 	});
