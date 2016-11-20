@@ -303,7 +303,10 @@ input[type="file"]{
 	border-top: 1px black solid;
 	border-bottom: 1px black solid;
 }
-
+#products_displayed{
+	
+	height: calc(100vh - 185px);
+}
 /*==================================================================================================================*/
 /*------- PRODUCT BLOCK (DISPLAYED WHEN 'Display Products' IS CLICKED ----------------------------------------------*/
 #products_displayed .product_block{
