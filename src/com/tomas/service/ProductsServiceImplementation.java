@@ -77,4 +77,18 @@ public class ProductsServiceImplementation implements ProductsService{
 		
 		return productsDAO.reserveProduct(memberId, productId, quantity);
 	}
+	
+/*------ GET/DISPLAY SOLD PRODUCTS -------------------------------------------------------------------------*/
+	@Override
+	public List<Product> getSoldProducts(){
+		
+		return productsDAO.getSoldProducts();
+	}
+	
+/*------ GET/DISPLAY RESERVED PRODUCTS ---------------------------------------------------------------------*/
+	@Override
+	public List<Product> getReservedProducts(){
+		
+		return productsDAO.getReservedProducts();
+	}
 }

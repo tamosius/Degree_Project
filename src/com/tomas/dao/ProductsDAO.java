@@ -17,5 +17,9 @@ public interface ProductsDAO {
 	public String sellProduct(int memberId, int productId, int quantity, float totalPrice);  // save details within sold product
 	
 	public String reserveProduct(int memberId, int productId, int quantity);  // reserve the product for customer
+	
+	public List<Product> getSoldProducts();    // get/display sold products
+	
+	public List<Product> getReservedProducts();  // get/display reserved products
 }
 

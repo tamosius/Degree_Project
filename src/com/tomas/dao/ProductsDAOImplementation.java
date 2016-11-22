@@ -148,4 +148,47 @@ public class ProductsDAOImplementation implements ProductsDAO{
 		
 		return "Successfully reserved the product!";
 	}
+	
+/*------ GET/DISPLAY SOLD PRODUCTS -------------------------------------------------------------------------*/
+	@Override
+	public List<Product> getSoldProducts(){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " SELECT ";
+		
+		List<Product> soldProducts = jdbcTemplate.query(sql, new RowMapper<Product>(){
+			
+			@Override
+			public Product mapRow(ResultSet resultSet, int rowNumber){
+				
+				Product product = new Product();
+				
+				return product;
+			}
+		});
+		
+		return soldProducts;
+	}
+	
+/*------ GET/DISPLAY RESERVED PRODUCTS ---------------------------------------------------------------------*/
+	@Override
+	public List<Product> getReservedProducts(){
+		
+JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " SELECT ";
+		
+		List<Product> reservedProducts = jdbcTemplate.query(sql, new RowMapper<Product>(){
+			
+			@Override
+			public Product mapRow(ResultSet resultSet, int rowNumber){
+				
+				Product product = new Product();
+				
+				return product;
+			}
+		});
+		return reservedProducts;
+	}
 }

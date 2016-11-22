@@ -56,4 +56,11 @@ public class ProductsController {
 		
 		System.out.println("data: " + productId);
 	}
+	
+/*-------- GET/DISPLAY SOLD PRODUCTS ----------------------------------------------------------------------*/
+	@RequestMapping(value="/soldProducts", method=RequestMethod.POST, headers="Accept=application/json")
+	public List<Product> getSoldProducts(){
+		
+		return productsService.getSoldProducts();
+	}
 }
