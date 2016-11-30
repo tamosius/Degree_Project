@@ -84,9 +84,6 @@ $(document).ready(function(){
 /*------------------- CANCEL DELETE MEMBER PROFILE, 'No' BUTTON -------------------------------------------------------------------------------------- */
     $(".confirm_window #cancel_button").click(function(){
     	
-        $(".confirm_window_background_overlay, .confirm_window").animate({
-        	
-        	height: "toggle"
-        });
+        $(".confirm_window_background_overlay, .confirm_window").fadeOut(200);
     });
 });

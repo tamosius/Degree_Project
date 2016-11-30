@@ -119,7 +119,7 @@ public class MemberDAOImplementation implements MemberDAO {
 	public Member updateMember(Member member) {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		
+		System.out.println("programme booked: " + member.getProgrammeBooked() + " member id: " + member.getId());
 		// update 'membership_status' table and set 'programme_state' to 'inactive'
 		// if membership programme has been booked
 		if(member.getProgrammeBooked() == 1){
@@ -229,7 +229,7 @@ public class MemberDAOImplementation implements MemberDAO {
 				   + " members.address, members.ph_number, members.date_of_birth, members.email,"
 				   + " membership_status.programme, membership_status.membership_from, membership_status.membership_to,"
 				   + " membership_status.paid, DATE_FORMAT(members.date_joined, '%d-%m-%Y') AS date_joined,"
-				   + " membership_status.programme_state, membership_status.update_description"
+				   + " membership_status.programme_state, membership_status.update_description, members.image_path"
 				   + " FROM members"
 				   + " INNER JOIN membership_status"
 				   + " ON members.id = membership_status.id"
@@ -261,6 +261,7 @@ public class MemberDAOImplementation implements MemberDAO {
 					member.setDateJoined(resultSet.getString("date_joined"));
 					member.setProgrammeState(resultSet.getString("programme_state"));
 					member.setUpdateDescription(resultSet.getString("update_description"));
+					member.setImagePath(resultSet.getString("image_path"));
 					
 					return member;
 				}
@@ -315,9 +316,15 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		List<Member> searchedMember = new ArrayList<>();
 		
-		String sql = " SELECT id, first_name, last_name"
-				   + " FROM members "
-				   + " WHERE first_name LIKE '" + nameOrId + "%' OR last_name LIKE '" + nameOrId + "%'";
+		String sql = " SELECT m.id, m.first_name, m.last_name,"
+				   + " o.offer_percentage"
+				   + " FROM members m"
+				   + " LEFT JOIN offers o"
+				   + " ON m.id = o.member_id"
+				   + " WHERE first_name LIKE '" + nameOrId + "%' OR last_name LIKE '" + nameOrId + "%'"
+				   + " OR id LIKE '%" + nameOrId + "%'"
+				   + " AND o.end_date >= NOW()"
+				   + " AND o.accepted = 0";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
@@ -331,6 +338,7 @@ public class MemberDAOImplementation implements MemberDAO {
 				member.setId(resultSet.getInt("id"));
 				member.setFirstName(resultSet.getString("first_name"));
 				member.setLastName(resultSet.getString("last_name"));
+				member.setOfferPercentage(resultSet.getInt("offer_percentage"));
 				
 				return member;
 			}

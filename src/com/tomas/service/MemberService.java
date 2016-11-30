@@ -14,9 +14,7 @@ public interface MemberService {
 
 	public Member addMember(HttpServletRequest request, CommonsMultipartFile image);        // add member to the database
 	
-	public Member updateMember(String imageFor, CommonsMultipartFile image, int id, String firstName, String lastName, String address, String phNumber,
-			String dateOfBirth, String email, String membershipFrom, String membershipTo, String programme, String paid,
-			String programmeState, String updateDescription, String programmeBooked);     // update member details or status
+	public Member updateMember(HttpServletRequest request, CommonsMultipartFile image);     // update member details or status
 	
 	public int insertRecentlyVisited(String id);   // insert recently visited member's ID and the time stamp
 

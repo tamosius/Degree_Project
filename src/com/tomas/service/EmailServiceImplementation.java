@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Scanner;
 
 import javax.mail.internet.InternetAddress;
@@ -26,6 +29,7 @@ public class EmailServiceImplementation implements EmailService {
 	private JavaMailSender mailSender;
 
 	/*------- SEND WELCOME EMAIL WHEN PERSON JOIN THE CLUB ----------------------------------------------------*/
+	@Override
 	public void sendWelcomeEmail(String name, String username, String password) {
 		
 
@@ -52,8 +56,42 @@ public class EmailServiceImplementation implements EmailService {
 			}
 		});
 	}
+	
+/*------- SEND A THANK YOU AND AN OFFER EMAIL ----------------------------------------------------------------------------------------*/
+	@Override
+	public String sendOfferEmail(String subject, String name, String recipientEmail, String product, int offerPercentage, int offerDays) {
+		
+		// pass the number of days the offer will be available
+		String offerEndDate = getOfferEndDate(offerDays);  
+		
+		// get an offer email template
+		String emailTemplate = getOfferTemplate(name, product, offerEndDate, String.valueOf(offerPercentage));
+		
+		// send an email
+		mailSender.send(new MimeMessagePreparator() {
 
-	/*------ SEND REGULAR EMAIL WITH ATTACHMENTS IF REQUIRED --------------------------------------------------*/
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws MessagingException, javax.mail.MessagingException {
+
+				MimeMessageHelper message = new MimeMessageHelper(mimeMessage, true, "UTF-8");  // 'true' denotes that email can be send in html format
+
+				try {
+
+					message.setFrom(new InternetAddress("t.mikoliunas@gmail.com", "Tomas"));
+
+				} catch (UnsupportedEncodingException e) {
+
+					e.printStackTrace();
+				}
+				message.setTo(recipientEmail);
+				message.setSubject(subject);
+				message.setText(emailTemplate, true);  // 'true' denotes that email can be send in html format
+			}
+		});
+		return emailTemplate;
+	}
+
+/*------ SEND REGULAR EMAIL WITH ATTACHMENTS IF REQUIRED -------------------------------------------------------------------------------*/
 	@Override
 	public String sendEmail(HttpServletRequest request, CommonsMultipartFile emailAttachment) {
 
@@ -114,9 +152,9 @@ public class EmailServiceImplementation implements EmailService {
 	}
 	
 /*---------- READ WELCOME EMAIL TEMPLATE FROM A FILE ----------------------------------------------------------------------*/
-	public String getWelcomeTemplate(String name, String username, String password){
+	public String getWelcomeTemplate(String name, String emailAddress, String password){
 		
-		String message = "";
+		String template = "";
 		
 		String pathToFile = "email_templates" + File.separator + "welcomeEmail.txt";
 		
@@ -125,9 +163,9 @@ public class EmailServiceImplementation implements EmailService {
 			String getTemplate = input.useDelimiter("\\Z").next();  // read whole template into String with one call to 'next()'
 			
 			// replace String 'MEMBERNAME', 'MEMBERSUSERNAME', 'MEMBERPASSWORD' with appropriate values
-			message = getTemplate.replaceAll("MEMBERNAME", name);
-			message = message.replaceAll("MEMBERUSERNAME", username);
-			message = message.replaceAll("MEMBERPASSWORD", password);
+			template = getTemplate.replaceAll("MEMBERNAME", name);
+			template = template.replaceAll("MEMBERUSERNAME", emailAddress);
+			template = template.replaceAll("MEMBERPASSWORD", password);
 			
 			
 		}catch (Exception e) {
@@ -135,6 +173,49 @@ public class EmailServiceImplementation implements EmailService {
 			e.printStackTrace();
 		}
 						
-		return message;
+		return template;
+	}
+	
+/*---------- READ AN OFFER EMAIL TEMPLATE FROM A FILE ----------------------------------------------------------------------*/
+	public String getOfferTemplate(String name, String product, String offerEndDate, String offerPercentage){
+		
+		String template = "";
+		
+		String pathToFile = "email_templates" + File.separator + "productsOffer.txt";
+		
+		try(Scanner input = new Scanner(new BufferedReader(new InputStreamReader(getClass().getResourceAsStream(pathToFile))))){
+			
+			String getTemplate = input.useDelimiter("\\Z").next();  // read whole template into String with one call to 'next()'
+			
+			// replace String 'MEMBERNAME', 'MEMBERSUSERNAME', 'MEMBERPASSWORD' with appropriate values
+			template = getTemplate.replaceAll("MEMBERNAME", name);
+			template = template.replaceAll("PRODUCT", product);
+			template = template.replaceAll("OFFERDATE", offerEndDate);
+			template = template.replaceAll("OFFERPERCENTAGE", offerPercentage);
+			
+			
+		}catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+						
+		return template;
+	}
+	
+/*--------- GET AN OFFER END DATE BY A SPECIFIED OFFER DAYS NUMBER -----------------------------------------------------------*/
+	public String getOfferEndDate(int offerDays){
+		
+		// get today's date
+		Date today = new Date();
+		
+		// set date format
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		
+		// get instance of calendar
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(today);
+		calendar.add(Calendar.DATE, offerDays);
+		
+		return dateFormat.format(calendar.getTime());
 	}
 }

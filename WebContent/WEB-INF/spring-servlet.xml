@@ -43,6 +43,7 @@
 	<bean id="insertBlobService" class="com.tomas.service.InsertBlobServiceImplementation" />
 	<bean id="saveImageService" class="com.tomas.service.SaveImageServiceImplementation" /> <!-- save image to disk -->
 	<bean id="resizePictureService" class="com.tomas.service.ResizePictureServiceImplementation" />
+	<bean id="offerService" class="com.tomas.service.OfferServiceImplementation" />
 
 	<!-- dao beans -->
 	<bean id="memberDAO" class="com.tomas.dao.MemberDAOImplementation" />
@@ -53,6 +54,7 @@
 	<bean id="adminDAO" class="com.tomas.dao.AdminDAOImplementation" />
 	<bean id="communicationsDAO" class="com.tomas.dao.CommunicationsDAOImplementation" />
 	<bean id="fileUploadDAO" class="com.tomas.dao.FileUploadDAOImplementation" />
+	<bean id="offerDAO" class="com.tomas.dao.OfferDAOImplementation" />
 
 	<bean id="encoder"
 		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
@@ -62,9 +64,9 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/gym" />
-		<property name="username" value="root" />
-		<property name="password" value="tomas" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gym" />   <!-- 127.8.88.2 -->
+		<property name="username" value="root" />                         <!-- admin3hiZhxn -->
+		<property name="password" value="tomas" />                        <!-- wEKEIEV9jpq8 -->
 	</bean>
 
 	<!-- declare e-mail messages -->

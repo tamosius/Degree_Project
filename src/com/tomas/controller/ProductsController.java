@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.tomas.model.Product;
+import com.tomas.model.ProductReserved;
+import com.tomas.model.ProductSold;
 import com.tomas.service.ProductsService;
 
 @RestController
@@ -45,22 +47,30 @@ public class ProductsController {
 /*--------- SELL PRODUCT ----------------------------------------------------------------------------------*/
 	@RequestMapping(value="/sellProduct", method=RequestMethod.POST, headers="Accept=application/json")
 	public String sellProduct(@RequestParam("memberId") int memberId, @RequestParam("productId") int productId, @RequestParam("quantity") int quantity,
-			@RequestParam("totalPrice") float totalPrice){
+			@RequestParam("actualPrice") float actualPrice, @RequestParam("totalPrice") float totalPrice, @RequestParam("offerPercentage") float offerPercentage){
 		
-		return productsService.sellProduct(memberId, productId, quantity, totalPrice);
+		return productsService.sellProduct(memberId, productId, quantity, actualPrice, totalPrice, offerPercentage);
 	}
 	
 /*--------- RESERVE THE PRODUCT FOR THE CUSTOMER ----------------------------------------------------------*/
 	@RequestMapping(value="/reserveProduct", method=RequestMethod.POST, headers="Accept=application/json")
-	public void reserveProduct(@RequestParam("memberId") int memberId, @RequestParam("productId") int productId, @RequestParam("quantity") int quantity){
+	public String reserveProduct(@RequestParam("memberId") int memberId, @RequestParam("productId") int productId, @RequestParam("quantity") int quantity,
+			@RequestParam("totalPrice") float totalPrice){
 		
-		System.out.println("data: " + productId);
+		return productsService.reserveProduct(memberId, productId, quantity, totalPrice);
 	}
 	
 /*-------- GET/DISPLAY SOLD PRODUCTS ----------------------------------------------------------------------*/
-	@RequestMapping(value="/soldProducts", method=RequestMethod.POST, headers="Accept=application/json")
-	public List<Product> getSoldProducts(){
+	@RequestMapping(value="/soldProducts", method=RequestMethod.GET, headers="Accept=application/json")
+	public List<ProductSold> getSoldProducts(){
 		
 		return productsService.getSoldProducts();
+	}
+	
+/*-------- GET/DISPLAY RESERVED PRODUCTS ------------------------------------------------------------------*/
+	@RequestMapping(value="/reservedProducts", method=RequestMethod.GET, headers="Accept=application/json")
+	public List<ProductReserved> getReservedProducts(){
+		
+		return productsService.getReservedProducts();
 	}
 }

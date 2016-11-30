@@ -60,7 +60,7 @@ function readPictureURL(input, action) {  // action: 'add_member', 'member_profi
         		
         		$(".add_member_left_sidebar .image img").attr('src', e.target.result);
         		
-        	}else if(action.localeCompare("member_profile") === 0){
+        	}else if(action.localeCompare("memberProfileImage") === 0){
         		
         		$(".member_profile_left_sidebar .image img").attr('src', e.target.result);
         		

@@ -147,68 +147,38 @@
 					</div>
 				</div>
 
-				<div id="products_displayed">
+				<div class="products_displayed">
 
 				</div>
 				
 			</div>
 			<!-- END OF 'display_products_block' -->
 
-		<!-- ADD ADMIN BLOCK --------------------------------------------------------------->
-		<div id="update_product_block">
-			<div>
-				<span>Add New Admin:</span>
+		<!-- DISPLAY SOLD PRODUCTS ALONG WITH CUSTOMER DETAILS ----------------------------->
+		<div id="sold_products_block">
+			
+			<div class="products_displayed">
+
 			</div>
-			<form>
-				<div id="add_admin_fields">
-
-					<div>
-						<label>First Name:</label> <input type="text"
-							id="admin_first_name" value="" autocomplete="off"
-							placeholder="Please enter first name..." />
-					</div>
-					<div>
-						<label>Last Name:</label> <input type="text" id="admin_last_name"
-							value="" autocomplete="off"
-							placeholder="Please enter last name..." />
-					</div>
-					<div>
-						<label>Username:</label> <input type="text" id="admin_username"
-							value="" autocomplete="off"
-							placeholder="Please enter username..." />
-					</div>
-					<div>
-						<label>Email:</label> <input type="text" id="admin_email"
-							autocomplete="off" placeholder="Please enter email..." />
-					</div>
-					<div>
-						<label>Password:</label> <input type="password"
-							id="admin_password" autocomplete="off"
-							placeholder="Please enter password..." />
-					</div>
-					<div>
-						<label>Re-type Password:</label> <input type="password"
-							id="admin_retype_password" autocomplete="off"
-							placeholder="Re-type password..." />
-					</div>
-
-				</div>
-
-				<input type="submit" id="add_admin_submit_button" value="Add Admin" />
-			</form>
 		</div>
-		<!-- END OF 'add_admin_block' -->
+		<!-- END OF 'sold_products_block' -->
 
 		
 
 
-		<!-- PRODUCTS SETTINGS BLOCK ------------------------------------------------------->
-		<div id="products_settings_block"></div>
-		<!-- END OF 'products_settings_block' -->
+		<!-- RESERVED PRODUCTS BLOCK ------------------------------------------------------->
+		<div id="reserved_products_block">
+		
+			<div class="products_displayed">
+
+			</div>
+		</div>
+		<!-- END OF 'reserved_products_block' -->
 
 	</div>
 	<!-- END OF 'right_settings_block' -->
 	</div>
+	<!-- END OF 'products_content' ------>
 
 </body>
 </html>

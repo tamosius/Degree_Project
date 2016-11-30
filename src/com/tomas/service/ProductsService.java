@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.tomas.model.Product;
+import com.tomas.model.ProductReserved;
+import com.tomas.model.ProductSold;
 
 public interface ProductsService {
 
@@ -16,11 +18,11 @@ public interface ProductsService {
 	
 	public List<Product> displayProductsByCategory(String category);  // display products by the category
 	
-	public String sellProduct(int memberId, int productId, int quantity, float totalPrice);  // save details within sold product
+	public String sellProduct(int memberId, int productId, int quantity, float actualPrice, float totalPrice, float offerPercentage);    // save details within sold product
 	
-	public String reserveProduct(int memberId, int productId, int quantity);  // reserve the product for customer
+	public String reserveProduct(int memberId, int productId, int quantity, float totalPrice); // reserve the product for customer
 	
-	public List<Product> getSoldProducts();    // get/display sold products
+	public List<ProductSold> getSoldProducts();          // get/display sold products 
 	
-	public List<Product> getReservedProducts();  // get/display reserved products
+	public List<ProductReserved> getReservedProducts();  // get/display reserved products
 }

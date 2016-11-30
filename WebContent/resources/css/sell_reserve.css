@@ -160,6 +160,7 @@
 	
 	border-right: 1px #ffffff solid;
 }
+
 .window .customer_names .table_body .third{
 	
 	width: 420px;
@@ -171,6 +172,13 @@
 	
 	border: 1px #ffffff solid;
 }
+.window .table_body .third span{
+	
+	float: right;
+	//margin-right: 15px;
+	color: #023a0c;
+}
+
 .window .table_body table{
 	
 	border-collapse: collapse;
@@ -227,6 +235,7 @@
 	
 	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
 }
+
 .window .first_bottom div{
 	
 	display: inline;

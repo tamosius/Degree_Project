@@ -1,0 +1,115 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.top_block {
+
+	width: 60%;
+	height: 100px;
+}
+
+#name{
+
+	color: #2e4c84;
+	font-size: 18px;
+}
+
+.top_block .initials_description {
+	line-height: 100px;
+	width: 100%;
+	height: 100px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	font-size: 32px;
+	text-align: center;
+	font-weight: bold;
+	letter-spacing: 2px;
+	color: #ffffff;
+	background: #000080;
+}
+
+.middle_block{
+	
+	width: 60%;
+	height: 50px;
+}
+
+.welcome_to_website {
+	
+	line-height: 50px;
+	width: 100%;
+	height: 50px;
+	font-size: 17px;
+	text-align: center;
+	font-weight: bold;
+    color: #ffffff;
+	background: #000080;
+}
+
+pre {
+
+	font-size: 15px;
+	font-family: "Arial";
+}
+
+span {
+	color: #ff6666;
+}
+
+a{
+
+	color: #2e4c84;
+	text-decoration: none;
+}
+
+a:hover{
+
+	color: #000080;
+}
+</style>
+</head>
+<body>
+
+	<div class="top_block">
+
+		<div class="initials_description">
+			Thank you from <span><i>ToMi</i></span> - and receive OFFERPERCENTAGE% offer deal!!
+		</div>
+	</div>
+
+	<pre><span id="name">Hi MEMBERNAME,</span>
+
+We appreciate your recent purchase of a <b>PRODUCT</b>. 
+Our company promises to provide high quality products for you as well as outstanding customer service for every transaction. 
+Thank you and we are always happy to serve you.
+
+As valuable customer the OFFERPERCENTAGE% discount is available for you on any order from our shop!
+The offer available for you until the <b>OFFERDATE</b></pre>
+
+	<div class="middle_block">
+		<div class="welcome_to_website">
+			Please checkout our website <span><i>ToMi</i></span> for great
+			deals!!
+		</div>
+	</div>
+
+<pre>Available at: <a href="http://www.google.ie">Some address here...</a></pre>
+
+	<hr>
+	<pre>
+Regards,
+<strong>Tomas Mikoliunas</strong>
+The director of <strong><span>ToMi</span> - Gym Club.</strong>
+
+</pre>
+
+</body>
+</html>
+
+
+

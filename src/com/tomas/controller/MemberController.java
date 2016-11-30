@@ -39,15 +39,9 @@ public class MemberController {
 	
 /*-------------- UPDATE A MEMBER ---------------------------------------------------------------------------*/
 	@RequestMapping(value="/updateMember", method=RequestMethod.POST, headers="Accept=application/json")
-	public Member updateMember(@RequestParam("imageFor") String imageFor, @RequestParam ("image") CommonsMultipartFile image, @RequestParam("id") int id, @RequestParam ("firstName") String firstName,
-			@RequestParam("lastName") String lastName, @RequestParam("address") String address, @RequestParam("phNumber") String phNumber,
-			@RequestParam("dateOfBirth") String dateOfBirth, @RequestParam("email") String email, @RequestParam("membershipFrom") String membershipFrom,
-			@RequestParam("membershipTo") String membershipTo, @RequestParam("programme") String programme, @RequestParam("paid") String paid,
-			@RequestParam("programmeState") String programmeState, @RequestParam("updateDescription") String updateDescription,
-			@RequestParam("programmeBooked") String programmeBooked) {
+	public Member updateMember(HttpServletRequest request, @RequestParam CommonsMultipartFile memberProfileImage) {
 		
-		return memberService.updateMember(imageFor, image, id, firstName, lastName, address, phNumber, dateOfBirth, email, membershipFrom,
-				membershipTo, programme, paid, programmeState, updateDescription, programmeBooked);
+		return memberService.updateMember(request, memberProfileImage);
 	}
 	
 /*--------------- INSERT RECENTLY VISITED MEMBER -----------------------------------------------------------*/

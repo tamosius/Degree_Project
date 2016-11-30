@@ -9,8 +9,9 @@ public class Product {
 	private float price;
 	private int units;
 	private String status;
-	private String description;
-	private String addedDate;
+	private String description;  
+	
+	private String addedDate;     // date added to the store database
 	private String imagePath;
 	
 	

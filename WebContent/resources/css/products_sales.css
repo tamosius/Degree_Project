@@ -148,7 +148,7 @@
 }
 
 /*------ hide all blocks when loading page -------------*/
-#add_new_product_block, #display_products_block, #update_product_block{
+#add_new_product_block, #display_products_block, #sold_products_block, #reserved_products_block{
 	
 	position: relative;
 	background: #ffffff;
@@ -290,7 +290,7 @@ input[type="file"]{
 
 /*------- ADD PRODUCTS FIELDS,
 --------- DISPLAY PRODUCTS FIELDS (prices, discounts, etc) --------------------------------------------------------*/
-#add_new_product_fields, #products_displayed{
+#add_new_product_fields, .products_displayed{
 	
 	position: absolute;
 	top: 80px;
@@ -303,13 +303,13 @@ input[type="file"]{
 	border-top: 1px black solid;
 	border-bottom: 1px black solid;
 }
-#products_displayed{
+.products_displayed{
 	
 	height: calc(100vh - 185px);
 }
 /*==================================================================================================================*/
-/*------- PRODUCT BLOCK (DISPLAYED WHEN 'Display Products' IS CLICKED ----------------------------------------------*/
-#products_displayed .product_block{
+/*------- PRODUCT BLOCK (DISPLAYED WHEN 'Display Products') IS CLICKED ---------------------------------------------*/
+.products_displayed .product_block{
 	
 	position: relative;
 	
@@ -365,7 +365,52 @@ input[type="file"]{
 	color: #73008C;
 }
 
-/*---- bottom panel with buttons in 'product_block' -------------*/
+/*---- bottom panel with small table for customer and dates details in 'products_block' ---*/
+.product_block .bottom_table{
+	
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	
+	width: 73%;
+	height: 70px;
+	
+	border: 1px #cccccc solid;
+}
+.product_block .bottom_table table{
+	
+	width: 100%;
+	height: 100%;
+	
+	table-layout: fixed;
+	//border-collapse: collapse;
+	text-align: center;
+	
+	border: 1px #cccccc solid;
+}
+.product_block .bottom_table .bottom_table_header{
+	
+	color: #ffffff;
+	//font-weight: bold;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+}
+.product_block .bottom_table .bottom_table_body{
+	
+	color: #062556;
+	
+	cursor: pointer;
+}
+.product_block .bottom_table .bottom_table_body:hover{
+	
+	background: #e3e9f2;
+	
+}
+
+/*---- bottom panel with buttons in 'product_block' ---------------------------------------*/
 .product_block .product_block_bottom{
 	
 	position: absolute;

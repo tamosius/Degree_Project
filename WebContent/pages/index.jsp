@@ -14,7 +14,7 @@
 	type="text/css" />
 <link href="resources/css/member_profile.css" rel="stylesheet"
 	type="text/css" />
-<link href="resources/css/delete_member.css" rel="stylesheet"
+<link href="resources/css/popup_windows.css" rel="stylesheet"
 	type="text/css" />
 <link href="resources/css/welcome_window.css" rel="stylesheet"
 	type="text/css" />
@@ -38,6 +38,8 @@
 	type="text/css" />
 <link href="resources/css/sell_reserve.css" rel="stylesheet"
 	type="text/css" />
+	<link href="resources/css/to_do_list.css" rel="stylesheet"
+	type="text/css" />
 
 
 <!-- EXTRA CSS FOR 'dashboard.jsp' TEMPLATE 
@@ -47,7 +49,7 @@
 <script type="text/javascript"
 	src="resources/javascript/jquery-1.11.3.js"></script>
 
-<script src="resources/javascript/path_for_image.js"></script>
+<script src="resources/javascript/offers_handler.js"></script>
 <script src="resources/javascript/add_update_member.js"></script>
 
 <script src="resources/javascript/bottom_panel.js"></script>
@@ -64,8 +66,7 @@
 <script src="resources/javascript/sell_reserve.js"></script>
 <script src="resources/javascript/file_upload.js"></script>
 <script src="resources/javascript/loading_mask.js"></script>
-<script src="resources/javascript/swfobject.js"></script>
-<script src="resources/javascript/scriptcam.js"></script>
+<script src="resources/javascript/to_do_list.js"></script>
 
 
 <title>DashBoard</title>
@@ -73,7 +74,7 @@
 <body>
 
     <div id="loading-mask">
-            <div class="loading-img"><img src="resources/images/loading4.gif" alt="MyPassionas" /></div>
+            <div class="loading-img"><img src="" alt="MyPassionas" /></div>
     </div>
     
     <!------------------ ADMIN USER FOR CURRENT SESSION ----------------------------------------------------------------------------------------------->
@@ -93,18 +94,25 @@
 	</div>
 	<!------------------ POP-UP WINDOW FOR SUCCESSFULLY ADDED/UPDATED/DELETED MEMBER PROFILE MESSAGE ------------------------------------------------------->
 	<div class="popup_window"></div>
-	<!------------------ BACKGROUND OVERLAY, ON PRESS 'delete' BUTTON (confirm) ---------------------------------------------------------------------------->
+	<!------------------ BACKGROUND OVERLAY, ON 'Delete Profile', 'All Settings', 'Remove Products' -------------------------------------------------------->
 	<div class="confirm_window_background_overlay"></div>
-	<!------------------ CONFIRM WINDOW WHEN (deleting member, updating details, etc) ---------------------------------------------------------------------->
+	<!------------------ CONFIRM WINDOW ON ('Delete Profile') ---------------------------------------------------------------------------------------------->
 	<div class="confirm_window">
-		<img src="resources/images/error.jpg" alt="confirm_image" /><span
+		<img class="top_image" src="resources/images/error.jpg" alt="confirm_image" /><span
 			id="confirm_message"></span>
+		<!--<div class="content">
+			<div class="left_content">
+				<img src="" alt="picture" />
+			</div>
+			<div class="right_content"></div>
+		</div>-->
 		<hr>
 		<div>
 			<button type="button" id="confirm_button">Yes</button>
 			<button type="button" id="cancel_button">No</button>
 		</div>
 	</div>
+	<!------------------ CONFIRM WINDOW ON ('All Settings') ------------------------------------------------------------------------------------------------>
 	<div class="confirm_settings_window">
 	    <div class="top_image">
 		    <img src="resources/images/error.jpg" alt="confirm_image" width="50px;" height="50px;"/>
@@ -148,10 +156,10 @@
 
 			<div class="bottom_panel">
 
-				<div class="first_top"><div>Available:</div><span>6</span></div>
+				<div class="first_top"><div>Available:</div><span></span></div>
 				<div class="second_top"><div>Qty:</div><input type="text" id="qty" value="1"/></div>
-				<div class="first_bottom"><div>Unit Price:</div><span>20</span></div>
-				<div class="second_bottom"><div>Total Price:</div><span>20</span></div>
+				<div class="first_bottom"><div>Unit Price €:</div><span></span></div>
+				<div class="second_bottom"><div>Total Price €:</div><span></span></div>
 				
 				<input type="submit" class="sell_button" value="Sell"/>
 				<input type="submit" class="reserve_button" value="Reserve"/>
@@ -169,7 +177,10 @@
 	
 	
 	<!------------------ ERROR WINDOW ---------------------------------------------------------------------------------------------------------------------->
+	<div class="error_background_overlay"></div>
 	<div class="error_window"></div>
+	
+	<!--==================================================================================================================================================-->
 	<!------------------ POPUP TO SHOW VISITED DATES AND TIMES WHEN CLICKED ON 'Visits' COLUMN ---------------->
 	<div class="popup_visits">                          <!-- <img src="resources/images/exit_window.jpg" /> 	 -->
 	<div class="popup_visits_header"><div class="exit_popup"></div><table><tr><td colspan="3" id="visitor_name"></td></tr>
@@ -238,7 +249,7 @@
 						<button type="button" class="upload_picture_button">Upload
 							Picture</button>
 					</div>
-					<input type="file" id="member_profile_upload" name="member_profile"/>
+					<input type="file" id="member_profile_upload" name="memberProfileImage"/>
 					<div id="generate_code">
 						<button type="button" name="generate_code" class="generate_button">Generate
 							Barcode</button>
@@ -252,19 +263,19 @@
 					<div id="first_block">
 						<div class="member_data">
 							<span>Member ID:</span><label>1001</label> <input type="hidden"
-								id="member_id" name="member_id" value="" /> <input
+								id="member_id" name="memberId" value="" /> <input
 								type="hidden" id="action" value="update_member" /> <input
 								type="hidden" name="membership_to_before_update"
 								id="membership_to_before_update" value="" />
 						</div>
 						<div class="member_data">
 							<span>First Name:</span><input id="first_name" type="text" autocomplete="off"
-								name="first_name" value="" disabled="disabled"
+								name="firstName" value="" disabled="disabled"
 								placeholder="enter First Name here.." />
 						</div>
 						<div class="member_data">
 							<span>Last Name:</span> <input id="last_name" type="text" autocomplete="off"
-								name="last_name" value="" disabled="disabled"
+								name="lastName" value="" disabled="disabled"
 								placeholder="enter Last Name here.." />
 						</div>
 						<div class="member_data">
@@ -274,12 +285,12 @@
 						</div>
 						<div class="member_data">
 							<span>Phone No.:</span> <input id="ph_number" type="text" autocomplete="off"
-								name="ph_number" value="" disabled="disabled"
+								name="phNumber" value="" disabled="disabled"
 								placeholder="enter Ph.No. here.." />
 						</div>
 						<div class="member_data">
 							<span>Date of Birth:</span> <input id="date_of_birth" type="text" autocomplete="off"
-								name="date_of_birth" value="" disabled="disabled"
+								name="dateOfBirth" value="" disabled="disabled"
 								placeholder="e.g. format '01-06-2016'" />
 						</div>
 					</div>
@@ -307,12 +318,12 @@
 							</div>
 						</div>
 						<div class="member_data">
-							<span>From:</span> <input id="from" type="text" name="from" autocomplete="off"
+							<span>From:</span> <input id="from" type="text" name="membershipFrom" autocomplete="off"
 								value="" disabled="disabled"
 								placeholder="e.g. format '01-06-2016'" />
 						</div>
 						<div class="member_data">
-							<span>To:</span> <input id="to" type="text" name="to" autocomplete="off"
+							<span>To:</span> <input id="to" type="text" name="membershipTo" autocomplete="off"
 								disabled="disabled" placeholder="e.g. format '01-06-2016'" />
 						</div>
 						<div class="member_data">
@@ -321,7 +332,7 @@
 						</div>
 						<div class="member_data">
 							<span>Joined on:</span> <input id="date_joined" type="text" autocomplete="off"
-								name="date_joined" value="" disabled="disabled"
+								name="dateJoined" value="" disabled="disabled"
 								placeholder="e.g. format '01-06-2015'" />
 						</div>
 					</div>

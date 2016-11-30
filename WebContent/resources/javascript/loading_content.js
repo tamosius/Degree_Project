@@ -26,6 +26,27 @@ var numberOfWeeks = "";
 // programmes types to iterate through get details of
 var programmes = ["'1 Month Mbsh'", "'3 Months Mbsh'", "'6 Months Mbsh'", "'12 Months Mbsh'", "'Pay as You Go'", "'Other'"];
 
+/*----------- GET TODAY'S DATE -----------------------------------------------------------------------------*/
+function getTodaysDate(){
+	
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth()+1; //January is 0!
+	var yyyy = today.getFullYear();
+
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+
+	today = mm+'-'+dd+'-'+yyyy;
+	
+	return today;
+}
+
 /*----------- GET TOTAL COUNT OF MEMBERS IN DATABASE -------------------------------------------------------*/
 function getTotalMembers(){
 	
@@ -45,7 +66,7 @@ function getTotalMembers(){
 function displayAllMembers(){
 		
     $.get("/Degree_Project/contr/getAllMembers", function(data){
-		
+		console.log(JSON.stringify(data));
 		// display total members in top-left corner of the window
 		$(".top_panel .total_members_count").text("Total Members: " + data.length);
 		
@@ -279,11 +300,16 @@ $(document).ready(function(){
 /*------------ GET VISITED MEMBER COUNT BY THE SPECIFIED PERIOD OF WEEKS (DAYS) -----------------------------*/
 	visitedMembersCount();
 	
+/*----------- DISPLAY TODAY'S DATE IN DASHBOARD 'Today's To-do List' ----------------------------------------*/
+	var date = getTodaysDate();
+	$("#today_to_do_list_button").val(date);
+	console.log("date: " + date);
+	
+	
 /*------------ CLEAR 'local storage' ON EXIT WINDOW ---------------------------------------------------------*/
 	window.onbeforeunload = function(){
 		localStorage.clear();
 	}
-	
 /*------------ USING 'local storage' TO STORE DATA OF MEMBERS FOR 'display_members.jsp' PAGE ----------------*/
 	
 	// Check browser support

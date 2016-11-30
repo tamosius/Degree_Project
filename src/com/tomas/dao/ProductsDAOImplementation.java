@@ -8,9 +8,12 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 
 import com.tomas.model.Product;
+import com.tomas.model.ProductReserved;
+import com.tomas.model.ProductSold;
 
 public class ProductsDAOImplementation implements ProductsDAO{
 	
@@ -119,15 +122,15 @@ public class ProductsDAOImplementation implements ProductsDAO{
 	
 /*------- SELL PRODUCT ---------------------------------------------------------------------------------------*/
 	@Override
-	public String sellProduct(int memberId, int productId, int quantity, float totalPrice){
+	public String sellProduct(int memberId, int productId, int quantity, float actualPrice, float totalPrice, float offerPercentage){
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " INSERT INTO products_sales (member_id, product_id, quantity, paid, purchase_timestamp)"
-				   + " VALUES (?, ?, ?, ?, NOW())";
+		String sql = " INSERT INTO products_sales (member_id, product_id, quantity, actual_price, paid, purchase_timestamp, offer_percentage)"
+				   + " VALUES (?, ?, ?, ?, ?, NOW(), ?)";
 		
 		
-		jdbcTemplate.update(sql, new Object[]{memberId, productId, quantity, totalPrice});
+		jdbcTemplate.update(sql, new Object[]{memberId, productId, quantity, actualPrice, totalPrice, offerPercentage});
 		//jdbcTemplate.update(sql, memberId, productId, quantity, totalPrice );
 		
 		return "Successfully purchased the product!";
@@ -135,60 +138,137 @@ public class ProductsDAOImplementation implements ProductsDAO{
 	
 /*------ RESERVE THE PRODUCT FOR CUSTOMER -------------------------------------------------------------------*/
 	@Override
-	public String reserveProduct(int memberId, int productId, int quantity){
+	public String reserveProduct(int memberId, int productId, int quantity, float totalPrice){
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " INSERT INTO products_sales (member_id, product_id, quantity, paid, purchase_timestamp"
-				   + " VALUES (?, ?, ?, ?, NOW())";
+		String sql = " INSERT INTO products_reserved (member_id, product_id, quantity, total_price,"
+				   + " reserved_date, expire_date)"
+				   + " VALUES (?, ?, ?, ?, NOW(), DATE_ADD(NOW(), INTERVAL 5 DAY))";
 		
 		
 		
-		jdbcTemplate.update(sql, memberId, productId, quantity);
+		jdbcTemplate.update(sql, new Object[]{memberId, productId, quantity, totalPrice});
 		
 		return "Successfully reserved the product!";
 	}
 	
-/*------ GET/DISPLAY SOLD PRODUCTS -------------------------------------------------------------------------*/
+/*------ GET/DISPLAY SOLD PRODUCTS (return 'Member' object along with 'Product' object) ---------------------*/
 	@Override
-	public List<Product> getSoldProducts(){
+	public List<ProductSold> getSoldProducts(){
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT ";
+		String sql = " SELECT products_sales.member_id, products_sales.product_id,"
+                   + " products.price, products_sales.quantity,"
+                   + " products_sales.paid, products.name,"
+                   + " members.first_name, members.last_name,"
+                   + " DATE_FORMAT(products_sales.purchase_timestamp, '%d-%m-%Y %H:%i:%s') AS purchase_timestamp,"
+                   + " products.image_path"
+                   + " FROM products_sales"
+                   + " INNER JOIN members"
+                   + " ON products_sales.member_id = members.id"
+                   + " INNER JOIN products"
+                   + " ON products_sales.product_id = products.id ";
 		
-		List<Product> soldProducts = jdbcTemplate.query(sql, new RowMapper<Product>(){
+		// return 'Member' object along with 'Product' object
+		List<ProductSold> soldProducts = jdbcTemplate.query(sql, new RowMapper<ProductSold>(){
 			
 			@Override
-			public Product mapRow(ResultSet resultSet, int rowNumber){
+			public ProductSold mapRow(ResultSet resultSet, int rowNumber) throws SQLException{
 				
-				Product product = new Product();
+				ProductSold soldProduct = new ProductSold();
 				
-				return product;
+				soldProduct.setMemberId(resultSet.getInt("member_id"));
+				soldProduct.setId(resultSet.getInt("product_id"));
+				soldProduct.setPrice(resultSet.getFloat("price"));
+				soldProduct.setQuantity(resultSet.getInt("quantity"));
+				soldProduct.setTotalPrice(resultSet.getFloat("paid"));
+				soldProduct.setName(resultSet.getString("name"));
+				soldProduct.setFirstName(resultSet.getString("first_name"));
+				soldProduct.setLastName(resultSet.getString("last_name"));
+				soldProduct.setPurchasedDate(resultSet.getString("purchase_timestamp"));
+				soldProduct.setImagePath(resultSet.getString("image_path"));
+				
+				return soldProduct;
 			}
 		});
 		
 		return soldProducts;
 	}
 	
-/*------ GET/DISPLAY RESERVED PRODUCTS ---------------------------------------------------------------------*/
+/*------ GET/DISPLAY RESERVED PRODUCTS (return 'Member' object along with 'Product' object) -----------------*/
 	@Override
-	public List<Product> getReservedProducts(){
+	public List<ProductReserved> getReservedProducts(){
 		
 JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT ";
+		String sql = " SELECT products_reserved.member_id, products_reserved.product_id,"
+                   + " products.price, products_reserved.quantity,"
+                   + " products_reserved.total_price, products.name,"
+                   + " members.first_name, members.last_name,"
+                   + " DATE_FORMAT(products_reserved.reserved_date, '%d-%m-%Y %H:%i:%s') AS reserved_date,"
+                   + " DATE_FORMAT(products_reserved.expire_date, '%d-%m-%Y') AS expire_date,"
+                   + " products.image_path"
+                   + " FROM products_reserved"
+                   + " INNER JOIN members"
+                   + " ON products_reserved.member_id = members.id"
+                   + " INNER JOIN products"
+                   + " ON products_reserved.product_id = products.id ";
 		
-		List<Product> reservedProducts = jdbcTemplate.query(sql, new RowMapper<Product>(){
+		List<ProductReserved> reservedProducts = jdbcTemplate.query(sql, new RowMapper<ProductReserved>(){
 			
 			@Override
-			public Product mapRow(ResultSet resultSet, int rowNumber){
+			public ProductReserved mapRow(ResultSet resultSet, int rowNumber) throws SQLException{
 				
-				Product product = new Product();
+				ProductReserved reservedProduct = new ProductReserved();
 				
-				return product;
+				reservedProduct.setMemberId(resultSet.getInt("member_id"));
+				reservedProduct.setId(resultSet.getInt("product_id"));
+				reservedProduct.setPrice(resultSet.getFloat("price"));
+				reservedProduct.setQuantity(resultSet.getInt("quantity"));
+				reservedProduct.setTotalPrice(resultSet.getFloat("total_price"));
+				reservedProduct.setName(resultSet.getString("name"));
+				reservedProduct.setFirstName(resultSet.getString("first_name"));
+				reservedProduct.setLastName(resultSet.getString("last_name"));
+				reservedProduct.setReservedDate(resultSet.getString("reserved_date"));
+				reservedProduct.setExpireDate(resultSet.getString("expire_date"));
+				reservedProduct.setImagePath(resultSet.getString("image_path"));
+				
+				return reservedProduct;
 			}
 		});
 		return reservedProducts;
+	}
+	
+/*------ GET DETAILS OF MEMBER AND PRODUCT PURCHASED BY ID -------------------------------------------------------*/
+	@Override
+	public ProductSold getMemberProductDetails(int memberId, int productId){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " SELECT m.first_name, m.email, p.name"
+				   + " FROM members m"
+				   + " INNER JOIN products p"
+				   + " WHERE m.id = " + memberId + " AND p.id = " + productId;
+		
+		return jdbcTemplate.query(sql, new ResultSetExtractor<ProductSold>(){
+			
+			@Override
+			public ProductSold extractData(ResultSet resultSet) throws SQLException{
+				
+				if(resultSet.next()){
+					
+					ProductSold details = new ProductSold();
+					
+					details.setFirstName(resultSet.getString("first_name"));
+					details.setEmail(resultSet.getString("email"));
+					details.setName(resultSet.getString("name"));
+					
+					return details;
+				}
+				return null;
+			}
+		});
 	}
 }

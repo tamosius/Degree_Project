@@ -3,12 +3,8 @@ package com.tomas.model;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.jdbc.core.support.SqlLobValue;
-
 
 public class Member {
-
-	private SqlLobValue insertImage; // insert BLOB value into database
 	
 	private int id;
 	private String firstName;
@@ -22,6 +18,9 @@ public class Member {
 	private int memberAge;
 	private String imagePath;
 	
+	private Offer offer;     // member has an offer
+
+/*===================================================*/
 	private String bookedTimestamp;
 	private String membershipFrom;
 	private String membershipTo;
@@ -39,39 +38,15 @@ public class Member {
 	private String weekDay;
 	private int countVisits;
 	
-	//private MembershipStatus membershipStatus;
-
-
 	
-
+	// no-args constructor
 	public Member() {
-
-	}
-
-	public Member(String firstName, String lastName, String phNumber, String address, String email, String dateOfBirth) {
-
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phNumber = phNumber;
-		this.address = address;
-		this.email = email;
-		this.dateOfBirth = dateOfBirth;
 		
-		//DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		//Date date = new Date();
-		//this.dateJoined = dateFormat.format(date);
-	}
-	
-    
-
-	public SqlLobValue getInsertImage() {
-		return insertImage;
+		offer = new Offer();
 	}
 
-	public void setInsertImage(SqlLobValue insertImage) {
-		this.insertImage = insertImage;
-	}
-
+/*===================================================*/
+	// getters and setters
 	public int getId() {
 		return id;
 	}
@@ -159,7 +134,16 @@ public class Member {
 	public void setImagePath(String imagePath) {
 		this.imagePath = imagePath;
 	}
+	
+	/*------ GET OFFER DETAILS -------------------------------*/
+	public void setOfferPercentage(int offerPercentage){
+		offer.setOfferPercentage(offerPercentage);
+	}
+	public float getOfferPercentage(){
+		return offer.getOfferPercentage();
+	}
 
+	/*=========================================================================================*/
 	/*----------------- PROBABLY SHOULD BE EXTENDED....----------------------------------- */
 	public String getBookedTimestamp() {
 		return bookedTimestamp;
@@ -283,7 +267,7 @@ public class Member {
 	
 	
 	
-	public String getCurrentDate(){
+	public String getCurrentasDate(){
 		
 		Date date = new Date();
 		SimpleDateFormat sf = new SimpleDateFormat("dd-MM-YYYY HH:mm:ss");

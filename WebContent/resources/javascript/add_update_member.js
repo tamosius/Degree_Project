@@ -28,7 +28,7 @@ $(document).ready(function(){
     $("body").delegate(".left_sidebar #add_member, .dashboard_top_left #add_button", "click", function(){
     	
     	// display 'no_photo' picture
-    	$(".add_member_content .image img").attr("src", "resources/images/membersImages/no_photo.png");
+    	$(".add_member_content .image img").attr("src", "resources/images/membersImages/no_photo.jpg");
     	
     	// clear upload file
     	$(".add_member_content #add_member_upload").val("");
@@ -149,7 +149,7 @@ $(document).ready(function(){
                 $(":focus").blur(); /* unfocus this field */
                 
                 // error classes 'fault', 'fault_reason', 'faulty_format' css styles are in 'body.css' file (at the bottom)
-                error_message += "<div class='fault'><span style='color: red;'>&#9654;</span> Invalid <span class='fault_reason'>'Membership From'</span> format: " +
+                error_message += "<div class='fault'><span styGggggggasle='color: red;'>&#9654;</span> Invalid <span class='fault_reason'>'Membership From'</span> format: " +
                 		"<span class='faulty_format'>'" + membershipFrom + "'</span>.<br> <span style='margin-left: 20px;'>Please re-enter.</span><br><br></div>";
                 event.preventDefault();
             }
@@ -178,6 +178,7 @@ $(document).ready(function(){
         if(error_message.length !== 0){
         	
             $(".error_window").append(error_message + "<hr><img src='resources/images/error.jpg' alt='error' />");
+            $(".error_background_overlay").fadeIn(200);
             $(".error_window").fadeIn(200);
         
         // if 'action' variable equals 'new_member', add new member to the database
@@ -293,24 +294,28 @@ $(document).ready(function(){
         	}
         	else{
         		
-        		var formData = new FormData();
+        		//var formData = new FormData();
         		
-        		formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
-            	formData.append("image", $("input[type=file]")[1].files[0]); // 'input[type=file][1]' in 'member_profile_left_sidebar'
-            	formData.append("id", id);
-            	formData.append("firstName", firstName);
-            	formData.append("lastName", lastName);
-            	formData.append("address", address);
-            	formData.append("phNumber", phNumber);
-            	formData.append("dateOfBirth", dateOfBirth);
-            	formData.append("email", email);
-            	formData.append("membershipFrom", membershipFrom);
-            	formData.append("membershipTo", membershipTo);
-            	formData.append("programme", programme);
-            	formData.append("paid", paid);
-            	formData.append("programmeState", programmeState);
-            	formData.append("updateDescription", updateDescription);
-            	formData.append("programmeBooked", programmeBooked);
+        		//formData.append("imageFor", "members");  // indicate in what folder image to be saved ('membersImages', 'productsImages', etc)
+            	//formData.append("image", $("input[type=file]")[1].files[0]); // 'input[type=file][1]' in 'member_profile_left_sidebar'
+            	//ormData.append("id", id);
+            	//formData.append("firstName", firstName);
+            	//formData.append("lastName", lastName);
+            	//formData.append("address", address);
+            	//formData.append("phNumber", phNumber);
+            	//formData.append("dateOfBirth", dateOfBirth);
+            	//formData.append("email", email);
+            	//formData.append("membershipFrom", membershipFrom);
+            	//formData.append("membershipTo", membershipTo);
+            	//formData.append("programme", programme);
+            	//formData.append("paid", paid);
+        		
+        		/* SUBMIT FORM VALIDATED OK, MAKE A JAVASCRIPT OBJECT, STRINGIGY AND SEND TO WEBSERVICE, 
+                 * INSERT DATA INTO DATABASE  */
+            	var formData = new FormData($(this)[0]);
+            	formData.set("programmeState", programmeState);
+            	formData.set("updateDescription", updateDescription);
+            	formData.set("programmeBooked", programmeBooked);
             	
             	$.ajax({
             		

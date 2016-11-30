@@ -119,7 +119,7 @@ $(document).ready(function(){
 	
 /*--------------- SHOW 'member_profile' ON DOUBLE CLICK ON MEMBER TABLE ROW -----------------------------------------------------*/
     $("body").delegate(".row_data, .last_attended_member, .last_updated_member, .recently_joined_member," +
-    		"#reports_big_table_body_table tr, .report_table_body .report_row", "dblclick", function(){
+    		"#reports_big_table_body_table tr, .report_table_body .report_row, .products_displayed .bottom_table_body", "dblclick", function(){
 	
     	// get member ID, clicked in the table
     	var id = $(this).find("#member_id").val();
@@ -129,16 +129,7 @@ $(document).ready(function(){
         $(".member_profile_right_sidebar div").addClass("member_data");
         
         
-   /*--------- CHECK THIS OUT ---------------------------------------------------------------------------*/     
-        $('.member_profile_left_sidebar #photo_button').css({'visibility' : 'hidden', 'display' : 'block'});
-        $('.member_profile_left_sidebar #shoot_button').css('display', 'none');
-        
-        $('.add_member_left_sidebar #shoot_button, .member_profile_left_sidebar #shoot_button, .add_member_left_sidebar #photo_camera, .member_profile_left_sidebar #photo_camera').css('display', 'none');
-        $('.add_member_left_sidebar #photo_button, .member_profile_left_sidebar #photo_button, .add_member_left_sidebar #image, .member_profile_left_sidebar #image').show();  /* show the same image if user does not update it */
-   /*--------- CHECH THIS OUT ---------------------------------------------------------------------------*/
-        
-        
-        // enable 'delete' button
+        // enable 'Delete' button
         $('.member_profile_bottom_panel #delete_button').prop('disabled', false).css('opacity', 1); 
         
         $.ajax({
@@ -153,8 +144,8 @@ $(document).ready(function(){
             	// assign data to variable to use it later in update profile state
             	// if user clicks 'cancel' button
             	memberProfile = data;
-            	console.log("executed: " + parseInt(Math.random() * 10000000));
-            	$(".member_profile_left_sidebar .image img").attr("src", "resources/images/membersImages/" + data.id + ".jpg?" + parseInt(Math.random() * 1000000));
+            	console.log("image: " + data.imagePath);
+            	$(".member_profile_left_sidebar .image img").attr("src", "resources/images/membersImages/" + data.imagePath +"?" + parseInt(Math.random() * 1000000));
             	
             	$(".member_data #member_id").val(data.id);
             	$(".member_data label").text(data.id);

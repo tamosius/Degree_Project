@@ -42,7 +42,7 @@
 				id="actions_tasks_label">Actions on your to-do list</label>
 			<button id="new_to_do_list_button">Create To-do List</button>
 			<button id="to_do_list_button">To-do List's (all)</button>
-			<button id="today_to_do_list_button">Today's To-do List <span>(01-09-2016)</span></button>
+			<button id="today_to_do_list_button">Today's To-do List <span></span></button>
 		</div>
 	</div>
 

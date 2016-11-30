@@ -18,6 +18,8 @@ function getDateFormat(date){
             + "-" + date.getFullYear());
 }
 
+
+/*===================================================================================================================*/
 /*--------- JQUERY 'ready' FUNCTION ---------------------------------------------------------------------------------*/
 $(document).ready(function(){
 	
@@ -39,13 +41,6 @@ $(document).ready(function(){
 		}
 	});
 		});
-	
-	$("body").delegate(".dashboard_top_left #b", "click", function(){
-		
-		
-		
-		progress.progressbar("value", rate);
-	});
 	
 /*--------- SHOW MISSING MEMBERS (who haven't attended for the specified period of time) ----------------------------*/
 	$(function(){
@@ -108,5 +103,34 @@ $(document).ready(function(){
 		reportsBigTableType = 9;  // 9 = valued members (mostly spent on programmes and products)
 		
 		$(".loading_content").load("pages/reports_big_table.jsp");
+	});
+	
+/*=========================================================================================================================*/
+/*---------- TO-DO LISTS --------------------------------------------------------------------------------------------------*/
+	$(".dashboard_main_content").delegate(".dashboard_top_middle #new_to_do_list_button, .dashboard_top_middle #to_do_list_button," +
+			".dashboard_top_middle #today_to_do_list_button", "click", function(){
+		
+		$(".loading_content").load("pages/to_do_list.jsp");
+		
+	});
+	
+/*=========================================================================================================================*/
+/*---------- PRODUCTS / SALES BUTTONS -------------------------------------------------------------------------------------*/
+	$(".dashboard_main_content").delegate(".dashboard_top_right #make_sale_button, .dashboard_top_right #sold_today_button," +
+			".dashboard_top_right #popular_products_button", "click", function(){
+		
+		$(".loading_content").load("pages/products_sales.jsp");
+		
+		// display 'add_new_product_block'
+        $("#add_new_product_block").slideDown(250);
+	});
+	
+	$(".dashboard_main_content").delegate(".dashboard_bottom_right #add_product_button, .dashboard_bottom_right #display_products_button," +
+			".dashboard_bottom_right #last_added_products_button", "click", function(){
+		
+		$(".loading_content").load("pages/products_sales.jsp");
+		
+		// display 'add_new_product_block'
+        $("#add_new_product_block").slideDown(250);
 	});
 });
