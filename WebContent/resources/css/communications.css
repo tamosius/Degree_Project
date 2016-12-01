@@ -1,0 +1,306 @@
+
+/*------ WHOLE CONTENT OF 'communications.jsp' ------------------------------------------------------------------------------------------*/
+.communications_content{
+	
+	position: relative;
+	//background: rgba(56,56,56, .7);
+	height: calc(100vh - 93px);
+}
+
+/*------- COMMUNICATIONS LEFT BLOCK -----------------------------------------------------------------------------------------------------*/
+#left_communications_block{
+	
+	position: absolute;
+	top: 2px;
+	left: 0;
+	
+	width: 25%;
+	height: 100%;
+	
+	border-right: 1px #ffffff solid;
+	text-align: center;
+	//background: rgba(255, 255, 255, .7);
+	background: rgba(56,56,56, .7);
+}
+
+/*#left_settings_block::after {
+	
+  content: "";
+  
+  background-image: url(../images/sport.jpg);
+  background-size: cover; 
+ 
+  opacity: .75;
+  
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  
+  z-index: -5;
+}*/
+
+#left_communications_block #admin_name{
+	
+	width: 100%;
+	height: 120px;
+	
+	color: #ffffff;
+    
+    text-align: center;
+	padding-top: 10%;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    
+    border-bottom: 1px #ffffff solid;
+    
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+}
+#left_communications_block #admin_name::after{
+	
+	content: "";
+  
+  
+ 
+  
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  width: 100%;
+  height: 160px;
+  //background: #ffffff;
+  
+  z-index: -3;
+}
+
+#left_communications_block #admin_name #admin_user_name{
+	
+	color: #ffffff;
+	font-weight: bold;
+	font-size: 18px;
+	
+	text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+	//text-shadow: -1px 0 #999999, 0 1px #999999, 1px 0 #999999, 0 -1px #999999;
+}
+
+/*-------- SELECTION BUTTONS IN THE LEFT ('admin details', 'programmes prices', 'products sales') ----------------------------------*/
+#left_communications_block #show_messages, #left_communications_block #leave_message, #left_communications_block #email_members,
+ #left_communications_block #membership_details, #left_communications_block #sales_details{
+	
+	line-height: 50px;
+	
+	width: 100%;
+	height: 50px;
+	
+	cursor: pointer;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+	
+	
+    transition: all 0.5s;
+    
+	border-bottom: 1px #ffffff solid;
+	
+}
+#left_communications_block #show_messages:hover, #left_communications_block #leave_message:hover, #left_communications_block #email_members:hover,
+ #left_communications_block #membership_details:hover, #left_communications_block #sales_details:hover{
+	
+	color: #ffffff;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(142, 167, 215, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(142, 167, 215, 1) 50%, #365899 100%);
+    font-weight: bold;
+	//background: rgba(00, 88, 98, 0.4) 50%;
+}
+
+/*------------- HIGHLIGHTED SETTINGS ROW (in 'left_settings_block') ----------------------------------------------------------------*/
+.highlighted_settings_row{
+	
+	color: #ffffff;
+	
+	pointer-events: none;
+	font-weight: bold;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+}
+
+
+/*==================================================================================================================================*/
+/*------------ RIGHT COMMUNICATIONS BLOCK ------------------------------------------------------------------------------------------------*/
+#right_communications_block{
+	
+	position: absolute;
+	top: 0;
+	right: 0;
+	
+	width: 75%;
+	height: 100%;
+	
+	//background: rgba(232,232,232, .9);
+}
+
+/*------ hide all blocks when loading page -------------*/
+#show_messages_block, #leave_message_block, #email_members_block{
+	
+	position: relative;
+	background: #ffffff;
+	height: 100%;
+	display: none;
+}
+
+/*==================================================================================================================================*/
+/*------ COMMUNICATIONS TABLE ('Leave Admin Message', 'Email All Members') ---------------------------------------------------------*/
+/*------ table header --------------------------------------------*/
+#right_communications_block #communications_table_header_block{
+	
+	padding: 5px 0px 5px 0px;
+	margin-top: 1px;
+	
+	background: linear-gradient(to top, lightblue, #00003D);
+}
+
+#right_communications_block #communications_table_header{
+	
+	width: 100%;
+	height: 50px;
+	
+	color: white;
+	text-align: center;
+	
+	//border: 1px blue solid;
+}
+#communications_table_header #first_column{
+	
+	width: 5%;
+	border-right: 1px #ffffff solid;
+}
+#communications_table_header #second_column{
+	
+	width: 15%;
+	border-right: 1px #ffffff solid;
+}
+#communications_table_header #third_column{
+	
+	width: 15%;
+}
+
+/*------- table body -------------------------------------------------------------*/
+#right_communications_block #communications_table_body_block{
+	
+	width: 100%;
+	margin: 1px;
+	height: calc(100vh - 215px);
+	
+	border-bottom: 1px #666 solid;
+    
+	overflow-y: scroll;
+}
+#right_communications_block #communications_admin_table_body_block{
+	
+	width: 100%;
+	margin: 1px;
+	height: calc(0vh + 160px);
+	
+	border-bottom: 1px #666 solid;
+    
+	overflow-y: scroll;
+}
+
+#right_communications_block #communications_table_body{
+	
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#communications_table_body #first_column{
+	
+	width: 5.5%;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+
+#communications_table_body #second_column{
+	
+	width: 15%;
+	text-align: center;
+	font-weight: bold;
+	
+	border-right: 1px #ffffff solid;
+}
+
+#communications_table_body #third_column{
+	
+	width: 11.5%;
+	text-align: center;
+}
+
+#communications_table_body tr{
+	
+	height: 40px;
+	border: 1px #cccccc solid;
+	cursor: default;
+}
+#communications_table_body tr:nth-child(even){
+	
+	background: #E2E2E6;
+}
+
+#communications_table_body tr:hover{
+	
+	background: #B2BFD2;
+    color: white;
+}
+
+
+/*==================================================================================================================================*/
+/*------ LEAVE ADMINS A MESSAGE BLOCK IN 'Communications' 'Leave Admin Message' ----------------------------------------------------*/
+#leave_message_block #leave_admin_message_block{
+	
+	max-width: 100%;
+	height: 40%;
+	
+	margin: 15px 10px 0px 10px;
+	
+	border: 1px red solid;
+	
+}
+#leave_message_block #leave_admin_message_block label{
+	
+	
+}
+#leave_message_block #leave_admin_message_block textarea{
+	
+	display: block;
+	
+	width: 99%;
+	height: 85%;
+	
+	margin-top: 10px;
+}
+
+/*=========================================================================================================================*/
+/*------ BUTTONS IN 'email_members_block' ---------------------------------------------------------------------------------*/
+#right_communications_block #compose_email_button, #leave_message_block #leave_message_button{
+	
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	
+	width: 30%;
+	height: 40px;
+	
+	cursor: pointer;
+}
+
+
+/*==================================================================================================================================*/
+

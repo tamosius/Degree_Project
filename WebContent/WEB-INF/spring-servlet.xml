@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc 
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- telling container to take care of annotations stuff -->
+	<context:annotation-config />
+
+	<!-- declaring base package -->
+	<context:component-scan base-package="com.tomas.controller" />
+
+	<mvc:resources mapping="/resources/**" location="/resources/"
+		cache-period="31556926" />
+
+	<mvc:annotation-driven />
+
+	<!-- adding view resolver to show jsp's on browser -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+
+	<!-- service beans -->
+	<bean id="adminService" class="com.tomas.service.AdminServiceImplementation" />
+	<bean id="emailService" class="com.tomas.service.EmailServiceImplementation" />
+	<bean id="communicationsService" class="com.tomas.service.CommunicationsServiceImplementation" />
+	<bean id="memberService" class="com.tomas.service.MemberServiceImplementation" />
+	<bean id="reportsService" class="com.tomas.service.ReportsServiceImplementation" />
+	<bean id="settingsService" class="com.tomas.service.SettingsServiceImplementation" />
+	<bean id="productsService" class="com.tomas.service.ProductsServiceImplementation" />
+	<bean id="bottomPanelReportsService"
+		class="com.tomas.service.BottomPanelReportsServiceImplementation" />
+	<bean id="fileUploadService" class="com.tomas.service.FileUploadServiceImplementation" />
+	<bean id="passwordService" class="com.tomas.service.PasswordServiceImplementation" />
+	<bean id="insertBlobService" class="com.tomas.service.InsertBlobServiceImplementation" />
+	<bean id="saveImageService" class="com.tomas.service.SaveImageServiceImplementation" /> <!-- save image to disk -->
+	<bean id="resizePictureService" class="com.tomas.service.ResizePictureServiceImplementation" />
+	<bean id="offerService" class="com.tomas.service.OfferServiceImplementation" />
+
+	<!-- dao beans -->
+	<bean id="memberDAO" class="com.tomas.dao.MemberDAOImplementation" />
+	<bean id="reportsDAO" class="com.tomas.dao.ReportsDAOImplementation" />
+	<bean id="bottomPanelReportsDAO" class="com.tomas.dao.BottomPanelReportsDAOImplementation" />
+	<bean id="settingsDAO" class="com.tomas.dao.SettingsDAOImplementation" />
+	<bean id="productsDAO" class="com.tomas.dao.ProductsDAOImplementation" />
+	<bean id="adminDAO" class="com.tomas.dao.AdminDAOImplementation" />
+	<bean id="communicationsDAO" class="com.tomas.dao.CommunicationsDAOImplementation" />
+	<bean id="fileUploadDAO" class="com.tomas.dao.FileUploadDAOImplementation" />
+	<bean id="offerDAO" class="com.tomas.dao.OfferDAOImplementation" />
+
+	<bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+	</bean>
+
+	<!-- declare datasource bean -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/gym" />   <!-- 127.8.88.2 -->
+		<property name="username" value="root" />                         <!-- admin3hiZhxn -->
+		<property name="password" value="tomas" />                        <!-- wEKEIEV9jpq8 -->
+	</bean>
+
+	<!-- declare e-mail messages -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<!-- SMTP settings -->
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="t.mikoliunas@gmail.com" />
+		<property name="password" value="braliukas" />
+
+		<property name="javaMailProperties">
+			<!-- additional properties specific to JavaMail -->
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<!-- to handle file uploads, Spring provides a 'MultipartResolver' bean 
+		which is responsible for resolving multipart request -->
+	<!-- this resolver is working with two file upload libraries -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max file size in bytes -->
+		<property name="maxUploadSize" value="3000000" />
+		<!-- other properties... -->
+	</bean>
+
+</beans>

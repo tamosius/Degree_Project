@@ -1,0 +1,201 @@
+
+.reports_big_table_container{
+	
+	background: #ffffff;
+}
+
+#reports_big_table_header_block{
+	
+	padding: 5px 0px 5px 0px;
+	margin-top: 1px;
+	
+	background: linear-gradient(to top, lightblue, #00003D);
+}
+
+#reports_big_table_header_table{
+	
+	width: 100%;
+	height: 50px;
+	
+	color: white;
+	text-align: center;
+	
+	//border: 1px blue solid;
+}
+
+#reports_big_table_header_table #first_column{
+	
+	width: 20%;
+		
+	border-right: 1px white solid;
+}
+
+#reports_big_table_header_table #second_column{
+	
+	width: 14%;
+	
+	border-right: 1px white solid;
+}
+
+#reports_big_table_header_table #third_column{
+	
+	width: 14%;
+	
+	border-right: 1px white solid;
+}
+
+#reports_big_table_header_table #fourth_column{
+	
+	width: 14%;
+	
+	border-right: 1px white solid;
+}
+
+#reports_big_table_header_table #fifth_column{
+	
+	width: 14%;
+	
+	border-right: 1px white solid;
+}
+
+#reports_big_table_header_table #sixth_column{
+	
+	width: 14%;
+	
+	border-right: 1px white solid;
+}
+
+#reports_big_table_header_table #seventh_column{
+	
+	width: 10%
+}
+
+/*------------- REPORTS BIG TABLE BODY BLOCK AND TABLE -----------------------------------------------------------------*/
+#reports_big_table_body_block{
+	
+	width: 100%;
+	margin: 1px;
+	height: calc(100vh - 157px);
+    
+	overflow-y: scroll;
+}
+
+#reports_big_table_body_table{
+	
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#reports_big_table_body_table tr:nth-child(even){
+	
+	background: #E2E2E6;
+}
+
+#reports_big_table_body_table tr{
+	
+	height: 35px;
+	cursor: default;
+	
+	border: 1px #cccccc solid;
+}
+
+#reports_big_table_body_table tr:hover{
+	
+	background: #B2BFD2;
+    color: white;
+    //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#reports_big_table_body_table .first_column{
+	
+	width: 20%;
+	
+    padding-left: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 16px;
+	
+	border-right: 1px white solid;
+}
+
+#reports_big_table_body_table .second_column{
+	
+	width: 14.3%;
+	
+	text-align: center;
+	border-right: 1px white solid;
+}
+
+#reports_big_table_body_table .third_column{
+	
+	width: 14.3%;
+	
+	text-align: center;
+	border-right: 1px white solid;
+}
+
+#reports_big_table_body_table .fourth_column{
+	
+	width: 14.2%;
+	
+	text-align: center;
+	border-right: 1px white solid;
+}
+
+#reports_big_table_body_table .fifth_column{
+	
+	width: 14.4%;
+	
+	text-align: center;
+	border-right: 1px white solid;
+}
+
+#reports_big_table_body_table .sixth_column{
+	
+	width: 14.3%;
+	
+	text-align: center;
+	border-right: 1px white solid;
+}
+
+#reports_big_table_body_table .seventh_column{
+	
+	width: 10%;
+	
+	text-align: center;
+}
+
+/*---------- 'Visits' COLUMN IN THE REPORTS TABLES ('reports.jsp', reports_big_table.jsp')---------------------------*/
+#reports_big_table_body_block #reports_big_table_body_table #visits{
+	
+	cursor: pointer;	
+}
+
+/*----------- TIME POPUPS IN REPORTS TABLES ('reports_big_table.js', 'reports.js', 'communications.js') -------------*/
+.time_popup{
+	
+	display: none;
+	
+	position: absolute;
+	top: -32px;
+	right: 5px;
+	
+	color: white;
+	font-size: 12px;
+	padding: 4px 8px 4px 8px;
+	
+	//border: 1px #555 solid;
+	border: 3px #ffffff solid;
+	border-radius: 2px;
+	
+	background: #7c7c9c;
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+	-webkit-box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black; 
+	
+	z-index: 10000000;
+}
+.time_popup span{
+	
+	font-size: 17px;
+}

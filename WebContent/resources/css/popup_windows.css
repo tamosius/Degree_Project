@@ -1,0 +1,503 @@
+
+/*------- BACKGROUND OVERLAY FOR 'Delete Member', 'Update Settings', 'Remove Products' ------------------------------------------------*/
+.confirm_window_background_overlay{
+	
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    z-index: 100;
+    display: none;
+}
+
+/*======================================================================================================================================*/
+/*------ CONFIRM WINDOW FOR 'Delete Profile' -------------------------------------------------------------------------------------------*/
+.confirm_window{
+	
+    display: none;
+    width: auto;
+    height: auto%;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px 15px 15px 15px;
+    z-index: 101;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    //transform: translate(-50%, -50%);
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #fff;
+    //position: relative;
+}
+.confirm_window .top_image{
+	
+    width: 50px;
+    height: 50px;
+    border: solid black 1px;
+    border-radius: 5px;
+    box-shadow : 0px 0px 10px black;
+    float: left;
+    margin-bottom: 15px;
+}
+.confirm_window .content{
+	
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	
+	height: 70px;
+	border: 1px red solid;
+}
+.confirm_window div{
+	
+    color: #00003D;
+    font-size: 20px;
+    display: inline;
+    //position: absolute;
+    
+    //float: left;
+    //clear: right;
+}
+.confirm_window hr{
+	
+    clear: left;
+}
+.confirm_window span{
+	
+    float: left;
+    margin: 11px 0px 0px 10px;
+}
+.confirm_window #confirm_button{
+	
+    width: 80px;
+    height: 25px;
+    color: green;
+    float: right;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+    outline: 0;
+}
+.confirm_window #cancel_button{
+	
+    width: 80px;
+    height: 25px;
+    color: red;
+    float: right;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+    outline: 0;
+}
+.confirm_window #confirm_button:hover, .confirm_window #cancel_button:hover{
+	
+    background: #B2BFD2;
+}
+
+
+/*=========================================================================================================================================*/
+/*--------- CONFIRM WINDOW FOR 'All Settings' ---------------------------------------------------------------------------------------------*/
+.confirm_settings_window{
+	
+	position: absolute;
+    top: 28%;
+    left: 50%;
+	
+    display: none;
+    width: auto;
+    height: auto;
+    background: #fff;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px 15px 15px 15px;
+    z-index: 101;
+    
+    -webkit-box-shadow: 0 0 10px #fff;
+    box-shadow: 0 0 10px #fff;
+}
+
+.confirm_settings_window .top_image{
+	
+	//border: 1px green solid;
+}
+
+.confirm_settings_window .top_image img{
+	
+	
+	
+    width: 50px;
+    height: 50px;
+    border: solid black 1px;
+    border-radius: 5px;
+    box-shadow : 0px 0px 10px black;
+    display: inline;
+}
+
+.confirm_settings_window #top_message{
+	line-height: 50px;
+	//border: 1px blue solid;
+	margin: -52px 0px 0px 55px;
+	width: auto;
+	height: 50px;
+	//display: inline;
+	
+	color: #00003D;
+    font-size: 20px;
+}
+
+.confirm_settings_window .details_message{
+	
+	
+	width: 100%;
+	height: auto;
+	
+	margin-top: 40px;
+	margin-bottom: 50px;
+	
+	//border: 1px red solid;
+}
+
+.confirm_settings_window .details_message div{
+	
+	line-height: 30px;
+	height: 30px;
+	
+	color: #00003D;//#2e4c84;
+	font-size: 15px;
+	font-weight: bold;
+	
+	border-top: 1px #666666 solid;
+}
+
+.confirm_settings_window .details_message div label{
+	
+	float: right;
+}
+
+.confirm_settings_window .details_message div .update_value{
+	
+	//float: right;
+	color: #73008C;
+	font-size: 16px;
+}
+
+
+.confirm_settings_window .confirm_button{
+	
+    width: 80px;
+    height: 25px;
+    color: green;
+    float: right;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+    outline: 0;
+}
+.confirm_settings_window .cancel_button{
+	
+    width: 80px;
+    height: 25px;
+    color: red;
+    float: right;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+    outline: 0;
+}
+.confirm_settings_window #confirm_button:hover, .confirm_settings_window #cancel_button:hover{
+	
+    background: #B2BFD2;
+}
+
+
+/*====================================================================================================================================*/
+/*--------- POPUP WINDOW ON SUCCESSFULL SUBMIT/UPDATE PROFILE ----------------------------------------------------------------------- */
+.popup_window{
+	
+    display: none;
+    width: 600px;
+    height: auto;
+    background: #628794;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 15px 15px 15px 15px;
+    z-index: 110;
+    position: fixed;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    -webkit-box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black;
+}
+#popup_window_text{
+	
+    color: #D3D3D3;
+    font-size: 26px;
+    margin: 0px 0px 10px 0px;
+    text-align: center;
+}
+
+.popup_window strong{
+	
+    color: white;
+    font-size: 28px;
+}
+.popup_window #successfull_add_update_image{
+	
+    width: 50px;
+    height: 50px;
+    margin: 10px 0px 0px 275px;
+    border: solid black 1px;
+    border-radius: 5px;
+    box-shadow : 0px 0px 10px black;
+}
+.popup_window #check_in_image{
+	
+    width: 95px;
+    height: 100px;
+    float: left;
+    border: solid black 1px;
+    border-radius: 5px;
+    box-shadow : 0px 0px 10px black;
+}
+
+
+/*================================================================================================================================*/
+/*--------- POPUP TO SHOW VISITED DATES AND TIMES WHEN CLICKED ON 'Visits' COLUMN ------------------------------------------------*/
+.popup_visits{
+	
+	display: none;
+	
+	position: absolute;
+	top: 85px;
+	right: 50px;
+	
+	width: auto;
+	heigth: auto;
+	
+	padding: 8px;
+	border-radius: 5px;
+	
+	-webkit-box-shadow : 0px 0px 10px black;
+	box-shadow : 0px 0px 10px black;
+	
+	z-index: 200;
+}
+
+/*---- click this to exit popup window ----*/
+.popup_visits .exit_popup{
+	
+	position: absolute;
+	top: 5px;
+	right: 5px;
+}
+
+.popup_visits .exit_popup img{
+	
+	width: 22px;
+	height: 22px;
+	
+	border-radius: 10px;
+	cursor: pointer;
+	
+	opacity: .8;
+}
+
+/*------- header ------------------------------------------------*/
+.popup_visits .popup_visits_header{
+	
+	width: 800px;
+	height: auto;
+	
+	padding: 0px 3px 3px 3px;
+	
+	background: #8585ad;
+}
+
+.popup_visits .popup_visits_header table{
+	
+	border-collapse: collapse;
+	width: 100%;
+	
+	color: #ffffff;
+	
+	text-align: center;
+	
+	//text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.popup_visits_header table tr{
+	
+	height: 30px;
+}
+
+.popup_visits_header table #visitor_name{
+	
+	border-bottom: 1px #5c5c8a solid;
+	
+	font-size: 14px;
+}
+
+.popup_visits_header table #visitor_name span, .top_panel #description_middle_top_panel span{
+	
+	font-size: 17px;
+	
+	font-weight: bold;
+	
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.popup_visits_header table #visited_date, .popup_visits_header table #visited_time{
+	
+	border-right: 1px #ffffff solid;
+	
+	//padding-top: 3px;
+}
+
+/*-------- body -----------------------------------------------*/
+.popup_visits_body{
+	
+	max-height: calc(100vh - 250px);
+	
+	overflow-y: auto;
+}
+.popup_visits_body table{
+	
+	width: 100%;
+	max-height: 50px;
+	
+	color: #555;
+	text-align: center;
+	
+	border-collapse: collapse;
+	background: #efeff5;
+}
+
+.popup_visits_body table tr{
+	
+	height: 25px;
+	border: 1px #cccccc solid;
+}
+
+.popup_visits_body table tr:nth-child(even){
+	
+	background: #E2E2E6;
+}
+
+.popup_visits_body table #visited_date_body, .popup_visits_body table #visited_time_body{
+	
+	width: 276px;
+	
+	border-right: 1px #ffffff solid;
+}
+
+.popup_visits_body table #visited_time_body{
+	
+	width: 281px;
+	
+	border-right: 1px #ffffff solid;
+}
+
+.popup_visits_body table #week_day_body{
+	
+	//width: 266px;
+	
+	border-right: 1px #ffffff solid;
+}
+
+
+
+/*======================================================================================================================*/
+/* ------- INPUT VALIDATION UNSUCCESSFULL POPUP WINDOW ON SUBMIT, REPORT DISPLAY, ETC ----------------------------------*/
+.error_background_overlay{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	background: rgba(0, 0, 0, .3);
+	z-index: 191;
+	display: none;
+}
+.error_window{  /* 'add_update_validation.js' */
+
+    display: none;
+    width: 600px;
+    height: auto;
+    background: #628794;
+    border: 1px solid black;
+    padding: 20px 20px 20px 20px;
+    border-radius: 5px;
+    z-index: 192;
+    position: fixed;
+    top: 15%;
+    left: 30%;
+    transform: translate(-50%, -15%);
+    -webkit-box-shadow: 0 0 10px black;
+    box-shadow: 0 0 10px black;
+}
+
+.error_window img{
+    width: 50px;
+    height: 50px;
+    margin: 20px 0px 0px 275px;
+    border: solid black 1px;
+    border-radius: 5px;
+    box-shadow : 0px 0px 10px black;
+}
+
+
+/*=================================================================================================================*/
+/*-------- FAULT (ERROR) POP-UP WINDOW TEXT -----------------------------------------------------------------------*/
+.fault{ /*-- main text -----------*/
+	
+	font-size: 20px;
+	color: #ffe6e6;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.fault_reason{ /*--- the name of faulty field ---*/
+	
+	font-size: 24px;
+	color: white;
+	
+	font-weight: bold;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.faulty_format{ /*--- the faulty text entered in the field --*/
+	
+	font-size: 24px;
+	color: white;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

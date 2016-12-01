@@ -1,0 +1,252 @@
+
+
+/*
+* CSS FOR 'display_members.jsp' 
+*/
+.content{
+	
+	background: #ffffff;
+}
+.body_table tr:nth-child(even){
+	
+    background: #E2E2E6;
+}
+
+.body_table .row_data:hover{
+	
+    color: white;
+    
+    background: #B2BFD2;
+    //text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.body_table tr{
+	
+    height: 40px;
+    cursor: default;	
+}
+
+.body_table .days_left{
+	
+    font-size: 10px;
+    margin: 0px 0px -12px 0px;
+}
+
+.outer_table{
+	
+    width: 100%;
+}
+.header_table{
+	
+    width: 100%;
+    border-collapse: collapse;
+    height: 75px;
+}
+
+.body_table{
+	
+    letter-spacing: 1px;
+    width: 100%;
+    border-collapse: collapse;     /*#5C85AD  hover*/
+}                                  /*#628794 */
+
+.body_table tr{
+	
+	border: 1px #cccccc solid;
+}
+/*---------- TABLE HEADERS ---------------------------------------------------------------------------------------------------- */
+.first_name, .last_name{
+	
+    width: 30%;
+    background-color: #303131;
+    background: -webkit-linear-gradient(top, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    background: linear-gradient(to bottom, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    //background: #00535d;
+    background: linear-gradient(to top, lightblue, #00003D);
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.membership{
+	
+	background-color: #303131;
+    background: -webkit-linear-gradient(top, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    background: linear-gradient(to bottom, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    background: linear-gradient(to top, lightblue, #00003D);
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.from, .to{
+	
+    width: 15%;
+    background: linear-gradient(to top, lightblue, #00003D);
+    //background-color: #303131;
+    //background: -webkit-linear-gradient(top, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    //background: linear-gradient(to bottom, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+
+.paid{
+	
+    width: 10%;
+    background: linear-gradient(to top, lightblue, #00003D);
+    //background-color: #303131;
+    //background: -webkit-linear-gradient(top, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    //background: linear-gradient(to bottom, #008898 0%, rgba(00, 88, 98, 0.4) 50%, #008898 100%);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+/*----------- END OF TABLE HEADERS -------------------------------------------------------------------------------------------- */
+
+/* ---------- TABLE ROWS ------------------------------------------------------------------------------------------------------ */
+.first_name_data, .last_name_data{
+	
+    width: 30.6%;
+    //height: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    padding-left: 10px;
+    border-right: 1px white solid;
+}
+
+.from_data, .to_data{
+	
+    width: 15.2%;
+    //height: 40px;
+    text-align: center;
+    //font-weight: bold;
+    font-size: 16px;
+    border-right: 1px white solid;
+}
+
+.paid_data{
+	
+    //height: 40px;
+    width: 10%;
+    text-align: center;
+    //font-weight: bold;
+    font-size: 16px;
+    color: #003300;
+}
+
+/*------------------------ MAKE ROW UNSELECTABLE -------------------------------------------------------------------------*/
+.row_data{
+	
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/*------------- STYLE FOR THE TABLE ROW, IF NO RESULTS FOUND IN 'search_text' SEARCH BY MEMBER NAME ----------------------*/
+.no_results{
+	
+	text-align: center;
+	font-size: 26px;
+	margin-top: 50px;
+	color: #00003D;
+}
+
+.no_results_for_name{ 
+	
+	text-align: center;
+	font-size: 34px;
+	font-weight: bold;
+	margin-bottom: 50px;
+	color: #00003D;
+	text-shadow: 2px 2px 4px #0059b3;
+}
+
+/*------------- STYLE FOR 'no membership' STATUS DISPLAYED IN THE TABLE ('display_members.jsp') and ('reports.jsp')-------*/
+.no_membership{ /*--- when 'no membership' is displayed in 'membership from', 'membership to' columns ---*/
+	
+	color: #FF6262;
+	font-size: 12px;
+}
+
+.no_membership_left_sidebar{
+	
+	color: #FF6262;
+	font-size: 11px;
+}
+
+.no_paid{ /*-- when '0.00' displayed in 'paid' column --*/
+	
+	color: #990033;
+	font-weight: normal;
+}
+
+/*--------- 'days left' column in the 'reports_big_table.jsp' ------------*/
+.membership_available{
+	
+	color: #003300;
+	font-size: 15px;
+}
+
+.membership_ending{
+	
+	color: #990000;
+	font-size: 15px;
+}
+
+.membership_last_day{
+	
+	color: #CC0099;
+	font-size: 15px;
+}
+
+.expired_membership{
+	
+	color: #A90055;
+	font-size: 14px;
+}
+
+/*-------- 'days left' in the left-bottom blocks 'Last attended member', 'Recently booked membership',
+              'Recently joined' -----------------------------------------------------------------------*/
+.membership_available_left_sidebar{
+	
+	color: #003300;
+	font-size: 11px;
+}
+
+.membership_ending_left_sidebar{
+	
+	color: #990000;
+	font-size: 11px;
+}
+
+.membership_last_day_left_sidebar{
+	
+	color: #CC0099;
+	font-size: 11px;
+}
+
+.expired_membership_left_sidebar{
+	
+	color: #A90055;
+	font-size: 11px;
+}           
+
+/*-------- 'visited_date', 'visited_time' added in 'reports_big_table.js' ----------*/
+.visited_date{
+	
+	font-size: 14px;
+	margin-right: 4px;
+	color: #00003D;
+}
+.visited_time{
+	
+	font-size: 13px;
+	margin-left: 4px;
+	color: #003333;
+}
+
