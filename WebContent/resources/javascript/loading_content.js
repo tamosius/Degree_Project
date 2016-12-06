@@ -65,16 +65,41 @@ function getTotalMembers(){
 /*------------ DISPLAY ALL MEMBERS ------------------------------------------------------------------------------*/
 function displayAllMembers(){
 		
-    $.get("/Degree_Project/contr/getAllMembers", function(data){
-		console.log(JSON.stringify(data));
+    //$.get("/Degree_Project/contr/getAllMembers", function(data){
+		$.ajax({
+			
+			type: "GET",
+			url : "/Degree_Project/contr/getAllMembers",
+			dataType : "json",
+			success : function(data){
+				
+				$.each(data, function(key, value){
+					
+					$(".size .body_table").append(
+							
+							"<tr class='row_data'>" +
+			                 "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
+			                 "<td class='first_name_data'><span id='check_in'>Check-in</span>" + value.firstName + "</td>" +
+			                 "<td class='last_name_data'>" + value.lastName + "</td>" +
+			                 "<td class='from_data'>" + addClass(value.membershipFrom) + "</td>" +  // 'addClass' function
+			                 "<td class='to_data'>" + addClass(value.membershipTo) + "</td>" +      // in 'add_update_member.js' file
+			                 "<td class='paid_data'>" + addClass(value.paid.toFixed(2)) + "</td>" +  
+			             "</tr>"); 
+				});
+			},
+			error : function(e){
+				
+				alert("Filed!!!");
+			}
+		});
 		// display total members in top-left corner of the window
-		$(".top_panel .total_members_count").text("Total Members: " + data.length);
+		//$(".top_panel .total_members_count").text("Total Members: " + data.length);
 		
 		// before appending data to table, make previous data empty
-		$("table.body_table").empty(); 
+		//$("table.body_table").empty(); 
 		
 		// display whole list of members in the table 'display_members.jsp'
-		$.each(data, function(key, value){
+		/*$.each(data, function(key, value){
 			
 			$(".size .body_table").append(
 					
@@ -87,7 +112,7 @@ function displayAllMembers(){
 	                 "<td class='paid_data'>" + addClass(value.paid.toFixed(2)) + "</td>" +  
 	             "</tr>"); 
 		});
-	});
+	});*/
 }
 
 /*------------ DISPLAY 'last attended member' DETAILS (BOTTOM-LEFT BLOCK) ----------------------------------*/
