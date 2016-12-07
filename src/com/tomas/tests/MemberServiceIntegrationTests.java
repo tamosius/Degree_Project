@@ -7,17 +7,23 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.tomas.dao.MemberDAO;
 import com.tomas.model.Member;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:/spring-servlet.xml")
+@Rollback(true)
+@ContextConfiguration("spring-servlet.xml")
 public class MemberServiceIntegrationTests {
 	
 	@Autowired
 	DataSource dataSource;
+	
+	@Autowired
+	MemberDAO memberDAO;
 
 	@Test
 	public void addMember() {
@@ -31,13 +37,17 @@ public class MemberServiceIntegrationTests {
 		member.setAddress("Ashbourne");
 		member.setPhNumber("0870533905");
 		member.setDateOfBirth("01-06-1978");
+		member.setProgramme("'1 Month Membership'");
 		member.setPassword("secret");  // get initial password when sign in for the first time
 		member.setEmail("tomas@gmail.com");
 		
 		long countBeforeInsert = jdbcTemplate.queryForObject("select count(*) from members", Long.class);
+		Assert.assertEquals(15, countBeforeInsert);
 		
-		        Assert.assertEquals(15, countBeforeInsert);
-
+		memberDAO.addMember(member);
+		
+		long countAfterInsert = jdbcTemplate.queryForObject("select count(*) from members", Long.class);
+		Assert.assertEquals(16, countAfterInsert);
 	}
 
 }

@@ -63,7 +63,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		// get the ID of the last inserted member into the database 
 		// and use this ID for inserting data into 'membership_status' table
-		int lastInsertedId = jdbcTemplate.queryForObject("select id from  members where date_joined = "
+		/*int lastInsertedId = jdbcTemplate.queryForObject("select id from  members where date_joined = "
 				+ "(select max(date_joined) from members)", Integer.class);
 		
 		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to, programme, paid,"
@@ -77,7 +77,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		insertRecentlyVisited(String.valueOf(lastInsertedId));
 		
 		// assign id value to Member object and use it for the picture to save it in the disk
-		member.setId(lastInsertedId);
+		member.setId(lastInsertedId);*/
 		
 		return member;
 	}
