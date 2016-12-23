@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.tomas.dao.OfferDAO;
@@ -48,7 +49,7 @@ public class ProductsServiceImplementation implements ProductsService{
 			// save path for image
 			productsDAO.insertImagePath(product.getId(), product.getId() + ".jpg");
 			// save image on the disk
-			saveImageService.saveImage(image, product.getId(), "products");
+			saveImageService.saveImage(image, product.getId(), "products", request);
 			
 		}else{
 			
@@ -127,5 +128,75 @@ public class ProductsServiceImplementation implements ProductsService{
 	public List<ProductReserved> getReservedProducts(){
 		
 		return productsDAO.getReservedProducts();
+	}
+	
+/*--------- UPDATE PRODUCT ------------------------------------------------------------------*/
+	@Override
+	public String updateProduct(HttpServletRequest request, CommonsMultipartFile image){
+		
+        Product product = new Product();
+		
+        product.setId(Integer.parseInt(request.getParameter("productId")));
+		product.setCategory(request.getParameter("productCategory"));
+		product.setName(request.getParameter("productName"));
+		product.setManufacturer(request.getParameter("productManufacturer"));
+		product.setPrice(Float.parseFloat(request.getParameter("productPrice")));
+		product.setUnits(Integer.parseInt(request.getParameter("unitsStock")));
+		product.setStatus(request.getParameter("status"));
+		product.setDescription(request.getParameter("productDescription"));
+		
+		boolean completed = productsDAO.updateProduct(product);
+		
+		// determine if there is an upload image
+		String imageName = image.getOriginalFilename();
+		if(!imageName.equals("") && completed){
+			
+			// save path for image
+			productsDAO.insertImagePath(product.getId(), product.getId() + ".jpg");
+			// save image on the disk
+			saveImageService.saveImage(image, product.getId(), "products", request);
+			
+		}else if(completed){
+			
+			productsDAO.insertImagePath(product.getId(), "no_image.jpg");;  // insert 'no_image.jpg'
+		}
+		
+		
+		
+		
+		return "Successfully updated the product!";
+	}
+	
+/*--------- DELETE PRODUCT FROM THE DATABASE ------------------------------------------------------------------*/
+	@Override
+	public String deleteProduct(HttpServletRequest request, int productId){
+		
+		boolean completed = productsDAO.deleteProduct(productId);
+		
+		if(completed){
+			
+			saveImageService.deleteImage(productId, "products", request);
+		}
+		
+		return "Successfully deleted the product!";
+	}
+	
+/*-------- CHECK VALID RESERVATION, SEND EMAIL, MESSAGES (AUTOMATIC) REMAINDER IF NEEDED, OR INVALIDATE RESERVATION -----*/
+	public String checkValidateReservation(){
+		
+		List<ProductReserved> sendEmail = productsDAO.checkValidateReservation();
+		
+		if(sendEmail != null){
+			
+			for(ProductReserved send : sendEmail){
+				
+				System.out.println("executed!!!!!!!!!");
+			}
+		}else{
+			
+			System.out.println("Nothing");
+		}
+		
+		return "";
 	}
 }

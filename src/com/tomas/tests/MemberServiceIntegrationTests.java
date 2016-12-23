@@ -42,12 +42,12 @@ public class MemberServiceIntegrationTests {
 		member.setEmail("tomas@gmail.com");
 		
 		long countBeforeInsert = jdbcTemplate.queryForObject("select count(*) from members", Long.class);
-		Assert.assertEquals(15, countBeforeInsert);
+		Assert.assertEquals(16, countBeforeInsert);
 		
 		memberDAO.addMember(member);
 		
 		long countAfterInsert = jdbcTemplate.queryForObject("select count(*) from members", Long.class);
-		Assert.assertEquals(16, countAfterInsert);
+		Assert.assertEquals(17, countAfterInsert);
 	}
 
 }

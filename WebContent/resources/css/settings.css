@@ -57,6 +57,8 @@
     border-bottom: 1px #ffffff solid;
     
     text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+    
+    pointer-events: none;
 }
 #left_settings_block #admin_name::after{
 	

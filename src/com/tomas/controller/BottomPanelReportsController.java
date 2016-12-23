@@ -27,17 +27,18 @@ public class BottomPanelReportsController {
 	}
 	
 /*-------- GET NAMES AND DETAILS OF TODAYS VISITED MEMBERS ------------------------------------------------------------------*/
-	@RequestMapping(value="/getTodaysVisitedMembers", method=RequestMethod.GET, headers="Accept=application/json")
-	public List<Member> getTodaysVisitedMembers(){
+	@RequestMapping(value="/getTodaysVisitedMembers", method=RequestMethod.POST, headers="Accept=application/json")
+	public List<Member> getTodaysVisitedMembers(@RequestParam("name") String idName){
 		
-		return bottomPanelReportsService.getTodaysVisitedMembers();
+		return bottomPanelReportsService.getTodaysVisitedMembers(idName);
 	}
 	
 /*-------- GET MEMBERS BY SPECIFIED PROGRAMME TYPE ('1 Month Membership', '3 Months Membership', etc.) ----------------------*/
 	@RequestMapping(value="/getProgrammeTypeMembers", method=RequestMethod.POST, headers="Accept=application/json")
-	public List<Member> getProgrammeTypeMembers(@RequestParam("programmeType") String programmeType)	{
+	public List<Member> getProgrammeTypeMembers(@RequestParam("programmeType") String programmeType,
+			@RequestParam("name") String name)	{
 		
-		return bottomPanelReportsService.getProgrammeTypeMembers(programmeType);	
+		return bottomPanelReportsService.getProgrammeTypeMembers(programmeType, name);	
 	}
 	
 /*-------- GET 'Pay as You Go' MEMBERS --------------------------------------------------------------------------------------*/
@@ -64,9 +65,10 @@ public class BottomPanelReportsController {
 	
 /*-------- GET VISITED MEMBERS BY THE SPECIFIED PERIOD OF WEEKS (1 Week, 2 Weeks, 4 Weeks, etc..) ---------------------------*/
 	@RequestMapping(value="/getVisitedMembersBySpecifiedWeeks", method=RequestMethod.POST, headers="Accept=application/json")
-	public List<Member> getVisitedMembersBySpecifiedWeeks(@RequestParam("startDate") String startDate){
+	public List<Member> getVisitedMembersBySpecifiedWeeks(@RequestParam("startDate") String startDate,
+			@RequestParam("name") String idName){
 		
-		return bottomPanelReportsService.getVisitedMembersBySpecifiedWeeks(startDate);
+		return bottomPanelReportsService.getVisitedMembersBySpecifiedWeeks(startDate, idName);
 	}
 	
 /*------------ GET VISITED MEMBER COUNT BY THE SPECIFIED PERIOD OF WEEKS (DAYS) ---------------------------------------------*/

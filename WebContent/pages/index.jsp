@@ -49,23 +49,28 @@
 <script type="text/javascript"
 	src="resources/javascript/jquery-1.11.3.js"></script>
 
+<script src="resources/javascript/global_variables.js"></script>
+<script src="resources/javascript/useful_functions.js"></script>
 <script src="resources/javascript/offers_handler.js"></script>
 <script src="resources/javascript/add_update_member.js"></script>
+<script src="resources/javascript/programmes.js"></script>
 
 <script src="resources/javascript/bottom_panel.js"></script>
 <script src="resources/javascript/member_profile.js"></script>
 <script src="resources/javascript/search_member.js"></script>
 <script src="resources/javascript/insert_recently_visited.js"></script>
 <script src="resources/javascript/calendar.js"></script>
-
+<script src="resources/javascript/popup_confirmation_windows.js"></script>
 <script src="resources/javascript/delete_member.js"></script>
 <script src="resources/javascript/tooltips.js"></script>
 <script src="resources/javascript/visits_popup.js"></script>
 <script src="resources/javascript/loading_content.js"></script>
 <script src="resources/javascript/send_email.js"></script>
 <script src="resources/javascript/sell_reserve.js"></script>
+<script src="resources/javascript/charts.js"></script>
 <script src="resources/javascript/file_upload.js"></script>
-<script src="resources/javascript/loading_mask.js"></script>
+<script src="resources/javascript/loading_application.js"></script>
+
 <script src="resources/javascript/to_do_list.js"></script>
 
 
@@ -87,19 +92,23 @@
 	<!------------------ WELCOME WINDOW --------------------------------------------------------------------------------------------------------------->
 	<div class="welcome_window">
 		<div class="welcome_block">
-			<img id="logo_image" src="resources/images/sparta.jpg" /> <img
-				id="loading_image" src="resources/images/loading3.jpg" />
+			<img id="logo_image" src="" /> <img
+				id="loading_image" src="" />
 			<h3>Loading...</h3>
 		</div>
 	</div>
 	<!------------------ POP-UP WINDOW FOR SUCCESSFULLY ADDED/UPDATED/DELETED MEMBER PROFILE MESSAGE ------------------------------------------------------->
-	<div class="popup_window"></div>
+	<div class="popup_window"><img id='check_in_image' src='resources/images/membersImages/no_photo.jpg' /><div class="messages"></div></div>
 	<!------------------ BACKGROUND OVERLAY, ON 'Delete Profile', 'All Settings', 'Remove Products' -------------------------------------------------------->
 	<div class="confirm_window_background_overlay"></div>
-	<!------------------ CONFIRM WINDOW ON ('Delete Profile') ---------------------------------------------------------------------------------------------->
+	<!------------------ CONFIRM WINDOW ON ('Delete Profile', 'Remove Product') ---------------------------------------------------------------------------->
 	<div class="confirm_window">
-		<img class="top_image" src="resources/images/error.jpg" alt="confirm_image" /><span
-			id="confirm_message"></span>
+	
+		<!-- specifies which submit button to be triggered on confirmation 'Yes' -->
+		<input type="hidden" id="trigger_submit" value="" />
+		
+		<img class="top_image" src="resources/images/error.jpg" alt="confirm_image" />
+		<span id="confirm_message"></span>
 		<!--<div class="content">
 			<div class="left_content">
 				<img src="" alt="picture" />
@@ -112,10 +121,14 @@
 			<button type="button" id="cancel_button">No</button>
 		</div>
 	</div>
-	<!------------------ CONFIRM WINDOW ON ('All Settings') ------------------------------------------------------------------------------------------------>
+	<!------------------ CONFIRM WINDOW WHEN UPDATING 'Programmes Details', 'Products Details' ------------------------------------------------------------->
 	<div class="confirm_settings_window">
+	
+	    <!-- specifies which submit button to be triggered on confirmation 'Yes' -->
+		<input type="hidden" id="trigger_submit" value="" />
+		
 	    <div class="top_image">
-		    <img src="resources/images/error.jpg" alt="confirm_image" width="50px;" height="50px;"/>
+		    <img src="resources/images/error.jpg" alt="confirm_image" />
 		    <div id="top_message"></div>
 		</div>
 		
@@ -132,13 +145,44 @@
 	<!------------------ BACKGROUND OVERLAY, WHEN SHOWING 'visited dates times' ---------------------------------------------------------------------------->
 	<div class="background_overlay_visits"></div>
 	
-	<!--================================================================================================================================================= -->
+	<!--==================================================================================================================================================-->
+	<!------------------ CHECK-IN WINDOW ------------------------------------------------------------------------------------------------------------------->
+	<div class="check_in_window">
+
+		<form>
+
+			<div class="top_panel"><label></label><input type="text" class="search_customer" placeholder="Search by ID or name..." /></div>
+
+			<div class="middle_panel">
+			<input type="hidden" id="member_id" value="" />
+			   <div class="image">
+			      <img src="resources/images/membersImages/no_photo.jpg"/>
+			   </div>
+			<div class="customer_names">
+			     <div class="table_header"><table><tr><td class="first">ID</td><td class="second">Name</td><td class="third">Membership</td><td class="fourth">To Pay</td></tr></table></div>
+			     <div class="table_body"><table></table></div>
+			
+			</div>
+			
+			
+			</div>
+
+			<div class="bottom_panel">
+				<button type="button" class="back_button">Back</button>
+			</div>
+
+		</form>
+
+
+	</div>
+	
+	<!--==================================================================================================================================================-->
 	<!------------------ WINDOW ('Sell', 'Order', 'sell_reserve.css', 'sell_reserve.js' -------------------------------------------------------------------->
 	<div class="window">
 
 		<form>
 
-			<div class="top_panel"><input type="text" class="search_customer" /></div>
+			<div class="top_panel"><input type="text" class="search_customer" placeholder="Search by ID or name..."/></div>
 
 			<div class="middle_panel">
 			<input type="hidden" id="product_id" value="" />
@@ -238,7 +282,7 @@
 				<div class="member_profile_left_sidebar">
 
 					<div class="image">
-						<img src="resources/images/no_photo.png" alt="foto" />
+						<img src="resources/images/membersImages/no_photo.jpg" alt="foto" />
 					</div>
 
 					<div id="take_photo">
@@ -262,7 +306,7 @@
 					<!-- first block -------------------------------->
 					<div id="first_block">
 						<div class="member_data">
-							<span>Member ID:</span><label>1001</label> <input type="hidden"
+							<span>Member ID:</span><label id="id_label"></label> <input type="hidden"
 								id="member_id" name="memberId" value="" /> <input
 								type="hidden" id="action" value="update_member" /> <input
 								type="hidden" name="membership_to_before_update"
@@ -305,30 +349,34 @@
 						</div>
 						
 						<div class="member_data">
+						    <input type="hidden" id="programme_id" />
 							<span>Programme:</span> <input id="programme" type="text" autocomplete="off"
-								name="programme" value="" disabled="disabled"
-								placeholder="e.g. '3 Months Mbsh'"/>
+								name="programme" value="" disabled
+								placeholder="Select Membership programme.."/>
 								<img id="programme_drop_down_arrow" src="resources/images/drop_down.png" alt="photo">
 							<div id="programme_type">
-							    <div>'Pay as You Go'<span style="display: none;">'Pay as You Go'</span><p style="display: none;">31</p></div>
-								<div>'1 Month Membership'<span style="display: none;">'1 Month Mbsh'</span><p style="display: none;">31</p></div>
-								<div>'3 Months Membership'<span style="display: none;">'3 Month Mbsh'</span><p style="display: none;">92</p></div>
-								<div>'6 Months Membership'<span style="display: none;">'6 Month Mbsh'</span><p style="display: none;">184</p></div>
-								<div>'12 Months Membership'<span style="display: none;">'12 Month Mbsh'</span><p style="display: none;">365</p></div>
+							    <div>'Pay as You Go'<span style="display: none;">'Pay as You Go'</span><p style="display: none;">0</p><input type="hidden" id="prog_id" value="5" /></div>
+								<div>'1 Month Membership'<span style="display: none;">'1 Month Mbsh'</span><p style="display: none;">31</p><input type="hidden" id="prog_id" value="1" /></div>
+								<div>'3 Months Membership'<span style="display: none;">'3 Months Mbsh'</span><p style="display: none;">92</p><input type="hidden" id="prog_id" value="2" /></div>
+								<div>'6 Months Membership'<span style="display: none;">'6 Months Mbsh'</span><p style="display: none;">184</p><input type="hidden" id="prog_id" value="3" /></div>
+								<div>'12 Months Membership'<span style="display: none;">'12 Months Mbsh'</span><p style="display: none;">365</p><input type="hidden" id="prog_id" value="4" /></div>
 							</div>
 						</div>
 						<div class="member_data">
 							<span>From:</span> <input id="from" type="text" name="membershipFrom" autocomplete="off"
-								value="" disabled="disabled"
+								value="" disabled
 								placeholder="e.g. format '01-06-2016'" />
 						</div>
 						<div class="member_data">
 							<span>To:</span> <input id="to" type="text" name="membershipTo" autocomplete="off"
-								disabled="disabled" placeholder="e.g. format '01-06-2016'" />
+								disabled placeholder="e.g. format '01-06-2016'" />
 						</div>
 						<div class="member_data">
-							<span>Paid €:</span> <input id="paid" type="text" name="paid" autocomplete="off"
-								value="" disabled="disabled" placeholder="Paid.." />
+							<span>To Pay €:</span> <input id="price" type="text" name="price" value="0" disabled
+						placeholder="price..." /> - (<i style ="color: #ffffff; font-weight: bold;">0%</i>) =
+						<input id="paid" type="text" name="paid" value="0"
+						placeholder="Paid.." />
+						<input id="to_pay" type="hidden" name="toPay" />
 						</div>
 						<div class="member_data">
 							<span>Joined on:</span> <input id="date_joined" type="text" autocomplete="off"
@@ -476,10 +524,11 @@
 
 		<!------------------ member profile bottom panel ------------------------->
 		<div class="member_profile_bottom_panel">
-			<button type="button" id="update_button" name="update_button">Update
-				Profile</button>
+			<button type="button" id="update_button" name="update_button">Click To
+				Update</button>
 			<button type="button" id="delete_button" name="delete_button">Delete
 				Profile</button>
+			<button type="button" id="confirm_delete_button"></button>
 			<button type="button" id="back_button" name="back_button"><<<
 				Back</button>
 		</div>
@@ -497,7 +546,7 @@
 			<hr>
 			<div class="add_member_left_sidebar">
 				<div class="image">
-					<img src="resources/images/no_photo.png" alt="foto" />
+					<img src="resources/images/membersImages/no_photo.jpg" alt="foto" />
 				</div>
 				
 				<div id="take_photo">
@@ -527,37 +576,49 @@
 						placeholder="enter Last Name here.." />
 				</div>
 				<div class="add_member_data">
-					<span>Address:</span> <input id="address" type="text"
-						name="address" placeholder="enter Address here.." />
+					<span>Email:<strong style="color: red;"> *</strong></span> <input id="email" type="text" name="email"
+						placeholder="e.g. format 'tomas@gmail.com'" />
 				</div>
 				<div class="add_member_data">
-					<span>Phone No.:</span> <input id="ph_number" type="text"
-						name="phNumber" placeholder="enter Ph.No. here.." />
+				            <input type="hidden" id="programme_id" />
+							<span>Programme:<strong style="color: red;"> *</strong></span> <input id="programme" type="text" autocomplete="off"
+								name="programme" value="" disabled
+								placeholder="e.g. select programme.."/>
+								<img id="programme_drop_down_arrow" src="resources/images/drop_down.png" alt="photo">
+							<div id="programme_type">
+							    <div>'Pay as You Go'<span style="display: none;">'Pay as You Go'</span><p style="display: none;">0</p><label style="display: none;">5</label></div>
+								<div>'1 Month Membership'<span style="display: none;">'1 Month Mbsh'</span><p style="display: none;">31</p><label style="display: none;">1</label></div>
+								<div>'3 Months Membership'<span style="display: none;">'3 Months Mbsh'</span><p style="display: none;">92</p><label style="display: none;">2</label></div>
+								<div>'6 Months Membership'<span style="display: none;">'6 Months Mbsh'</span><p style="display: none;">184</p><<label style="display: none;">3</label></div>
+								<div>'12 Months Membership'<span style="display: none;">'12 Months Mbsh'</span><p style="display: none;">365</p><label style="display: none;">4</label></div>
+							</div>
+						</div>
+				<div class="add_member_data">
+					<span>From:</span> <input id="from" type="text" disabled
+						name="membershipFrom" placeholder="e.g. format '01-06-2016'" />
+				</div>
+				<div class="add_member_data">
+					<span>To:</span> <input id="to" type="text" name="membershipTo" disabled
+						placeholder="e.g. format '01-06-2016'" />
+				</div>
+				<div class="add_member_data">
+					<span>To Pay €:</span> <input id="price" type="text" name="price" value="0" disabled
+						placeholder="price..." /> - (<i style ="color: #ffffff; font-weight: bold;">0%</i>) =
+						<input id="paid" type="text" name="paid" value="0"
+						placeholder="Paid.." />
+						<input id="to_pay" type="hidden" name="toPay" />
 				</div>
 				<div class="add_member_data">
 					<span>Date of Birth:</span> <input id="date_of_birth" type="text"
 						name="dateOfBirth" placeholder="e.g. format '01-06-2016'" />
 				</div>
 				<div class="add_member_data">
-					<span>Email:</span> <input id="email" type="text" name="email"
-						placeholder="e.g. format 'tomas@gmail.com'" />
+					<span>Address:</span> <input id="address" type="text"
+						name="address" placeholder="enter Address here.." />
 				</div>
 				<div class="add_member_data">
-					<span>From:</span> <input id="from" type="text"
-						name="membershipFrom" placeholder="e.g. format '01-06-2016'" />
-				</div>
-				<div class="add_member_data">
-					<span>To:</span> <input id="to" type="text" name="membershipTo"
-						placeholder="e.g. format '01-06-2016'" />
-				</div>
-				<div class="add_member_data">
-					<span>Programme:</span> <input id="programme" type="text"
-						name="programme" placeholder="programme..." />
-				</div>
-
-				<div class="add_member_data">
-					<span>Paid €:</span> <input id="paid" type="text" name="paid" value="0"
-						placeholder="Paid.." />
+					<span>Phone No.:</span> <input id="ph_number" type="text"
+						name="phNumber" placeholder="enter Ph.No. here.." />
 				</div>
 			</div>
 			<!-- end right_sidebar -->
@@ -581,9 +642,9 @@
 
 	<!-------------------------- TOP PANEL ------------------------------------------------------------------------>
 	<div class="top_panel">
-		<span class="total_members_count"></span><div id="description_middle_top_panel"></div><div class="search"><input
+		<span class="total_members_count"></span><div id="description_middle_top_panel"></div><div class="search" id=""><input
 			type="text" name="search_text" id="search_text"
-			placeholder="Search Member..." /></div>
+			placeholder="Type ID or name..." /></div>
 	</div>
 	<!-------------------------- END OF TOP PANEL ----------------------------------------------------------------->
 
@@ -602,12 +663,13 @@
 			<div class="right_block">
 				<button type="button" id="add_member">Add Member</button>
 				<button type="button" id="display_members">Display Members</button>
+				<button type="button" id="check_in">Check-in</button>
 			</div>
 		</div>
 
 		<!------------------ LAST ATTENDED MEMBER ---------------------------------------------------------------->
 		<div class="last_attended_member">
-			<img src="resources/images/loading1.jpg" alt="foto" /> <label
+			<div class="image"><img src="resources/images/membersImages/no_photo.jpg" alt="foto" /></div> <label
 				id="last_visited_today">Last attended member:</label>
 			<div id="name">
 				<input type="hidden" id="member_id" value="" /> <span>Name:</span>
@@ -625,7 +687,7 @@
 		</div>
 		<!------------------- RECENTLY BOOKED MEMBERSHIP ----------------------------------------------------------->
 		<div class="last_updated_member">
-			<img src="resources/images/loading1.jpg" alt="foto" /> <label
+			<div class="image"><img src="resources/images/membersImages/no_photo.jpg" alt="foto" /></div> <label
 				id="last_updated">Recently booked membership:</label>
 			<div id="name">
 				<input type="hidden" id="member_id" value="" /> <span>Name:</span>
@@ -645,7 +707,7 @@
 		</div>
 		<!------------------- RECENTLY JOINED MEMBER ------------------------------------------------------------->
 		<div class="recently_joined_member">
-			<img src="resources/images/loading1.jpg" alt="foto" /> <label
+			<div class="image"><img src="resources/images/membersImages/no_photo.jpg" alt="foto" /></div> <label
 				id="recently_joined">Recently joined:</label>
 			<div id="name">
 				<input type="hidden" id="member_id" value="" /> <span>Name:</span>
@@ -690,12 +752,9 @@
 				<div><p class="programme">'6 Months Mbsh'</p><p><span class="first_span"></span><span class="second_span"></span></p></div>
 				<div><p class="programme">'12 Months Mbsh'</p><p><span class="first_span"></span><span class="second_span"></span></p></div>
 				<div><p class="programme">'Pay as You Go'</p><p><span class="first_span"></span><span class="second_span"></span></p></div>
-				<div><p class="programme">'Other'</p><p><span class="first_span"></span><span class="second_span"></span></p></div>
 			</div>
-			<div class="no_membership_members">
-				<label id=""><span>Programmes</span> booked:</label> <label id="no_membership_members"> </label> <label
-					id="total"> </label> <label id="percentage_no_membership">
-				</label>
+			<div class="programmes_booked">
+				<label id=""><span>Programmes</span> booked:</label> 
 			</div>
 		</div>
 

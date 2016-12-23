@@ -46,16 +46,16 @@ public class MemberController {
 	
 /*--------------- INSERT RECENTLY VISITED MEMBER -----------------------------------------------------------*/
 	@RequestMapping(value="/insertRecentlyVisited", method=RequestMethod.POST, headers="Accept=application/json")
-	public int insertRecentlyVisited(@RequestParam("memberId") String id){
+	public int insertRecentlyVisited(@RequestParam("memberId") String id, @RequestParam("toPay") float toPay){
 		
-		return memberService.insertRecentlyVisited(id);
+		return memberService.insertRecentlyVisited(id, toPay);
 	}
 
 /*--------------- RETRIEVE ALL MEMBERS ---------------------------------------------------------------------*/
-	@RequestMapping(value="/getAllMembers", method=RequestMethod.GET, headers="Accept=application/json")
-	public List<Member> getMembersList() {
+	@RequestMapping(value="/getAllMembers", method=RequestMethod.POST, headers="Accept=application/json")
+	public List<Member> getMembersList(@RequestParam("idName") String idName) {
 		
-		return memberService.getMembersList();  // return all members list from the database
+		return memberService.getMembersList(idName);  // return all members list from the database
 	}
 
 /*-------------- RETRIEVE A MEMBER BY ID -------------------------------------------------------------------*/
@@ -67,7 +67,7 @@ public class MemberController {
 	
 /*-------------- RETRIEVE A MEMBER(S) BY NAME -----------------------------------------------------------------*/
 	@RequestMapping(value="/searchMember", method=RequestMethod.POST, headers="Accept=application/json")
-	public List<Member> searchMember(@RequestBody String name){
+	public List<Member> searchMember(@RequestParam("name") String name){
 		
 		return memberService.searchMember(name);
 	}
@@ -81,9 +81,9 @@ public class MemberController {
 
 /*-------------- DELETE A MEMBER ---------------------------------------------------------------------------*/
 	@RequestMapping(value="/deleteMember", method=RequestMethod.POST, headers="Accept=application/json")
-	public List<Member> deleteMember(@RequestParam String id) {
+	public String deleteMember(HttpServletRequest request, @RequestParam int id) {
 		
-		return memberService.deleteMember(id);
+		return memberService.deleteMember(request, id);
 	}
 	
 /*-------------- RETRIEVE LAST ATTENDED MEMBER TO THE GYM --------------------------------------------------*/

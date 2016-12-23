@@ -8,9 +8,26 @@ var price = "";     // price could be changing (with discount of not, when selec
 var available = ""; // how many products are available to sell / reserve
 		
 
+function checkValidateReservation(){
+	
+	$.ajax({
+		
+		type : "POST",
+		url  : serverPath + "products/checkValidateReservation",
+		dataType : "text",
+		success  : function(data, status, e){
+			
+			alert("successful");
+		},
+		error : function(e){
+			
+			alert("NOT successful");
+		}
+	});
+}
 
-// submit customer and product details to the database
-// to 'reserved_products' or 'products_sales'
+// Sell or reserve the products and store details
+// in the database
 function submitProductTransaction(type, path, data){
 	
 	$.ajax({
@@ -21,10 +38,13 @@ function submitProductTransaction(type, path, data){
 		dataType : "text",
 		success: function(data, success, e){
 			
-			// display successfully added member name in the 'popup_window'
-            $(".popup_window").html("<img id='check_in_image' src='" + imagePath + "' />" +
-			                       "<div id='popup_window_text'><strong>" + data + "</strong><br></div>")
-					               .fadeIn().delay(4000).fadeOut(500);
+			// display the picture of Member who checked-in
+            $(".popup_window #check_in_image").attr("src", imagePath);
+        	 
+        	// display message about Member who checked-in
+            $(".popup_window .messages").html("<div id='popup_window_text'><strong>" + data + "</strong><br></div>");
+ 			$(".popup_window").fadeIn().delay(3000).fadeOut(500);  
+			
 		},
 		error: function(e){
 			
@@ -50,6 +70,7 @@ function calculateTotalPrice(quantity, price){
 /*================================================================================================================================*/
 /*-------- JQUERY READY ----------------------------------------------------------------------------------------------------------*/
 $(document).ready(function(){
+	//checkValidateReservation();
 	
 	// 'Reserve' button clicked in 'product_block'
 	$(".loading_content").delegate(".order_button", "click", function(){
@@ -137,7 +158,7 @@ $(document).ready(function(){
 		var idOrName = $(this).val();
 		
 		// call function in 'search_member.js' to get result
-		var customers = searchDisplayMembers("POST", "/Degree_Project/contr/searchByNameOrId", idOrName);
+		var customers = searchMembers("contr/searchByNameOrId", {name : idOrName});
 		
 		// get table empty before append new data
 		$(".window .table_body table").empty();
@@ -251,14 +272,15 @@ $(document).ready(function(){
 		// determine what submit button was clicked: 'Reserve' or 'Sell'
 		var submitValue = $(this).val();
 		
-		// get quantity
+		// get quantity of selected items (products)
 		var quantity = $(".window .second_top #qty").val();
+		// totalPrice value is calculated when changing qty in the field
 		var totalPrice = $(".window .second_bottom span").text();
 		
 		if(submitValue.localeCompare("Reserve") === 0){ // 'Reserve' button is clicked
 			
 			// iterate through every table row and select only 'checkbox' checked
-			$(".window .table_body table input[type=checkbox]").each(function(){
+			$(".window .table_body table input[type=radio]").each(function(){
 				
 				if($(this).prop("checked")){
 					
@@ -290,6 +312,7 @@ $(document).ready(function(){
 					// get the ID's of 'checked' customers
 					var memberId = $(this).parent().parent().find(".second").text();
 					// get an offer percentage if available, otherwise equals 0
+					// this value is get from the row along with customer name in 'window' pop-up
 					var offerPercentage = $(this).parent().parent().find(".third input").val();
 					
 					var submitData = {
@@ -312,5 +335,11 @@ $(document).ready(function(){
 		
 		
 		event.preventDefault();
+	});
+	
+/*---------- SELL THE PRODUCT RESERVER BY CUSTOMER FROM 'Reserved Products' PAGE -------------------------------*/
+	$("#reserved_products_block").delegate(".bottom_table .sell_reserved_button", "click", function(){
+		
+		
 	});
 });

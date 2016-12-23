@@ -23,8 +23,8 @@ function getDateFormat(date){
 /*--------- JQUERY 'ready' FUNCTION ---------------------------------------------------------------------------------*/
 $(document).ready(function(){
 	
-	var progress = $(".dashboard_top_left #retention_rate_div");
-	var progressLabel = $(".dashboard_top_left #retention_rate_label");
+	var progress = $(".dashboard_top_left #retention_rate_div"); // outer 'div'
+	var progressLabel = $(".dashboard_top_left #retention_rate_label"); // inner 'div'
 	
 	// calculate and display attendance rate (below 'Missing Members' button
 	var rate = 0;
@@ -39,8 +39,8 @@ $(document).ready(function(){
 		complete: function(){
 			progressLabel.text(rate + "% Retentions rate");
 		}
+	    });
 	});
-		});
 	
 /*--------- SHOW MISSING MEMBERS (who haven't attended for the specified period of time) ----------------------------*/
 	$(function(){
@@ -93,6 +93,13 @@ $(document).ready(function(){
 		// 'reports_big_table.js' file will access this data (when loading 'jquery.ready'
 		reportsBigTableType = 8;  // 8 = 'Show missing members'
 		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
+		
 		$(".loading_content").load("pages/reports_big_table.jsp");
 	});
 	
@@ -102,6 +109,13 @@ $(document).ready(function(){
 		// 'reports_big_table.js' file will access this data (when loading 'jquery.ready'
 		reportsBigTableType = 9;  // 9 = valued members (mostly spent on programmes and products)
 		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
+		
 		$(".loading_content").load("pages/reports_big_table.jsp");
 	});
 	
@@ -109,6 +123,13 @@ $(document).ready(function(){
 /*---------- TO-DO LISTS --------------------------------------------------------------------------------------------------*/
 	$(".dashboard_main_content").delegate(".dashboard_top_middle #new_to_do_list_button, .dashboard_top_middle #to_do_list_button," +
 			".dashboard_top_middle #today_to_do_list_button", "click", function(){
+		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
 		
 		$(".loading_content").load("pages/to_do_list.jsp");
 		
@@ -119,6 +140,13 @@ $(document).ready(function(){
 	$(".dashboard_main_content").delegate(".dashboard_top_right #make_sale_button, .dashboard_top_right #sold_today_button," +
 			".dashboard_top_right #popular_products_button", "click", function(){
 		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
+		
 		$(".loading_content").load("pages/products_sales.jsp");
 		
 		// display 'add_new_product_block'
@@ -127,6 +155,13 @@ $(document).ready(function(){
 	
 	$(".dashboard_main_content").delegate(".dashboard_bottom_right #add_product_button, .dashboard_bottom_right #display_products_button," +
 			".dashboard_bottom_right #last_added_products_button", "click", function(){
+		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
 		
 		$(".loading_content").load("pages/products_sales.jsp");
 		

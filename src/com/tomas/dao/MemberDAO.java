@@ -19,8 +19,10 @@ public interface MemberDAO {
 	public void insertImagePath(int id, String path); // insert image path 
 	
 	public int insertRecentlyVisited(String id);   // insert recently visited member's ID and the time stamp
+	
+	public void addToPay(String id, float toPay);  // add payment, 'Pay as You Go' entry or due payments, etc.
 
-	public List<Member> getMembersList();          // get whole members list
+	public List<Member> getMembersList(String idName); // get whole members list
 	
 	public Member getMemberProfile(int id);        // get member details by ID
 	
@@ -28,9 +30,9 @@ public interface MemberDAO {
 	
 	public List<Member> searchByNameOrId(String nameOrId); // search members by name or id
 
-	public Member updateMember(Member member);     // update member details or status
+	public boolean updateMember(Member member);    // update member details or status
 
-	public List<Member> deleteMember(String id);   // delete member from the database
+	public boolean deleteMember(int id);           // delete member from the database
 	
 	public Member getLastAttendedMember();         // get last attended member to the gym
 

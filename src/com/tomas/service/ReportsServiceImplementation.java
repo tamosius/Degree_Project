@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tomas.dao.ReportsDAO;
 import com.tomas.model.Member;
+import com.tomas.model.Statistics;
 
 public class ReportsServiceImplementation implements ReportsService{
 	
@@ -19,13 +20,26 @@ public class ReportsServiceImplementation implements ReportsService{
     public List<Member> getNewMembers(String startDate, String endDate){  
 		
 		return reportsDAO.getNewMembers(startDate, endDate);
-	}      
+	} 
+
+/*--------- NEW SIGNUPS STATISTICS ----------------------------------------------------------------------------------------------------------*/
+	public List<Statistics> getNewMembersStatistics(String startDate, String endDate){
+		
+		return reportsDAO.getNewMembersStatistics(startDate, endDate);
+	}
 	
-	/*------ get members booking made in the specified period of time -----------------------------------------------------------------*/
+/*===========================================================================================================================================*/
+	/*------ get members booking made in the specified period of time -----------------------------------------------------------------------*/
 	@Override
 	public List<Member> getMembersBookings(String startDate, String endDate){   
 		
 		return reportsDAO.getMembersBookings(startDate, endDate);
+	}
+	
+/*--------- NEW BOOKINGS MADE STATISTICS ------------------------------------------------------------------------------------------------*/
+	public List<Statistics> getMembersBookingsStatistics(String startDate, String endDate){
+		
+		return reportsDAO.getMembersBookingsStatistics(startDate, endDate);
 	}
 	
 	/*------ get members with the valid memberships in the specified period of time -------------------------------------*/
@@ -56,18 +70,25 @@ public class ReportsServiceImplementation implements ReportsService{
 		return reportsDAO.getMissingMembers(startDate, endDate);
 	}
 	
-    /*--------- get member visited dates and times by ID --------------------------------------------------------*/
+    /*--------- get member visited dates and times by ID -------------------------------------------------------------------------------*/
 	@Override
 	public List<Member> getMemberVisitedDatesTimes(String id){
 		
 		return reportsDAO.getMemberVisitedDatesTimes(id);
 	}
 	
-	/*----- get valued members (mostly spent on programmes and products) ------------------------------------------------*/
+	/*----- get valued members (mostly spent on programmes and products) ---------------------------------------------------------------*/
 	@Override
 	public List<Member> getValuedMembers(String startDate, String endDate){
 		
 		return reportsDAO.getValuedMembers(startDate, endDate);
+	}
+	
+	/*----- GET VALUED MEMBERS (mostly spent on programmes and products) BY ID OR NAME -------------------------------------------------*/
+	@Override
+	public List<Member> getValuedMembersByIDName(String name){
+		
+		return reportsDAO.getValuedMembersByIDName(name);
 	}
 	
 /*--------- PERSONAL TRAINER TYPE QUERIES ----------------------------------------------------------------------------------------------*/

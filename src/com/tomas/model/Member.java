@@ -26,6 +26,7 @@ public class Member {
 	private String membershipTo;
 	private String programme;
 	private float paid;
+	private float duePayment;
 	private float programmesTotalPaid;
 	private float productsTotalPaid;
 	private float totalPaid;
@@ -38,11 +39,14 @@ public class Member {
 	private String weekDay;
 	private int countVisits;
 	
+	private Programme programmeDetails;   // membership_status has a Programme
+	
 	
 	// no-args constructor
 	public Member() {
 		
 		offer = new Offer();
+		programmeDetails = new Programme();
 	}
 
 /*===================================================*/
@@ -205,7 +209,15 @@ public class Member {
 	public void setTotalPaid(float totalPaid) {
 		this.totalPaid = totalPaid;
 	}
+    
+	public float getDuePayment() {
+		return duePayment;
+	}
 
+	public void setDuePayment(float duePayment) {
+		this.duePayment = duePayment;
+	}
+	
 	public String getMembershipDaysLeft() {
 		return membershipDaysLeft;
 	}
@@ -237,7 +249,28 @@ public class Member {
 	public void setProgrammeBooked(int programmeBooked) {
 		this.programmeBooked = programmeBooked;
 	}
+	/*----------------*/
+	public int getProgrammeId(){
+		return programmeDetails.getProgrammeId();
+	}
+	public void setProgrammeId(int programmeId){
+		programmeDetails.setProgrammeId(programmeId);
+	}
+	public float getProgrammeDiscountPercentage() {
+		return programmeDetails.getProgrammeDiscountPercentage();
+	}
+	public void setProgrammeDiscountPercentage(float programmeDiscountPercentage) {
+		programmeDetails.setProgrammeDiscountPercentage(programmeDiscountPercentage);
+	}
+	public float getFinalPrice() {
+		return programmeDetails.getFinalPrice();
+	}
+	public void setFinalPrice(float finalPrice) {
+		programmeDetails.setFinalPrice(finalPrice);
+	}
 
+	
+/*==========================================================================================*/	
 	/*----------------- 'MEMBER_ATTENDANCE' TABLE ------------------------------------------*/
 	public String getVisitedTimestamp() {
 		return visitedTimestamp;//@Entity  // tells hibernate that the class is an entity to persist or hold data to or from database

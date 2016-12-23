@@ -57,6 +57,8 @@
     border-bottom: 1px #ffffff solid;
     
     text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+    
+    pointer-events: none;
 }
 #left_products_block #admin_name::after{
 	
@@ -148,7 +150,7 @@
 }
 
 /*------ hide all blocks when loading page -------------*/
-#add_new_product_block, #display_products_block, #sold_products_block, #reserved_products_block{
+#add_new_product_block, #update_product_block, #display_products_block, #sold_products_block, #reserved_products_block{
 	
 	position: relative;
 	background: #ffffff;
@@ -257,7 +259,7 @@
 /*===================================================================================================================================*/
 
 /*------ IMAGE AND UPLOAD BUTTON ---------------------------------------------------------------------------------*/
-#add_new_product_block img{
+#add_new_product_block img, #update_product_block img{
 	
    width: 100%;
    height: auto;
@@ -267,7 +269,7 @@
    overflow: hidden;
    
 }
-#add_new_product_block .image{
+#add_new_product_block .image, #update_product_block .image{
 	
     margin: 0px 0px 20px 0px;
     width: 214px;
@@ -277,7 +279,7 @@
     border: none;
     overflow: hidden;
 }
-#add_new_product_block .upload_picture_button{
+#add_new_product_block .upload_picture_button, #update_product_block .upload_picture_button{
 	
 	margin: -45px 0px 0px 230px;
 }
@@ -290,7 +292,7 @@ input[type="file"]{
 
 /*------- ADD PRODUCTS FIELDS,
 --------- DISPLAY PRODUCTS FIELDS (prices, discounts, etc) --------------------------------------------------------*/
-#add_new_product_fields, .products_displayed{
+#add_new_product_fields, #update_product_fields, .products_displayed{
 	
 	position: absolute;
 	top: 80px;
@@ -410,7 +412,21 @@ input[type="file"]{
 	
 }
 
-/*---- bottom panel with buttons in 'product_block' ---------------------------------------*/
+/*================================================================================================*/
+/*----- BUTTON TO SELL RESERVED PRODUCT 'Reserved Products' --------------------------------------*/
+#reserved_products_block .bottom_table .sell_reserved_button{
+	
+	position: absolute;
+	right: 0;
+	bottom: 75px;
+	
+	color: #004d00;
+	width: 100px;
+	
+	cursor: pointer;
+}
+
+/*---- bottom panel with buttons in 'product_block' ----------------------------------------------*/
 .product_block .product_block_bottom{
 	
 	position: absolute;
@@ -462,12 +478,12 @@ input[type="file"]{
 /*====================================================================================================================*/
 
 
-#add_new_product_fields .image_block{
+#add_new_product_fields .image_block, #update_product_fields .image_block{
 	
 	height: 260px;
 	border: none;
 }
-#add_new_product_fields div{
+#add_new_product_fields div, #update_product_fields div{
 	
 	line-height: 50px;
 	height: 50px;
@@ -478,12 +494,12 @@ input[type="file"]{
 	
 	border-top: 1px #666666 solid;
 }
-#add_new_product_fields div label{
+#add_new_product_fields div label, #update_product_fields div label{
 	
 	float: left;
 }
 
-#add_new_product_block div span{
+#add_new_product_block div span, #update_product_block div span{
 	
 	margin: 25px 0px 0px 15px;
 	
@@ -495,7 +511,7 @@ input[type="file"]{
 	font-weight: bold;
 }
 
-#add_new_product_fields select{
+#add_new_product_fields select, #update_product_fields select{
 	
 	float: right;
 	width: 200px;
@@ -507,7 +523,7 @@ input[type="file"]{
 	outline: none;
 }
 
-#add_new_product_fields .radio_buttons{
+#add_new_product_fields .radio_buttons, #update_product_fields .radio_buttons{
 	
 	float: right;
 	//margin-right: -50px;
@@ -515,7 +531,7 @@ input[type="file"]{
 	border: none;
 }
 
-#add_new_product_fields .radio_buttons div{
+#add_new_product_fields .radio_buttons div, #update_product_fields .radio_buttons div{
 	
 	display: inline;
 	margin-right: -50px;
@@ -526,7 +542,7 @@ input[type="file"]{
 }
 
 /*-------- INPUTS IN ADD PRODUCT AND DISPLAY PRODUCTS SETTINGS FIELDS --------------------------------------------------------------------------*/
-#add_new_product_fields div input{
+#add_new_product_fields div input, #update_product_fields div input{
 	
 	float: right;
 	
@@ -543,23 +559,18 @@ input[type="file"]{
 	text-align: right;
 }
 
-#add_new_product_fields div input:focus{
+#add_new_product_fields div input:focus, #update_product_fields div input:focus{
 	
 	border-bottom: 1px #73008C solid;
 }
 
 /*--- div's for description textarea's -------*/
-#add_new_product_fields #product_description_block{
+#add_new_product_fields #product_description_block, #update_product_fields #product_description_block{
 	
 	height: 140px;
 }
 
-#add_new_product_fields #product_description_block{
- 
- 	height: 140px;
-}
-
-#add_new_product_fields textarea, #programmes_settin_fields textarea{
+#add_new_product_fields textarea, #programmes_settin_fields textarea, #update_product_fields textarea{
 	
 	float: right;
 	
@@ -574,7 +585,7 @@ input[type="file"]{
 
 /*=================================================================================================================================*/
 /*--------- ADD NEW PRODUCT SUBMIT BUTTON -----------------------------------------------------------------------------------------*/
-#add_new_product_block #add_new_product_submit_button{
+#add_new_product_block #add_new_product_submit_button, #update_product_block #update_product_submit_button{
 	
 	position: absolute;
 	bottom: 15px;
@@ -589,7 +600,7 @@ input[type="file"]{
     border-radius: 2px;
     cursor: pointer;
     
-    background: -webkit-linear-gradient(to#2e4c84;p, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: -webkit-linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
     background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
     transition: background 0.5s;
     
@@ -598,9 +609,19 @@ input[type="file"]{
     text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
 }
 
-#add_new_product_block #add_new_product_submit_button:hover{
+#add_new_product_block #add_new_product_submit_button:hover, #update_product_block #update_product_submit_button:hover{
 	
     background: #2e4c84;
+}
+
+
+/*=================================================================================================================================*/
+/*----- CONFIRM 'Remove' PRODUCT --------------------------------------------------------------------------------------------------*/
+#display_products_block .products_displayed .confirm_remove_button,
+#update_product_block #confirm_update_product_submit_button,
+#add_new_product_block #confirm_add_new_product_submit_button{
+	
+	display: none;  
 }
 
 

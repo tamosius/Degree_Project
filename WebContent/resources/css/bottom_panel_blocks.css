@@ -72,6 +72,8 @@
     //z-index: 190;
 }
 
+/*=========================================================================================================*/
+/*------------ BOTTOM PANEL DIVS --------------------------------------------------------------------------*/
 .bottom_panel #programme_booked div, .bottom_panel #last_visitors div{
 	
 	font-family:  "Helvetica", "Arial", sans-serif;
@@ -132,7 +134,7 @@
     box-shadow: 0 0 8px black;            
     top: -205px;
     left: 2px;
-   
+   border: 1px red solid;
 }
 .last_visitors ul{     
     top: -245px; 

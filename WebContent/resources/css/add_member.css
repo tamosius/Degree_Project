@@ -23,7 +23,7 @@ h3{
     padding: 20px 30px 20px 30px;
     font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #D3D3D3;
-    text-shadow: 4px 4px 4px black;
+    text-shadow: 2px 2px 4px black;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -45,6 +45,7 @@ h3{
     margin: 25px 0px 25px 0px;
 }
 .add_member_right_sidebar{
+	
     margin: 25px 0px 25px 25px;
     padding: 10px 10px 0px 10px;
     border: solid 1px #D3D3D3;
@@ -57,44 +58,41 @@ h3{
     box-shadow : 4px 4px 4px black;
 }
 .show_error_message{
-    //border: 1px solid white;
+    
     width: auto;
     float: left;
     margin: 0px 0px 0px 25px;
 }
 
 .add_member_data span, .add_member_data label{
+	
     font-size: 16px;      
     width: 120px;
     float: left;
-    //border: solid white 1px;
+    
     font-weight: bold;
     padding: 5px 50px 0px 5px;
     //text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    
-    //position: absolute;
-    //bottom: 0;
 }
 .add_member_right_sidebar .add_member_data{ /*div block of member details in .right_sidebar */
+
+	position: relative;
     margin: 2px 8px 2px 0px;
-    //border: red solid 2px;
-    //float: left;
 }
 
-/*.right_sidebar span{
-    float: left;
-    width: 20%;
-    text-align: right;
-    padding-right: 10px;
-    margin-top: 10px;
-    font-weight: bold;
-}*/
-#paid{
+.add_member_right_sidebar .add_member_data #price{
+	
+	width: 60px;
+}
+
+.add_member_right_sidebar .add_member_data #paid{
+	
+	float: right;
     width: 60px;
 }
 .add_member_data input[type="text"]{
     border: 1px solid #555;
-     color: #525252;
+     color: #00003D;//#525252;
      width: 200px;
      height: 30px;
      font-weight: bold;
@@ -123,40 +121,100 @@ h3{
     //display: block;
 }
 
+/*======================================================================================================*/
+/*-------- drop-down 'image' in 'programme' input ----------------*/
+.add_member_right_sidebar #programme_drop_down_arrow{
+	
+	position: absolute;
+	top: 2px;
+	right: 2px;
+	
+	width: 28px;
+	height: 28px;
+	
+	border-radius: 2px;
+	cursor: pointer;
+}
+
+/*-------- 'drop-down' menu in 'programme' field ---------------*/
+.add_member_right_sidebar #programme_type{
+	
+	position: absolute;
+	top: 33px;
+	right: 2px;
+	
+	width: 200px;
+	height: auto;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+	border: 1px solid #fff;
+	border-radius: 0px 0px 5px 5px;
+	-webkit-box-shadow: 0 0 3px black;
+    box-shadow: 0 4px 8px black;
+    
+    cursor: pointer;
+    z-index: 140;
+    
+    display: none;	
+}
+
+.add_member_right_sidebar #programme_type div{
+	
+	height: 20px;
+	color: white;
+	text-align: center;
+	
+	margin: 0;
+	padding: 8px 0px 3px 0px;
+	border-bottom: 1px solid #fff;
+	
+	text-shadow: none;
+}
+
+.add_member_right_sidebar #programme_type div:hover{
+	
+	background: #2e4c84;
+}
+
+
+
 /*============================================================================================================================================*/
 /*------ LEFT SIDEBAR ------------------------------------------------------------------------------------------------------------------------*/
 .add_member_left_sidebar img{
+	
    width: 100%;
-   height: auto;
+   //height: cover;
    border-radius: 5px;
-   border: 1px solid #D3D3D3;
-   box-shadow : 4px 4px 4px black;
    overflow: hidden;
 }
 .add_member_left_sidebar .image{
+	
     margin: 3px 30px 20px 20px;
-    width: 214px;
-    height: 240px;
+    width: 205px;
+    height: 245px;
     border-radius: 5px;
-    
+    border: 1px #ffffff solid;
     overflow: hidden;
 }
 
-.add_member_left_sidebar .photo_button{
+.add_member_left_sidebar .photo_button, .add_member_left_sidebar .upload_picture_button{
+	
     text-align: center;
     margin: 0px 0px 20px 50px;
     width: 155px;
     height: 30px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
-    color: blue;
+    color: #21375e;
     background: #C2C2D6;
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
 }
 .add_member_left_sidebar .shoot_button{
+	
     color: green;
     display: none;
     text-align: center;
@@ -164,7 +222,7 @@ h3{
     width: 155px;
     height: 30px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     background: #C2C2D6;
     -webkit-transition: background 1s;
@@ -198,7 +256,7 @@ input[type="file"]{
     width: 155px;
     height: 30px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     visibility: hidden;
     background: #C2C2D6;
@@ -209,12 +267,13 @@ input[type="file"]{
 /*==================================================================================================================================================*/
 
 #back_button{
+	
     float: left;
-    color: blue;
+    color: #21375e;
     width: 135px;
     height: 25px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     background: #C2C2D6;
     -webkit-transition: background 1s;
@@ -222,27 +281,30 @@ input[type="file"]{
     transition: background 1s;
 }
 #submit_add_member{
+	
     float: right;
     margin: 0px 0px 0px 0px;
-    color: green;
+    color: #004d00;
     width: 135px;
     height: 25px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     background: #C2C2D6;
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
 }
-#back_button:hover, #add_member_photo_button:hover, #photo_button:hover, 
-#add_member_shoot_button:hover, #shoot_button:hover, #add_member_generate_button:hover, 
+#back_button:hover, #add_member_photo_button:hover,
+.add_member_left_sidebar .upload_picture_button:hover, .add_member_left_sidebar .photo_button:hover, 
+#add_member_shoot_button:hover, .add_member_left_sidebar .shoot_button:hover, #add_member_generate_button:hover, 
 #generate_button:hover, #submit_add_member:hover, #upload_picture_button:hover{
+	
     background: white;
-    //color: #009900;
 }
-#back_button:focus, #add_member_photo_button:focus, #photo_button:focus, 
-#add_member_shoot_button:focus, #shoot_button:focus, #add_member_generate_button:focus, 
+#back_button:focus, #add_member_photo_button:focus, .add_member_left_sidebar .photo_button:focus,
+.add_member_left_sidebar .upload_picture_button:focus, 
+#add_member_shoot_button:focus, .add_member_left_sidebar .shoot_button:focus, #add_member_generate_button:focus, 
 #generate_button:focus, #submit_add_member:focus, #upload_picture_button:focus{
     
     outline: 0;

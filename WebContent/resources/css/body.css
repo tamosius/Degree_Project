@@ -199,14 +199,7 @@ input:focus{
 
 
 
-/*------------------------- CHECK IN, USED INSTEAD BARCODE SCANNER ---------------------------------------------------------------------------------------- */
-#check_in{
-    font-size: 6px;
-    color: green;
-    float: right;
-    margin: 8px 5px 0px 0px;
-    cursor: pointer;
-}
+
 .size{ /* size of 'body_table' */
     width: 100%;
     height: calc(100vh - 179px); /* 194px */

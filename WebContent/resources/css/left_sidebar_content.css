@@ -69,6 +69,11 @@
     background-color: rgba(211, 211, 211, 1);
 }
 
+.buttons_block .right_block #check_in{
+	
+	//color: green;
+}
+
 .buttons_block button{
 	
     width: 133px;
@@ -136,20 +141,28 @@ button::-moz-focus-inner{ /* removes dotted outline in mozilla */
 	margin-bottom: 105px;
 }
 
-.last_attended_member img, .last_updated_member img, .recently_joined_member img{
+.last_attended_member .image, .last_updated_member .image, .recently_joined_member .image{
 	
-    width: 78px;
-    height: 80px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0 0 3px black;
-    box-shadow: 0 0 3px black;
-    
-    position: absolute; /* make it absolute */
+	position: absolute; /* make it absolute */
     top: 6px; /* the height of the other element + its margin */
     bottom: 0; /* stick to the bottom */
     left: 4px; /* stick to the left */
     right: 0; /* stick to the right */
-    //width: 21%;
+    
+    width: 78px;
+    height: 80px;
+    
+    border-radius: 5px; 
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 3px black;
+    box-shadow: 0 0 3px black;
+}
+
+.last_attended_member img, .last_updated_member img, .recently_joined_member img{
+	
+    width: 100%;
+    
+    cursor: pointer;
 }
 
 .details_area{
@@ -221,6 +234,12 @@ button::-moz-focus-inner{ /* removes dotted outline in mozilla */
     bottom: 0; /* stick to the bottom */
     left: 115px; /* stick to the left */
     right: 0; /* stick to the right */
+    
+    width: 133px;
+    height: 15px;
+    
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .last_attended_member #date_visited, .last_updated_member #date_updated, .recently_joined_member #date_updated{

@@ -25,8 +25,6 @@
 
 			<div id="membership_details">Set Programmes Prices<input type="hidden" value="3" /></div>
 
-			<div id="sales_details">Set Products Sales<input type="hidden" value="4" /></div>
-
 		</div>
 		
 		<!-- RIGHT SETTINGS BLOCK ----------------------------------------------------------------------------------------------------->

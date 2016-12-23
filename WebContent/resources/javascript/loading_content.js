@@ -4,48 +4,6 @@
  * AND ALSO DISPLAY MEMBERS WITH DETAILS IN THE BOTTOM-LEFT BLOCKS OF THE APPLICATION
  */
 
-var totalMembers = "";   // total number of members in the database (int)
-
-var allMembers = null;   // all members in json object
-
-// 'reports_big_table.js' file will access this data (when loading 'jquery.ready')
-var reportsBigTableType = "";  // 0 = 'Show all joined' (assigned from this file)
-                               // 1 = 'Show all booked memberships' (assigned from this file)
-                               // 2 = 'Show members with the valid memberships'
-                               // 3 = 'Today's visits' (assigned from 'bottom_panel.js')
-                               // 4, 5, 6 = get members by specified programme type ('1 Month Mbsh', '3 Months Mbsh', 'Pay as You Go', etc..),
-                               // 7 = get visited members by the specified period of weeks (1 Week, 2 Weeks, 4 Weeks, etc..)
-                               // 8 = show missing members, who haven't attended in specified period of time
-
-// 'reports_big_table.js; file will access this data (when loading 'jquery.ready')
-var programmeType = "";  // report types ('1 Month Membership', '3 Months Membership', etc)
-
-// number of weeks to fetch members from database by this number by date backwards
-var numberOfWeeks = "";
-
-// programmes types to iterate through get details of
-var programmes = ["'1 Month Mbsh'", "'3 Months Mbsh'", "'6 Months Mbsh'", "'12 Months Mbsh'", "'Pay as You Go'", "'Other'"];
-
-/*----------- GET TODAY'S DATE -----------------------------------------------------------------------------*/
-function getTodaysDate(){
-	
-	var today = new Date();
-	var dd = today.getDate();
-	var mm = today.getMonth()+1; //January is 0!
-	var yyyy = today.getFullYear();
-
-	if(dd<10) {
-	    dd='0'+dd
-	} 
-
-	if(mm<10) {
-	    mm='0'+mm
-	} 
-
-	today = mm+'-'+dd+'-'+yyyy;
-	
-	return today;
-}
 
 /*----------- GET TOTAL COUNT OF MEMBERS IN DATABASE -------------------------------------------------------*/
 function getTotalMembers(){
@@ -65,7 +23,9 @@ function getTotalMembers(){
 /*------------ DISPLAY ALL MEMBERS ------------------------------------------------------------------------------*/
 function displayAllMembers(){
 		
-    //$.get("/Degree_Project/contr/getAllMembers", function(data){
+	// set the table empty before displaying whole list of members
+	$("table.body_table").empty(); 
+	
 		$.ajax({
 			
 			type: "GET",
@@ -92,27 +52,6 @@ function displayAllMembers(){
 				alert("Filed!!!");
 			}
 		});
-		// display total members in top-left corner of the window
-		//$(".top_panel .total_members_count").text("Total Members: " + data.length);
-		
-		// before appending data to table, make previous data empty
-		//$("table.body_table").empty(); 
-		
-		// display whole list of members in the table 'display_members.jsp'
-		/*$.each(data, function(key, value){
-			
-			$(".size .body_table").append(
-					
-					"<tr class='row_data'>" +
-	                 "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-	                 "<td class='first_name_data'><span id='check_in'>Check-in</span>" + value.firstName + "</td>" +
-	                 "<td class='last_name_data'>" + value.lastName + "</td>" +
-	                 "<td class='from_data'>" + addClass(value.membershipFrom) + "</td>" +  // 'addClass' function
-	                 "<td class='to_data'>" + addClass(value.membershipTo) + "</td>" +      // in 'add_update_member.js' file
-	                 "<td class='paid_data'>" + addClass(value.paid.toFixed(2)) + "</td>" +  
-	             "</tr>"); 
-		});
-	});*/
 }
 
 /*------------ DISPLAY 'last attended member' DETAILS (BOTTOM-LEFT BLOCK) ----------------------------------*/
@@ -123,13 +62,14 @@ function displayLastAttended(){
 		$(".last_attended_member #full_attendance").text("Show all " + data.firstName + "'s visits");
 		
 		// show this member in the 'Last Attended Member' bottom-left box
+		$(".last_attended_member img").delay(1000).attr("src", "resources/images/membersImages/" + data.imagePath + "?" + parseInt(Math.random() * 1000000));
 		$(".last_attended_member #member_id").val(data.id);
 		$(".last_attended_member #full_name").text(data.firstName + " " + data.lastName);
 		$(".last_attended_member #date_visited").text(data.visitedTimestamp.substring(0, 10));
 		$(".last_attended_member #time_visited").text(data.visitedTimestamp.substring(11, 19));
-		$(".last_attended_member #membership_status").html(addClassLeftSidebar(data.membershipTo));                
+		$(".last_attended_member #membership_status").html(fontLeftSidebar(data.membershipTo));                
 		$(".last_attended_member #membership_status_days_left")                  // 'addClass', 'addClassDaysLeft', 'addClassDaysLeftLeftSidebar' functions
-		     .html(addClassDaysLeftLeftSidebar(data.membershipDaysLeft, data.membershipTo));  // are in 'add_update_member.js' file
+		     .html(fontDayLeftLeftSidebar(data.membershipDaysLeft, data.membershipTo));  // are in 'add_update_member.js' file
 		
 	});
 }
@@ -140,13 +80,14 @@ function displayRecentlyBooked(){
     $.get("/Degree_Project/contr/recentlyBookedMembership", function(data){
 		
 		// show this member in the 'Recently Booked Membership' bottom-left box
+    	$(".last_updated_member img").attr("src", "resources/images/membersImages/" + data.imagePath + "?" + parseInt(Math.random() * 1000000));
 		$(".last_updated_member #member_id").val(data.id);
 		$(".last_updated_member #full_name").text(data.firstName + " " + data.lastName);
 		$(".last_updated_member #date_updated").text(data.bookedTimestamp);
 		$(".last_updated_member #paid_membership").text(data.paid);                        
-		$(".last_updated_member #membership_status").html(addClassLeftSidebar(data.membershipTo));     
+		$(".last_updated_member #membership_status").html(fontLeftSidebar(data.membershipTo));     
 		$(".last_updated_member #membership_status_days_left")                 // 'addClass', 'addClassDaysLeft', 'addClassDaysLeftLeftSidebar' functions
-		    .html(addClassDaysLeftLeftSidebar(data.membershipDaysLeft, data.membershipTo)); // are in 'add_update_member.js' file
+		    .html(fontDayLeftLeftSidebar(data.membershipDaysLeft, data.membershipTo)); // are in 'add_update_member.js' file
 	});
 }
 
@@ -156,13 +97,14 @@ function displayRecentlyJoined(){
     $.get("/Degree_Project/contr/recentlyJoined", function(data){
 		
 		// show this member in the 'Recently Joined' bottom-left box
+    	$(".recently_joined_member img").attr("src", "resources/images/membersImages/" + data.imagePath + "?" + parseInt(Math.random() * 1000000));
 		$(".recently_joined_member #member_id").val(data.id);
 		$(".recently_joined_member #full_name").text(data.firstName + " " + data.lastName);
 		$(".recently_joined_member #date_updated").text(data.dateJoined);
 		$(".recently_joined_member #paid_membership").text(data.paid);
-		$(".recently_joined_member #membership_status").html(addClassLeftSidebar(data.membershipTo));             
+		$(".recently_joined_member #membership_status").html(fontLeftSidebar(data.membershipTo));             
 		$(".recently_joined_member #membership_status_days_left")            // 'addClass', 'addClassDaysLeft', 'addClassDaysLeftLeftSidebar' functions
-		    .html(addClassDaysLeftLeftSidebar(data.membershipDaysLeft, data.membershipTo)); // are in 'add_update_member.js' file
+		    .html(fontDayLeftLeftSidebar(data.membershipDaysLeft, data.membershipTo)); // are in 'add_update_member.js' file
 	});
 }
 
@@ -192,6 +134,9 @@ function programmesBooked(){
 			processType : true,
 			async : false,
 			success : function(data, status, e){
+				console.log(data);
+				// array in 'global_variables.js' file
+				booked[i] = data;
 				
 				$(".reports #programme_booked div:nth-child(" + nthChild + ")").find(".first_span")
 				      .text(totalMembers + " / " + data + " ");
@@ -244,29 +189,13 @@ function visitedMembersCount(){
 	});
 }
 
+
+/*===========================================================================================================*/
 /*------------ JQUERY 'ready' -------------------------------------------------------------------------------*/
 $(document).ready(function(){
 	
 /*------------ LOAD THE 'dashboard.jsp' AND GET TOTAL NUMBER OF MEMBERS WHEN THE PROGRAM STARTS -------------*/
 	$(".loading_content").load("pages/dashboard.jsp");
-	
-	$.ajax({
-		
-		type        : "GET",
-		url         : "/Degree_Project/contr/getAllMembers",
-		dataType    : "json",
-		processType : true,
-		success     : function(data, status, e){
-			
-			allMembers = data;  // assign data returned from database to 'allMembers' variable
-			
-			
-		},
-		error       : function(e){
-			
-			alert("Error! Could not retrieve all members from the database!");
-		}
-	});
 	
 /*----------- GET TOTAL COUNT OF MEMBERS IN DATABASE -------------------------------------------------------*/
 	getTotalMembers();
@@ -328,7 +257,6 @@ $(document).ready(function(){
 /*----------- DISPLAY TODAY'S DATE IN DASHBOARD 'Today's To-do List' ----------------------------------------*/
 	var date = getTodaysDate();
 	$("#today_to_do_list_button").val(date);
-	console.log("date: " + date);
 	
 	
 /*------------ CLEAR 'local storage' ON EXIT WINDOW ---------------------------------------------------------*/
@@ -350,22 +278,37 @@ $(document).ready(function(){
 	} else {
 	    
 	}*/
+	
+	
+/*===========================================================================================================*/
 /*------------ LEFT SIDEBAR, LOAD (dashboard.jsp) -----------------------------------------------------------*/
 	$(".buttons_block #dashboard").click(function(){
 		
 		// clear description of the report (in the middle of 'top_panel')
 		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
 	    
 		$(".loading_content").load("pages/dashboard.jsp");
 	    });
 	
 /*------------ LEFT SIDEBAR, LOAD (display_members.jsp) -----------------------------------------------------*/
 	$("body").delegate(".left_sidebar #display_members, .dashboard_top_left #display_button", "click", function(){
-		   
-		// clear report description text (in the middle of 'top_panel')
-		$(".top_panel #description_middle_top_panel").text("");
-	    
-		$(".loading_content").load("pages/display_members.jsp");
+		
+		// assign this variable in 'loading_content.js'
+		// this variable will be used when loading 'reports_big_table.js'
+		reportsBigTableType = 10;  // 3 = 'display_members'
+		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
+		
+		$(".loading_content").load("pages/reports_big_table.jsp");
 	});
 	
 /*------------ LEFT SIDEBAR, LOAD (communication.jsp) -------------------------------------------------------*/
@@ -373,6 +316,10 @@ $(document).ready(function(){
 		
 		// clear description of the report (in the middle of 'top_panel')
 		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
 		
 		$(".loading_content").load("pages/communications.jsp");
 	});
@@ -383,6 +330,10 @@ $(document).ready(function(){
 		// clear description of the report (in the middle of 'top_panel')
 		$(".top_panel #description_middle_top_panel").html("");
 		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
+		
 		$(".loading_content").load("pages/reports.jsp"); 
 		$(".report_table_header").hide();  // hide the table header of the report table, when the page loads
 	});
@@ -390,11 +341,25 @@ $(document).ready(function(){
 /*------------ LEFT SIDEBAR, LOAD (sales.jsp) ---------------------------------------------------------------*/
 	$(".buttons_block #sales").click(function(){
 		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
+		
 		$(".loading_content").load("pages/products_sales.jsp");
 	});
 	
 /*------------ LEFT SIDEBAR, LOAD (settings.jsp) ---------------------------------------------------------------*/
 	$(".buttons_block #settings").click(function(){
+		
+		// clear description of the report (in the middle of 'top_panel')
+		$(".top_panel #description_middle_top_panel").html("");
+		
+		// clear the 'Search' field in the top-right corner
+		// before opening the page
+		$(".top_panel .search #search_text").val("");
 		
 		$(".loading_content").load("pages/settings.jsp");
 	});

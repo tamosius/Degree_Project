@@ -270,7 +270,9 @@ button.ui-button::-moz-focus-inner {
 	position: relative;
 	padding: .2em 0;
 	//background-color: #8585ad;
-	background: linear-gradient(to bottom, #e0e0eb, #8585ad);
+	//background: linear-gradient(to bottom, #e0e0eb, #8585ad);
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
 	color: white;
 	font-size: 16px;
     //text-transform: uppercase;
@@ -342,7 +344,9 @@ button.ui-button::-moz-focus-inner {
 	font-size: 14px;
 	border-radius: 5px;
 	outline: 0;
-	background: #b3b3cc;
+	background: #365899;
+	//background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    //background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
 	color: white;
 	font-weight: bold;
 	text-shadow: 1px -1px 0px #000;
@@ -929,7 +933,7 @@ body .ui-tooltip {
 	//background: #ffffff url("images/ui-bg_flat_75_ffffff_40x100.png") 50% 50% repeat-x;
 	color: #222222;
 	  
-    background:rgba(255, 255, 255, 0.7);  
+    background:rgba(255, 255, 255, 0.95);  
 }
 .ui-widget-content a {
 	color: #222222;
@@ -975,7 +979,9 @@ body .ui-tooltip {
 	font-weight: normal;
 	//color: #212121;
 	color: white;
-	background: linear-gradient(to bottom, #d2d2e0, #8585ad);
+	//background: linear-gradient(to bottom, #d2d2e0, #8585ad);
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -998,7 +1004,9 @@ body .ui-tooltip {
 	font-weight: normal;
 	//color: #212121;
 	color: white;
-	background: linear-gradient(to bottom, #d2d2e0, #8585ad);
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
 	
 	/*background: #6eafbf;
     -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
@@ -1026,7 +1034,8 @@ body .ui-tooltip {
 	//background: #fbf9ee url("images/ui-bg_glass_55_fbf9ee_1x400.png") 50% 50% repeat-x;
 	color: black;#363636;
 	//font-weight: bold;
-	background: linear-gradient(to bottom, white, #c2c2d6);//#99CCFF;
+	background: linear-gradient(to bottom, white, #365899);//#99CCFF;
+	
 }
 .ui-state-highlight a,
 .ui-widget-content .ui-state-highlight a,

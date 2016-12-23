@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class ProductsDAOImplementation implements ProductsDAO{
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		String sql = " SELECT * FROM products"
-				   + " WHERE category = '" + category+ "'";
+				   + " WHERE category = '" + category + "'";
 		
 		List<Product> products = jdbcTemplate.query(sql, new RowMapper<Product>(){
 			
@@ -201,7 +202,7 @@ public class ProductsDAOImplementation implements ProductsDAO{
 	@Override
 	public List<ProductReserved> getReservedProducts(){
 		
-JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
 		String sql = " SELECT products_reserved.member_id, products_reserved.product_id,"
                    + " products.price, products_reserved.quantity,"
@@ -214,7 +215,8 @@ JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
                    + " INNER JOIN members"
                    + " ON products_reserved.member_id = members.id"
                    + " INNER JOIN products"
-                   + " ON products_reserved.product_id = products.id ";
+                   + " ON products_reserved.product_id = products.id"
+                   + " WHERE products_reserved.valid = 1";
 		
 		List<ProductReserved> reservedProducts = jdbcTemplate.query(sql, new RowMapper<ProductReserved>(){
 			
@@ -270,5 +272,91 @@ JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 				return null;
 			}
 		});
+	}
+	
+/*--------- UPDATE PRODUCT ------------------------------------------------------------------*/
+	@Override
+	public boolean updateProduct(Product product){
+		
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " UPDATE products"
+                   + " SET category = ?, name = ?, manufacturer = ?,"
+                   + " price = ?, units = ?, status = ?"
+                   + " WHERE id = ?";
+		
+		jdbcTemplate.update(sql, new Object[]{product.getCategory(), product.getName(), product.getManufacturer(),
+				product.getPrice(), product.getUnits(), product.getStatus(), product.getId()});
+		
+		return true;
+	}
+	
+/*--------- DELETE PRODUCT FROM THE DATABASE ------------------------------------------------------------------*/
+	@Override
+	public boolean deleteProduct(int productId){
+		
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " DELETE FROM products"
+				   + " WHERE id = ?";
+		
+		jdbcTemplate.update(sql, productId);
+		
+		return true;
+	}
+	
+/*-------- CHECK VALID RESERVATION, SEND EMAIL, MESSAGES (AUTOMATIC) REMAINDER IF NEEDED, OR INVALIDATE RESERVATION -----*/
+	public List<ProductReserved> checkValidateReservation(){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		// this query validates the reservation. If date has expired, set valid = 0 (boolean)
+		String sqlValidate = " UPDATE products_reserved"
+				           + " SET valid = IF(expire_date < NOW(), 0, 1)";
+		
+		jdbcTemplate.update(sqlValidate);
+		
+		
+		String sql = " SELECT products_reserved.member_id, products_reserved.product_id,"
+                   + " products.price, products_reserved.quantity,"
+                   + " products_reserved.total_price, products.name,"
+                   + " members.first_name, members.last_name,"
+                   + " members.email,"
+                   + " DATE_FORMAT(products_reserved.reserved_date, '%d-%m-%Y %H:%i:%s') AS reserved_date,"
+                   + " DATE_FORMAT(products_reserved.expire_date, '%d-%m-%Y') AS expire_date,"
+                   + " products.image_path"
+                   + " FROM products_reserved"
+                   + " INNER JOIN members"
+                   + " ON products_reserved.member_id = members.id"
+                   + " INNER JOIN products"
+                   + " ON products_reserved.product_id = products.id "
+                   + " WHERE expire_date = STR_TO_DATE(NOW() + INTERVAL 5 DAY, '%Y-%m-%d')"
+                   + " AND products_reserved.valid = 1";
+		
+		List<ProductReserved> sendEmail = jdbcTemplate.query(sql, new RowMapper<ProductReserved>(){
+			
+			@Override
+			public ProductReserved mapRow(ResultSet resultSet, int rowNumber)throws SQLException{
+				
+				ProductReserved reservedProduct = new ProductReserved();
+				
+				reservedProduct.setMemberId(resultSet.getInt("member_id"));
+				reservedProduct.setId(resultSet.getInt("product_id"));
+				reservedProduct.setPrice(resultSet.getFloat("price"));
+				reservedProduct.setQuantity(resultSet.getInt("quantity"));
+				reservedProduct.setTotalPrice(resultSet.getFloat("total_price"));
+				reservedProduct.setName(resultSet.getString("name"));
+				reservedProduct.setFirstName(resultSet.getString("first_name"));
+				reservedProduct.setLastName(resultSet.getString("last_name"));
+				reservedProduct.setEmail(resultSet.getString("email"));
+				reservedProduct.setReservedDate(resultSet.getString("reserved_date"));
+				reservedProduct.setExpireDate(resultSet.getString("expire_date"));
+				reservedProduct.setImagePath(resultSet.getString("image_path"));
+				
+				return reservedProduct;
+			}
+		});
+		
+		return sendEmail;
 	}
 }

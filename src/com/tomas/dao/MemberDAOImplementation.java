@@ -63,21 +63,26 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		// get the ID of the last inserted member into the database 
 		// and use this ID for inserting data into 'membership_status' table
-		/*int lastInsertedId = jdbcTemplate.queryForObject("select id from  members where date_joined = "
+		//==================================================================================================
+		int lastInsertedId = jdbcTemplate.queryForObject("select id from  members where date_joined = "
 				+ "(select max(date_joined) from members)", Integer.class);
 		
-		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to, programme, paid,"
+		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to, programme,"
+				    + " paid, due_payment, programme_id,"
 				    + " programme_state, update_description, programme_booked)"
-				    + " VALUES (" + lastInsertedId + ", NOW(), ?, ?, ?, ?, ?, ?, ?)";
+				    + " VALUES (" + lastInsertedId + ", NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		jdbcTemplate.update(sql2, new Object[]{member.getMembershipFrom(), member.getMembershipTo(),member.getProgramme(), member.getPaid(),
+		jdbcTemplate.update(sql2, new Object[]{member.getMembershipFrom(), member.getMembershipTo(),member.getProgramme(),
+				member.getPaid(), member.getDuePayment(), member.getProgrammeId(),
 				member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
 		
 		// insert new Member as recently visited
 		insertRecentlyVisited(String.valueOf(lastInsertedId));
 		
 		// assign id value to Member object and use it for the picture to save it in the disk
-		member.setId(lastInsertedId);*/
+		member.setId(lastInsertedId);
+		//*===================================================================================================
+		
 		
 		return member;
 	}
@@ -116,12 +121,12 @@ public class MemberDAOImplementation implements MemberDAO {
 	
 /*-------------- UPDATE A MEMBER --------------------------------------------------------------------------*/
 	@Override
-	public Member updateMember(Member member) {
+	public boolean updateMember(Member member) {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
-		System.out.println("programme booked: " + member.getProgrammeBooked() + " member id: " + member.getId());
-		// update 'membership_status' table and set 'programme_state' to 'inactive'
-		// if membership programme has been booked
+		
+		// update 'membership_status' table and set all fields 'programme_state'
+		// to 'inactive' if new programme started
 		if(member.getProgrammeBooked() == 1){
 			
 			String sql = " UPDATE membership_status SET programme_state = 'inactive'"
@@ -141,15 +146,15 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		// insert query into 'membership_status' table
 		String sql2 = " INSERT INTO membership_status (id, updated_timestamp, membership_from, membership_to,"
-				    + " paid, programme, programme_state, update_description, programme_booked)"
-				    + " VALUES (?, NOW(), ?, ?, ?, ?, ?, ?, ?)";
+				    + " paid, due_payment, programme_id, programme, programme_state, update_description, programme_booked)"
+				    + " VALUES (?, NOW(), ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		// execute this insert query in 'membership_status' table
 		jdbcTemplate.update(sql2, new Object[] {member.getId(), member.getMembershipFrom(), member.getMembershipTo(),
-				member.getPaid(), member.getProgramme(), member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
+				member.getPaid(), member.getDuePayment(), member.getProgrammeId(), member.getProgramme(), member.getProgrammeState(), member.getUpdateDescription(), member.getProgrammeBooked()});
 		
 		// get updated member profile
-		return getMemberProfile(member.getId());
+		return true;
 	}
 	
 /*------------ INSERT IMAGE PATH INTO MEMBERS TABLE ------------------------------------------------------*/
@@ -165,37 +170,77 @@ public class MemberDAOImplementation implements MemberDAO {
 		jdbcTemplate.update(sql);
 	}
 	
+/*========================================================================================================*/
 /*------------ INSERT RECENTLY VISITED MEMBER ------------------------------------------------------------*/
 	@Override
 	public int insertRecentlyVisited(String id){
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = "INSERT INTO member_attendance (id, visited_timestamp) VALUES (?, NOW())";
+		// this query checks if the member's ID is already checked-in today,
+		// is so, discard new entry in 'member_attendance' table
+		String sqlCheck = " SELECT COUNT(id) FROM member_attendance"
+				        + " WHERE STR_TO_DATE(visited_timestamp, '%Y-%m-%d') = STR_TO_DATE(NOW(), '%Y-%m-%d') and id = " + id;
 		
-		// insert visited member into the database
-		jdbcTemplate.update(sql, id);
+		int idValue = jdbcTemplate.queryForObject(sqlCheck, Integer.class);
 		
-		// get updated number of the visits count in the gym
-		return bottomPanelReportsDAO.getVisitsCount();
+		// if values not found, execute query
+		if(idValue == 0){
+			
+			String sql = "INSERT INTO member_attendance (id, visited_timestamp) VALUES (?, NOW())";
+			
+			// insert visited member into the database
+			jdbcTemplate.update(sql, id);
+			
+			// get updated number of the today's visits count in the gym
+			return bottomPanelReportsDAO.getVisitsCount();
+		}
+		else{
+			
+			return 0;
+		}
 	}
+	
+/*----------- ADD PAYMENT MADE ON CHECK-IN ('Pay as You Go', due payments, etc. -----------------------------*/
+	@Override
+	public void addToPay(String id, float toPay){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " UPDATE membership_status SET paid = paid + ?"
+                   + " WHERE id = ?"
+                   + " AND programme_booked = 1 AND programme_state = 'active'";
+		
+		jdbcTemplate.update(sql, toPay, id);
+	}
+/*============================================================================================================*/
+	
 	
 /*------------ RETRIEVE ALL MEMBERS ----------------------------------------------------------------------*/
 	@Override
-	public List<Member> getMembersList() {
+	public List<Member> getMembersList(String idName) {
 
 		List<Member> membersList = new ArrayList<>();
 
-		String sql = " SELECT members.id, members.first_name, members.last_name,"
-				   + " membership_status.membership_from, membership_status.membership_to,"
-				   + " membership_status.paid "
-				   + " FROM members "
-				   + " INNER JOIN membership_status "
+		String sql = "  SELECT members.id, members.first_name, members.last_name,"
+				   + " date_format(members.date_joined, '%d-%m-%Y') AS date_joined,"
+				   + " membership_status.programme, membership_status.membership_from,"
+				   + " membership_status.membership_to, membership_status.paid,"
+				   + " DATEDIFF(STR_TO_DATE(membership_status.membership_to, '%d-%m-%Y'), NOW()) AS days_left,"
+				   + " COUNT(member_attendance.id) AS visits,"
+				   + " MAX(DATE_FORMAT(member_attendance.visited_timestamp, '%d-%m-%Y %H:%i:%s')) AS last_visit"
+				   + " FROM members"
+				   + " INNER JOIN membership_status"
 				   + " ON members.id = membership_status.id"
+				   + " LEFT JOIN member_attendance"
+				   + " ON members.id = member_attendance.id"
 				   + " WHERE membership_status.updated_timestamp ="
-				   + " (SELECT MAX(updated_timestamp) from membership_status"
-				   + " WHERE membership_status.id = id"
-				   + " AND members.id = membership_status.id)";
+				   + " (SELECT MAX(updated_timestamp) FROM membership_status "
+				   + " WHERE membership_status.id = id AND members.id = membership_status.id)"
+				   + " AND (members.id LIKE '" + idName + "%' OR members.first_name LIKE '" + idName + "%' OR members.last_name LIKE '" + idName + "%')"
+				   + " GROUP BY members.id"
+				   + " ORDER BY members.date_joined DESC";
+		
 
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		membersList = jdbcTemplate.query(sql, new RowMapper<Member>(){
@@ -208,9 +253,14 @@ public class MemberDAOImplementation implements MemberDAO {
 				member.setId(resultSet.getInt("id"));
 				member.setFirstName(resultSet.getString("first_name"));
 				member.setLastName(resultSet.getString("last_name"));
+				member.setDateJoined(resultSet.getString("date_joined"));
+				member.setProgramme(resultSet.getString("programme"));
 				member.setMembershipFrom(resultSet.getString("membership_from"));
 				member.setMembershipTo(resultSet.getString("membership_to"));
+				member.setMembershipDaysLeft(resultSet.getString("days_left"));
 				member.setPaid(resultSet.getFloat("paid"));
+				member.setCountVisits(resultSet.getInt("visits"));
+				member.setVisitedTimestamp(resultSet.getString("last_visit"));
 				
 				return member;
 			}
@@ -229,6 +279,7 @@ public class MemberDAOImplementation implements MemberDAO {
 				   + " members.address, members.ph_number, members.date_of_birth, members.email,"
 				   + " membership_status.programme, membership_status.membership_from, membership_status.membership_to,"
 				   + " membership_status.paid, DATE_FORMAT(members.date_joined, '%d-%m-%Y') AS date_joined,"
+				   + " membership_status.programme_id,"
 				   + " membership_status.programme_state, membership_status.update_description, members.image_path"
 				   + " FROM members"
 				   + " INNER JOIN membership_status"
@@ -259,6 +310,7 @@ public class MemberDAOImplementation implements MemberDAO {
 					member.setMembershipTo(resultSet.getString("membership_to"));
 					member.setPaid(resultSet.getFloat("paid"));
 					member.setDateJoined(resultSet.getString("date_joined"));
+					member.setProgrammeId(resultSet.getInt("programme_id"));
 					member.setProgrammeState(resultSet.getString("programme_state"));
 					member.setUpdateDescription(resultSet.getString("update_description"));
 					member.setImagePath(resultSet.getString("image_path"));
@@ -270,22 +322,24 @@ public class MemberDAOImplementation implements MemberDAO {
 		});
 	}
 	
-/*-------------- RETRIEVE A MEMBER BY NAME -----------------------------------------------------------------*/
+/*-------------- RETRIEVE A MEMBER BY ID OR NAME -----------------------------------------------------------------*/
 	@Override
 	public List<Member> searchMember(String name){
 		
 		List<Member> searchedMember = new ArrayList<>();
 		
-		String sql = " SELECT members.id, members.first_name, members.last_name,"
-				   + " membership_status.membership_from, membership_status.membership_to,"
-				   + " membership_status.paid"
+		String sql = " SELECT members.id, members.first_name, members.last_name, members.image_path,"
+				   + " membership_status.programme,"
+				   + " IF(membership_status.programme_id = 5, (SELECT final_price FROM programmes_prices WHERE programmeId = 5), membership_status.due_payment) AS to_pay,"
+                   + " IF(membership_status.programme_id = 5, (SELECT programme_discount_percentage FROM programmes_prices WHERE programmeId = 5), membership_status.due_payment) AS discount"
 				   + " FROM members "
 				   + " INNER JOIN membership_status "
 				   + " ON members.id = membership_status.id"
 				   + " WHERE membership_status.updated_timestamp ="
 				   + " (SELECT MAX(updated_timestamp) from membership_status"
 				   + " WHERE membership_status.id = id AND members.id = membership_status.id)"
-				   + " AND members.first_name LIKE '" + name + "%' OR members.last_name LIKE '" + name + "%'";
+				   + " AND (members.id LIKE '" + name + "%'"
+				   + " OR members.first_name LIKE '" + name + "%' OR members.last_name LIKE '" + name + "%')";
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
@@ -299,9 +353,10 @@ public class MemberDAOImplementation implements MemberDAO {
 				member.setId(resultSet.getInt("id"));
 				member.setFirstName(resultSet.getString("first_name"));
 				member.setLastName(resultSet.getString("last_name"));
-				member.setMembershipFrom(resultSet.getString("membership_from"));
-				member.setMembershipTo(resultSet.getString("membership_to"));
-				member.setPaid(resultSet.getFloat("paid"));
+				member.setImagePath(resultSet.getString("image_path"));
+				member.setProgramme(resultSet.getString("programme"));
+				member.setFinalPrice(resultSet.getFloat("to_pay"));
+				member.setProgrammeDiscountPercentage(resultSet.getFloat("discount"));
 				
 				return member;
 			}
@@ -349,7 +404,7 @@ public class MemberDAOImplementation implements MemberDAO {
 
 /*------------ DELETE A MEMBER ---------------------------------------------------------------------------*/
 	@Override
-	public List<Member> deleteMember(String id) {
+	public boolean deleteMember(int id) {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
@@ -357,7 +412,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		jdbcTemplate.update(sql, id);
 		
-		return getMembersList();
+		return true;
 	}
 	
 /*------------ RETRIEVE LAST ATTENDED MEMBER TO THE GYM --------------------------------------------------*/
@@ -366,7 +421,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT members.id, members.first_name, members.last_name,"
+		String sql = " SELECT members.id, members.first_name, members.last_name, members.image_path,"
 				   + " DATE_FORMAT(member_attendance.visited_timestamp, '%d-%m-%Y %H:%i:%s') AS visited_on,"
 				   + " membership_status.membership_to, membership_status.paid,"
 				   + " DATEDIFF(STR_TO_DATE(membership_status.membership_to, '%d-%m-%Y'), NOW()) AS days_left"
@@ -392,6 +447,7 @@ public class MemberDAOImplementation implements MemberDAO {
 					member.setId(resultSet.getInt("id"));
 					member.setFirstName(resultSet.getString("first_name"));
 					member.setLastName(resultSet.getString("last_name"));
+					member.setImagePath(resultSet.getString("image_path"));
 					member.setVisitedTimestamp(resultSet.getString("visited_on"));
 					member.setMembershipTo(resultSet.getString("membership_to"));
 					member.setPaid(resultSet.getFloat("paid"));
@@ -410,7 +466,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT members.id, members.first_name, members.last_name,"
+		String sql = " SELECT members.id, members.first_name, members.last_name, members.image_path,"
 				   + " DATE_FORMAT(membership_status.updated_timestamp, '%d-%m-%Y') AS updated_on,"
 				   + " membership_status.membership_to, membership_status.paid,"
 				   + " DATEDIFF(STR_TO_DATE(membership_status.membership_to, '%d-%m-%Y'), NOW()) AS days_left"
@@ -435,6 +491,7 @@ public class MemberDAOImplementation implements MemberDAO {
 					member.setId(resultSet.getInt("id"));
 					member.setFirstName(resultSet.getString("first_name"));
 					member.setLastName(resultSet.getString("last_name"));
+					member.setImagePath(resultSet.getString("image_path"));
 					member.setBookedTimestamp(resultSet.getString("updated_on"));
 					member.setMembershipTo(resultSet.getString("membership_to"));
 					member.setPaid(resultSet.getFloat("paid"));
@@ -452,7 +509,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
-		String sql = " SELECT members.id, members.first_name, members.last_name, DATE_FORMAT(members.date_joined, '%d-%m-%Y') AS joined_on,"
+		String sql = " SELECT members.id, members.first_name, members.last_name, members.image_path, DATE_FORMAT(members.date_joined, '%d-%m-%Y') AS joined_on,"
 				   + " membership_status.membership_to, membership_status.paid,"
 				   + " DATEDIFF(STR_TO_DATE(membership_status.membership_to, '%d-%m-%Y'), NOW()) AS days_left"
 				   + " FROM members"
@@ -463,24 +520,28 @@ public class MemberDAOImplementation implements MemberDAO {
 				   + " (SELECT MAX(updated_timestamp) FROM membership_status"
 				   + " WHERE membership_status.id = id AND members.id = membership_status.id)";
 		
-       List<Member> recentlyJoinedMember = jdbcTemplate.query(sql, new RowMapper<Member>(){
+        return jdbcTemplate.query(sql, new ResultSetExtractor<Member>(){
 			
 			@Override
-			public Member mapRow(ResultSet resultSet, int rowNumber) throws SQLException {
+			public Member extractData(ResultSet resultSet) throws SQLException, DataAccessException {
 				
-				Member member = new Member();
-				
-				member.setId(resultSet.getInt("id"));
-				member.setFirstName(resultSet.getString("first_name"));
-				member.setLastName(resultSet.getString("last_name"));
-				member.setDateJoined(resultSet.getString("joined_on"));
-				member.setMembershipTo(resultSet.getString("membership_to"));
-				member.setPaid(resultSet.getFloat("paid"));
-				member.setMembershipDaysLeft(resultSet.getString("days_left"));
-				
-				return member;
+				if(resultSet.next()){
+					
+					Member member = new Member();
+					
+					member.setId(resultSet.getInt("id"));
+					member.setFirstName(resultSet.getString("first_name"));
+					member.setLastName(resultSet.getString("last_name"));
+					member.setImagePath(resultSet.getString("image_path"));
+					member.setDateJoined(resultSet.getString("joined_on"));
+					member.setMembershipTo(resultSet.getString("membership_to"));
+					member.setPaid(resultSet.getFloat("paid"));
+					member.setMembershipDaysLeft(resultSet.getString("days_left"));
+					
+					return member;
+				}
+				return null;
 			}	
 		});
-		return recentlyJoinedMember.get(0);
 	}
 }

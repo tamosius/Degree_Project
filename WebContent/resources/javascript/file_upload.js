@@ -24,7 +24,7 @@ $(document).ready(function(){
 /*========================================================================================*/
 	// detect if file has been selected in the 'add_member_profile_left_sidebar' file input
 	$(".add_member_left_sidebar #add_member_upload").change(function(){
-		console.log("this: " + this);
+		
 		readPictureURL(this, $(this).attr("name"));
 	});
 	
@@ -66,7 +66,21 @@ function readPictureURL(input, action) {  // action: 'add_member', 'member_profi
         		
         	}else if(action.localeCompare("newProductImage") === 0){  // value from 'products_sales.js' file
         		
+        		// display the picture in 'upload picture' section in 'Add New Product'
         		$("#add_new_product_block .image img").attr('src', e.target.result);
+        		// display the picture in pop-up confirmation window
+        		$(".confirm_settings_window .top_image img").attr("src", e.target.result);
+        		// display picture in pop-up window after successfully completed
+        		$(".popup_window #check_in_image").attr("src", e.target.result);
+        	
+        	}else if(action.localeCompare("updateProductImage") === 0){  // value from 'products_sales.js' file
+        		
+        		// display the picture in 'upload picture' section in 'Update'
+        		$("#update_product_block .image img").attr('src', e.target.result);
+        		// display the picture in pop-up confirmation window
+        		$(".confirm_settings_window .top_image img").attr("src", e.target.result);
+        		// display picture in pop-up window after successfully completed
+        		$(".popup_window #check_in_image").attr("src", e.target.result);
         	
         	}else if(action.localeCompare("emailAttachment") === 0){
         		

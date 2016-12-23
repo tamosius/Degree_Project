@@ -9,7 +9,7 @@
 <body>
   <div class="dashboard_main_content">
   
-	<!-------- DASHBOARD INITIALS MIDDLE BLOCK ------------------------------------------------------------------>
+	<!-------- DASHBOARD INITIALS MIDDLE BLOCK -------------------------------------------------------------------------------->
 	<div class="dashboard_top_block">
 		<!--<div class="picture">
 			<img src="resources/images/vitalija_zalia.jpeg" alt="no foto"></img>
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<!-------- DASHBOARD 'Member' TOP-LEFT BLOCK ---------------------------------------------------------------->
+	<!-------- DASHBOARD 'Member' TOP-LEFT BLOCK ------------------------------------------------------------------------------>
 	<div class="dashboard_top_left">
 		<div class="dashboard_content">
 			<label id="member_label">Members</label> <label
@@ -35,7 +35,7 @@
 		</div>
 	</div>
 
-	<!-------- DASHBOARD 'Tasks' TOP-MIDDLE BLOCK --------------------------------------------------------------->
+	<!-------- DASHBOARD 'Tasks' TOP-MIDDLE BLOCK ----------------------------------------------------------------------------->
 	<div class="dashboard_top_middle">
 		<div class="dashboard_content">
 			<label id="tasks_label">Tasks</label> <label
@@ -57,7 +57,7 @@
 		</div>
 	</div>
 
-	<!-------- DASHBOARD 'memberships and bookings' BOTTOM-LEFT BLOCK ------------------------------------------------------------------->
+	<!-------- DASHBOARD 'memberships and bookings' BOTTOM-LEFT BLOCK --------------------------------------------------------->
 	<div class="dashboard_bottom_left">
 		<div class="dashboard_content">
 			<label id="mshp_bookings_label">Memberships and Bookings</label> <label
@@ -70,12 +70,12 @@
 		</div>
 	</div>
 
-	<!-------- DASHBOARD '' BOTTOM-MIDDLE BLOCK ----------------------------------------------------------------->
+	<!-------- DASHBOARD '' BOTTOM-MIDDLE BLOCK ------------------------------------------------------------------------------->
 	<div class="dashboard_bottom_middle">
 		<div class="dashboard_content"></div>
 	</div>
 
-	<!-------- DASHBOARD 'products' BOTTOM-RIGHT BLOCK ------------------------------------------------------------------>
+	<!-------- DASHBOARD 'products' BOTTOM-RIGHT BLOCK ------------------------------------------------------------------------>
 	<div class="dashboard_bottom_right">
 		<div class="dashboard_content">
 			<label id="products_label">Products</label> <label

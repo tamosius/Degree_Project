@@ -7,8 +7,10 @@
     width: 100%;
     height: 100%;
     position: absolute;
-    background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
-    background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    //background: -webkit-linear-gradient(top, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    //background: linear-gradient(to bottom, #365899 0%, rgba(00, 88, 98, 0.4) 50%, #365899 100%);
+    background: #000000;
+    opacity: .8;
     z-index: 100;
     display: none;
 }
@@ -19,7 +21,7 @@
 	
     display: none;
     width: auto;
-    height: auto%;
+    height: auto;
     background: #fff;
     border: 1px solid black;
     border-radius: 5px;
@@ -27,7 +29,7 @@
     z-index: 101;
     position: absolute;
     top: 40%;
-    left: 50%;
+    right: 10%;
     //transform: translate(-50%, -50%);
     -webkit-box-shadow: 0 0 10px #fff;
     box-shadow: 0 0 10px #fff;
@@ -35,8 +37,8 @@
 }
 .confirm_window .top_image{
 	
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 90px;
     border: solid black 1px;
     border-radius: 5px;
     box-shadow : 0px 0px 10px black;
@@ -111,7 +113,7 @@
 	
 	position: absolute;
     top: 28%;
-    left: 50%;
+    right: 10%;
 	
     display: none;
     width: auto;
@@ -135,8 +137,8 @@
 	
 	
 	
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 90px;
     border: solid black 1px;
     border-radius: 5px;
     box-shadow : 0px 0px 10px black;
@@ -146,7 +148,7 @@
 .confirm_settings_window #top_message{
 	line-height: 50px;
 	//border: 1px blue solid;
-	margin: -52px 0px 0px 55px;
+	margin: -65px 0px 0px 90px;
 	width: auto;
 	height: 50px;
 	//display: inline;
@@ -268,8 +270,8 @@
 }
 .popup_window #check_in_image{
 	
-    width: 95px;
-    height: 100px;
+    width: 90px;
+    //height: 110px;
     float: left;
     border: solid black 1px;
     border-radius: 5px;
@@ -420,6 +422,291 @@
 	border-right: 1px #ffffff solid;
 }
 
+
+
+/*======================================================================================================================*/
+/*-------- CHECK-IN POPUP WINDOW ---------------------------------------------------------------------------------------*/
+.check_in_window{
+	
+	position: absolute;
+	top: 100px;
+	right: 100px;
+	
+	width: 850px;
+	height: 328px;
+	
+	z-index: 108;
+	box-shadow: 0px 0px 5px #ffffff;
+	
+	display: none;
+	
+	border: 1px #ffffff solid;
+	
+	
+}
+
+/*----- TOP PANEL ----------------------------------------------------------------------------------------------------*/
+.check_in_window .top_panel{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+	width: 100%;
+	height: 40px;
+	//padding-top: 10px;
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+	
+	//border: 5px #ffffff solid;
+}
+.check_in_window .top_panel label{
+	
+	margin: 20px 0px 0px 45px;
+	
+	color: #ffffff;
+	font-size: 24px;
+	
+	font-weight: bold;
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+}
+.check_in_window .search_customer{
+	
+	float: right;
+	width: 200px;
+	height: 25px;
+	
+	margin: 5px 10px 0px 0px;
+	padding-left: 7px;
+	
+	font-size: 16px;
+}
+
+/*==================================================================================================================*/
+/*---- MIDDLE PANEL ------------------------------------------------------------------------------------------------*/
+.check_in_window .image{
+	
+	position: absolute;
+	top: 41px;
+	left: 0;
+	
+	width: 205px;
+    height: 247px;
+    
+    overflow: hidden;
+	
+	
+	//border: 5px green solid;
+}
+.check_in_window .image img{
+	
+	width: 100%;
+}
+
+.check_in_window .customer_names{
+	
+	position: absolute;
+	top: 40px;
+	left: 205px;
+	right: 0;
+	bottom: 40px;
+	
+	background: #ffffff;
+	
+	border-left: 1px #cccccc solid;
+	//border: 5px pink solid;
+}
+
+/*----- table header in the middle_panel ---------*/
+.check_in_window .customer_names .table_header{
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	
+	height: 40px;
+	
+	color: #ffffff;
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+	text-shadow: -1px 0 #555, 0 1px #555, 1px 0 #555, 0 -1px #555;
+	
+	border-top: 1px #ffffff solid;
+	
+	//border: 1px blue solid;
+}
+.check_in_window .customer_names .table_header .first{
+	
+	width: 70px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.check_in_window .customer_names .table_header .second{
+	
+	width: 210px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.check_in_window .customer_names .table_header .third{
+	
+	width: 200px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+	
+	//border: 1px #ffffff solid;
+}
+.check_in_window .customer_names .table_header .fourth{
+	
+	width: 90px;
+	height: 36px;
+	line-height: 36px;
+	
+	margin-top: 2px;
+	text-align: center;
+	
+	//border: 1px #ffffff solid;
+}
+
+/*------ table body in the middle_panel -----------*/
+.check_in_window .table_body table{
+	
+	//border-collapse: collapse;
+	width: 100%;
+}
+.check_in_window .table_body{
+	
+	position: absolute;
+	top: 40px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	color: #00003D;
+	overflow-y: auto;
+	
+	//border: 2px green solid;
+}
+.check_in_window .customer_names .table_body .first{
+		
+	width: 71px;
+	
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.check_in_window .customer_names .table_body .second{
+	
+	width: 212px;
+	
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+
+.check_in_window .customer_names .table_body .third{
+	
+	width: 202px;
+	
+	font-size: 14px;
+	text-align: center;
+	
+	border-right: 1px #ffffff solid;
+}
+.check_in_window .customer_names .table_body .fourth{
+	
+	width: 0px;
+	
+	color: #001a00;
+	text-align: center;
+}
+.check_in_window .customer_names .table_body .fourth p{
+	
+	color: #660000;
+	font-size: 11px;
+	margin: -3px 0px -5px 0px;
+}
+
+.check_in_window .table_body .third span{
+	
+	float: right;
+	//margin-right: 15px;
+	color: #023a0c;
+}
+
+.check_in_window .table_body table{
+	
+	border-collapse: collapse;
+}
+.check_in_window .table_body tr:nth-child(even){
+	
+	background: #E2E2E6;
+}
+.check_in_window .table_body tr:hover{
+	
+	color: white;
+    background: #B2BFD2;
+}
+.check_in_window .table_body table tr{
+	
+	height: 40px;
+	
+	cursor: pointer;
+	
+	border: 1px #cccccc solid;
+}
+/*----- BOTTOM PANEL -----------------------------------------------------------------------------------------------*/
+.check_in_window .bottom_panel{
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	height: 40px;
+	
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+	
+	//border: 1px yellow solid;
+}
+.check_in_window .bottom_panel .back_button{
+	
+	float: left;
+    color: #21375e;
+    width: 100px;
+    height: 25px;
+    
+    margin: 7px 0px 0px 50px;
+    
+    border-radius: 5px;
+    //box-shadow : 1px 1px 2px black;
+    cursor: pointer;
+    background: #C2C2D6;
+    -webkit-transition: background 1s;
+    -moz-transition: background 1s;
+    transition: background 1s;
+}
+.check_in_window .bottom_panel .back_button:hover{
+	
+	background: white;
+}
 
 
 /*======================================================================================================================*/

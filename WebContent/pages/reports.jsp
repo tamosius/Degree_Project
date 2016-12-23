@@ -6,6 +6,7 @@
 
 <title>Insert title here</title>
 <script src="resources/javascript/reports.js"></script>
+<script src="resources/javascript/reports_charts.js"></script>
 <!-- <script src="resources/javascript/load_report_values.js"></script>-->
 </head>
 <body>
@@ -58,25 +59,30 @@
 		<!-- REPORT DATES AND STATISTICS FIELDS IN THE LEFT CONTAINER ---------------------------------------------------->
 		<div id="report_dates_statistics">
 
-			<div>
+			<div class="report_rows">
 				<label>Report Start Date:</label> <input type="text"
 					id="report_start_date_input" value="" autocomplete="off"
 					placeholder="Please select date..." />
 			</div>
-			<div>
+			<div class="report_rows">
 				<label>Report End Date:</label> <input type="text"
 					id="report_end_date_input" value="" autocomplete="off"
 					placeholder="Please select date..." />
 			</div>
-			<div>
+			<div class="report_rows">
 				<label>Number of Days (report):</label> <input type="text"
 					id="number_of_days" disabled="disabled" value="0" />
 			</div>
-			<div>
-				<label>Showing Total Members:</label> <input type="text"
+			<div class="report_rows">
+				<label>Showing Total Entries:</label> <input type="text"
 					id="showing_total_members" disabled="disabled" value="0" />
 			</div>
-
+			<!-- progress bar -->
+			<div class="statistics_barcharts">
+			
+				
+			</div>
+			<!-- ============ -->
 		</div><!-- END OF REPORT DATES AND STATISTICS FIELDS IN THE LEFT CONTAINER -->
 		
 		</div><!-- END OF LEFT SIDE CONTAINER -->
@@ -92,7 +98,7 @@
 
 				<div class="report_table_body_height">
 					<!-- set window size depending on monitor size -->
-					<table class="report_table_body" border="1">
+					<table class="report_table_body">
 
 
 					</table>

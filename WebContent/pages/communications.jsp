@@ -27,7 +27,7 @@
 		
 		<!-- RIGHT COMMUNICATIONS BLOCK ----------------------------------------------------------------------------------------------------->
 		<div id="right_communications_block">
-
+            
 			<!-- SHOW MESSAGES BLOCK ----------------------------------------------------------->
 			<div id="show_messages_block"></div>
 

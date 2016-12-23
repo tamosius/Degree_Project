@@ -13,7 +13,7 @@
     padding: 20px 30px 20px 30px;
     font: 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #D3D3D3;
-    text-shadow: 4px 4px 4px black;
+    text-shadow: 2px 2px 4px black;
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
@@ -61,9 +61,7 @@
     width: 660px;
     height: 263px;
     
-    padding: 5px 5px 5px 5px;
-    
-    //border: 2px yellow solid;
+    padding: 5px 5px 5px 5px;    
 }
 
 .member_profile_right_sidebar #first_block{
@@ -128,10 +126,16 @@
     height: 30px;    
 }
 
-
-#paid{
+.member_profile_right_sidebar .member_data #price, .member_profile_right_sidebar .member_data_update #price{
 	
+	width: 60px;
+}
+
+.member_profile_right_sidebar .member_data #paid, .member_profile_right_sidebar .member_data_update #paid{
+	
+	float: right;
     width: 60px;
+    margin-right: 8px;
 }
 .member_profile_right_sidebar .member_data input[type="text"]{
 	
@@ -144,7 +148,7 @@
     color: white;
     font-weight: bold;
     font-size: 17px;
-    text-shadow: 4px 4px 4px black;
+    text-shadow: 2px 2px 4px black;
      
     letter-spacing: 1px;
      padding: 0px 0px 0px 5px;
@@ -165,7 +169,7 @@
 	height: 30px;
 	border: 1px solid #555;
 	
-	color: #525252;
+	color: #00003D;
 	font-weight: bold;
 	font-size: 17px;
 	padding: 0px 0px 0px 5px;
@@ -190,6 +194,7 @@
     border: 1px solid #555;
 }
 
+/*======================================================================================================*/
 /*-------- drop-down 'image' in 'programme' input ----------------*/
 .member_profile_right_sidebar #second_block #programme_drop_down_arrow{
 	
@@ -216,7 +221,8 @@
 	width: 200px;
 	height: auto;
 	
-	background: linear-gradient(to bottom, #d0d0e1, #8585ad);
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
 	border: 1px solid #fff;
 	border-radius: 0px 0px 5px 5px;
 	-webkit-box-shadow: 0 0 3px black;
@@ -243,52 +249,58 @@
 
 .member_profile_right_sidebar #second_block #programme_type div:hover{
 	
-	background: #BC33BA;
+	background: #2e4c84;
 }
-/*-------- END OF 'member_data' AND 'member_data_update' FIELDS --------------------------------------------------------------*/
+/*-------- END OF 'member_data' AND 'member_data_update' FIELDS ------------------------------------------------------------------------------*/
+/*============================================================================================================================================*/
+
+
 
 /*============================================================================================================================================*/
 /*------ LEFT SIDEBAR ------------------------------------------------------------------------------------------------------------------------*/
 .member_profile_left_sidebar img{
+	
    width: 100%;
-   height: auto;
-   border-radius: 5px;
-   border: 1px solid #D3D3D3;
-   box-shadow : 4px 4px 4px black;
+   //height: 245px;
    overflow: hidden;
 }
+
 .member_profile_left_sidebar .image{
+	
     margin: 3px 30px 20px 20px;
-    width: 214px;
-    height: 240px;
+    width: 205px;
+    height: 245px;
     border-radius: 5px;
-    
+    border: 1px #ffffff solid;
     overflow: hidden;
 }
 
-.member_profile_left_sidebar .photo_button{
+.member_profile_left_sidebar .photo_button,
+ .member_profile_left_sidebar .upload_picture_button{
+	
     text-align: center;
     margin: 0px 0px 20px 50px;
     width: 155px;
     height: 30px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
-    color: blue;
+    color: #21375e;
     background: #C2C2D6;
     -webkit-transition: background 1s;
     -moz-transition: background 1s;
     transition: background 1s;
 }
+
 .member_profile_left_sidebar .shoot_button{
-    color: green;
+    color: #004d00;
     display: none;
     text-align: center;
     margin: 0px 0px 20px 50px;
     width: 155px;
     height: 30px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     background: #C2C2D6;
     -webkit-transition: background 1s;
@@ -322,7 +334,7 @@ input[type="file"]{
     width: 155px;
     height: 30px;
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     visibility: hidden;
     background: #C2C2D6;
@@ -334,7 +346,7 @@ input[type="file"]{
 #cancel_update{
     margin: 12px 0px 0px 0px;
     border-radius: 5px;
-    color: red;
+    color: #660000;
     width: 100px;
     height: 25px;
     cursor: pointer;
@@ -345,7 +357,7 @@ input[type="file"]{
 }
 #submit_update{
     float: right;
-    color: green;
+    color: #004d00;
     border-radius: 5px;
     margin: 12px 0px 0px 0px;
     width: 100px;
@@ -356,16 +368,22 @@ input[type="file"]{
     -moz-transition: background 1s;
     transition: background 1s;
 }
-#update_button:hover, #delete_button:hover, #back_button:hover, #photo_button:hover, #shoot_button:hover, #generate_button:hover, #cancel_update:hover, #submit_update:hover{
+.member_profile_left_sidebar .photo_button:hover, .member_profile_left_sidebar .upload_picture_button:hover,
+ .member_profile_left_sidebar .shoot_button:hover, .member_profile_left_sidebar .generate_button:hover,
+  .member_profile_right_sidebar #cancel_update:hover, .member_profile_right_sidebar #submit_update:hover,
+  .member_profile_panel #update_button:hover, .member_profile_panel #delete_button:hover, .member_profile_panel #back_button:hover{
+  
     background: white;
-    //color: #009900;
 }
-#update_button:focus, #delete_button:focus, #back_button:focus, #photo_button:focus, #shoot_button:focus, #generate_button:focus, #cancel_update:focus, #submit_update:focus{
+#update_button:focus, #delete_button:focus, #back_button:focus, 
+#photo_button:focus, #shoot_button:focus, #generate_button:focus, 
+#cancel_update:focus, #submit_update:focus,
+.member_profile_left_sidebar .upload_picture_button:focus{
+	
     outline: 0;
-    //color: #009900;
 }
 
-/*-------- MEMBERHIP DETAILS TABLE BLOCK -----------------------------------------------------------------------------------------*/
+/*-------- MEMBERsHIP DETAILS TABLE BLOCK ----------------------------------------------------------------------------------------*/
 /*-------- table header ----------------------------------------------------------------------------------------------------------*/
 .member_profile_content #membership_details_table_block{
 	
@@ -385,12 +403,14 @@ input[type="file"]{
 	
 	width: 100%;
 	height: 25px;
-	color: white;
+	color: #ffffff;
+	font-weight: bold;
 	
 	padding-top: 3px;
 	
-	background: #8585ad;
-	text-shadow: none;
+	background: -webkit-linear-gradient(top, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+    background: linear-gradient(to bottom, #365899 0%, rgba(161, 182, 222, 1) 50%, #365899 100%);
+	text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
 }
 
 #membership_details_table_block #table_header #first_column{
@@ -435,6 +455,10 @@ input[type="file"]{
 }
 
 /*--------- table body -----------------------------------------------------------------------------------------------------------*/
+#membership_details_table_block #table_body table{
+	
+	border-collapse: collapse;
+}
 #membership_details_table_block #table_body{
 	
 	width: 100%;
@@ -458,6 +482,13 @@ input[type="file"]{
 #membership_details_table_block #table_body tr:nth-child(even){
 	
     background: #E2E2E6;//#C2C2D1;
+}
+
+#membership_details_table_block #table_body tr:hover{
+	
+    //color: white;
+    
+    background: #B2BFD2;
 }
 
 #membership_details_table_block #table_body #first_column{
@@ -516,14 +547,14 @@ input[type="file"]{
 #update_button{
 	
     float: right;
-    color: green;
+    color: #004d00;
     margin: 10px 0px 0px 3px;
     
     width: 135px;
     height: 25px;
     
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     font-weight: normal;
     font-size: 13px;
@@ -536,14 +567,14 @@ input[type="file"]{
 #delete_button{
 	
     float: right;
-    color: red;
+    color: #660000;
     margin: 10px 3px 0px 0px;
     
     width: 135px;
     height: 25px;
     
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     background: #C2C2D6;
     -webkit-transition: background 1s;
@@ -551,17 +582,22 @@ input[type="file"]{
     transition: background 1s;
 }
 
+.member_profile_bottom_panel #confirm_delete_button{
+	
+	display: none;
+}
+
 #back_button{
 	
     float: left;
-    color: blue;
+    color: #21375e;
     margin: 10px 0px 0px 0px;
     
     width: 135px;
     height: 25px;
     
     border-radius: 5px;
-    box-shadow : 4px 4px 4px black;
+    box-shadow : 2px 2px 4px black;
     cursor: pointer;
     background: #C2C2D6;
     -webkit-transition: background 1s;

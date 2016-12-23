@@ -73,4 +73,25 @@ public class ProductsController {
 		
 		return productsService.getReservedProducts();
 	}
+	
+/*-------- DELETE PRODUCTS FROM THE DATABASE --------------------------------------------------------------*/
+	@RequestMapping(value="/deleteProduct", method=RequestMethod.POST, headers="Accept=application/json")
+	public String deleteProduct(HttpServletRequest request, @RequestParam("productId") int id){
+		
+		return productsService.deleteProduct(request, id);
+	}
+	
+/*-------- DELETE PRODUCTS FROM THE DATABASE --------------------------------------------------------------*/
+	@RequestMapping(value="/updateProduct", method=RequestMethod.POST, headers="Accept=application/json")
+	public String updateProduct(HttpServletRequest request, @RequestParam CommonsMultipartFile updateProductImage){
+		
+		return productsService.updateProduct(request, updateProductImage);
+	}
+	
+/*-------- CHECK VALIDATION OF RESERVED PRODUCTS -----------------------------------------------------------*/
+	@RequestMapping(value="/checkValidateReservation", method=RequestMethod.POST, headers="Accept=application/json")
+	public String checkValidateReservation(){
+		
+		return productsService.checkValidateReservation();
+	}
 }

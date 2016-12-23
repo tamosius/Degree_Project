@@ -116,6 +116,8 @@
     font-size: 16px;
 	
 	border-right: 1px white solid;
+	
+	cursor: pointer;
 }
 
 #reports_big_table_body_table .second_column{
@@ -124,6 +126,8 @@
 	
 	text-align: center;
 	border-right: 1px white solid;
+	
+	cursor: pointer;
 }
 
 #reports_big_table_body_table .third_column{
@@ -164,6 +168,37 @@
 	
 	text-align: center;
 }
+
+
+/*=================================================================================================================*/
+/*------- 'Reports' TABLE FONTS ----------------------------------------------------------------------------------*/
+#reports_big_table_body_table .name{
+	
+	color: #00003D;
+}
+#reports_big_table_body_table .programme{
+	
+	color: #00003D;
+	font-size: 14px;
+}
+#reports_big_table_body_table .pay_as_you_go{
+	
+	color: #660000;
+	font-size: 14px;
+}
+#reports_big_table_body_table .membership_dates{
+	
+	color: #001a00;
+	font-size: 14px;
+}
+#reports_big_table_body_table .membership_present{
+	
+	color: #004d00;
+	font-size: 14px;
+}
+/*=================================================================================================================*/
+
+
 
 /*---------- 'Visits' COLUMN IN THE REPORTS TABLES ('reports.jsp', reports_big_table.jsp')---------------------------*/
 #reports_big_table_body_block #reports_big_table_body_table #visits{

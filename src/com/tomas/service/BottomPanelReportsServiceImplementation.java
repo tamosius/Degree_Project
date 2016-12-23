@@ -22,16 +22,16 @@ public class BottomPanelReportsServiceImplementation implements BottomPanelRepor
 	
 /*------- GET NAMES AND DETAILS OF TODAYS VISITED MEMBERS ------------------------------------------------------------------*/
 	@Override
-	public List<Member> getTodaysVisitedMembers(){
+	public List<Member> getTodaysVisitedMembers(String idName){
 		
-		return bottomPanelReportsDAO.getTodaysVisitedMembers();
+		return bottomPanelReportsDAO.getTodaysVisitedMembers(idName);
 	}
 	
 /*---------- GET MEMBERS BY SPECIFIED PROGRAMME TYPE ('1 Month Membership', '3 Months Membership', etc.) -------------------*/
 	@Override
-	public List<Member> getProgrammeTypeMembers(String programmeType){
+	public List<Member> getProgrammeTypeMembers(String programmeType, String name){
 		
-		return bottomPanelReportsDAO.getProgrammeTypeMembers(programmeType);
+		return bottomPanelReportsDAO.getProgrammeTypeMembers(programmeType, name);
 	}
 
 /*--------- GET 'Pay as You Go' MEMBERS ------------------------------------------------------------------------------------*/
@@ -57,9 +57,9 @@ public class BottomPanelReportsServiceImplementation implements BottomPanelRepor
 	
 /*---------- GET VISITED MEMBERS BY THE SPECIFIED PERIOD OF WEEKS (1 Week, 2 Weeks, 4 Weeks, etc..) -----------------------------------*/
 	@Override
-	public List<Member> getVisitedMembersBySpecifiedWeeks(String startDate){
+	public List<Member> getVisitedMembersBySpecifiedWeeks(String startDate, String idName){
 		
-		return bottomPanelReportsDAO.getVisitedMembersBySpecifiedWeeks(startDate);
+		return bottomPanelReportsDAO.getVisitedMembersBySpecifiedWeeks(startDate, idName);
 	}
 	
 /*------------ GET VISITED MEMBER COUNT BY THE SPECIFIED PERIOD OF WEEKS (DAYS) -----------------------------------------------------------*/

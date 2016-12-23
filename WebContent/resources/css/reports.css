@@ -1,4 +1,5 @@
 
+
 .reports_content_block{
 	
 	//position: relative;
@@ -28,8 +29,8 @@
     
     width: 50%;
 	border-left: 1px #00003D solid;
-	
-	background: rgba(56, 56, 56, .7);
+	background: rgba(232,232,232, .9);
+	//background: rgba(56, 56, 56, .7);
 }
 
 
@@ -265,9 +266,9 @@
 	right: 15px;
 	
 	height: calc(100vh - 370px);
-	overflow-y: auto;
+	
 }
-.reports_left_container #report_dates_statistics div{
+.reports_left_container #report_dates_statistics .report_rows{
 	
 	line-height: 50px;
 	height: 50px;
@@ -304,6 +305,76 @@
 	
 	border-bottom: 1px #73008C solid;
 }
+
+.reports_left_container .statistics_barcharts{
+	
+	position: absolute;
+	top: 210px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	
+	overflow-y: auto;
+	
+	//border: 4px blue solid;
+}
+
+/*================================================================================================================*/
+/*-------- REPORTS BAR CHARTS IN THE LEFT-SIDE IN 'reports.jsp' --------------------------------------------------*/
+#report_dates_statistics .statistics_barcharts .barchart{
+	
+	height: 30px;	
+	margin-bottom: 3px;
+	
+	border-top: 1px #666 solid;
+	border-bottom: 1px #666 solid;
+}
+
+#report_dates_statistics .statistics_barcharts .barchart_label{
+	
+	float: left;
+	width: 100%;
+}
+#report_dates_statistics .statistics_barcharts .barchart_label div{
+	
+	display: inline;
+	font-size: 14px;
+	font-weight: bold;
+}
+#report_dates_statistics .statistics_barcharts .barchart_label .week{
+	
+	height: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+	color: #21375e;
+}
+#report_dates_statistics .statistics_barcharts .barchart_label .week_range{
+	
+	height: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+	margin-left: 5px;
+	color: #660000;
+}
+#report_dates_statistics .statistics_barcharts .barchart_label .revenue{
+	
+	height: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+	float: right;
+	margin-right: 10px;
+	color: #004d00;
+}
+#report_dates_statistics .statistics_barcharts .barchart_label .total_entries{
+	
+	height: 30px;
+	line-height: 30px;
+	margin-left: 5px;
+	float: right;
+	margin-right: 10px;
+	color: #004d00;
+}
+/*================================================================================================================*/
 
 /*-------- REPORT TABLE IN THE RIGHT-SIDE CONTAINER IN 'reports.jsp' ---------------------------------------------*/
 
@@ -421,12 +492,16 @@
 	padding-left: 8px;
 	border-right: 1px white solid;
 	text-align: center;
+	
+	cursor: pointer;
 }
 .report_column2{
 	
 	width: 20.7%;
 	text-align: center;
 	border-right: 1px white solid;
+	
+	cursor: pointer;
 }
 .report_column3{
 	
@@ -438,15 +513,45 @@
 	
 	width: 15.3%;
 	text-align: center;
-	color: #009900;
 	border-right: 1px white solid;
-	font-size: 12px;
+	//font-size: 12px;
 }
 .report_column5{
 	
 	width: 15.4%;
 	text-align: center;
+	
+	cursor: pointer;
 }
+
+/*=================================================================================================================*/
+/*------- 'Reports' TABLE FONTS ----------------------------------------------------------------------------------*/
+.report_table_body .name{
+	
+	color: #00003D;
+}
+.report_table_body .programme{
+	
+	color: #00003D;
+	font-size: 13px;
+}
+.report_table_body .pay_as_you_go{
+	
+	color: #660000;
+	font-size: 13px;
+}
+.report_table_body .membership_dates{
+	
+	color: #001a00;
+	font-size: 13px;
+}
+.report_table_body .membership_present{
+	
+	color: #004d00;
+	font-size: 13px;
+}
+/*=================================================================================================================*/
+
 
 /*-------- TABLE HEIGHT IN THE REPORTS RIGHT CONTAINER 'reports.jsp' ----------------------------------------------*/
 .report_table_body_height{ 

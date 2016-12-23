@@ -13,6 +13,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.tomas.model.Member;
+import com.tomas.model.Statistics;
 
 
 /**
@@ -72,11 +73,45 @@ public class ReportsDAOImplementation implements ReportsDAO{
 			}
 		});
 		return newMembers;
-	}      
+	}  
+
+/*--------- NEW SIGNUPS STATISTICS ----------------------------------------------------------------------------------------------------------*/
+	public List<Statistics> getNewMembersStatistics(String startDate, String endDate){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " SELECT WEEK(members.date_joined, 1) AS week_number,"
+                   + " COUNT(*) AS entries,"
+                   + " DATE_FORMAT(DATE_ADD(members.date_joined, INTERVAL(2-DAYOFWEEK(members.date_joined)) DAY), '%d-%m-%Y') AS week_range_start,"
+                   + " DATE_FORMAT(DATE_ADD(members.date_joined, INTERVAL(8-DAYOFWEEK(members.date_joined)) DAY), '%d-%m-%Y') AS week_range_end"
+                   + " FROM members"
+                   + " WHERE (members.date_joined BETWEEN str_to_date('" + startDate + "', '%d-%m-%Y')"
+				   + " AND DATE_ADD(str_to_date('" + endDate + "', '%d-%m-%Y'), INTERVAL 1 DAY))"
+                   + " GROUP BY WEEK(members.date_joined, 1)"
+                   + " ORDER BY WEEK(members.date_joined, 1) DESC";  // '1' specifies the start of the week, 1 = Monday
+		
+		List<Statistics> statistics = jdbcTemplate.query(sql, new RowMapper<Statistics>(){
+			
+			@Override
+			public Statistics mapRow(ResultSet resultSet, int rowNumber)throws SQLException{
+				
+				Statistics statistic = new Statistics();
+				
+				statistic.setWeekNumber(resultSet.getInt("week_number"));
+				statistic.setEntries(resultSet.getInt("entries"));
+				statistic.setWeekRangeStart(resultSet.getString("week_range_start"));
+				statistic.setWeekRangeEnd(resultSet.getString("week_range_end"));
+				
+				return statistic;
+			}
+		});
+		return statistics;
+	}
 	
+/*============================================================================================================================================*/
 	/*------ get members booking made in the specified period of time -----------------------------------------------------------------*/
 	@Override
-	public List<Member> getMembersBookings(@RequestBody String startDate, String endDate){   
+	public List<Member> getMembersBookings(String startDate, String endDate){   
 		
 		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
 		
@@ -119,6 +154,45 @@ public class ReportsDAOImplementation implements ReportsDAO{
 		return membersBookings;
 	}
 	
+/*--------- NEW BOOKINGS MADE STATISTICS ------------------------------------------------------------------------------------------------*/
+	public List<Statistics> getMembersBookingsStatistics(String startDate, String endDate){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " SELECT WEEK(updated_timestamp, 1) AS week_number,"
+                   + " COUNT(*) AS entries,"
+                   + " DATE_FORMAT(DATE_ADD(updated_timestamp, INTERVAL(2-DAYOFWEEK(updated_timestamp)) DAY), '%d-%m-%Y') AS week_range_start,"
+                   + " DATE_FORMAT(DATE_ADD(updated_timestamp, INTERVAL(8-DAYOFWEEK(updated_timestamp)) DAY), '%d-%m-%Y') AS week_range_end,"
+                   + " SUM(paid) AS revenue"
+                   + " FROM membership_status"
+                   + " WHERE (updated_timestamp BETWEEN str_to_date('" + startDate + "', '%d-%m-%Y')"
+				   + " AND DATE_ADD(str_to_date('" + endDate + "', '%d-%m-%Y'), INTERVAL 1 DAY))"
+				   + " AND membership_status.programme_booked = 1"
+				   + " AND membership_status.programme <> \"'Pay as You Go'\""
+                   + " GROUP BY WEEK(updated_timestamp, 1)"
+                   + " ORDER BY WEEK(updated_timestamp, 1) DESC";
+		
+		List<Statistics> statistics = jdbcTemplate.query(sql, new RowMapper<Statistics>(){
+			
+			@Override
+			public Statistics mapRow(ResultSet resultSet, int rowNumber)throws SQLException{
+				
+				Statistics statistic = new Statistics();
+				
+				statistic.setWeekNumber(resultSet.getInt("week_number"));
+				statistic.setEntries(resultSet.getInt("entries"));
+				statistic.setWeekRangeStart(resultSet.getString("week_range_start"));
+				statistic.setWeekRangeEnd(resultSet.getString("week_range_end"));
+				statistic.setRevenue(resultSet.getFloat("revenue"));
+				
+				return statistic;
+			}
+		});
+		return statistics;
+	}
+	
+	
+/*=======================================================================================================================*/
 	/*------ get members with the valid memberships in the specified period of time -------------------------------------*/
 	@Override
 	public List<Member> getValidMembersBookings(@RequestBody String startDate, String endDate){   
@@ -173,7 +247,7 @@ public class ReportsDAOImplementation implements ReportsDAO{
 		
 		String sql = " SELECT members.id, members.first_name, members.last_name, members.date_of_birth,"
 				   + " (DATE_FORMAT(FROM_DAYS(DATEDIFF(NOW(), STR_TO_DATE(members.date_of_birth, '%d-%m-%Y'))), '%Y') + 0) AS member_age, "
-				   + " membership_status.membership_to, COUNT(member_attendance.id) AS visits"
+				   + " membership_status.programme, COUNT(member_attendance.id) AS visits"
 				   + " FROM members"
 				   + " INNER JOIN membership_status"
 				   + " ON members.id = membership_status.id"
@@ -198,7 +272,7 @@ public class ReportsDAOImplementation implements ReportsDAO{
 				member.setLastName(resultSet.getString("last_name"));
 				member.setDateOfBirth(resultSet.getString("date_of_birth"));
 				member.setMemberAge(resultSet.getInt("member_age"));
-				member.setMembershipTo(resultSet.getString("membership_to"));
+				member.setProgramme(resultSet.getString("programme"));
 				member.setCountVisits(resultSet.getInt("visits"));
 				
 				
@@ -378,6 +452,70 @@ public class ReportsDAOImplementation implements ReportsDAO{
                    + "   GROUP BY id"
                    + " ) member_attendance"
                    + " ON members.id = member_attendance.id"
+                   + " GROUP BY members.id"
+                   + " ORDER BY total_paid DESC";
+		
+		List<Member> valuedMembers = jdbcTemplate.query(sql, new RowMapper<Member>(){
+			
+			@Override
+			public Member mapRow(ResultSet resultSet, int rowNumber) throws SQLException{
+				
+				Member member = new Member();
+				
+				member.setId(resultSet.getInt("id"));
+				member.setFirstName(resultSet.getString("first_name"));
+				member.setLastName(resultSet.getString("last_name"));
+				member.setDateJoined(resultSet.getString("joined_on"));
+				member.setProgrammesTotalPaid(resultSet.getFloat("programmes_total_paid"));
+				member.setProductsTotalPaid(resultSet.getFloat("products_total_paid"));
+				member.setTotalPaid(resultSet.getFloat("total_paid"));
+				member.setVisitedTimestamp(resultSet.getString("visited_on"));
+				member.setCountVisits(resultSet.getInt("visits"));
+				
+				return member;
+			}
+		});
+		
+		return valuedMembers;
+	}
+	
+	/*----- GET VALUED MEMBERS (mostly spent on programmes and products) BY ID OR NAME --------------------------------------*/
+	@Override
+	public List<Member> getValuedMembersByIDName(String iDName){
+		
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		
+		String sql = " SELECT members.id, members.first_name, members.last_name,"
+                   + " DATE_FORMAT(members.date_joined, '%d-%m-%Y %H:%i:%s') AS joined_on,"
+                   + " membership_status.programmes_total_paid,"
+                   + " IFNULL(products_sales.products_total, 0) AS products_total_paid,"
+                   + " SUM(programmes_total_paid + IFNULL(products_total, 0)) AS total_paid,"
+                   + " member_attendance.visited_on, member_attendance.visits"
+				   + " FROM members"
+				   + " INNER JOIN"
+                   + " ("
+                   + "   SELECT id, SUM(paid) AS programmes_total_paid"
+                   + "   FROM membership_status"
+                   + "   GROUP BY id"
+				   + " ) membership_status"
+				   + " ON members.id = membership_status.id"
+                   + " LEFT JOIN"
+                   + " ("
+                   + "   SELECT member_id, SUM(paid) AS products_total"
+                   + "   FROM products_sales"
+                   + "   GROUP BY member_id"
+				   + " ) products_sales"
+                   + " ON members.id = products_sales.member_id"
+                   + " LEFT JOIN"
+                   + " ("
+                   + "   SELECT id, COUNT(*) AS visits,"
+                   + "   MAX(DATE_FORMAT(visited_timestamp, '%d-%m-%Y %H:%i:%s')) AS visited_on"
+                   + "   FROM member_attendance"
+                   + "   GROUP BY id"
+                   + " ) member_attendance"
+                   + " ON members.id = member_attendance.id"
+                   + " WHERE (members.id LIKE '" + iDName + "%'"
+        		   + " OR members.first_name LIKE '" + iDName + "%' OR members.last_name LIKE '" + iDName + "%')"
                    + " GROUP BY members.id"
                    + " ORDER BY total_paid DESC";
 		

@@ -5,6 +5,7 @@ public class ProductReserved extends Product{
 	private int memberId;         // member's ID who purchased the product
 	private String firstName;     // member's first name who purchased the product
 	private String lastName;      // member's last name who purchased the product
+	private String email;
 	
 	private int quantity;         // purchased product quantity
 	private float totalPrice;     // paid in total by the member
@@ -30,6 +31,13 @@ public class ProductReserved extends Product{
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public int getQuantity() {
 		return quantity;

@@ -15,33 +15,33 @@
 			member  : [
 			      {   // [0]
 			    	  reportName  : "New Members", 
-			    	  description : "This report lists all new signup of members within the given period.",
+			    	  description : "This report lists all new signup of members within the given period. The 'Programme' column displays the current programme plan the members holds.",
 			    	  uri         : "getNewMembers",
-			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Joined on</td><td id='third'>Expires</td><td id='fourth'>Paid</td><td id='fifth'>Visits</td></tr>"
+			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Joined on</td><td id='third'>Programme</td><td id='fourth'>Expires</td><td id='fifth'>Visits</td></tr>"
 			      },
-			      {
+			      {   // [1]
 			    	  reportName  : "Member Made Booking",
-			    	  description : "All members who made bookings within the given period.",
+			    	  description : "All members who made bookings within the given period. 'Pay as You Go' are excluded.",
 			    	  uri         : "getMembersBookings",
-			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Booked on</td><td id='third'>Expires</td><td id='fourth'>Paid</td><td id='fifth'>Programme</td></tr>"
+			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Programme</td><td id='third'>Start Date</td><td id='fourth'>End Date</td><td id='fifth'>Paid €</td></tr>"
 			      },
-			      {
+			      {   // [2]
 			    	  reportName  : "Birthday List",
 			    	  description : "All current members whose birthday between given report start date and end date. 'Age' column shows current age of person.",
 			    	  uri         : "getBirthdayList",
-			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Birthday</td><td id='third'>Age</td><td id='fourth'>MShip</td><td id='fifth'>Visits</td></tr>"
+			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Birthday</td><td id='third'>Programme</td><td id='fourth'>Age</td><td id='fifth'>Visits</td></tr>"
 			      },
 			      {
-			    	  reportName  : "Expired Memberships",
-			    	  description : "Members whose last membership expires during the given period.",
+			    	  reportName  : "Updated Programme Plan",
+			    	  description : "Members whose previous Programme plan has been updated during the given period.",
 			    	  uri         : "getExpireMemberships",
-			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Programme</td><td id='third'>Expires</td><td id='fourth'>Last Visit</td><td id='fifth'>Visits</td></tr>"
+			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Programme</td><td id='third'>Expired On:</td><td id='fourth'>Last Visit</td><td id='fifth'>Visits</td></tr>"
 			      },
-			      {
+			      {   // [4]
 			    	  reportName  : "Missing Members",
 			    	  description : "Members who haven't attended in the specified period of time.",
 			    	  uri         : "getMissingMembers",
-			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Last Visit</td><td id='third'>Date Joined</td><td id='fourth'>Visits</td><td id='fifth'>Date Joined</td></tr>"
+			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Date Joined</td><td id='third'>Programme</td><td id='fourth'>Last Visit</td><td id='fifth'>Visits</td></tr>"
 			      }
 			], // end of 'Member' report type
 	
@@ -310,11 +310,11 @@ $(document).ready(function(){
     	}
     	
     	
-    	if(fault === ""){
+    	if(fault.length === 0){
     		
     		$.ajax({
         		type: "POST",
-        		url: "/Degree_Project/reportsController/" + uriToDatabase,
+        		url: serverPath + "reportsController/" + uriToDatabase,
         		data: {startDate : startDate.substring(0, 10), endDate : endDate.substring(0, 10)},
         		dataType: "json",
         		processData: true,
@@ -346,6 +346,41 @@ $(document).ready(function(){
         		
         	});
     		
+    		$("#report_dates_statistics .statistics_barcharts ").empty();
+    		
+    		// make another call to retrieve the statistics
+    		// within the specified period of time
+    		$.ajax({
+        		type: "POST",
+        		url: serverPath + "reportsController/" + uriToDatabase + "Statistics",
+        		data: {startDate : startDate.substring(0, 10), endDate : endDate.substring(0, 10)},
+        		dataType: "json",
+        		processData: true,
+        		success: function(data, status, e){
+        			
+        			$.each(data, function(key, value){
+        				
+        				$("#report_dates_statistics .statistics_barcharts").append(
+        					
+        					"<div class='barchart'>" +
+					            "<div class='barchart_label'><div class='week'>Week: " + value.weekNumber + ",</div> " +
+					            		"<div class='week_range'>(" + value.weekRangeStart + " - " + value.weekRangeEnd + ")</div>" +
+					            (uriToDatabase.localeCompare("getNewMembers") === 0 ? "" : "<div class='revenue'>Revenue: €" + value.revenue + "</div>") +
+					            
+					            "<div class='total_entries'>Entries: " + value.entries + "</div></div>" +
+				             "</div>"
+        				);
+        			});
+        			
+        		},
+        		error: function(e){
+        			
+        			$(".error_window").html( "<p>Errors in the database connection, queries, etc.</p><hr><img src='resources/images/error.jpg' alt='error' />");
+        	        $(".error_window").fadeIn(200);
+        		}
+        		
+        	});
+    		
     	}else{
     	
             $(".error_window").html( fault + "<hr><img src='resources/images/error.jpg' alt='error' />");
@@ -359,11 +394,11 @@ $(document).ready(function(){
 
 function displayReport(data, reportType, elementNumber){
 	
-	$(".report_information_block #showing_total_members").text(data.length);  // show total of members returned
+	$("#report_dates_statistics #showing_total_members").val(data.length);  // show total of members returned
 	
 	if(data.length === 0){ // exit the function if no results returned
 		
-		$(".report_table_body").html("<div id='no_results'>No Results...</div>");
+		$(".report_table_body").html("<div class='no_results'>No Results...</div>");
 		return;
 	}
 	
@@ -374,14 +409,16 @@ function displayReport(data, reportType, elementNumber){
 			case "0" : // 'New Members' report name
 				$.each(data, function(key, value){
     				
-    				$(".report_table_body").append(
+    				$(".report_table_body").append(              // 'reportsTableFonts' in 'useful_functions.js'
     						
     						"<tr class='report_row'>" +
     						"<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-    						"<td class='report_column1'>" + value.firstName + " " + value.lastName + "</td>" +
-    						"<td class='report_column2'>" + value.dateJoined + "</td>" +
-    						"<td class='report_column3'>" + addClass(value.membershipTo) + "</td>" +
-    						"<td class='report_column4'>" + addClass(value.paid.toFixed(2)) + "</td>" +
+    						"<td class='first_column' style='display:none;'>" + value.firstName + " " + value.lastName + "</td>" +
+    						"<td class='report_column1'><div class='name'>" + value.firstName + " " + value.lastName + "</div></td>" +
+    						"<td class='report_column2' style='position: relative;'>" + value.dateJoined.substring(0, 10) + "" +
+  						               "<div class='time_popup'>at <span>" + value.dateJoined.substring(11, 19) + "</span></div></td>" +
+    						"<td class='report_column3'>" + reportsTableFonts(value.programme) + "</td>" +
+    						"<td class='report_column4'><div class='membership_dates'>" + reportsTableFonts(value.membershipTo) + "</div></td>" +
     						"<td class='report_column5'>" + value.countVisits + "</td>" + 
     						"</tr>");
     			});
@@ -394,11 +431,12 @@ function displayReport(data, reportType, elementNumber){
     						
     						"<tr class='report_row'>" +
     						"<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-    						"<td class='report_column1'>" + value.lastName + ", " + value.firstName + "</td>" +
-    						"<td class='report_column2'>" + addClass(value.membershipFrom) + "</td>" +
-    						"<td class='report_column3'>" + addClass(value.membershipTo) + "</td>" +
-    						"<td class='report_column4'>" + addClass(value.paid.toFixed(2)) + "</td>" +
-    						"<td class='report_column5'>" + addClass(value.programme) + "</td>" + 
+    						"<td class='first_column' style='display:none;'>" + value.firstName + " " + value.lastName + "</td>" +
+    						"<td class='report_column1'><div class='name'>" + value.firstName + " " + value.lastName + "</div></td>" +
+    						"<td class='report_column2'>" + reportsTableFonts(value.programme) + "</td>" +
+    						"<td class='report_column3'><div class='membership_dates'>" + value.membershipFrom + "</div></td>" +
+    						"<td class='report_column4'><div class='membership_dates'>" + reportsTableFonts(value.membershipTo) + "</div></td>" +
+    						"<td class='report_column5'>" + addClass(value.paid.toFixed(2)) + "</td>" + 
     						"</tr>");
     			});
 				break;
@@ -410,10 +448,11 @@ function displayReport(data, reportType, elementNumber){
     						
     						"<tr class='report_row'>" +
     						"<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-    						"<td class='report_column1'>" + value.lastName + ", " + value.firstName + "</td>" +
-    						"<td class='report_column2'>" + value.dateOfBirth + "</td>" +
-    						"<td class='report_column3'>" + value.memberAge + "</td>" +
-    						"<td class='report_column4'>" + addClass(value.membershipTo) + "</td>" +
+    						"<td class='first_column' style='display:none;'>" + value.firstName + " " + value.lastName + "</td>" +
+    						"<td class='report_column1'><div class='name'>" + value.firstName + " " + value.lastName + "</div></td>" +
+    						"<td class='report_column2'><div class='membership_dates'>" + value.dateOfBirth + "</div></td>" +
+    						"<td class='report_column3'>" + reportsTableFonts(value.programme) + "</td>" +
+    						"<td class='report_column4'>" + value.memberAge + "</td>" +
     						"<td class='report_column5'>" + value.countVisits + "</td>" +
     						"</tr>");
     			});
@@ -426,10 +465,11 @@ function displayReport(data, reportType, elementNumber){
     						
     						"<tr class='report_row'>" +
     						"<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-    						"<td class='report_column1'>" + value.lastName + ", " + value.firstName + "</td>" +
-    						"<td class='report_column2'>" + addClass(value.programme) + "</td>" +
-    						"<td class='report_column3'>" + addClass(value.membershipTo) + "</td>" +
-    						"<td class='report_column4'>" + (addClass(value.visitedTimestamp === null ? "N / A" : value.visitedTimestamp)) + "</td>" +
+    						"<td class='first_column' style='display:none;'>" + value.firstName + " " + value.lastName + "</td>" +
+    						"<td class='report_column1'><div class='name'>" + value.firstName + " " + value.lastName + "</div></td>" +
+    						"<td class='report_column2'>" + reportsTableFonts(value.programme) + "</td>" +
+    						"<td class='report_column3'><div class='membership_dates'>" + reportsTableFonts(value.membershipTo) + "</div></td>" +
+    						"<td class='report_column4'><div class='membership_dates'>" + value.visitedTimestamp + "</div></td>" +
     						"<td class='report_column5'>" + value.countVisits + "</td>" +
     						"</tr>");
     			});
@@ -442,11 +482,14 @@ function displayReport(data, reportType, elementNumber){
 							
 							"<tr class='report_row'>" +
     						"<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-    						"<td class='report_column1'>" + value.firstName + " " + value.lastName + "</td>" +
-    						"<td class='report_column2'>" + value.visitedTimestamp + "</td>" +
-    						"<td class='report_column3'>" + value.dateJoined + "</td>" +
-    						"<td class='report_column4'>" + value.countVisits + "</td>" +
-    						"<td class='report_column5'>" + value.dateJoined + "</td>" +
+    						"<td class='first_column' style='display:none;'>" + value.firstName + " " + value.lastName + "</td>" +
+    						"<td class='report_column1'><div class='name'>" + value.firstName + " " + value.lastName + "</div></td>" +
+    						"<td class='report_column2' style='position: relative;'>" + value.dateJoined.substring(0, 10) + "" +
+				               "<div class='time_popup'>at <span>" + value.dateJoined.substring(11, 19) + "</span></div></td>" +
+				            "<td class='report_column3'>" + reportsTableFonts(value.programme) + "</td>" +
+				            "<td class='report_column4' style='position: relative;'><div class='membership_dates'>" + value.visitedTimestamp.substring(0, 10) + "</div>" +
+					           "<div class='time_popup'>at <span>" + value.visitedTimestamp.substring(11, 19) + "</span></div></td>" +			        
+    						"<td class='report_column5'>" + value.countVisits + "</td>" +
     						"</tr>");
 							
 				});

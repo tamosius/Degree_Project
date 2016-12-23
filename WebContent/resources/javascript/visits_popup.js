@@ -50,7 +50,8 @@ function displayMemberVisitedDatesTimes(memberId, firstName, lastName){
 $(document).ready(function(){
 	
 	// popup the table with the visited dates, times by selected member
-	$("body").delegate("#reports_big_table_body_block #reports_big_table_body_table #visits", "click", function(){
+	$("body").delegate("#reports_big_table_body_block #reports_big_table_body_table #visits," +
+			".report_table_body .report_column5", "click", function(){
 		
 		// find member's ID, First Name, Last Name of selected row
 		var memberId = $(this).parent().find("#member_id").val();

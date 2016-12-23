@@ -42,6 +42,8 @@
 		<!-- RIGHT PRODUCTS BLOCK ----------------------------------------------------------------------------------------------------->
 		<div id="right_products_block">
 		
+		
+		<!--=========================================================================================================================-->
 		<!-- ADD NEW PRODUCT BLOCK ---------------------------------------------------------------------------------------------------->
 		<div id="add_new_product_block">
 
@@ -70,7 +72,7 @@
 								<option value="vitamins">Vitamins</option>
 								<option value="food supplement">Food Supplement</option>
 								<option value="accessories">Accessories</option>
-								<option value="gymEquipments">Gym Equipments</option>
+								<option value="gymEquipment">Gym Equipment</option>
 							</select>
 					</div>
 					<div>
@@ -79,7 +81,7 @@
 							placeholder="Please enter the Name..." />
 					</div>
 					<div>
-						<label>Manufacturer:</label> <input type="text" id=manufacturer
+						<label>Manufacturer:</label> <input type="text" id="manufacturer"
 							name="productManufacturer" autocomplete="off"
 							placeholder="Manufacturer..." />
 					</div>
@@ -95,7 +97,7 @@
 					<div>
 						<label>Status:</label> 
 						<div class="radio_buttons"><input type="radio" name="status" value="inactive" /><div>Inactive</div></div>
-						<div class="radio_buttons"><input type="radio" name="status" value="active" /><div>Active</div></div>
+						<div class="radio_buttons"><input type="radio" name="status" value="active" checked/><div>Active</div></div>
 					</div>
 					
 					<div id="product_description_block">
@@ -104,12 +106,83 @@
 					</div>
 
 				</div>
-
-				<input type="submit" id="add_new_product_submit_button" value="Add New Product" />
+				<button type="button" id="add_new_product_submit_button">Add New Product</button>
+				<input type="submit" id="confirm_add_new_product_submit_button" value="Add New Product" />
 			</form>
 		</div>
 		<!-- END OF 'add_new_product_block' -->
+		
+		<!--========================================================================================================================-->
+		<!-- UPDATE PRODUCT BLOCK ---------------------------------------------------------------------------------------------------->
+		<div id="update_product_block">
 
+			<div>
+				<span>Update Product:</span>
+			</div>
+			<form>
+				<div id="update_product_fields">
+
+					<div class="image_block">
+							<div class="image">
+								<img src="resources/images/productsImages/no_image.jpg" alt="foto" />
+							</div>
+
+							
+								<button type="button" class="upload_picture_button">Upload
+									Picture</button>
+							
+							<input type="file" id="update_product_upload"
+								name="updateProductImage" />
+					</div>
+					<div>
+							<label>Category:</label> 
+							<select name="productCategory" id="productCategory">
+								<option value="protein">Protein</option>
+								<option value="vitamins">Vitamins</option>
+								<option value="food supplement">Food Supplement</option>
+								<option value="accessories">Accessories</option>
+								<option value="gym equipment">Gym Equipment</option>
+							</select>
+					</div>
+					<div>
+						<input type="hidden" id="product_id" name="productId" />
+						<label>Product Name:</label> <input type="text"
+							id="product_name" name="productName" autocomplete="off"
+							placeholder="Please enter the Name..." />
+					</div>
+					<div>
+						<label>Manufacturer:</label> <input type="text" id="manufacturer"
+							name="productManufacturer" autocomplete="off"
+							placeholder="Manufacturer..." />
+					</div>
+					<div>
+						<label>Price:</label> <input type="text" id="price"
+							name="productPrice" autocomplete="off"
+							placeholder="Please enter the Price..." />
+					</div>
+					<div>
+						<label>Units in Stock:</label> <input type="text" id="stock"
+							name="unitsStock" autocomplete="off" placeholder="Units in Stock..." />
+					</div>
+					<div>
+						<label>Status:</label> 
+						<div class="radio_buttons"><input type="radio" name="status" id="inactive" value="inactive" /><div>Inactive</div></div>
+						<div class="radio_buttons"><input type="radio" name="status" id="active" value="active" /><div>Active</div></div>
+					</div>
+					
+					<div id="product_description_block">
+						<label>Product Description:</label>
+						<textarea name="productDescription"></textarea>
+					</div>
+
+				</div>
+				<button type="button" id="update_product_submit_button">Update Product</button>
+				<input type="submit" id="confirm_update_product_submit_button" value="Update Product" />
+			</form>
+		</div>
+		<!-- END OF 'update_product_block' -->
+		
+		<!--=========================================================================================-->
 		<!-- DISPLAY PRODUCTS BLOCK ------------------------------------------------------------------->
 			<div id="display_products_block">
 				<div id="products_types">
@@ -140,8 +213,13 @@
 							<span style="display: none;">4</span>
 						</div>
 						<div>
-							Gym Equipments
-							<p style="display: none;">Gym Equipments</p>
+							Gym Equipment
+							<p style="display: none;">Gym Equipment</p>
+							<span style="display: none;">5</span>
+						</div>
+						<div>
+							All Categories
+							<p style="display: none;">All Categories</p>
 							<span style="display: none;">5</span>
 						</div>
 					</div>
@@ -153,7 +231,8 @@
 				
 			</div>
 			<!-- END OF 'display_products_block' -->
-
+		
+		<!--==============================================================================-->
 		<!-- DISPLAY SOLD PRODUCTS ALONG WITH CUSTOMER DETAILS ----------------------------->
 		<div id="sold_products_block">
 			
@@ -163,9 +242,7 @@
 		</div>
 		<!-- END OF 'sold_products_block' -->
 
-		
-
-
+		<!--==============================================================================-->
 		<!-- RESERVED PRODUCTS BLOCK ------------------------------------------------------->
 		<div id="reserved_products_block">
 		

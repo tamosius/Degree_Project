@@ -117,6 +117,8 @@
     font-size: 18px;
     padding-left: 10px;
     border-right: 1px white solid;
+    
+    cursor: pointer;
 }
 
 .from_data, .to_data{
@@ -175,7 +177,7 @@
 
 .no_membership_left_sidebar{
 	
-	color: #FF6262;
+	color: #004d00;
 	font-size: 11px;
 }
 

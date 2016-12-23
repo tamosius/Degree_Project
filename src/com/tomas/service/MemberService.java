@@ -16,17 +16,17 @@ public interface MemberService {
 	
 	public Member updateMember(HttpServletRequest request, CommonsMultipartFile image);     // update member details or status
 	
-	public int insertRecentlyVisited(String id);   // insert recently visited member's ID and the time stamp
+	public int insertRecentlyVisited(String id, float toPay);   // insert recently visited member's ID and the time stamp
 
-	public List<Member> getMembersList();          // get whole members list
+	public List<Member> getMembersList(String idName);          // get whole members list
 	
 	public Member getMemberProfile(int id);        // get member details by ID
 	
 	public List<Member> searchMember(String name); // search member(s) by name
 	
-	public List<Member> searchByNameOrId(String nameOrId); // search members by name or id
+	public List<Member> searchByNameOrId(String nameOrId);          // search members by name or id
 
-	public List<Member> deleteMember(String id);   // delete member from the database
+	public String deleteMember(HttpServletRequest request, int id); // delete member from the database
 	
 	public Member getLastAttendedMember();         // get last attended member to the gym
 
