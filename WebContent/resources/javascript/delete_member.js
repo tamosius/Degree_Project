@@ -56,8 +56,7 @@ $(document).ready(function(){
             		
             		// display 'Total Members' in the top-left corner
             		getTotalMembers();
-            		// display all members
-            		displayAllMembers();
+            		
             		// call the functions in 'loading_content.js' file
             		// to display 'last attended', 'recently booked' and 'recently joined' members
             		displayLastAttended();	

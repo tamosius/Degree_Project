@@ -20,40 +20,6 @@ function getTotalMembers(){
 	});
 }
 
-/*------------ DISPLAY ALL MEMBERS ------------------------------------------------------------------------------*/
-function displayAllMembers(){
-		
-	// set the table empty before displaying whole list of members
-	$("table.body_table").empty(); 
-	
-		$.ajax({
-			
-			type: "GET",
-			url : "/Degree_Project/contr/getAllMembers",
-			dataType : "json",
-			success : function(data){
-				
-				$.each(data, function(key, value){
-					
-					$(".size .body_table").append(
-							
-							"<tr class='row_data'>" +
-			                 "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
-			                 "<td class='first_name_data'><span id='check_in'>Check-in</span>" + value.firstName + "</td>" +
-			                 "<td class='last_name_data'>" + value.lastName + "</td>" +
-			                 "<td class='from_data'>" + addClass(value.membershipFrom) + "</td>" +  // 'addClass' function
-			                 "<td class='to_data'>" + addClass(value.membershipTo) + "</td>" +      // in 'add_update_member.js' file
-			                 "<td class='paid_data'>" + addClass(value.paid.toFixed(2)) + "</td>" +  
-			             "</tr>"); 
-				});
-			},
-			error : function(e){
-				
-				alert("Filed!!!");
-			}
-		});
-}
-
 /*------------ DISPLAY 'last attended member' DETAILS (BOTTOM-LEFT BLOCK) ----------------------------------*/
 function displayLastAttended(){
 	

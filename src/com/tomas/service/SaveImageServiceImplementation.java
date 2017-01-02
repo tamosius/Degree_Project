@@ -13,11 +13,10 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class SaveImageServiceImplementation implements SaveImageService{
 	
-	private String path = "/home/tomas/STS/Degree_Project/WebContent/resources/images/";  // path for Linux
+	//private String path = "/home/tomas/STS/Degree_Project/WebContent/resources/images/";  // path for Linux
 	
-	//private String path = "C:\\Users\\Tomas\\Documents\\Spring_Tool_Suite\\Degree_Project\\WebContent\\resources\\images\\";  // path for Windows
+	private String path = "C:\\Users\\Tomas\\Documents\\Spring_Tool_Suite\\Degree_Project\\WebContent\\resources\\images\\";  // path for Windows
 	
-	//private String path = "/home/tomas/STS/Degree_Project/WebContent/resources/images/profileImages/";  // path for Windows
 	
 	public void saveImage(CommonsMultipartFile image, int id, String imageFor, HttpServletRequest request){
 		
