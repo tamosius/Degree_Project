@@ -32,7 +32,7 @@ public class AdminDAOImplementation implements AdminDAO{
 		
 		String sql = " SELECT id, first_name, last_name, email, username, joined_on"
 				   + " FROM admin"
-				   + " WHERE username = '" + admin.getUsername() + "' AND password = '" 
+				   + " WHERE email = '" + admin.getEmail() + "' AND password = '" 
 				   + admin.getPassword() + "'";
 		
 		Admin adminUser = jdbcTemplate.query(sql, new ResultSetExtractor<Admin>(){
@@ -48,7 +48,6 @@ public class AdminDAOImplementation implements AdminDAO{
 					admin.setFirstName(resultSet.getString("first_name"));
 					admin.setLastName(resultSet.getString("last_name"));
 					admin.setEmail(resultSet.getString("email"));
-					admin.setUsername(resultSet.getString("username"));
 					admin.setJoinedOn(resultSet.getString("joined_on"));
 					
 					return admin;

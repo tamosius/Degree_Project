@@ -235,6 +235,7 @@
 	width: 15%;
 	text-align: center;
 	font-weight: bold;
+	cursor: pointer;
 	
 	border-right: 1px #ffffff solid;
 }
@@ -272,7 +273,7 @@
 	
 	margin: 15px 10px 0px 10px;
 	
-	border: 1px red solid;
+	border: 1px #666 solid;
 	
 }
 #leave_message_block #leave_admin_message_block label{

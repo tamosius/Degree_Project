@@ -106,10 +106,10 @@ $(document).ready(function(){
 					   "<td class='first'>" + value.id + "</td>" +
 					   "<td class='second'>" + value.firstName + " " + value.lastName + "</td>" +
 					   "<td class='third'>" + value.programme + "</td>" +
-					   "<td class='fourth'><span>" + value.finalPrice + "</span><p>" + (value.programmeDiscountPercentage != 0 ? "(" + value.programmeDiscountPercentage + "%)" : "") + "</p></td>" +
+					   "<td class='fourth'><span>" + value.finalPrice + "</span></td>" +
 					"</tr>"                         // 'finalPrice' is how much the programme cost now
 			); // end of 'append'                   // retrieved from 'programmes_prices' table
-		}); // end of 'each'
+		}); // end of 'each'                        // <p>" + (value.programmeDiscountPercentage != 0 ? "(" + value.programmeDiscountPercentage + "%)" : "") + "</p>
 	});
 	
 /*----------- DISPLAY THE PICTURE ON 'mouseover' ON THE ROW -----------------------------------------*/

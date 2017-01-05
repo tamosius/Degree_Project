@@ -64,6 +64,8 @@ $(document).ready(function(){
             		displayRecentlyJoined();
             		// display 'Today's visits' count in the 'bottom panel'
             		todaysVisitsCount();
+            		
+            		$(".loading_content").load("pages/reports_big_table.jsp");
             	},
             	error : function(event){
             		

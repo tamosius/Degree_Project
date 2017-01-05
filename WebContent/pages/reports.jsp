@@ -14,7 +14,7 @@
 		<!------------ LEFT SIDE CONTAINER --------------------------------------------------------------------------------->
 		<div class="reports_left_container">
 
-			<!-------- BUTTON 'view report' ON SELECTED DATES AND REPORT TYPE -------------------------------------------------->
+			<!-------- BUTTON 'view report' ON SELECTED DATES AND REPORT TYPE ---------------------------------------------->
 			<button type="button" id="view_report_button">View Report</button>
 
 			<!-------- REPORT TYPE SELECTION MENU -------------------------------------------------------------------------->
@@ -25,12 +25,12 @@
 					<div>
 						Member<input type="hidden" value="member" />
 					</div>
-					<div>
+					<!--<div>
 						Personal Trainer<input type="hidden" value="personal_trainer" />
-					</div>
-					<div>
+					</div>-->
+					<!--<div>
 						Financial<input type="hidden" value="financial" />
-					</div>
+					</div>-->
 					<div>
 						Sales<input type="hidden" value="sales" />
 					</div>

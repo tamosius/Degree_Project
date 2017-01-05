@@ -278,7 +278,7 @@ public class MemberDAOImplementation implements MemberDAO {
 		String sql = " SELECT members.id, members.first_name, members.last_name,"
 				   + " members.address, members.ph_number, members.date_of_birth, members.email,"
 				   + " membership_status.programme, membership_status.membership_from, membership_status.membership_to,"
-				   + " membership_status.paid, DATE_FORMAT(members.date_joined, '%d-%m-%Y') AS date_joined,"
+				   + " membership_status.due_payment, DATE_FORMAT(members.date_joined, '%d-%m-%Y') AS date_joined,"
 				   + " membership_status.programme_id,"
 				   + " membership_status.programme_state, membership_status.update_description, members.image_path"
 				   + " FROM members"
@@ -308,7 +308,7 @@ public class MemberDAOImplementation implements MemberDAO {
 					member.setProgramme(resultSet.getString("programme"));
 					member.setMembershipFrom(resultSet.getString("membership_from"));
 					member.setMembershipTo(resultSet.getString("membership_to"));
-					member.setPaid(resultSet.getFloat("paid"));
+					member.setDuePayment(resultSet.getFloat("due_payment"));
 					member.setDateJoined(resultSet.getString("date_joined"));
 					member.setProgrammeId(resultSet.getInt("programme_id"));
 					member.setProgrammeState(resultSet.getString("programme_state"));
@@ -320,6 +320,40 @@ public class MemberDAOImplementation implements MemberDAO {
 				return null;
 			}
 		});
+	}
+	
+	public List<Member> getProgrammesHistory(int id){
+		
+		List<Member> membersList = new ArrayList<>();
+
+		String sql = " SELECT id, programme, membership_from, membership_to, paid," 
+                   + " programme_state, due_payment" 
+                   + " FROM membership_status" 
+                   + " WHERE id = " + id 
+                   + " ORDER BY updated_timestamp DESC";
+		
+
+		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+		membersList = jdbcTemplate.query(sql, new RowMapper<Member>(){
+			
+			@Override
+			public Member mapRow(ResultSet resultSet, int rowNumber)throws SQLException{
+				
+				Member member = new Member();
+				
+				member.setId(resultSet.getInt("id"));
+				member.setProgramme(resultSet.getString("programme"));
+				member.setMembershipFrom(resultSet.getString("membership_from"));
+				member.setMembershipTo(resultSet.getString("membership_to"));
+				member.setPaid(resultSet.getFloat("paid"));
+				member.setProgrammeState(resultSet.getString("programme_state"));
+				member.setDuePayment(resultSet.getFloat("due_payment"));
+				
+				return member;
+			}
+		});
+		
+		return membersList;
 	}
 	
 /*-------------- RETRIEVE A MEMBER BY ID OR NAME -----------------------------------------------------------------*/

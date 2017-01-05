@@ -74,10 +74,7 @@ public class SettingsDAOImplementation implements SettingsDAO{
 				   + " programme_discount, programme_discount_percentage, programme_promotion_start,"
 				   + " programme_promotion_end, programme_promotion_description, final_price, programme_description"
 				   + " FROM programmes_prices"
-				   + " WHERE programmeId = " + id   
-				   + " AND updated_timestamp ="
-				   + " (SELECT MAX(updated_timestamp) FROM programmes_prices"
-				   + " WHERE programmeId = " + id + ")";
+				   + " WHERE programmeId = " + id;
 		
 		List<Settings> programmeDetails = jdbcTemplate.query(sql, new RowMapper<Settings>(){
 			
@@ -111,15 +108,15 @@ public class SettingsDAOImplementation implements SettingsDAO{
 		
 		// actually, will be inserting the new record with programme ID with different price, discount, etc. 
 		// it is for statistical purpose
-		String sql = " INSERT INTO programmes_prices (programme_id, programme_name, programme_price,"
-				   + " programme_discount, programme_discount_percentage, programme_promotion_start, programme_promotion_end,"
-				   + " programme_promotion_description, updated_timestamp, final_price)"
-				   + " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW(), ?)";
+		String sql = " UPDATE programmes_prices SET programme_name = ?, programme_price = ?,"
+				   + " programme_discount = ?, programme_discount_percentage = ?, programme_promotion_start = ?,"
+				   + " programme_promotion_end = ?, programme_promotion_description = ?, final_price = ?"
+				   + " WHERE programmeId = ?";
 		
 		// execute this 'INSERT' query in 'programmes_prices' table
-		jdbcTemplate.update(sql, programme.getProgrammeId(), programme.getProgrammeName(), programme.getProgrammePrice(),
+		jdbcTemplate.update(sql, programme.getProgrammeName(), programme.getProgrammePrice(),
 				programme.getProgrammeDiscount(), programme.getProgrammeDiscountPercentage(), programme.getProgrammePromotionStart(), programme.getProgrammePromotionEnd(),
-				programme.getProgrammePromotionDescription(), programme.getFinalPrice());
+				programme.getProgrammePromotionDescription(), programme.getFinalPrice(), programme.getProgrammeId());
 	
 		return programme;
 	}

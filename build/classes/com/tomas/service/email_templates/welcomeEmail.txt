@@ -86,7 +86,7 @@ a:hover{
 
 It is my pleasure to welcome you to our gym! On behalf of our team and management, 
 we would like you to know that we are so grateful of having you. 
-We believe that you can contribute a lot for our company’s success and improvement. 
+We believe that you can contribute a lot for our company success and improvement. 
 
 Welcome aboard new member!</pre>
 
@@ -97,7 +97,7 @@ Welcome aboard new member!</pre>
 		</div>
 	</div>
 
-<pre>Available at: <a href="http://www.google.ie">Some address here...</a>
+<pre>Available at: <a href="http://localhost:8080/Degree_Project"><span><i>ToMi</i></span></a>
 
 <strong>Username: MEMBERUSERNAME              Password: MEMBERPASSWORD</strong></pre>
 

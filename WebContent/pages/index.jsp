@@ -286,7 +286,7 @@
 					</div>
 
 					<div id="take_photo">
-						<button type="button" name="take_photo" class="photo_button">New
+						<button type="button" name="take_photo" style="display:none;" class="photo_button">New
 							Photo</button>
 						<button type="button" name="take_photo" class="shoot_button">Take
 							a Snapshot</button>
@@ -373,9 +373,8 @@
 						</div>
 						<div class="member_data">
 							<span>To Pay €:</span> <input id="price" type="text" name="price" value="0" disabled
-						placeholder="price..." /> - (<i style ="color: #ffffff; font-weight: bold;">0%</i>) =
-						<input id="paid" type="text" name="paid" value="0"
-						placeholder="Paid.." />
+						placeholder="price..." /><span id="profile_discount" style="display:none;"> - (<i style ="color: #ffffff; font-weight: bold;">0%</i>) =</span>
+						<input id="paid" type="text" name="paid" />
 						<input id="to_pay" type="hidden" name="toPay" />
 						</div>
 						<div class="member_data">
@@ -408,7 +407,7 @@
 								<td id="second_column">Start Date</td>
 								<td id="third_column">End Date</td>
 								<td id="fourth_column">Paid</td>
-								<td id="fifth_column">Visits</td>
+								<td id="fifth_column">Due Pay</td>
 								<td id="sixth_column">State</td>
 							</tr>
 						</table>
@@ -416,102 +415,7 @@
 
 					<div id="table_body">
 						<table>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
-							<tr id="header_row">
-								<td id="first_column">12 Months Mbsh</td>
-								<td id="second_column">01-06-2016</td>
-								<td id="third_column">01-06-2017</td>
-								<td id="fourth_column">300</td>
-								<td id="fifth_column">198</td>
-								<td id="sixth_column">Active</td>
-							</tr>
+							
 						</table>
 					</div>
 
@@ -550,7 +454,7 @@
 				</div>
 				
 				<div id="take_photo">
-					<button type="button" name="take_photo" class="photo_button">New
+					<button type="button" name="take_photo" style="display:none;" class="photo_button">New
 						Photo</button>
 					<button type="button" name="take_photo" class="shoot_button">Take
 						a Snapshot</button>
@@ -658,7 +562,7 @@
 				<button type="button" id="communication">Communication</button>
 				<button type="button" id="sales">Products / Sales</button>
 				<button type="button" id="settings">Settings</button>
-				<button type="button" id="help">Help</button>
+				<!--<button type="button" id="help">Help</button>-->
 			</div>
 			<div class="right_block">
 				<button type="button" id="add_member">Add Member</button>

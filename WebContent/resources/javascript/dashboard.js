@@ -169,3 +169,6 @@ $(document).ready(function(){
         $("#add_new_product_block").slideDown(250);
 	});
 });
+
+
+

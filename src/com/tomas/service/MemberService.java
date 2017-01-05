@@ -33,4 +33,6 @@ public interface MemberService {
 	public Member getRecentlyJoined();             // get recently joined member details
     
 	public Member getRecentlyBookedMembership();   // get recently booked membership member details
+	
+	public List<Member> getProgrammesHistory(int id);
 }

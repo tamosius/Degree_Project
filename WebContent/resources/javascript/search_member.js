@@ -10,7 +10,7 @@
 function searchMembers(path, value){
 	
 	var retrievedData = "";
-	console.log("this data: " + JSON.stringify(value));
+	
 	$.ajax({
 		
 		type : "POST",

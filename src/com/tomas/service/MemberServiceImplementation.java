@@ -42,7 +42,7 @@ public class MemberServiceImplementation implements MemberService {
 		return memberDAO.getTotalMembers();
 	}
 
-	/*------------- ADD A NEW MEMBER TO THE DATABASE (IMAGE IN BLOB)-----------------------------------------------------------------------------*/
+	/*------------- ADD A NEW MEMBER TO THE DATABASE -----------------------------------------------------------------------------*/
 	@Override
 	public Member addMember(HttpServletRequest request, CommonsMultipartFile image) {
 
@@ -62,12 +62,7 @@ public class MemberServiceImplementation implements MemberService {
 		member.setPhNumber(request.getParameter("phNumber").equals("") ? "N / A" : request.getParameter("phNumber"));
 		member.setDateOfBirth(
 				request.getParameter("dateOfBirth").equals("") ? "N / A" : request.getParameter("dateOfBirth"));
-		member.setPassword(passwordService.getInitialPassword()); // get initial
-																	// password
-																	// when sign
-																	// in for
-																	// the first
-																	// time
+		member.setPassword(passwordService.getInitialPassword()); 
 		member.setEmail(request.getParameter("email"));
 		member.setMembershipFrom(request.getParameter("membershipFrom"));
 		member.setMembershipTo(request.getParameter("membershipTo"));
@@ -80,9 +75,6 @@ public class MemberServiceImplementation implements MemberService {
 		member.setProgrammeBooked(Integer.parseInt(request.getParameter("programmeBooked")));
 
 		member = memberDAO.addMember(member);
-		
-		//new Thread(new TaskClass(member.getId(), member.getFirstName(), member.getEmail(), member.getPassword(), image, request)).start();
-
 		
 		try{
 			
@@ -126,7 +118,7 @@ public class MemberServiceImplementation implements MemberService {
 		// get price what customer had to pay for programme
 		// and how much did pay
 		float toPay = Float.parseFloat(request.getParameter("toPay"));
-		float paid = Float.parseFloat(request.getParameter("paid"));
+		float paid = request.getParameter("paid").length() == 0 ? 0 : Float.parseFloat(request.getParameter("paid"));
 
 		// set the values for 'Member' object
 		member.setId(Integer.parseInt(request.getParameter("memberId")));
@@ -202,6 +194,11 @@ public class MemberServiceImplementation implements MemberService {
 	public Member getMemberProfile(int id) {
 
 		return memberDAO.getMemberProfile(id);
+	}
+	
+	public List<Member> getProgrammesHistory(int id){
+		
+		return memberDAO.getProgrammesHistory(id);
 	}
 
 	/*-------------- RETRIEVE A MEMBER BY NAME -----------------------------------------------------------------*/

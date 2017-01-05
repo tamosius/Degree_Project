@@ -261,9 +261,11 @@ $(document).ready(function(){
          			getTotalMembers();
                     // display all members if 'display_members.js' is open (new added profile also)
                	    // call function 'displayAllMembers' in 'loading_content.js' file
-            		displayAllMembers();
+            		//displayAllMembers();
             		// display 'Today's visits' count in the 'bottom panel'
             		todaysVisitsCount();
+            		
+            		$(".loading_content").load("pages/reports_big_table.jsp");
             		
          			setTimeout(function(){
                     	
@@ -275,11 +277,11 @@ $(document).ready(function(){
                 		displayRecentlyJoined(); 
                 		
                 		
-                    }, 7000);
+                    }, 10000);
                 /*===================================================*/	
                 },
                 error: function (xhr) {
-                    alert("Failed!" + xhr.responseText);
+                    //alert("Failed!" + xhr.responseText);
                 }
             });
             
@@ -430,7 +432,7 @@ $(document).ready(function(){
                     	 
                     	 // display all members if 'display_members.js' is open (updated profile also)
                     	 // call function 'displayAllMembers' in 'display_members.js' file
-                    	 displayAllMembers();
+                    	 //displayAllMembers();
                     	 
                     	 // display 'Last attended member','recently booked member',
                     	 // 'Recently joined' (bottom-left block)
@@ -438,6 +440,8 @@ $(document).ready(function(){
                     	 displayLastAttended();
                     	 displayRecentlyBooked();
                     	 displayRecentlyJoined();
+                    	 
+                    	 
                     },
                     error : function (xhr) {
                     	
@@ -446,7 +450,7 @@ $(document).ready(function(){
             	});
         	//}
         	
-        	
+            	event.preventDefault();
         }
         
         // prevent the form from submitting via browser

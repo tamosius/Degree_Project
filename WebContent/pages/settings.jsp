@@ -168,11 +168,11 @@
 					</div>
 					<div>
 					    <label>Promotion Start Date:</label>
-						<input type="text" id="promotion_start_date" autocomplete="off" placeholder="Please enter date..." />
+						<input type="text" class="promotion_start_date" autocomplete="off" placeholder="Please enter date..." />
 					</div>
 					<div>
 					    <label>Promotion End Date:</label>
-						<input type="text" id="promotion_end_date" autocomplete="off" placeholder="Please enter date..." />
+						<input type="text" class="promotion_end_date" autocomplete="off" placeholder="Please enter date..." />
 					</div>
 					<div id="programme_description_block">
 					    <label>Programme Description:</label>

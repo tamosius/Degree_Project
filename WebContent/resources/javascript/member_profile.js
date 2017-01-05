@@ -125,6 +125,7 @@ $(document).ready(function(){
 /*===============================================================================================================================*/
 /*--------------- SHOW 'Member_Profile' ON CLICK IN THE TABLE ROW ---------------------------------------------------------------*/
     $("body").delegate(".body_table .row_data .first_name_data, .body_table .row_data .last_name_data," +
+    		".row_data #second_column," +
     		".left_sidebar .last_attended_member .image," +
     		".left_sidebar .last_attended_member #full_name," +
     		".left_sidebar .last_updated_member .image," +
@@ -144,8 +145,8 @@ $(document).ready(function(){
         $(".member_profile_right_sidebar div").addClass("member_data");
         
         /*----- BUTTONS UNDER PICTURE -----------*/
-        $(".member_profile_left_sidebar #shoot_button").hide(); // 'Take a Snapshot'
-        $(".member_profile_left_sidebar #photo_button").show(); // 'New Photo'
+        //$(".member_profile_left_sidebar #shoot_button").hide(); // 'Take a Snapshot'
+        //$(".member_profile_left_sidebar #photo_button").show(); // 'New Photo'
      
         // enable 'Delete' button
         $('.member_profile_bottom_panel #delete_button').prop('disabled', false).css('opacity', 1); 
@@ -181,7 +182,7 @@ $(document).ready(function(){
             	$(".member_data #programme").val(data.programme);
             	$(".member_data #from").val(data.membershipFrom);
             	$(".member_data #to").val(data.membershipTo);
-            	//$(".member_data #paid").val(data.paid);
+            	$(".member_data #price").val(data.duePayment);
             	$(".member_data #date_joined").val(data.dateJoined);
             	
             	// set font to 'member_data' state and ('N / A', 'no membership', etc)
@@ -192,7 +193,44 @@ $(document).ready(function(){
             },
             error: function (xhr) {
             	
-                alert("Failed to retrieve member profile!");
+                //alert("Failed to retrieve member profile!");
+            }
+        });
+        
+        $.ajax({
+        	
+            type: "POST",
+            url: "/Degree_Project/contr/programmesHistory",
+            data: {id : id},
+            dataType: "json",
+            processData: true,
+            cache  : false,
+            success: function (data, status, jqXHR) {
+            	
+            	$("#membership_details_table_block #table_body table").empty();
+            	
+            	$.each(data, function(key, value){
+            		
+            		$("#membership_details_table_block #table_body table").append(
+            				
+            				"<tr id='header_row'>" +
+            				"<td id='first_column'>" + value.programme + "</td>" +
+            				"<td id='second_column'>" + value.membershipFrom + "</td>" +
+            				"<td id='third_column'>" + value.membershipTo + "</td>" +
+            				"<td id='fourth_column'>" + value.paid + "</td>" +
+            				"<td id='fifth_column'>" + value.duePayment + "</td>" +
+            				"<td id='sixth_column'>" + value.programmeState + "</td>" +
+            			"</tr>"
+            		
+            		);
+            	});
+            	
+            	
+            	
+            },
+            error: function (xhr) {
+            	
+                //alert("Failed to retrieve member profile!");
             }
         });
     });
@@ -203,8 +241,8 @@ $(document).ready(function(){
     $(".member_profile_left_sidebar .photo_button").click(function(){
     	
     	/*----- BUTTONS UNDER PICTURE -----------*/
-        $(".member_profile_left_sidebar .shoot_button").show(); // 'Take a Snapshot'
-        $(".member_profile_left_sidebar .photo_button").hide(); // 'New Photo'
+        //$(".member_profile_left_sidebar .shoot_button").show(); // 'Take a Snapshot'
+        //$(".member_profile_left_sidebar .photo_button").hide(); // 'New Photo'
     });
     
     $(".member_profile_left_sidebar .shoot_button").click(function(){
@@ -308,8 +346,7 @@ $(document).ready(function(){
         $(".member_profile_right_sidebar #second_block #programme_drop_down_arrow").show();
         
         // disable 'Delete Profile' button when 'Update Profile' button is clicked
-        $(".member_profile_bottom_panel #delete_button").prop("disabled", true).css("opacity", 0.4); 
-        
+        $(".member_profile_bottom_panel #delete_button").prop("disabled", true).css("opacity", 0.4);   
     });
     
     
@@ -357,8 +394,8 @@ $(document).ready(function(){
                 .prop("disabled", true).css("opacity", 0.4);
         
         /*----- BUTTON UNDER PICTURE -----------*/
-        $(".member_profile_left_sidebar .shoot_button").hide(); // 'Take a Snapshot'
-        $(".member_profile_left_sidebar .photo_button").show(); // 'New Photo'
+        //$(".member_profile_left_sidebar .shoot_button").hide(); // 'Take a Snapshot'
+        //$(".member_profile_left_sidebar .photo_button").show(); // 'New Photo'
     	
     	// show member details in 'member_data' class
         $(".member_profile_right_sidebar div").removeClass("member_data_update");
@@ -377,8 +414,9 @@ $(document).ready(function(){
         $(".member_data #programme").val(memberProfile.programme);
         $(".member_data #from").val(memberProfile.membershipFrom);
         $(".member_data #to").val(memberProfile.membershipTo);
-        $(".member_data #paid").val(memberProfile.paid);
+        $(".member_data #price").val(memberProfile.duePayment);
         $(".member_data #date_joined").val(memberProfile.dateJoined);
+        $(".member_data #paid").val("");
         
         // hide 'drop-down' menu under 'programme' field
     	$(".member_profile_right_sidebar #second_block #programme_type").hide();

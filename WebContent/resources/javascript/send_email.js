@@ -22,11 +22,17 @@ $(document).ready(function(){
             //async       : false,	
             success     : function (data, status, jqXHR){
             	
-            	
+            	// display the picture of Member you successfully removed from the database
+                $(".popup_window #check_in_image").attr("src", "resources/images/green_accept.jpg");
+            	 
+            	// display successful message about Member you successfully removed from the database
+                $(".popup_window .messages").html("<div id='popup_window_text'><strong></strong><br>" +
+        					               "Successfully sent the email!</div>");
+        			$(".popup_window").fadeIn().delay(3000).fadeOut(500);  
             },
             error : function (xhr) {
             	
-                alert("Failed!" + JSON.stringify(xhr));
+                //alert("Failed!" + JSON.stringify(xhr));
             }
     	});
 		

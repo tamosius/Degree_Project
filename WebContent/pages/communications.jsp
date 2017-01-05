@@ -29,7 +29,8 @@
 		<div id="right_communications_block">
             
 			<!-- SHOW MESSAGES BLOCK ----------------------------------------------------------->
-			<div id="show_messages_block"></div>
+			<div id="show_messages_block"><div class='no_results'>No Messages...</div>
+		                                                                       </div>
 
 			<!-- LEAVE MESSAGE BLOCK ----------------------------------------------------------->
 			<div id="leave_message_block">

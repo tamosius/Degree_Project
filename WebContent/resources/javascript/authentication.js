@@ -22,7 +22,7 @@ $(document).ready(function(){
     		
     		type : "POST",
     		url   : "/Degree_Project/admin/authenticate",
-    		data  : JSON.stringify({username : username, password : password}),
+    		data  : JSON.stringify({email : username, password : password}),
     		contentType : "application/json; charset=utf-8",
     		dataType : "html",
     		processData : true,
@@ -40,7 +40,7 @@ $(document).ready(function(){
     		},
     		error : function(e){
     			
-    			alert(e);
+    			//alert(e);
     		}
     	});
     	event.preventDefault();

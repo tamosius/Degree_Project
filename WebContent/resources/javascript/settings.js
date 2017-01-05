@@ -107,14 +107,8 @@ function updateSettingsSelected(settingsType){
     		//$("#programmes_settings_block #promotion_start_date").val(data.programmePromotionStart);
     		//$("#programmes_settings_block #promotion_end_date").val(data.programmePromotionEnd);
     		
-    		$(".confirm_settings_window").animate({
-            	
-            	height: "toggle"
-            });
-            $(".confirm_window_background_overlay").animate({
-            	
-            	height: "toggle"
-            }, 1000);
+    		$(".confirm_settings_window").slideUp(250);
+            $(".confirm_window_background_overlay").slideUp(250);
     	},
     	error : function(e){
     		
@@ -162,7 +156,7 @@ $(document).ready(function(){
 	
 /*-------- DATE PICKERS FOR THE DATES IN THE SETTINGS PAGE ---------------------------------------------------------------------------*/
 	// start date
-	$(".settings_content").delegate("#add_programme_block #promotion_start_date, #programmes_settings_block #promotion_start_date", "focusin", function(){
+	$(".settings_content").delegate("#add_programme_block #promotion_start_date, #programmes_settings_block .promotion_start_date", "focusin", function(){
 		
 		$(this).datepicker({
 			
@@ -187,7 +181,7 @@ $(document).ready(function(){
 	});
 	
 	// end date
-	$(".settings_content").delegate("#add_programme_block #promotion_end_date, #programmes_settings_block #promotion_end_date", "focusin", function(){
+	$(".settings_content").delegate("#add_programme_block #promotion_end_date, #programmes_settings_block .promotion_end_date", "focusin", function(){
 		
         $(this).datepicker({
 			
@@ -318,8 +312,8 @@ $(document).ready(function(){
 				programmeDiscount             : $(this).find("#programme_discount").val(),
 				programmeDiscountPercentage   : $(this).find("#programme_discount_percentage").val(),
 				finalPrice                    : $(this).find("#programme_final_price span").text(),
-				programmePromotionStart       : assignNA($(this).find("#promotion_start_date").val()), // assign 'N / A' if the field is empty
-				programmePromotionEnd         : assignNA($(this).find("#promotion_end_date").val()),   // function 'assignNA' in 'add_update_member.js'
+				programmePromotionStart       : assignNA($(this).find(".promotion_start_date").val()), // assign 'N / A' if the field is empty
+				programmePromotionEnd         : assignNA($(this).find(".promotion_end_date").val()),   // function 'assignNA' in 'add_update_member.js'
 				programmePromotionDescription : assignNA($(this).find("#programme_promotion_description_block textarea").val()),
 				programmeDescription          : assignNA($(this).find("#programme_description_block textarea").val())
 		}
@@ -357,22 +351,16 @@ $(document).ready(function(){
 	
 /*------------------- CONFIRM SUBMIT SETTINGS UPDATES, 'Yes' BUTTON ('Admin Account Details',
  * ------------------ 'Add new Programme', 'Set Programmes Prices', etc..) --------*/
-    $(".confirm_settings_window #confirm_button").click(function(){
+    $(".confirm_settings_window .confirm_button").click(function(){
         
     	updateSettingsSelected(submitSettingsData.settingsType);
      });
 	
 /*------------------- CANCEL UPDATE SETTINGS, 'No' BUTTON ('Admin Account Details', 'Set Programmes Prices', etc..) ------------------*/
-    $(".confirm_settings_window #cancel_button").click(function(){
+    $(".confirm_settings_window .cancel_button").click(function(){
     	
-        $(".confirm_settings_window").animate({
-        	
-        	height: "toggle"
-        });
-        $(".confirm_window_background_overlay").animate({
-        	
-        	height: "toggle"
-        }, 1000);
+        $(".confirm_settings_window").slideUp(250);
+        $(".confirm_window_background_overlay").slideUp(250); 
     });
 	
 /*-------- SELECT SETTINGS TYPE IN LEFT SETTINGS BLOCK (Admin Details, Programmes Prices, etc.) -------------------------------------*/
@@ -456,8 +444,8 @@ $(document).ready(function(){
 		$("#programmes_settings_block #programme_price").val(data.programmePrice);
 		$("#programmes_settings_block #programme_discount").val(data.programmeDiscount);
 		$("#programmes_settings_block #programme_discount_percentage").val(data.programmeDiscountPercentage);
-		$("#programmes_settings_block #promotion_start_date").val(data.programmePromotionStart);
-		$("#programmes_settings_block #promotion_end_date").val(data.programmePromotionEnd);
+		$("#programmes_settings_block .promotion_start_date").val(data.programmePromotionStart);
+		$("#programmes_settings_block .promotion_end_date").val(data.programmePromotionEnd);
 		$("#programmes_settings_block #programme_description_block textarea").val(data.programmeDescription);
 		$("#programmes_settings_block #programme_promotion_description_block textarea").val(data.programmePromotionDescription);
 	});

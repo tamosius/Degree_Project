@@ -36,7 +36,7 @@
 	</div>
 
 	<!-------- DASHBOARD 'Tasks' TOP-MIDDLE BLOCK ----------------------------------------------------------------------------->
-	<div class="dashboard_top_middle">
+	<!--<div class="dashboard_top_middle">
 		<div class="dashboard_content">
 			<label id="tasks_label">Tasks</label> <label
 				id="actions_tasks_label">Actions on your to-do list</label>
@@ -44,7 +44,7 @@
 			<button id="to_do_list_button">To-do List's (all)</button>
 			<button id="today_to_do_list_button">Today's To-do List <span></span></button>
 		</div>
-	</div>
+	</div>-->
 
 	<!-------- DASHBOARD 'point of sales' TOP-RIGHT BLOCK --------------------------------------------------------------------->
 	<div class="dashboard_top_right">
@@ -54,6 +54,17 @@
 			<button id="make_sale_button">Make a Sale</button>
 			<button id="sold_today_button">Sold Today</button>
 			<button id="popular_products_button">Popular Products</button>
+		</div>
+	</div>
+	
+	<!-------- DASHBOARD 'products' BOTTOM-RIGHT BLOCK ------------------------------------------------------------------------>
+	<div class="dashboard_bottom_right" style="display:block;">
+		<div class="dashboard_content">
+			<label id="products_label">Products</label> <label
+				id="add_display_products_label">Add and display products</label>
+			<button id="add_product_button">Add Product</button>
+			<button id="display_products_button">Display Products</button>
+			<button id="last_added_products_button">Last added Products</button>
 		</div>
 	</div>
 
@@ -71,20 +82,11 @@
 	</div>
 
 	<!-------- DASHBOARD '' BOTTOM-MIDDLE BLOCK ------------------------------------------------------------------------------->
-	<div class="dashboard_bottom_middle">
+	<!--<div class="dashboard_bottom_middle">
 		<div class="dashboard_content"></div>
-	</div>
+	</div>-->
 
-	<!-------- DASHBOARD 'products' BOTTOM-RIGHT BLOCK ------------------------------------------------------------------------>
-	<div class="dashboard_bottom_right">
-		<div class="dashboard_content">
-			<label id="products_label">Products</label> <label
-				id="add_display_products_label">Add and display products</label>
-			<button id="add_product_button">Add Product</button>
-			<button id="display_products_button">Display Products</button>
-			<button id="last_added_products_button">Last added Products</button>
-		</div>
-	</div>
+	
 	
   </div><!-- END OF 'dashboard_content' -->
 </body>

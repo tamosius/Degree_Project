@@ -36,11 +36,11 @@
 	<bean id="reportsService" class="com.tomas.service.ReportsServiceImplementation" />
 	<bean id="settingsService" class="com.tomas.service.SettingsServiceImplementation" />
 	<bean id="productsService" class="com.tomas.service.ProductsServiceImplementation" />
+	<bean id="insertBlobService" class="com.tomas.service.InsertBlobServiceImplementation" />
 	<bean id="bottomPanelReportsService"
 		class="com.tomas.service.BottomPanelReportsServiceImplementation" />
 	<bean id="fileUploadService" class="com.tomas.service.FileUploadServiceImplementation" />
 	<bean id="passwordService" class="com.tomas.service.PasswordServiceImplementation" />
-	<bean id="insertBlobService" class="com.tomas.service.InsertBlobServiceImplementation" />
 	<bean id="saveImageService" class="com.tomas.service.SaveImageServiceImplementation" /> <!-- save image to disk -->
 	<bean id="resizePictureService" class="com.tomas.service.ResizePictureServiceImplementation" />
 	<bean id="offerService" class="com.tomas.service.OfferServiceImplementation" />

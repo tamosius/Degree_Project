@@ -32,8 +32,8 @@
 			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Birthday</td><td id='third'>Programme</td><td id='fourth'>Age</td><td id='fifth'>Visits</td></tr>"
 			      },
 			      {
-			    	  reportName  : "Updated Programme Plan",
-			    	  description : "Members whose previous Programme plan has been updated during the given period.",
+			    	  reportName  : "Expired Programme",
+			    	  description : "Members whose previous Programme plan has expired during the given period.",
 			    	  uri         : "getExpireMemberships",
 			    	  tableHeader : "<tr id='header_row'><td id='first'>Name</td><td id='second'>Programme</td><td id='third'>Expired On:</td><td id='fourth'>Last Visit</td><td id='fifth'>Visits</td></tr>"
 			      },
@@ -340,8 +340,8 @@ $(document).ready(function(){
         		},
         		error: function(e){
         			
-        			$(".error_window").html( "<p>Errors in the database connection, queries, etc.</p><hr><img src='resources/images/error.jpg' alt='error' />");
-        	        $(".error_window").fadeIn(200);
+        			//$(".error_window").html( "<p>Errors in the database connection, queries, etc.</p><hr><img src='resources/images/error.jpg' alt='error' />");
+        	        //$(".error_window").fadeIn(200);
         		}
         		
         	});
@@ -375,8 +375,8 @@ $(document).ready(function(){
         		},
         		error: function(e){
         			
-        			$(".error_window").html( "<p>Errors in the database connection, queries, etc.</p><hr><img src='resources/images/error.jpg' alt='error' />");
-        	        $(".error_window").fadeIn(200);
+        			//$(".error_window").html( "<p>Errors in the database connection, queries, etc.</p><hr><img src='resources/images/error.jpg' alt='error' />");
+        	        //$(".error_window").fadeIn(200);
         		}
         		
         	});

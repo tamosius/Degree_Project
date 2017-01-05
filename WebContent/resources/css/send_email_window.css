@@ -3,10 +3,14 @@
 	position: absolute;
 	top: 50px;
 	right: 50px;
+	//bottom: 50px;
 	
+	border-radius: 5px;
 	width: 60%;
-	height: 70%;
-	background: #ffffff;
+	height:600px;
+	background: -webkit-linear-gradient(top, #f9f9f9 0%, rgba(161, 182, 222, 1) 50%, #f9f9f9 100%);
+    background: linear-gradient(to bottom, #f9f9f9 0%, rgba(161, 182, 222, 1) 50%, #f9f9f9 100%);
+    box-shadow : 6px 6px 2px #555;
 	
 	display: none;
 	z-index: 110;
@@ -21,7 +25,7 @@
 	margin: 15px 0px 0px 15px;
 	//float: left;
 	
-	border: 1px blue solid;
+	//border: 1px blue solid;
 }
 
 .send_email_window #from_email{
@@ -33,7 +37,7 @@
 	width: 40%;
 	height: 30px;
 	
-	border: 1px red solid;
+	//border: 1px red solid;
 }
 
 .send_email_window #recipients label, .send_email_window #subject label, .send_email_window #from_email label{
@@ -61,15 +65,15 @@
 	
 	margin: 50px auto 0px auto;
 	
-	border: 1px red solid;
+	//border: 1px red solid;
 }
 
 .send_email_window #text_area_block textarea{
 	
 	width: 99%;
-	height: 350px;
+	height: 250px;
 	
-	border: 1px blue solid;
+	border: 1px #666 solid;
 }
 
 /*====================================================================================================================*/
@@ -81,7 +85,7 @@
 	
 	margin: 20px auto 0px auto;
 	
-	border: 1px blue solid;
+	border: 1px #666 solid;
 }
 
 .send_email_window #attachments_area img{
@@ -109,7 +113,7 @@
 	
 	height: 40px;
 	
-	border: 1px red solid;
+	//border: 1px red solid;
 }
 
 .send_email_window #add_attachment_button{

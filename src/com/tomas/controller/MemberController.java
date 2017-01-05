@@ -59,11 +59,16 @@ public class MemberController {
 
 /*-------------- RETRIEVE A MEMBER BY ID -------------------------------------------------------------------*/
 	@RequestMapping(value="/memberProfile", method=RequestMethod.POST, headers="Accept=application/json")
-	public Member getMemberProfile(@RequestParam("id") int id) {
+	public Member getProgrammesHistory(@RequestParam("id") int id) {
 		
 		return memberService.getMemberProfile(id);
 	}
 	
+	@RequestMapping(value="/programmesHistory", method=RequestMethod.POST, headers="Accept=application/json")
+	public List<Member> getMemberProfile(@RequestParam("id") int id) {
+		
+		return memberService.getProgrammesHistory(id);
+	}
 /*-------------- RETRIEVE A MEMBER(S) BY NAME -----------------------------------------------------------------*/
 	@RequestMapping(value="/searchMember", method=RequestMethod.POST, headers="Accept=application/json")
 	public List<Member> searchMember(@RequestParam("name") String name){

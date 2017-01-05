@@ -74,7 +74,7 @@ function displayAllAdmin(admins){
 					 "<tr class='admin_data'>" +
 		                 "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
 		                 "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.id + "'></td>" +
-		                 "<td id='second_column'><span id='check_in'>Check-in</span>" +value.firstName + " " + value.lastName + "</td>" +
+		                 "<td id='second_column'>" +value.firstName + " " + value.lastName + "</td>" +
 		                 "<td id='third_column' style='position: relative;'>" + value.joinedOn.substring(0, 10) + "" +
 								  "<div class='time_popup'>at <span>" + value.joinedOn.substring(11, 19) + "</span></div></td>" + // pop-up time in 'reports_big_table.css'
 		             "</tr>");    
@@ -102,7 +102,7 @@ function displayEmailMembers(members){
 			 "<tr class='row_data'>" +
                  "<input type='hidden' id='member_id' name='member_id' value='" + value.id + "' />" +
                  "<td id='first_column'><input type='checkbox' class='row_checkbox' value='" + value.email + "'><input type='hidden' value='" + value.firstName + "' /></td>" +
-                 "<td id='second_column'><span id='check_in'>Check-in</span>" +value.firstName + " " + value.lastName + "</td>" +
+                 "<td id='second_column'>" +value.firstName + " " + value.lastName + "</td>" +
                  "<td id='third_column'>" + addClass(value.email) + "</td>" + // 'addClass' function in 'add_update_member.js'
              "</tr>");                                                        // 'addClass' add style 'display_members.css' file
 	});
@@ -147,7 +147,7 @@ $(document).ready(function(){
 			
 			// call function 'searchDisplayMembers' in 'search_member.js' to retrieve members from the database
 			// empty "" String is passed to retrieve full list
-			var retrievedAdmins = searchDisplayMembers("POST", "/Degree_Project/admin/getAllAdmin", "");
+			var retrievedAdmins = searchMembers("admin/getAllAdmin", {name : ""});
 			
 			//display retrieved ADMINS in the table in 'communications.jsp' page
 			displayAllAdmin(retrievedAdmins);
@@ -163,7 +163,7 @@ $(document).ready(function(){
 			
 			// call function 'searchDisplayMembers' in 'search_member.js' to retrieve members from the database
 			// empty "" String is passed to retrieve full list
-			var retrievedMembers = searchDisplayMembers("POST", "/Degree_Project/communications/getEmailMembers", "");
+			var retrievedMembers = searchMembers("communications/getEmailMembers", {name : ""});
 			
 			//display retrieved members in the table in 'communications.jsp' page
 			displayEmailMembers(retrievedMembers);
@@ -180,7 +180,7 @@ $(document).ready(function(){
 	});
 	
 /*-------- RETRIEVE MEMBERS BY TYPING IN THE 'search' FIELD IN THE TOP PANEL ---------------------------------------------*/
-	$(".top_panel #search_text").keyup(function(){
+	$(".top_panel :input").keyup(function(){
 		
 		var name = $(this).val();
 		
@@ -194,7 +194,7 @@ $(document).ready(function(){
 			
 			// call function 'searchDisplayMembers' in 'search_member.js' to retrieve members from the database
 			// if empty "" String is passed to retrieve full list
-			var retrievedMembers = searchDisplayMembers("POST", "/Degree_Project/communications/getEmailMembers", name);
+			var retrievedMembers = searchMembers("communications/getEmailMembers", {name : name});
 			
 			//display retrieved members in the table in 'communications.jsp' page
 			displayEmailMembers(retrievedMembers);
@@ -207,7 +207,13 @@ $(document).ready(function(){
 		// get the message from the textarea from admin
 		var message = $("#leave_message_block #leave_admin_message_block textarea").val();
 		
-		
+		// display the picture of Member you successfully removed from the database
+        $(".popup_window #check_in_image").attr("src", "resources/images/green_accept.jpg");
+    	 
+    	// display successful message about Member you successfully removed from the database
+        $(".popup_window .messages").html("<div id='popup_window_text'><strong></strong><br>" +
+					               "Successfully sent the message!</div>");
+			$(".popup_window").fadeIn().delay(3000).fadeOut(500);  
 		
 		if(message.length === 0){
 			
@@ -219,8 +225,8 @@ $(document).ready(function(){
 			
 			if($(this).prop("checked")){
 				                // path, messageTo (id), message, messageFrom (id)
-				addAdminMessage("/Degree_Project/admin/addAdminMessage", $(this).val(),
-						message, $("#admin_user_session #admin_id").val());
+				//addAdminMessage("/Degree_Project/admin/addAdminMessage", $(this).val(),
+						//message, $("#admin_user_session #admin_id").val());
 			}
 		});
 	});
